@@ -14,7 +14,7 @@ class Garbage extends CI_Controller {
 		$this->load->helper('directory');
 		$this->load->helper('security');
 		$this->load->library('zend');
-		$this->load->model('Hospital_model');
+		$this->load->model('Garbage_model');
 		$this->load->model('Admin_model');
 		$this->load->library('zend');
 		if($this->session->userdata('userdetails'))
@@ -52,9 +52,32 @@ class Garbage extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-				$data['hospital_list']=$this->Hospital_model->get_all_hospital_list($admindetails['a_id']);
+				$data['tuck_list']=$this->Garbage_model->get_all_truck_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/trucklist',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	
+	public function edit()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				
+				$t_id=base64_decode($this->uri->segment(3));
+				$data['truck_detail']=$this->Garbage_model->get_truck_details($t_id);
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/edit_truck', $data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -73,28 +96,34 @@ class Garbage extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-					$hos_id=base64_decode($this->uri->segment(3));
+					$t_id=base64_decode($this->uri->segment(3));
 					$status=base64_decode($this->uri->segment(4));
 					if($status==1){
 						$sta=0;
 					}else{
 						$sta=1;
 					}
-						$details=$this->Hospital_model->get_hospital_details($hos_id);
-						$updatehospital=array(
+						$details=$this->Garbage_model->get_truck_details($t_id);
+						$updatetruck=array(
 							'status'=>$sta,
 							);
-							$update=$this->Hospital_model->update_hospital_details($hos_id,$updatehospital);
+							$update=$this->Garbage_model->update_truck_details($t_id,$updatetruck);
 							if(count($update)>0){
 								$admin_detail=array(
 								'status'=>$sta,
 								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital Successfully deactivate');
-								redirect('hospital/lists');
+								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
+									if($status==1){
+									$this->session->set_flashdata('success','Garbage Successfully deactivate');
+
+									}else{
+									$this->session->set_flashdata('success','Garbage Successfully Activate');
+
+									}
+								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								redirect('garbage/edit/'.base64_encode($t_id));
 								}
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -113,45 +142,23 @@ class Garbage extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-						$hos_id=base64_decode($this->uri->segment(3));
-						$details=$this->Hospital_model->get_hospital_details($hos_id);
-						$updatehospital=array(
+						$t_id=base64_decode($this->uri->segment(3));
+						$details=$this->Garbage_model->get_truck_details($t_id);
+						$updatetruck=array(
 							'status'=>2,
 							);
-							$update=$this->Hospital_model->update_hospital_details($hos_id,$updatehospital);
+							$update=$this->Garbage_model->update_truck_details($t_id,$updatetruck);
 							if(count($update)>0){
 								$admin_detail=array(
 								'status'=>2,
 								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital details Successfully Deleted');
-								redirect('hospital/lists');
+								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
+								$this->session->set_flashdata('success','Garbage Successfully Deleted');
+								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								redirect('garbage/lists');
 								}
-			}else{
-				$this->session->set_flashdata('error',"you don't have permission to access");
-				redirect('dashboard');
-			}
-
-		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	}
-	public function edit()
-	{	
-			if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
-				
-				$hos_id=base64_decode($this->uri->segment(3));
-				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($hos_id);
-				//echo "<pre>";print_r($data);exit;
-				$this->load->view('admin/edithospital',$data);
-				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
 				redirect('dashboard');
@@ -169,49 +176,50 @@ class Garbage extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				$post=$this->input->post();
+				//echo "<pre>";print_r($post);exit;
 				$check_email=$this->Admin_model->email_check_details($post['email']);
 				if(count($check_email)>0){
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
-						redirect('hospital/add');
+						redirect('garbage/add');
 				}else{
-					$addhos=array(
+					$addtruck=array(
 						'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
 						'status'=>1,
-						'role'=>2
+						'role'=>3
 					);
-					$hos_save=$this->Admin_model->save_admin($addhos);
-					if(count($hos_save)>0){
-						$this->zend->load('Zend/Barcode');
-						$file = Zend_Barcode::draw('code128', 'image', array('text' => $hos_save), array());
-						$code = time().$hos_save;
-						$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
-						$addhospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
-							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
+					$ger_truck=$this->Admin_model->save_admin($addtruck);
+					if(count($ger_truck)>0){
+						$addgarbagetruckl=array(
+							'a_id'=>$ger_truck,
+							'truck_reg_no'=>isset($post['truck_reg_no'])?$post['truck_reg_no']:'',
+							'owner_name'=>isset($post['owner_name'])?$post['owner_name']:'',
+							'insurence_number'=>isset($post['insurence_number'])?$post['insurence_number']:'',
+							'owner_mobile'=>isset($post['owner_mobile'])?$post['owner_mobile']:'',
+							'driver_name'=>isset($post['driver_name'])?$post['driver_name']:'',
+							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
+							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
+							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
-							'barcode'=>$code.'.png',
 							'create_by'=>$admindetails['a_id']
 						);
-						$hospital_save=$this->Admin_model->save_hospital($addhospital);
-						if(count($hospital_save)>0){
-							$this->session->set_flashdata('success','Hospital Successfully added');
-							redirect('hospital/listss');
+						$truck_save=$this->Admin_model->save_truck($addgarbagetruckl);
+						if(count($truck_save)>0){
+							$this->session->set_flashdata('success','Garbage Successfully added');
+							redirect('garbage/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('hospital/lists');
+							redirect('garbage/lists');
 						}
 						
 					}else{
 						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-						redirect('hospital/add');
+						redirect('garbage/add');
 					}
 					
 				}
@@ -226,79 +234,6 @@ class Garbage extends CI_Controller {
 			redirect('admin');
 		}
 	}
-	public function editpost()
-	{	
-			if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
-				$post=$this->input->post();
-				$details=$this->Hospital_model->get_hospital_details($post['hos_id']);
-				if($details['email']!=$post['email']){
-					$check_email=$this->Admin_model->email_check_details($post['email']);
-						if(count($check_email)>0){
-								$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
-						}else{
-							$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
-							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
-							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
-							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
-							);
-							$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
-							if(count($update)>0){
-								$admin_detail=array(
-								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-								'email_id'=>isset($post['email'])?$post['email']:'',
-								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital details Successfully updated');
-								redirect('hospital/lists');
-								}else{
-								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
-								}
-						}
-					
-				}else{
-					$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
-							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
-							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
-							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
-						);
-						//echo "<pre>";print_r($updatehospital);
-						$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
-						//echo $this->db->last_query();exit;
-						if(count($update)>0){
-							$admin_detail=array(
-								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-								'email_id'=>isset($post['email'])?$post['email']:'',
-								);
-							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-							$this->session->set_flashdata('success','Hospital details Successfully updated');
-							redirect('hospital/lists');
-						}else{
-							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('hospital/edit/'.base64_encode($post['hos_id']));
-						}
-				}
-				
-				
-			}else{
-				$this->session->set_flashdata('error',"you don't have permission to access");
-				redirect('dashboard');
-			}
-
-		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	}
+	
 	
 }

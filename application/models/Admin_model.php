@@ -55,6 +55,10 @@ class Admin_model extends CI_Model
 		$this->db->insert('hospital_list', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function save_truck($data){
+		$this->db->insert('trucks', $data);
+		return $insert_id = $this->db->insert_id();
+	}
 	
 
 }

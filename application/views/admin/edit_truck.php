@@ -6,33 +6,34 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add Garbage Trucks</h2>
+                            <h2>Edit Garbage Trucks</h2>
                        
                         </div>
                         <div class="body">
-                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('garbage/addpost');?>">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('garbage/editpost'); ?>">
+						<input type="hidden" name="t_id" id="t_id" value="<?php echo isset($truck_detail['t_id'])?$truck_detail['t_id']:'';?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Truck Regn number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS 02 4562" />
+                                <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS 02 4562"  value="<?php echo isset($truck_detail['truck_reg_no'])?$truck_detail['truck_reg_no']:'';?>"/>
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Regd Owner</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner name" />
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner name"  value="<?php echo isset($truck_detail['owner_name'])?$truck_detail['owner_name']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Truck Insurence Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurence Number" />
+                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurence Number"  value="<?php echo isset($truck_detail['insurence_number'])?$truck_detail['insurence_number']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label"> Owner Mobile</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="owner_mobile" id="owner_mobile" placeholder="Enter Owner Mobile" />
+                                <input type="text" class="form-control" name="owner_mobile" id="owner_mobile" placeholder="Enter Owner Mobile"   value="<?php echo isset($truck_detail['owner_mobile'])?$truck_detail['owner_mobile']:'';?>"/>
                             </div>
                         </div>
 						
@@ -40,47 +41,34 @@
                        <div class="form-group">
                             <label class="col-lg-3 control-label">Driver Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Driver Name" />
+                                <input type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Driver Name"  value="<?php echo isset($truck_detail['driver_name'])?$truck_detail['driver_name']:'';?>"/>
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Driver Licence Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_no"  id="driver_lic_no" placeholder="Driver Licence Number" />
+                                <input type="text" class="form-control" name="driver_lic_no"  id="driver_lic_no" placeholder="Driver Licence Number"   value="<?php echo isset($truck_detail['driver_lic_no'])?$truck_detail['driver_lic_no']:'';?>"/>
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Driver Licence badge number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number" />
+                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number"  value="<?php echo isset($truck_detail['driver_lic_bad_no'])?$truck_detail['driver_lic_bad_no']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label"> Driver Mobile</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile" />
+                                <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile"  value="<?php echo isset($truck_detail['driver_mobile'])?$truck_detail['driver_mobile']:'';?>" />
                             </div>
                         </div>
 						<hr>
 						 <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address" />
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address"  value="<?php echo isset($truck_detail['email'])?$truck_detail['email']:'';?>" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Password</label>
-                            <div class="col-lg-5">
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Retype password</label>
-                            <div class="col-lg-5">
-                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Enter Confirm Password " />
-                            </div>
-                        </div> 
                         <div class="form-group">
                             <label class="col-lg-3 control-label" id="captchaOperation"></label>
                             <div class="col-lg-2">
@@ -191,66 +179,67 @@ $(document).ready(function() {
 					}
 				}
             },
-            driver_mobile: {
-               validators: {
-					 notEmpty: {
-						message: ' Driver Mobile Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]{10}$/,
-					message:' Driver Mobile Number must be 10 digits'
-					}
-                }
-            },
-            email: {
-                 validators: {
-					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
             password: {
-                 validators: {
-					notEmpty: {
-						message: 'Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Password  must be at least 6 characters'
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
                     },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
-					}
-				}
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    different: {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
             },
             confirmPassword: {
                 validators: {
-						 notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					identical: {
-						field: 'password',
-						message: 'password and confirm Password do not match'
-					}
-					}
-            },
-            address: {
-                 validators: {
-					  notEmpty: {
-						message: 'Address is required'
-					},
-                    regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message:'Address2 wont allow <> [] = % '
-					}
+                    notEmpty: {
+                        message: 'The confirm password is required and cannot be empty'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    different: {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
                 }
             },
-            
+            birthday: {
+                validators: {
+                    date: {
+                        format: 'YYYY/MM/DD',
+                        message: 'The birthday is not valid'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'The gender is required'
+                    }
+                }
+            },
+            'languages[]': {
+                validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one language you can speak'
+                    }
+                }
+            },
+            'programs[]': {
+                validators: {
+                    choice: {
+                        min: 2,
+                        max: 4,
+                        message: 'Please choose 2 - 4 programming languages you are good at'
+                    }
+                }
+            },
             captcha: {
                 validators: {
                     callback: {

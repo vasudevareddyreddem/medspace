@@ -21,76 +21,37 @@
                                             <th>Join Date</th>
                                             <th>Amount Paid (Rs)</th>
                                             <th>Due Amount</th>
+                                            <th>Status</th>
+                                            <th>
+											</th>
                                         </tr>
                                     </thead>
                                     
+										
+										<?php if(isset($tuck_list) && count($tuck_list)>0){ ?>
+									<?php foreach($tuck_list as $list){ ?>
                                     <tbody>
                                         <tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
+                                            <td><?php echo htmlentities($list['truck_reg_no']); ?></td>
+                                            <td><?php echo htmlentities($list['owner_name']); ?></td>
+                                            <td><?php echo htmlentities($list['driver_name']); ?></td>
+                                            <td><?php echo htmlentities($list['driver_lic_no']); ?></td>
+                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><span>(Rs) &nbsp;</span>15000</td>
                                             <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
-                                        </tr>
-										<tr>
-                                            <td>TS 04 2536</td>
-                                            <td>Test Owner 1</td>
-                                            <td>Driver-1</td>
-                                            <td>TS000123456789</td>
-                                            <td>2018/05/23</td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
+                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                            <td>
+											<a href="<?php echo base_url('garbage/edit/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 
+											<a href="<?php echo base_url('garbage/status/'.base64_encode($list['t_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></a> 
+											<a href="<?php echo base_url('garbage/delete/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Delete</a> 
+											</td>
                                         </tr>
 										
-                                        
                                     </tbody>
+									<?php } ?>
+									<?php } ?>
+                                        
+                                   
                                 </table>
                             </div>
                         </div>
