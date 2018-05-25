@@ -1,0 +1,278 @@
+<section class="content">
+        <div class="container-fluid">
+       
+            <!-- Basic Validation -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Add Garbage Trucks</h2>
+                       
+                        </div>
+                        <div class="body">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="target.php">
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Truck Regn number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS 02 4562" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Regd Owner</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner name" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Truck Insurence Number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurence Number" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label"> Owner Mobile</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="owner_mobile" id="owner_mobile" placeholder="Enter Owner Mobile" />
+                            </div>
+                        </div>
+						
+						<hr>
+                       <div class="form-group">
+                            <label class="col-lg-3 control-label">Driver Name</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Driver Name" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Driver Licence Number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="driver_lic_no"  id="driver_lic_no" placeholder="Driver Licence Number" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Driver Licence badge number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label"> Driver Mobile</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile" />
+                            </div>
+                        </div>
+						<hr>
+						 <div class="form-group">
+                            <label class="col-lg-3 control-label">Email address</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Password</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Retype password</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Enter Confirm Password " />
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="captcha" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Garbage Truck</button>
+                                
+                            </div>
+                        </div>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+            
+    </section>
+	<script type="text/javascript">
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+//       
+        fields: {
+            truck_reg_no: {
+                validators: {
+					notEmpty: {
+						message: 'Truck Regn number is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Truck Regn number can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            owner_name: {
+                validators: {
+					notEmpty: {
+						message: 'Owner name is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Owner name can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			insurence_number: {
+                validators: {
+					notEmpty: {
+						message: 'Truck Insurence Number is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Truck Insurence Number can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			owner_mobile: {
+                 validators: {
+					 notEmpty: {
+						message: ' Owner Mobile Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:' Owner Mobile Number must be 10 digits'
+					}
+                }
+            },
+            driver_name: {
+                validators: {
+					notEmpty: {
+						message: 'Driver name is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Driver name can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            driver_lic_no: {
+                validators: {
+					notEmpty: {
+						message: 'Driver Licence Number is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Driver Licence Number can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			driver_lic_bad_no: {
+                validators: {
+					notEmpty: {
+						message: 'Driver Licence badge number is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Driver Licence badge number can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    different: {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: 'The confirm password is required and cannot be empty'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    different: {
+                        field: 'username',
+                        message: 'The password cannot be the same as username'
+                    }
+                }
+            },
+            birthday: {
+                validators: {
+                    date: {
+                        format: 'YYYY/MM/DD',
+                        message: 'The birthday is not valid'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'The gender is required'
+                    }
+                }
+            },
+            'languages[]': {
+                validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one language you can speak'
+                    }
+                }
+            },
+            'programs[]': {
+                validators: {
+                    choice: {
+                        min: 2,
+                        max: 4,
+                        message: 'Please choose 2 - 4 programming languages you are good at'
+                    }
+                }
+            },
+            captcha: {
+                validators: {
+                    callback: {
+                        message: 'Wrong answer',
+                        callback: function(value, validator) {
+                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                            return value == sum;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+});
+</script>
