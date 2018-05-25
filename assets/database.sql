@@ -32,11 +32,11 @@ CREATE TABLE `admin` (
   `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   PRIMARY KEY (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `admin` */
 
-insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin',NULL,'admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-05-25 11:45:41'),(3,2,'vasudevaruyu',NULL,'vasu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(8,3,'hjfghjfghj',NULL,'admin6767gdfgsdf@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,0,NULL);
+insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin',NULL,'admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-05-25 11:45:41'),(3,2,'vasudevaruyu',NULL,'vasu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(8,3,'hjfghjfghj',NULL,'admin6767gdfgsdf@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,0,NULL),(10,4,'rrrr',NULL,'admin678www9@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL);
 
 /*Table structure for table `hospital_list` */
 
@@ -79,9 +79,11 @@ CREATE TABLE `plant` (
   `create_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `plant` */
+
+insert  into `plant`(`p_id`,`a_id`,`disposal_plant_name`,`disposal_plant_id`,`mobile`,`email`,`address`,`captcha`,`status`,`create_at`,`create_by`) values (2,10,'rrrr','jfgjfghj','8500050944','admin678www9@gmail.com','trter','197',1,'2018-05-25 18:29:41',1);
 
 /*Table structure for table `roles` */
 
