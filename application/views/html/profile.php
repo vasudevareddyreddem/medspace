@@ -1,115 +1,140 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title></title>
-   
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url(); ?>assets/vendor/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/vendor/css/bootstrapValidator.min.css" rel="stylesheet">
-	
-
-    <!-- Waves Effect Css -->
-    <link href="<?php echo base_url(); ?>assets/vendor/plugins/node-waves/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?php echo base_url(); ?>assets/vendor/plugins/animate-css/animate.css" rel="stylesheet" />
-	  <!-- JQuery DataTable Css -->
-    <link href="<?php echo base_url(); ?>assets/vendor/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- Morris Chart Css-->
-    <link href="<?php echo base_url(); ?>assets/vendor/plugins/morrisjs/morris.css" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="<?php echo base_url(); ?>assets/vendor/css/style.css" rel="stylesheet">
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<?php echo base_url(); ?>assets/vendor/css/themes/all-themes.css" rel="stylesheet" />
-	<script src="<?php echo base_url(); ?>assets/vendor/plugins/jquery/jquery.min.js"></script>
-</head>
-<body class="login-page">
-    <div class="login-box">
-       
-        <div class="card card-container" style="top:50">
-            <div class="body">
-			<div class="">
-				<h1 class="text-center">Medspace</h1>
-			</div>
-                <form id="defaultForm" method="post" class="form-horizontal py-5" action="<?php echo base_url('admin/loginpost'); ?>">
+<section class="content">
+   <div class="container-fluid">
+      <!-- Basic Validation -->
+      <div class="row clearfix">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+               <div class="header">
+                  <h2>Profile</h2>
+				  <a  href="" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
+               </div>
+               <div class="body">
+                  <div class="col-md-12 ">
+                     <div class="col-sm-4" style="border-right:1px solid #ddd;">
+                        <div  align="center">
+                           <div >
+                              <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive" style="max-height:100px;max-width:auto;"> 
+                           </div>
+                           <input id="profile-image-upload" class="hidden" type="file">
+                           <div style="color:#999;" >click here to change profile image</div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <h4 >Truck Driver Name </h4>
+                        </span>
+                        <span>
+                           <p>Driver</p>
+                        </span>
+                     </div>
+                     <div class="clearfix"></div>
+                     <hr style="margin:5px 0 5px 0;">
+					 <br>
+                     <div class="col-sm-5 col-xs-6 tital " >First Name:</div>
+                     <div class="col-sm-7 col-xs-6 ">Prasad</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Middle Name:</div>
+                     <div class="col-sm-7"> Shankar</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Last Name:</div>
+                     <div class="col-sm-7"> Huddedar</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Date Of Joining:</div>
+                     <div class="col-sm-7">15 Jun 2016</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div>
+                     <div class="col-sm-7">11 Jun 1998</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div>
+                     <div class="col-sm-7">Shirdi</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Nationality:</div>
+                     <div class="col-sm-7">Indian</div>
+                     <div class="clearfix"></div>
+                     <div class="bot-border"></div>
+                     <div class="col-sm-5 col-xs-6 tital " >Relition:</div>
+                     <div class="col-sm-7">Hindu</div>
+                  </div>
+					<!-- edit profile start-->
+					<form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('hospital/addpost'); ?>">
 						<div class="form-group">
-                          
-                            <div class="">
-                                <input type="text" name="email_id" id="email_id" class="form-control border-r-0" name="username" placeholder="Enter User Name" />
+                            <label class="col-lg-3 control-label">Hospital Name</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="hospital_name" id="hospital_name" value="Enter Hospital Name" />
                             </div>
                         </div>
 						<div class="form-group">
-                     
-                            <div class="">
-                                <input type="password" name="password" id="password" class="form-control border-r-0"  placeholder="Enter Password" />
+                            <label class="col-lg-3 control-label">Hospital ID</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="hospital_id" id="hospital_id" value="Enter Hospital ID" />
                             </div>
                         </div>
 						<div class="form-group">
-                     
-                            <div class="pull-right">
-                               <a href="#">Forget Password?</a>
+                            <label class="col-lg-3 control-label">Mobile</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="mobile" id="mobile" value="Enter mobile" />
                             </div>
                         </div>
-						
-
-                       
 
                         <div class="form-group">
-                          
-                            <div class=" ">
-                                <button type="submit" class="btn btn-primary btn-block" name="signup" value="Sign up">Login</button>
+                            <label class="col-lg-3 control-label">Email address</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="email" id="email" value="Enter Email address" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Password</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" id="password" name="password" value="Enter Password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Retype password</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="Enter Confirm Password " />
+                            </div>
+                        </div> 
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Address</label>
+                            <div class="col-lg-5">
+                                <textarea class="form-control" rows="5" id="address" name="address"></textarea>
+                            </div>
+                        </div>
+
+                       
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="captcha" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Upadate</button>
                                 
                             </div>
                         </div>
                     </form>
+					<!-- edit profile end-->
+                  <div class="clearfix">&nbsp;</div>
+               </div>
             </div>
-        </div>
-    </div>
-
-</body>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#defaultForm').bootstrapValidator({
-        fields: {
-            
-            email_id: {
-                validators: {
-					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
-            password: {
-               validators: {
-					notEmpty: {
-						message: 'Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Password  must be at least 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
-					}
-				}
-            }
-        }
+         </div>
+      </div>
+   </div>
+</section>
+	<script>
+              $(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
     });
-
-});
-</script>
-
+});       
+              </script> 
