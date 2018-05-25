@@ -9,20 +9,20 @@ class Plant_model extends CI_Model
 		$this->load->database("default");
 	}
 	
-	public function get_all_truck_list($admin_id){
-		$this->db->select('*')->from('trucks');		
+	public function get_all_plants_list($admin_id){
+		$this->db->select('*')->from('plant');		
 		$this->db->where('create_by', $admin_id);
 		$this->db->where('status !=', 2);
         return $this->db->get()->result_array();	
 	}
-	public function get_truck_details($h_id){
-		$this->db->select('*')->from('trucks');		
-		$this->db->where('t_id', $h_id);
+	public function get_plant_details($p_id){
+		$this->db->select('*')->from('plant');		
+		$this->db->where('p_id', $p_id);
         return $this->db->get()->row_array();	
 	}
-	public function update_truck_details($h_id,$data){
-		$this->db->where('t_id',$h_id);
-    	return $this->db->update("trucks",$data);
+	public function update_plant_details($p_id,$data){
+		$this->db->where('p_id',$p_id);
+    	return $this->db->update("plant",$data);
 	}
 	public function update_admin_details($a_id,$data){
 		$this->db->where('a_id',$a_id);
