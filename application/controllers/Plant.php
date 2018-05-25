@@ -176,50 +176,46 @@ class Plant extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				$post=$this->input->post();
-				echo "<pre>";print_r($post);exit;
+				//echo "<pre>";print_r($post);exit;
 				$check_email=$this->Admin_model->email_check_details($post['email']);
 				if(count($check_email)>0){
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
 						redirect('plant/add');
 				}else{
 					$addplant=array(
-						'name'=>isset($post['owner_name'])?$post['owner_name']:'',
+						'name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
 						'status'=>1,
-						'role'=>3
+						'role'=>4
 					);
-					$ger_truck=$this->Plant_model->save_plant($addplant);
-					if(count($ger_truck)>0){
-						$addgarbagetruckl=array(
+					$sav_plant=$this->Admin_model->save_admin($addplant);
+					if(count($sav_plant)>0){
+						$add_plant=array(
 							'a_id'=>$ger_truck,
-							'truck_reg_no'=>isset($post['truck_reg_no'])?$post['truck_reg_no']:'',
-							'owner_name'=>isset($post['owner_name'])?$post['owner_name']:'',
-							'insurence_number'=>isset($post['insurence_number'])?$post['insurence_number']:'',
-							'owner_mobile'=>isset($post['owner_mobile'])?$post['owner_mobile']:'',
-							'driver_name'=>isset($post['driver_name'])?$post['driver_name']:'',
-							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
-							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
-							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+							'disposal_plant_id'=>isset($post['disposal_plant_id'])?$post['disposal_plant_id']:'',
+							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
+							'address'=>isset($post['address'])?$post['address']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'create_by'=>$admindetails['a_id']
 						);
-						$truck_save=$this->Admin_model->save_truck($addgarbagetruckl);
-						if(count($truck_save)>0){
+						$plant_save=$this->Plant_model->save_plant($add_plant);
+						if(count($plant_save)>0){
 							$this->session->set_flashdata('success','Garbage Successfully added');
-							redirect('garbage/lists');
+							redirect('plant/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('garbage/lists');
+							redirect('plant/lists');
 						}
 						
 					}else{
 						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-						redirect('garbage/add');
+						redirect('plant/add');
 					}
 					
 				}
