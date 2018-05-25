@@ -183,7 +183,7 @@ class Garbage extends CI_Controller {
 						redirect('garbage/add');
 				}else{
 					$addtruck=array(
-						'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+						'name'=>isset($post['owner_name'])?$post['owner_name']:'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
@@ -223,6 +223,88 @@ class Garbage extends CI_Controller {
 					}
 					
 				}
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function editpost()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				$post=$this->input->post();
+				//echo "<pre>";print_r($post);exit;
+				$details=$this->Garbage_model->get_truck_details($post['t_id']);
+				if($details['email']!=$post['email']){
+					$check_email=$this->Admin_model->email_check_details($post['email']);
+						if(count($check_email)>0){
+								$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
+								redirect('garbage/edit/'.base64_encode($post['t_id']));
+						}else{
+							$updatehospital=array(
+							'truck_reg_no'=>isset($post['truck_reg_no'])?$post['truck_reg_no']:'',
+							'owner_name'=>isset($post['owner_name'])?$post['owner_name']:'',
+							'insurence_number'=>isset($post['insurence_number'])?$post['insurence_number']:'',
+							'owner_mobile'=>isset($post['owner_mobile'])?$post['owner_mobile']:'',
+							'driver_name'=>isset($post['driver_name'])?$post['driver_name']:'',
+							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
+							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
+							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'email'=>isset($post['email'])?$post['email']:'',
+							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							);
+							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
+							if(count($update)>0){
+								$admin_detail=array(
+								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
+								'email_id'=>isset($post['email'])?$post['email']:'',
+								);
+								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
+								$this->session->set_flashdata('success','Hospital details Successfully updated');
+								redirect('garbage/lists');
+								}else{
+								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+								redirect('garbage/edit/'.base64_encode($post['t_id']));
+								}
+						}
+					
+				}else{
+					$updatehospital=array(
+							'truck_reg_no'=>isset($post['truck_reg_no'])?$post['truck_reg_no']:'',
+							'owner_name'=>isset($post['owner_name'])?$post['owner_name']:'',
+							'insurence_number'=>isset($post['insurence_number'])?$post['insurence_number']:'',
+							'owner_mobile'=>isset($post['owner_mobile'])?$post['owner_mobile']:'',
+							'driver_name'=>isset($post['driver_name'])?$post['driver_name']:'',
+							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
+							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
+							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'email'=>isset($post['email'])?$post['email']:'',
+							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							);
+							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
+							if(count($update)>0){
+								$admin_detail=array(
+								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
+								'email_id'=>isset($post['email'])?$post['email']:'',
+								);
+								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
+								//echo $this->db->last_query();exit;
+								$this->session->set_flashdata('success','Hospital details Successfully updated');
+								redirect('garbage/lists');
+								}else{
+								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+								redirect('garbage/edit/'.base64_encode($post['t_id']));
+								}
+				}
+				
 				
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");

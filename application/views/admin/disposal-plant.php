@@ -1,4 +1,3 @@
-<?php include("header.php"); ?>
 <section class="content">
         <div class="container-fluid">
        
@@ -11,50 +10,50 @@
                        
                         </div>
                         <div class="body">
-                    <form id="defaultForm" method="post" class="form-horizontal" action="target.php">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/addpost'); ?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Disposal Plant Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="username" placeholder="Enter Hospital Name" />
+                                <input type="text" class="form-control" name="disposal_plant_name" id="disposal_plant_name" placeholder="Disposal Plant Name" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Disposal Plant ID</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="username" placeholder="Enter Hospital ID" />
+                                <input type="text" class="form-control" name="disposal_plant_id" id="disposal_plant_id" placeholder="Disposal Plant ID" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Mobile</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="username" placeholder="Enter mobile" />
+                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="email" placeholder="Enter Email address" />
+                                <input type="text" class="form-control" name="email"  id="email" placeholder="Enter Email address" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Password</label>
                             <div class="col-lg-5">
-                                <input type="password" class="form-control" name="password" placeholder="Enter Password" />
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Retype password</label>
                             <div class="col-lg-5">
-                                <input type="password" class="form-control" name="confirmPassword" placeholder="Enter Confirm Password " />
+                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Enter Confirm Password " />
                             </div>
                         </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address</label>
                             <div class="col-lg-5">
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <textarea class="form-control" rows="5" id="address" name="address"></textarea>
                             </div>
                         </div>
 
@@ -90,122 +89,89 @@ $(document).ready(function() {
     $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
 
     $('#defaultForm').bootstrapValidator({
-//        live: 'disabled',
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
+//       
         fields: {
-            firstName: {
-                group: '.col-lg-4',
+           
+            disposal_plant_name: {
                 validators: {
-                    notEmpty: {
-                        message: 'The first name is required and cannot be empty'
-                    }
-                }
+					notEmpty: {
+						message: 'Disposal Plant Name is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Disposal Plant Name can only consist of alphanumaric, space and dot'
+					}
+				}
             },
-            lastName: {
-                group: '.col-lg-4',
+			disposal_plant_id: {
                 validators: {
-                    notEmpty: {
-                        message: 'The last name is required and cannot be empty'
-                    }
-                }
+					notEmpty: {
+						message: 'Disposal Plant ID is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Disposal Plant ID can only consist of alphanumaric, space and dot'
+					}
+				}
             },
-            username: {
-                message: 'The username is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    },
+			mobile: {
+                 validators: {
+					 notEmpty: {
+						message: ' Mobile Number is required'
+					},
                     regexp: {
-                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                        message: 'The username can only consist of alphabetical, number, dot and underscore'
-                    },
-                    remote: {
-                        type: 'POST',
-                        url: 'remote.php',
-                        message: 'The username is not available'
-                    },
-                    different: {
-                        field: 'password,confirmPassword',
-                        message: 'The username and password cannot be the same as each other'
-                    }
+					regexp:  /^[0-9]{10}$/,
+					message:'Mobile Number must be 10 digits'
+					}
                 }
             },
+            
             email: {
-                validators: {
-                    emailAddress: {
-                        message: 'The input is not a valid email address'
-                    }
-                }
+                 validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
             },
             password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required and cannot be empty'
+                 validators: {
+					notEmpty: {
+						message: 'Password is required'
+					},
+					stringLength: {
+                        min: 6,
+                        message: 'Password  must be at least 6 characters'
                     },
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
+					regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
+					message: 'Password wont allow <>[]'
+					}
+				}
             },
             confirmPassword: {
                 validators: {
-                    notEmpty: {
-                        message: 'The confirm password is required and cannot be empty'
-                    },
-                    identical: {
-                        field: 'password',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
+						 notEmpty: {
+						message: 'Confirm Password is required'
+					},
+					identical: {
+						field: 'password',
+						message: 'password and confirm Password do not match'
+					}
+					}
             },
-            birthday: {
-                validators: {
-                    date: {
-                        format: 'YYYY/MM/DD',
-                        message: 'The birthday is not valid'
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'The gender is required'
-                    }
-                }
-            },
-            'languages[]': {
-                validators: {
-                    notEmpty: {
-                        message: 'Please specify at least one language you can speak'
-                    }
-                }
-            },
-            'programs[]': {
-                validators: {
-                    choice: {
-                        min: 2,
-                        max: 4,
-                        message: 'Please choose 2 - 4 programming languages you are good at'
-                    }
+            address: {
+                 validators: {
+					  notEmpty: {
+						message: 'Address is required'
+					},
+                    regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:'Address2 wont allow <> [] = % '
+					}
                 }
             },
             captcha: {
@@ -232,4 +198,3 @@ $(document).ready(function() {
     });
 });
 </script>
-<?php include("footer.php"); ?>

@@ -345,10 +345,10 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="disposal-plant.php">Add Plant</a>
+								<a href="<?php echo base_url('plant/add'); ?>">Add Plant</a>
 							</li>
 							<li>
-								<a href="plantlist.php">Plant List</a>
+								<a href="<?php echo base_url('plant/lists'); ?>">Plant List</a>
 							</li>
                             
                         </ul>

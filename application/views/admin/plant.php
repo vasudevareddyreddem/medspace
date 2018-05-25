@@ -1,4 +1,3 @@
-<?php include("header.php"); ?>
 <section class="content">
         <div class="container-fluid">
        
@@ -86,28 +85,28 @@
 							<div class="col-md-3">
 							<h4 class="text-center text-success">Genaral Waste</h4>
 								<div class="py-4">
-									<img class="img-responsive" src="images/greenbox.png" alt="greenbox">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
 								</div>
 								<input type="text" class="form-control" placeholder="Enter Genaral waste in Kgs">
 							</div>
 							<div class="col-md-3">
 							<h4 class="text-center text-danger">Infected Plastics</h4>
 									<div class="py-4">
-									<img class="img-responsive" src="images/redbox.png" alt="greenbox">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
 								</div>
 								<input type="text" class="form-control" placeholder="Enter Genaral waste in Kgs">
 							</div>
 							<div class="col-md-3">
 								<h4 class="text-center text-warning">Infected Waste</h4>
 									<div class="py-4">
-									<img class="img-responsive" src="images/yellowbox.png" alt="greenbox">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
 								</div>
 								<input type="text" class="form-control" placeholder="Enter Genaral waste in Kgs">
 							</div>
 							<div class="col-md-3">
 								<h4 class="text-center text-primary">Glassware</h4>
 									<div class="py-4">
-									<img class="img-responsive" src="images/bluebox.png" alt="greenbox">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
 								</div>
 								<input type="text" class="form-control" placeholder="Enter Genaral waste in Kgs">
 							</div>
@@ -301,4 +300,3 @@ $(document).ready(function() {
     });
 });
 </script>
-<?php include("footer.php"); ?>
