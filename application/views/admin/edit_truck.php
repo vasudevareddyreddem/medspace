@@ -62,6 +62,18 @@
                                 <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile"  value="<?php echo isset($truck_detail['driver_mobile'])?$truck_detail['driver_mobile']:'';?>" />
                             </div>
                         </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label"> Route Number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="route_no" id="route_no" placeholder="Route Number"  value="<?php echo isset($truck_detail['route_no'])?$truck_detail['route_no']:'';?>" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label"> Description</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="description" id="description" placeholder="Description"  value="<?php echo isset($truck_detail['description'])?$truck_detail['description']:'';?>" />
+                            </div>
+                        </div>
 						<hr>
 						 <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
@@ -108,7 +120,7 @@ $(document).ready(function() {
 						message: 'Truck Regn number is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
+					regexp: /^[a-zA-Z0-9.]+$/,
 					message: 'Truck Regn number can only consist of alphanumaric, space and dot'
 					}
 				}
@@ -179,67 +191,51 @@ $(document).ready(function() {
 					}
 				}
             },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required and cannot be empty'
-                    },
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
+            driver_mobile: {
+               validators: {
+					 notEmpty: {
+						message: ' Driver Mobile Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]{10}$/,
+					message:' Driver Mobile Number must be 10 digits'
+					}
                 }
             },
-            confirmPassword: {
-                validators: {
-                    notEmpty: {
-                        message: 'The confirm password is required and cannot be empty'
-                    },
-                    identical: {
-                        field: 'password',
-                        message: 'The password and its confirm are not the same'
-                    },
-                    different: {
-                        field: 'username',
-                        message: 'The password cannot be the same as username'
-                    }
-                }
+			route_no: {
+               validators: {
+					notEmpty: {
+						message: 'Route Number is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Route Number can only consist of alphanumaric, space and dot'
+					}
+				}
             },
-            birthday: {
-                validators: {
-                    date: {
-                        format: 'YYYY/MM/DD',
-                        message: 'The birthday is not valid'
-                    }
-                }
+			description: {
+               validators: {
+					notEmpty: {
+						message: 'Description is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Description can only consist of alphanumaric, space and dot'
+					}
+				}
             },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'The gender is required'
-                    }
-                }
+			 email: {
+                 validators: {
+					notEmpty: {
+						message: 'Email is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+					message: 'Please enter a valid email address. For example johndoe@domain.com.'
+					}
+				}
             },
-            'languages[]': {
-                validators: {
-                    notEmpty: {
-                        message: 'Please specify at least one language you can speak'
-                    }
-                }
-            },
-            'programs[]': {
-                validators: {
-                    choice: {
-                        min: 2,
-                        max: 4,
-                        message: 'Please choose 2 - 4 programming languages you are good at'
-                    }
-                }
-            },
+            
             captcha: {
                 validators: {
                     callback: {

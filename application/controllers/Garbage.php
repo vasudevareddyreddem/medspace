@@ -202,6 +202,8 @@ class Garbage extends CI_Controller {
 							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
 							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
 							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
+							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
@@ -258,6 +260,8 @@ class Garbage extends CI_Controller {
 							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
 							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
 							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
+							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
@@ -268,7 +272,7 @@ class Garbage extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital details Successfully updated');
+								$this->session->set_flashdata('success','truck details Successfully updated');
 								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -286,6 +290,8 @@ class Garbage extends CI_Controller {
 							'driver_lic_no'=>isset($post['driver_lic_no'])?$post['driver_lic_no']:'',
 							'driver_lic_bad_no'=>isset($post['driver_lic_bad_no'])?$post['driver_lic_bad_no']:'',
 							'driver_mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
+							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
+							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
@@ -297,7 +303,7 @@ class Garbage extends CI_Controller {
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
 								//echo $this->db->last_query();exit;
-								$this->session->set_flashdata('success','Hospital details Successfully updated');
+								$this->session->set_flashdata('success','truck details Successfully updated');
 								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");

@@ -288,8 +288,10 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
+						<?php if($details['role']!=1){  ?>
                             <li><a href="<?php echo base_url('dashboard/profile'); ?>"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
+                        <?php } ?>
+							<li role="seperator" class="divider"></li>
                             <li><a href="<?php echo base_url('dashboard/changepassword'); ?>"><i class="material-icons">input</i>Change Password</a></li>
                             <li><a href="<?php echo base_url('dashboard/logout'); ?>"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
@@ -396,4 +398,13 @@
         
     </section>
 
-    
+    <?php if($this->session->flashdata('success')): ?>
+<div class="alert_msg1 animated slideInUp bg-succ">
+   <?php echo $this->session->flashdata('success');?> &nbsp; <i class="glyphicon glyphicon-ok text-success ico_bac" aria-hidden="true"></i>
+</div>
+<?php endif; ?>
+<?php if($this->session->flashdata('error')): ?>
+<div class="alert_msg1 animated slideInUp bg-warn">
+   <?php echo $this->session->flashdata('error');?> &nbsp; <i class="glyphicon glyphicon-ok text-success ico_bac" aria-hidden="true"></i>
+</div>
+<?php endif; ?>

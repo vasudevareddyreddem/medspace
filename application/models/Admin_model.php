@@ -59,6 +59,39 @@ class Admin_model extends CI_Model
 		$this->db->insert('trucks', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	function get_profile_details($u_id){
+		$this->db->select('admin.a_id,admin.role,admin.email_id,admin.name,admin.profile_pic,roles.name')->from('admin');		
+		$this->db->join('roles', 'roles.r_id = admin.role', 'left');
+		$this->db->where('admin.a_id', $admin_id);
+		$this->db->where('admin.status', 1);
+        return $this->db->get()->row_array();	
+	}
+	public  function get_adminpassword_details($a_id){
+		$this->db->select('admin.a_id,admin.email_id,admin.password')->from('admin');		
+		$this->db->where('admin.a_id', $a_id);
+        return $this->db->get()->row_array();	
+	}
+	public function get_plant_profile_details($a_id){
+		$this->db->select('admin.a_id,admin.role,plant.*')->from('admin');		
+		$this->db->join('plant', 'plant.a_id = admin.a_id', 'left');
+		$this->db->where('admin.a_id', $a_id);
+		$this->db->where('admin.status', 1);
+        return $this->db->get()->row_array();
+	}
+	public function get_trcuk_profile_details($a_id){
+		$this->db->select('admin.a_id,admin.role,trucks.*')->from('admin');		
+		$this->db->join('trucks', 'trucks.a_id = admin.a_id', 'left');
+		$this->db->where('admin.a_id', $a_id);
+		$this->db->where('admin.status', 1);
+        return $this->db->get()->row_array();
+	}
+	public function get_hospital_list_profile_details($a_id){
+		$this->db->select('admin.a_id,admin.role,hospital_list.*')->from('admin');		
+		$this->db->join('hospital_list', 'hospital_list.a_id = admin.a_id', 'left');
+		$this->db->where('admin.a_id', $a_id);
+		$this->db->where('admin.status', 1);
+        return $this->db->get()->row_array();
+	}
 	
 
 }

@@ -90,7 +90,13 @@ class Hospital extends CI_Controller {
 								'status'=>$sta,
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital Successfully deactivate');
+								if($status==1){
+									$this->session->set_flashdata('success','Hospital Successfully deactivate');
+
+								}else{
+									$this->session->set_flashdata('success','Hospital Successfully activate');
+
+								}
 								redirect('hospital/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
