@@ -108,7 +108,7 @@ $(document).ready(function() {
 						message: 'Hospital id is required'
 					},
 					regexp: {
-					regexp:  /^[0-9]$/,
+					regexp:  /^[0-9]*$/,
 					message:'Hospital id must be digits'
 					}
 				

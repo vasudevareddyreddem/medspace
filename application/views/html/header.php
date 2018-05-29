@@ -304,11 +304,13 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="dashboard.php">
+                        <a href="<?php echo base_url('dashboard'); ?>">
                             <i class="material-icons">dashboard </i>
                             <span>Dashboard</span>
                         </a>
                     </li>
+					
+					<?php if($details['role']==1){ ?>
                    
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -355,6 +357,8 @@
                             
                         </ul>
                     </li>
+					
+					<?php }else if($details['role']==3){  ?>
 					<!--Garbage-->
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -369,6 +373,8 @@
                             
                         </ul>
                     </li>
+					
+					<?php }else if($details['role']==4){   ?>
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
@@ -376,12 +382,29 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="garbage-plant.php">garbage Plant</a>
+								<a href="<?php echo base_url('plant/details'); ?>">Add Waste</a>
+								<a href="<?php echo base_url('plant/details_list'); ?>">Waste List</a>
 							</li>
 							
                             
                         </ul>
                     </li>
+					<li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">home</i>
+                            <span>Disposal Waste </span>
+                        </a>
+                        <ul class="ml-menu">
+                           <li>
+								<a href="<?php echo base_url('plant/disposal'); ?>">Disposal  Waste</a>
+								<a href="<?php echo base_url('plant/disposal_list'); ?>">Disposal  List</a>
+							</li>
+							
+                            
+                        </ul>
+                    </li>
+					
+					<?php } ?>
                 </ul>
             </div>
             <!-- #Menu -->

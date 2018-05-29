@@ -37,6 +37,31 @@ class Plant_model extends CI_Model
 		$this->db->insert('plant', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	public function waste_plant($data){
+		$this->db->insert('waste', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public function save_disposal($data){
+		$this->db->insert('disposal', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	
+	public function get_truck_details($r_id){
+		$this->db->select('trucks.truck_reg_no,trucks.t_id,trucks.description,trucks.route_no,trucks.driver_name,trucks.driver_mobile')->from('trucks');		
+		$this->db->where('truck_reg_no', $r_id);
+        return $this->db->get()->row_array();	
+	}
+	public function get_disposal_list($a_id){
+		$this->db->select('*')->from('disposal');		
+		$this->db->where('disposal.create_by', $a_id);
+        return $this->db->get()->result_array();	
+	}
+	public function get_waste_details_list($a_id){
+		$this->db->select('waste.*,trucks.truck_reg_no,trucks.driver_name,trucks.driver_mobile')->from('waste');
+		$this->db->join('trucks', 'trucks.t_id = waste.truck_id', 'left');
+		$this->db->where('waste.create_by', $a_id);
+        return $this->db->get()->result_array();	
+	}
 	
 	
 

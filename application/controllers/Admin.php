@@ -58,6 +58,41 @@ class Admin extends CI_Controller {
 			}
 		
 	}
+	public function save_profile_pic(){
+		
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			$post=$this->input->post();
+			//echo '<pre>';print_r($_FILES);exit;
+					$pic=$_FILES['profile_pic']['name'];
+					$picname = str_replace(" ", "", $pic);
+					$imagename=microtime().basename($picname);
+					$imgname = str_replace(" ", "", $imagename);
+					move_uploaded_file($_FILES['profile_pic']['tmp_name'], "assets/files/" . $imgname);
+					$img=array(
+					'profile_pic'=>$imgname,
+					);
+					
+					$old_pic=$this->Admin_model->get_profile_details($admindetails['a_id']);
+					if($old_pic['profile_pic']!=''){
+						unlink("assets/files/".$old_pic['profile_pic']);
+					}
+					//echo '<pre>';print_r($old_pic);exit;
+					$updates=$this->Admin_model->update_admin_details($admindetails['a_id'],$img);
+					if(count($updates)>0){
+						$this->session->set_flashdata('success',"Profile Pic successfully updated");
+						redirect('dashboard/profile');
+					}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('dashboard/profile');
+					}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	
 	
 	

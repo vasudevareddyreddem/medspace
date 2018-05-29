@@ -25,9 +25,12 @@
                                             <th>&nbsp;</th>
                                         </tr>
                                     </thead>
+                                    
+                                    
                                     <?php if(isset($hospital_list) && count($hospital_list)>0){ ?>
+										    <tbody>
 									<?php foreach($hospital_list as $list){ ?>
-                                    <tbody>
+                                
                                         <tr>
                                             <td><?php echo htmlentities($list['hospital_name']); ?></td>
                                             <td><?php echo htmlentities($list['hospital_id']); ?></td>
@@ -44,8 +47,9 @@
 											</td>
                                         </tr>
 										
-                                    </tbody>
+                                  
 									<?php } ?>
+									  </tbody>
 									<?php } ?>
                                 </table>
                             </div>

@@ -8,17 +8,27 @@
             <div class="card">
                <div class="header">
                   <h2>Profile</h2>
-				  <a  href="" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
+				   <?php if($profile_detail['role']==4){ ?>
+				  <a  href="<?php echo base_url('plant/edit/'.base64_encode($profile_detail['p_id'])); ?>" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
+				   <?php }?>
                </div>
                <div class="body">
                   <div class="col-md-12 ">
                      <div class="col-sm-4" style="border-right:1px solid #ddd;">
                         <div  align="center">
                            <div >
-                              <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive" style="max-height:100px;max-width:auto;"> 
+						   <?php if($profile_detail['profile_pic']==''){ ?>
+							            <img alt="<?php echo isset($profile_detail['profile_pic'])?$profile_detail['profile_pic']:''; ?>" src="<?php echo base_url('assets/files/nobody_m.original.jpg'); ?>" id="profile-image1" class="img-circle img-responsive" style="max-height:100px;max-width:auto;"> 
+
+						   <?php  }else{ ?>
+						   		<img alt="<?php echo isset($profile_detail['profile_pic'])?$profile_detail['profile_pic']:''; ?>" src="<?php echo base_url('assets/files/'.$profile_detail['profile_pic']); ?>" id="profile-image1" class="img-circle img-responsive" style="max-height:100px;max-width:auto;"> 
+
+						   <?php } ?>
                            </div>
-                           <input id="profile-image-upload" id="profile_pic" name="profile_pic" onchange="Checkfiles()" class="hidden" type="file">
-                           <div style="color:#999;" >click here to change profile image</div>
+                           <form id="upload_file" action="<?php echo base_url('admin/save_profile_pic'); ?>" method="post" enctype="multipart/form-data">
+						   <input id="profile-image-upload" id="profile_pic" name="profile_pic" onchange="Checkfiles(this.value)" class="hidden" type="file">
+                           </form>
+						   <div style="color:#999;" >click here to change profile image</div>
                         </div>
                      </div>
 					 
@@ -62,18 +72,17 @@
 </section>
 	<script>
 	
-	function Checkfiles(){
-		var fup = document.getElementById('profile_pic');
-		var fileName = fup[0].value;
+	function Checkfiles(val){
+			var fileName =val;
 		var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-		if(ext == "gif" || ext == "GIF" || ext == "JPEG" || ext == "jpeg" || ext == "jpg" || ext == "JPG")
-		{
-		return true;
-		} 
-		else
-		{
-		alert("Upload Gif or Jpg images only");
-		return false;
+		if(ext !=''){
+			if(ext == "png" || ext == "gif" || ext == "Png" || ext == "jpeg" || ext == "jpg")
+			{
+					 document.getElementById("upload_file").submit(); 
+			} else{
+			alert('Uploaded file is not a valid. Only png,gif,Png,jpeg,jpg files are allowed');
+			return false;
+			}
 		}
 
 	}

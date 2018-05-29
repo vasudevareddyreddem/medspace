@@ -25,8 +25,9 @@
                                         </tr>
                                     </thead>
                                     <?php if(isset($plants_list) && count($plants_list)>0){ ?>
+									   <tbody>
 									<?php foreach($plants_list as $list){ ?>
-                                    <tbody>
+                                 
                                         <tr>
                                             <td><?php echo htmlentities($list['disposal_plant_name']); ?></td>
                                             <td><?php echo htmlentities($list['disposal_plant_id']); ?></td>
@@ -42,8 +43,9 @@
 											</td>
                                         </tr>
 										
-                                    </tbody>
+                                   
 									<?php } ?>
+									 </tbody>
 									<?php } ?>
                                 </table>
                             </div>

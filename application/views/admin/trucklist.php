@@ -29,8 +29,9 @@
                                     
 										
 										<?php if(isset($tuck_list) && count($tuck_list)>0){ ?>
+										   <tbody>
 									<?php foreach($tuck_list as $list){ ?>
-                                    <tbody>
+                                 
                                         <tr>
                                             <td><?php echo htmlentities($list['truck_reg_no']); ?></td>
                                             <td><?php echo htmlentities($list['owner_name']); ?></td>
@@ -47,8 +48,9 @@
 											</td>
                                         </tr>
 										
-                                    </tbody>
+                                 
 									<?php } ?>
+									   </tbody>
 									<?php } ?>
                                         
                                    

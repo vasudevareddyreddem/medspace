@@ -1,0 +1,283 @@
+<section class="content">
+        <div class="container-fluid">
+                  	 <div id="sucessmsg" style="display:none;"></div>
+
+            <!-- Basic Validation -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+							Garbage truck details</h2>
+                       
+                        </div>
+                        <div class="body">
+						<div class="row">
+						<div class="">
+						
+						<div class="col-md-4  col-md-offset-2">
+						 
+							<input type="text" class="form-control" onkeyup="search_truck(this.value);" placeholder="Enter Truck Regn number">
+						</div>
+						<div class="col-md-6 hidden-sm hidden-xs" style="z-index:1" >
+						<div class="popover fade right in" role="tooltip" id="popover436935" style="top: 0;  display: block;">
+							<div class="arrow" style="top: 50%;"></div>
+							
+							<div class="popover-content">Enter your Garbage truck Number to get Details</div>
+						</div>
+						</div>
+						</div>
+						</div>
+						<hr>
+						<br>
+					
+						<div class="col-md-6 px-25px">
+						<div class="form-group">
+                            <label class="label-control">Route Number</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="route_number" name="route_number" value="" />
+                            </div>
+                        </div>
+                        </div>
+						<div class="col-md-6 px-25px">
+						<div class="form-group">
+                            <label class="label-control">Description</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="description" name="description" value="" />
+                            </div>
+                        </div>
+                        </div>
+						<div class="col-md-6 px-25px">
+						<div class="form-group">
+                            <label class="label-control">Driver Name</label>
+                            <div class="">
+                                <input type="email" class="form-control" id="drivername" name="drivername" value="" />
+                            </div>
+                        </div>
+                        </div>
+						<div class="col-md-6 px-25px">
+						<div class="form-group">
+                            <label class="label-control"> Driver Mobile</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="drivermobile" name="drivermobile" value="" />
+                            </div>
+                        </div>
+                        </div>
+						
+						<div class="clearfix"></div>
+						<hr>
+						   <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/addwaste'); ?>">
+							<input type="hidden" name="truck_id" id="truck_id" value="">
+							<input type="hidden" name="route_id" id="route_id" value="">
+						<div class="row">
+							<div class="col-md-3">
+							<h4 class="text-center text-success">Genaral Waste</h4>
+								<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
+								</div>
+								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter Genaral waste in Kgs"><br>
+								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter Genaral waste in qtys">
+							</div>
+							<div class="col-md-3">
+							<h4 class="text-center text-danger">Infected Plastics</h4>
+									<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
+								</div>
+								<input type="text" id="inf_pla_waste_in_Kg" name="inf_pla_waste_in_Kg" class="form-control" placeholder="Enter Infected Plastics in Kgs">
+								<br>
+								<input type="text" id="inf_pla_waste_in_qty" name="inf_pla_waste_in_qty" class="form-control" placeholder="Enter Infected Plastics in qtys">
+							</div>
+							<div class="col-md-3">
+								<h4 class="text-center text-warning">Infected Waste</h4>
+									<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
+								</div>
+								<input type="text" id="inf_waste_in_Kg" name="inf_waste_in_Kg" class="form-control" placeholder="Enter Infected waste in Kgs">
+								<br>
+								<input type="text" id="inf_waste_in_qty" name="inf_waste_in_qty" class="form-control" placeholder="Enter Infected waste in qtys">
+														</div>
+							<div class="col-md-3">
+								<h4 class="text-center text-primary">Glassware</h4>
+									<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
+								</div>
+								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter Glassware waste in Kgs">
+								<br>
+								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter Glassware waste in qtys">
+							</div>
+							
+						</div>
+					
+						<hr>
+					
+						
+						<br>
+                        <div class="form-group ">
+                            <div class="text-center ">
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+                                
+                            </div>
+                        </div>
+                    </form>
+					<div class="clearfix">&nbsp;</div>
+					
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+    </section>
+	<script type="text/javascript">
+	
+	function search_truck(val){
+		var number=val.length;
+		if(number >9){
+				 jQuery.ajax({
+   					url: "<?php echo site_url('plant/get_truck_details');?>",
+   					data: {
+   						truck_id: val,
+   					},
+   					dataType: 'json',
+   					type: 'POST',
+   					success: function (data) {
+						jQuery('#sucessmsg').show();
+						$('#truck_id').val();
+						$('#route_number').val();
+						$('#description').val();
+						$('#drivermobile').val();
+						$('#drivername').val();
+						$('#route_id').val();
+						if(data.msg==1){
+							$('#truck_id').val(data.t_id);
+							$('#route_number').val(data.r_no);
+							$('#description').val(data.desc);
+							$('#drivermobile').val(data.number);
+							$('#drivername').val(data.name);
+							$('#route_id').val(data.r_no);
+							//$('#sucessmsg').html('<div class="alert_msg1 animated slideInUp bg-succ">Truck Regn number are displayed. <i class="glyphicon glyphicon-ok text-success ico_bac" aria-hidden="true"></i></div>');  
+
+						}else{
+							alert("Truck Regn number is  wrong. Please  try  again once");  
+
+						}
+						
+   					
+   				 }
+   				});
+			
+		}
+		
+	}
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+//        
+        fields: {
+            gen_waste_in_Kg: {
+                validators: {
+					notEmpty: {
+						message: 'Genaral waste in Kgs is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Genaral waste in Kgs can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            gen_waste_in_qty: {
+                 validators: {
+					notEmpty: {
+						message: 'Genaral waste in Qty is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Genaral waste in Qty can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			inf_pla_waste_in_Kg: {
+                validators: {
+					notEmpty: {
+						message: 'Infected Plastics in kgs is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Infected Plastics in kgs can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            inf_pla_waste_in_qty: {
+                 validators: {
+					notEmpty: {
+						message: 'Infected Plastics in Qty is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Infected Plastics in Qty can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			inf_waste_in_Kg: {
+                  validators: {
+					notEmpty: {
+						message: 'Infected waste in kgs is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Infected waste in kgs  can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            inf_waste_in_qty: {
+                 validators: {
+					notEmpty: {
+						message: 'Infected waste in qty is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Infected waste in qty  can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+			glassware_waste_in_kg: {
+                  validators: {
+					notEmpty: {
+						message: 'Glassware waste in kgs is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Glassware waste in kgs  can only consist of alphanumaric, space and dot'
+					}
+				}
+            },
+            glassware_waste_in_qty: {
+                 validators: {
+					notEmpty: {
+						message: 'Glassware waste in qty is required'
+					},
+					regexp: {
+					regexp: /^[a-zA-Z0-9. ]+$/,
+					message: 'Glassware waste in qty  can only consist of alphanumaric, space and dot'
+					}
+				}
+            }
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+});
+</script>

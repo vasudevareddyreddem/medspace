@@ -30,7 +30,31 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-				$this->load->view('admin/dashboard');
+			
+			if($admindetails['role']==4){
+				$data['gen_waste_in_Kgs']=$this->Admin_model->get_gen_waste_in_Kg_details($admindetails['a_id']);
+				$data['inf_pla_waste_in_Kgs']=$this->Admin_model->get_inf_pla_waste_in_Kg_details($admindetails['a_id']);
+				$data['inf_waste_in_Kgs']=$this->Admin_model->get_inf_waste_in_Kg_details($admindetails['a_id']);
+				$data['glassware_waste_in_kgs']=$this->Admin_model->get_glassware_waste_in_kg_details($admindetails['a_id']);
+				$data['graph_gen_waste_in_Kg']=$this->Admin_model->get_graph_gen_waste_in_Kg_details($admindetails['a_id'],date('Y'));
+				$data['graph_inf_pla_waste_in_Kg']=$this->Admin_model->get_graph_inf_pla_waste_in_Kg_details($admindetails['a_id'],date('Y'));
+				$data['graph_inf_waste_in_Kg']=$this->Admin_model->get_graph_inf_waste_in_Kg_details($admindetails['a_id'],date('Y'));
+				$data['graph_glassware_waste_in_kg']=$this->Admin_model->get_graph_glassware_waste_in_kg_details($admindetails['a_id'],date('Y'));
+				
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/plant_dashboard',$data);	
+			}else if($admindetails['role']==3){
+				$this->load->view('admin/dashboard');	
+			}else if($admindetails['role']==2){
+				$this->load->view('admin/dashboard');	
+			}else{
+				
+				$data['total_hospital']=$this->Admin_model->get_total_hospital($admindetails['a_id']);
+				$data['total_trucks']=$this->Admin_model->get_total_trucks($admindetails['a_id']);
+			echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/admin_dashboard');	
+			}
+				
 				$this->load->view('html/footer');
 			
 
