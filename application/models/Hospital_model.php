@@ -34,6 +34,12 @@ class Hospital_model extends CI_Model
 	}
 	
 	
+	public function get_hospital_invoice_list_details($h_id){
+		$this->db->select('*')->from('hospital_waste');		
+		$this->db->where('h_id', $h_id);
+        return $this->db->get()->result_array();	
+	}
+	
 	
 
 }

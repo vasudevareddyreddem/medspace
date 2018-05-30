@@ -151,7 +151,7 @@ class Hospital extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==1 || $admindetails['role']==2){
 				
 				$hos_id=base64_decode($this->uri->segment(3));
 				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($hos_id);
@@ -237,14 +237,19 @@ class Hospital extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==1 || $admindetails['role']==2){
 				$post=$this->input->post();
 				$details=$this->Hospital_model->get_hospital_details($post['hos_id']);
 				if($details['email']!=$post['email']){
 					$check_email=$this->Admin_model->email_check_details($post['email']);
 						if(count($check_email)>0){
 								$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								if($admindetails['role']==2){
+										redirect('dashboard/profile');
+									}else{
+										redirect('hospital/edit/'.base64_encode($post['hos_id']));
+									}
+								
 						}else{
 							$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
@@ -262,10 +267,20 @@ class Hospital extends CI_Controller {
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 								$this->session->set_flashdata('success','Hospital details Successfully updated');
-								redirect('hospital/lists');
+									if($admindetails['role']==2){
+										redirect('dashboard/profile');
+									}else{
+										redirect('hospital/lists');
+									}
+								
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+									if($admindetails['role']==2){
+										redirect('dashboard/profile');
+									}else{
+										redirect('hospital/edit/'.base64_encode($post['hos_id']));
+									}
+								
 								}
 						}
 					
@@ -288,14 +303,67 @@ class Hospital extends CI_Controller {
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 							$this->session->set_flashdata('success','Hospital details Successfully updated');
-							redirect('hospital/lists');
+							if($admindetails['role']==2){
+									redirect('dashboard/profile');
+							}else{
+								redirect('hospital/lists');
+								}
+							
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							redirect('hospital/edit/'.base64_encode($post['hos_id']));
+							if($admindetails['role']==2){
+									redirect('dashboard/profile');
+							}else{
+								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								}
+							
 						}
 				}
 				
 				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+		public function invoice_list(){
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==2){
+				
+				$hospital_detail=$this->Admin_model->get_hospital_list_profile_details($admindetails['a_id']);
+				$data['invoice_list']=$this->Hospital_model->get_hospital_invoice_list_details($hospital_detail['h_id']);
+
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/invoice_list', $data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function garbage_list(){
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==2){
+				
+				$hospital_detail=$this->Admin_model->get_hospital_list_profile_details($admindetails['a_id']);
+				$data['garbage_list']=$this->Hospital_model->get_hospital_invoice_list_details($hospital_detail['h_id']);
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/hospita_garbage_list', $data);
+				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
 				redirect('dashboard');
