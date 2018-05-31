@@ -70,14 +70,7 @@
 							<input type="hidden" name="truck_id" id="truck_id" value="">
 							<input type="hidden" name="route_id" id="route_id" value="">
 						<div class="row">
-							<div class="col-md-3">
-							<h4 class="text-center text-success">Genaral Waste</h4>
-								<div class="py-4">
-									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
-								</div>
-								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter Genaral waste in Kgs"><br>
-								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter Genaral waste in qtys">
-							</div>
+							
 							<div class="col-md-3">
 							<h4 class="text-center text-danger">Infected Plastics</h4>
 									<div class="py-4">
@@ -104,6 +97,14 @@
 								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter Glassware waste in Kgs">
 								<br>
 								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter Glassware waste in qtys">
+							</div>
+							<div class="col-md-3">
+							<h4 class="text-center text-success">Genaral Waste</h4>
+								<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
+								</div>
+								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter Genaral waste in Kgs"><br>
+								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter Genaral waste in qtys">
 							</div>
 							
 						</div>
