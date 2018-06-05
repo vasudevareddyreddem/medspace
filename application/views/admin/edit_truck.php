@@ -81,6 +81,54 @@
                                 <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address"  value="<?php echo isset($truck_detail['email'])?$truck_detail['email']:'';?>" />
                             </div>
                         </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Address 1</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address " value="<?php echo isset($truck_detail['address1'])?$truck_detail['address1']:'';?>"/>
+                            </div>
+                        </div> 
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Address 2</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address " value="<?php echo isset($truck_detail['address2'])?$truck_detail['address2']:'';?>" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">City</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Enter City "  value="<?php echo isset($truck_detail['city'])?$truck_detail['city']:'';?>"/>
+                            </div>
+                        </div> 
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">State</label>
+                            <div class="col-lg-5">
+							<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
+								  <select class="form-control" required="required" name="state" id="state" style="width:100%;">
+								  <option value = "">Select State</option>
+									<?php foreach($states as $key=>$state):
+											if($truck_detail['state'] == $state):
+											$selected ='selected=selected';
+											else : 
+											$selected = '';
+											endif;
+										 ?>
+										<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+									<?php endforeach; ?>
+								  </select>  
+                            </div>
+                        </div>  
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Country</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country " value="<?php echo isset($truck_detail['country'])?$truck_detail['country']:'';?>" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Pincode</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " value="<?php echo isset($truck_detail['pincode'])?$truck_detail['pincode']:'';?>" />
+                            </div>
+                        </div> 
                         <div class="form-group">
                             <label class="col-lg-3 control-label" id="captchaOperation"></label>
                             <div class="col-lg-2">
@@ -235,6 +283,69 @@ $(document).ready(function() {
 					}
 				}
             },
+			address1: {
+                 validators: {
+					  notEmpty: {
+						message: 'Address 1 is required'
+					},
+                    regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:'Address 1 wont allow <> [] = % '
+					}
+                }
+            },
+			address2: {
+                 validators: {
+					  notEmpty: {
+						message: 'Address 2 is required'
+					},
+                    regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:'Address 2 wont allow <> [] = % '
+					}
+                }
+            },	
+			city: {
+                 validators: {
+					  notEmpty: {
+						message: 'City is required'
+					},
+                    regexp: {
+					regexp: /^[a-zA-Z]+$/,
+					message:'City can only consist of alphabets',
+					}
+                }
+            },
+			state: {
+                 validators: {
+					  notEmpty: {
+						message: 'State is required'
+					}
+                }
+            },
+			country: {
+                 validators: {
+					  notEmpty: {
+						message: 'Country is required'
+					},
+                    regexp: {
+					regexp: /^[a-zA-Z]+$/,
+					message:'Country can only consist of alphabets',
+					}
+                }
+            },
+            pincode: {
+                  validators: {
+					notEmpty: {
+						message: 'Pin code is required'
+					},
+					regexp: {
+					regexp: /^[0-9]{5,7}$/,
+					message: 'Pin code  must be  5 to 7 characters'
+					}
+				}
+            },
+            
             
             captcha: {
                 validators: {

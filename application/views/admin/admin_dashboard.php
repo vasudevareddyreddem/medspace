@@ -139,47 +139,48 @@ $dat = explode("-", $cri['create_at']);
 } 
 $dec3=$jan3=$feb3=$mar3=$apr3=$may3=$jun3=$jul3=$aug3=$sep3=$oct3=$nov3=0;
 if(isset($graph_total_waste) && count($graph_total_waste)>0){
+	//echo '<pre>';print_r($graph_total_waste);exit;
 foreach ($graph_total_waste as $cri){
 $dat = explode("-", $cri['create_at']);
 	if($dat[1] == 12)
 	{
-	$dec3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+	$dec3 += $cri['total_waste'];
 	}
 	if($dat[1] == 11)
 	{
-		$nov3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$nov3 += $cri['total_waste'];
 	}
 	if($dat[1] == 10)
 	{
-		$oct3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$oct3 += $cri['total_waste'];
 	}
 	if($dat[1] == '09')
 	{
-		$sep3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$sep3 += $cri['total_waste'];
 	}if($dat[1] == '08')
 	{
-		$aug3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$aug3 += $cri['total_waste'];
 	}if($dat[1] == '07')
 	{
-		$jul3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$jul3 += $cri['total_waste'];
 	}if($dat[1] == '06')
 	{
-		$jun3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$jun3 += $cri['total_waste'];
 	}if($dat[1] == '05')
 	{
-		$may3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$may3 += $cri['total_waste'];
 	}if($dat[1] == 04)
 	{
-		$apr3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$apr3 += $cri['total_waste'];
 	}if($dat[1] == 03)
 	{
-		$mar3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$mar3 += $cri['total_waste'];
 	}if($dat[1] == 02)
 	{
-		$feb3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$feb3 += $cri['total_waste'];
 	}if($dat[1] == 01)
 	{
-		$jan3 += $cri['gen_waste_in_Kg'] + $cri['inf_pla_waste_in_Kg'] + $cri['inf_waste_in_Kg'] + $cri['glassware_waste_in_kg'];
+		$jan3 += $cri['total_waste'];
 	}
 }	
 } 
@@ -267,7 +268,7 @@ $dat = explode("-", $cri['create_at']);
 		{
     		type: "spline",
 			showInLegend: true,
-			name: "Total waste",
+			name: "Total CBWTF (Kgs)",
 			lineDashType: "solid",
 			color: "#00BCD4",			
     		dataPoints: <?php echo json_encode($total_waste_list, JSON_NUMERIC_CHECK); ?>
@@ -325,7 +326,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Wastage Collected (Kgs)</div>
+                            <div class="text">Total CBWTF (Kgs)</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_waste)?$total_waste:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -336,7 +337,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">local_shipping</i>
                         </div>
                         <div class="content">
-                            <div class="text">Toatal Vehicles </div>
+                            <div class="text">Toatal BMW vehical </div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_trucks['total_trucks'])?$total_trucks['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -347,7 +348,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">payment</i>
                         </div>
                         <div class="content">
-                            <div class="text">Toatal Plants</div>
+                            <div class="text">Toatal CBWTF</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_plants['total_plants'])?$total_plants['total_plants']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>

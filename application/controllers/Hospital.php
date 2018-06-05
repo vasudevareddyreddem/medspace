@@ -175,6 +175,7 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
 				$check_email=$this->Admin_model->email_check_details($post['email']);
 				if(count($check_email)>0){
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
@@ -195,11 +196,17 @@ class Hospital extends CI_Controller {
 						$code = time().$hos_save;
 						$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
 						$addhospital=array(
+							'a_id'=>isset($hos_save)?$hos_save:'',
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
+							'hospital_id'=>isset($hos_save)?$hos_save:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
@@ -239,6 +246,7 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1 || $admindetails['role']==2){
 				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
 				$details=$this->Hospital_model->get_hospital_details($post['hos_id']);
 				if($details['email']!=$post['email']){
 					$check_email=$this->Admin_model->email_check_details($post['email']);
@@ -253,10 +261,14 @@ class Hospital extends CI_Controller {
 						}else{
 							$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
@@ -287,10 +299,14 @@ class Hospital extends CI_Controller {
 				}else{
 					$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'hospital_id'=>isset($post['hospital_id'])?$post['hospital_id']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 						);
 						//echo "<pre>";print_r($updatehospital);

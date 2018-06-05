@@ -19,12 +19,6 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Hospital ID</label>
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" name="hospital_id" id="hospital_id" placeholder="Enter Hospital ID" value="<?php echo isset($hospital_detail['hospital_id'])?$hospital_detail['hospital_id']:'';?>" />
-                            </div>
-                        </div>
-						<div class="form-group">
                             <label class="col-lg-3 control-label">Mobile</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile"  value="<?php echo isset($hospital_detail['mobile'])?$hospital_detail['mobile']:'';?>"/>
@@ -38,11 +32,53 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Address</label>
+                            <label class="col-lg-3 control-label">Address 1</label>
                             <div class="col-lg-5">
-                                <textarea class="form-control" rows="5" id="address" name="address"><?php echo isset($hospital_detail['address'])?$hospital_detail['address']:'';?></textarea>
+                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address " value="<?php echo isset($hospital_detail['address1'])?$hospital_detail['address1']:'';?>"/>
+                            </div>
+                        </div> 
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Address 2</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address " value="<?php echo isset($hospital_detail['address2'])?$hospital_detail['address2']:'';?>" />
                             </div>
                         </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">City</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Enter City "  value="<?php echo isset($hospital_detail['city'])?$hospital_detail['city']:'';?>"/>
+                            </div>
+                        </div> 
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">State</label>
+                            <div class="col-lg-5">
+							<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
+								  <select class="form-control" required="required" name="state" id="state" style="width:100%;">
+								  <option value = "">Select State</option>
+									<?php foreach($states as $key=>$state):
+											if($hospital_detail['state'] == $state):
+											$selected ='selected=selected';
+											else : 
+											$selected = '';
+											endif;
+										 ?>
+										<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+									<?php endforeach; ?>
+								  </select>  
+                            </div>
+                        </div>  
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Country</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country " value="<?php echo isset($hospital_detail['country'])?$hospital_detail['country']:'';?>" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Pincode</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " value="<?php echo isset($hospital_detail['pincode'])?$hospital_detail['pincode']:'';?>" />
+                            </div>
+                        </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Barcode</label>
                             <div class="col-lg-5">
@@ -58,7 +94,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Hospital</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update Hospital</button>
                                 
                             </div>
                         </div>
@@ -93,18 +129,6 @@ $(document).ready(function() {
 					}
 				}
             },
-            hospital_id: {
-                validators: {
-					notEmpty: {
-						message: 'Hospital id is required'
-					},
-					regexp: {
-					regexp:  /^[0-9]$/,
-					message:'Hospital id must be digits'
-					}
-				
-				}
-            },
             mobile: {
                 validators: {
 					 notEmpty: {
@@ -127,43 +151,69 @@ $(document).ready(function() {
 					}
 				}
             },
-            password: {
-                 validators: {
-					notEmpty: {
-						message: 'Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Password  must be at least 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
-					}
-				}
-            },
-            confirmPassword: {
-                validators: {
-						 notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					identical: {
-						field: 'password',
-						message: 'password and confirm Password do not match'
-					}
-					}
-            },
-            address: {
+            address1: {
                  validators: {
 					  notEmpty: {
-						message: 'Address is required'
+						message: 'Address 1 is required'
 					},
                     regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message:'Address2 wont allow <> [] = % '
+					message:'Address 1 wont allow <> [] = % '
 					}
                 }
             },
+			address2: {
+                 validators: {
+					  notEmpty: {
+						message: 'Address 2 is required'
+					},
+                    regexp: {
+					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
+					message:'Address 2 wont allow <> [] = % '
+					}
+                }
+            },	
+			city: {
+                 validators: {
+					  notEmpty: {
+						message: 'City is required'
+					},
+                    regexp: {
+					regexp: /^[a-zA-Z]+$/,
+					message:'City can only consist of alphabets',
+					}
+                }
+            },
+			state: {
+                 validators: {
+					  notEmpty: {
+						message: 'State is required'
+					}
+                }
+            },
+			country: {
+                 validators: {
+					  notEmpty: {
+						message: 'Country is required'
+					},
+                    regexp: {
+					regexp: /^[a-zA-Z]+$/,
+					message:'Country can only consist of alphabets',
+					}
+                }
+            },
+            pincode: {
+                  validators: {
+					notEmpty: {
+						message: 'Pin code is required'
+					},
+					regexp: {
+					regexp: /^[0-9]{5,7}$/,
+					message: 'Pin code  must be  5 to 7 characters'
+					}
+				}
+            },
+            
             
             captcha: {
                 validators: {

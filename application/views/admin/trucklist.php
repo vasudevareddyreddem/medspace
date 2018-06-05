@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Tucks List
+                                BMW vehical List
                             </h2>
                          
                         </div>
@@ -14,13 +14,11 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-                                            <th>Truck No</th>
+                                            <th>BMW vehical No</th>
                                             <th>Owner Name</th>
                                             <th>Driver Name</th>
                                             <th>Driver Licence No</th>
                                             <th>Join Date</th>
-                                            <th>Amount Paid (Rs)</th>
-                                            <th>Due Amount</th>
                                             <th>Status</th>
                                             <th>
 											</th>
@@ -38,8 +36,6 @@
                                             <td><?php echo htmlentities($list['driver_name']); ?></td>
                                             <td><?php echo htmlentities($list['driver_lic_no']); ?></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<a href="<?php echo base_url('garbage/edit/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 

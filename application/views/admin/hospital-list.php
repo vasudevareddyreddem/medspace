@@ -35,10 +35,10 @@
                                             <td><?php echo htmlentities($list['hospital_name']); ?></td>
                                             <td><?php echo htmlentities($list['hospital_id']); ?></td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
-                                            <td ><img style="max-height:50px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
+                                            <td ><img style="max-height:150px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
+                                            <td><span> </td>
+                                            <td><span> </td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<a href="<?php echo base_url('hospital/edit/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 

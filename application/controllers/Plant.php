@@ -195,10 +195,15 @@ class Plant extends CI_Controller {
 						$add_plant=array(
 							'a_id'=>$sav_plant,
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
-							'disposal_plant_id'=>isset($post['disposal_plant_id'])?$post['disposal_plant_id']:'',
+							'disposal_plant_id'=>isset($sav_plant)?$sav_plant:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
@@ -252,10 +257,14 @@ class Plant extends CI_Controller {
 						}else{
 							$updateplant=array(
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
-							'disposal_plant_id'=>isset($post['disposal_plant_id'])?$post['disposal_plant_id']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
@@ -287,10 +296,14 @@ class Plant extends CI_Controller {
 				}else{
 					$updateplant=array(
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
-							'disposal_plant_id'=>isset($post['disposal_plant_id'])?$post['disposal_plant_id']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
-							'address'=>isset($post['address'])?$post['address']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
@@ -425,6 +438,7 @@ class Plant extends CI_Controller {
 							'glassware_waste_in_kg'=>isset($post['glassware_waste_in_kg'])?$post['glassware_waste_in_kg']:'',
 							'glassware_waste_in_qty'=>isset($post['glassware_waste_in_qty'])?$post['glassware_waste_in_qty']:'',
 							'status'=>1,
+							'total_waste'=>($post['gen_waste_in_Kg']*$post['gen_waste_in_qty'])+($post['inf_pla_waste_in_Kg']*$post['inf_pla_waste_in_qty'])+($post['inf_waste_in_Kg']*$post['inf_waste_in_qty'])+($post['glassware_waste_in_kg']*$post['glassware_waste_in_qty']),
 							'create_at'=>date('Y-m-d H:i:s'),
 							'create_by'=>$admindetails['a_id']
 						);

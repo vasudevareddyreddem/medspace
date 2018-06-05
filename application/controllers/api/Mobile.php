@@ -75,9 +75,9 @@ class Mobile extends REST_Controller {
 	
 	public function barcode_scan_post()
     {
-		$userid=$this->post('a_id');
+		$userid=$this->post('barcode_id');
 		if($userid ==''){
-		$message = array('status'=>0,'message'=>'User Id is required');
+		$message = array('status'=>0,'message'=>'Barcode Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
 		$user_details=$this->Mobile_model->get_hospital_details($userid);
@@ -167,7 +167,7 @@ class Mobile extends REST_Controller {
 					$pdfFilePath = $path."/assets/invoices/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('admin/pdf', $data, true); // render the view into HTML
-					//echo '<pre>';print_r($html);exit;
+					echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">

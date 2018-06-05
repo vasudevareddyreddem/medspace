@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-							Garbage truck details</h2>
+							BMW vehical details</h2>
                        
                         </div>
                         <div class="body">

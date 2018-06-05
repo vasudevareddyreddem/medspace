@@ -18,8 +18,6 @@
                                             <th>Disposal Plant ID</th>
                                             <th>Mobile</th>
                                             <th>Reg Date</th>
-                                            <th>Amount Paid (Rs)</th>
-                                            <th>Due Amount</th>
                                             <th>Status</th>
                                             <th>&nbsp;</th>
                                         </tr>
@@ -33,8 +31,6 @@
                                             <td><?php echo htmlentities($list['disposal_plant_id']); ?></td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><span>(Rs) &nbsp;</span>15000</td>
-                                            <td><span>(Rs) &nbsp;</span>10000</td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<a href="<?php echo base_url('plant/edit/'.base64_encode($list['p_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 

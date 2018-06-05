@@ -140,14 +140,14 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>Garbage Truck </span>
+                            <span>BMW vehical </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('garbage/add'); ?>">Add Garbage Truck</a>
+								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW vehical </a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('garbage/lists'); ?>">Tucks List</a>
+								<a href="<?php echo base_url('garbage/lists'); ?>">BMW vehical List</a>
 							</li>
                             
                         </ul>
@@ -155,14 +155,14 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>Disposal Plant</span>
+                            <span>CBWTF</span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('plant/add'); ?>">Add Plant</a>
+								<a href="<?php echo base_url('plant/add'); ?>">Add CBWTF</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('plant/lists'); ?>">Plant List</a>
+								<a href="<?php echo base_url('plant/lists'); ?>">CBWTF List</a>
 							</li>
                             
                         </ul>
@@ -173,7 +173,7 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>Garbage Truck Man portal </span>
+                            <span>BMW vehical  Man portal </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
@@ -223,7 +223,7 @@
                         <ul class="ml-menu">
                            <li>
 								<a href="<?php echo base_url('hospital/invoice_list'); ?>">Invoice List</a>
-								<a href="<?php echo base_url('hospital/garbage_list'); ?>">Garbage List</a>
+								<a href="<?php echo base_url('hospital/garbage_list'); ?>">BMW List</a>
 							</li>
 							
                             

@@ -205,6 +205,12 @@ class Garbage extends CI_Controller {
 							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
 							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
@@ -263,6 +269,12 @@ class Garbage extends CI_Controller {
 							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
 							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
@@ -293,6 +305,12 @@ class Garbage extends CI_Controller {
 							'route_no'=>isset($post['route_no'])?$post['route_no']:'',
 							'description'=>isset($post['description'])?$post['description']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?$post['city']:'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?$post['country']:'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
