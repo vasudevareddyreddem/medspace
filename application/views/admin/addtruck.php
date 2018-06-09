@@ -6,7 +6,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add BMW vehical</h2>
+                            <h2>Add BMW vehicle</h2>
                        
                         </div>
                         <div class="body">
@@ -14,7 +14,7 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Truck Regn number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS 02 4562" />
+                                <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS02AB4562" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -24,9 +24,9 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Truck Insurence Number</label>
+                            <label class="col-lg-3 control-label">Truck Insurance Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurence Number" />
+                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurance Number" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -141,16 +141,11 @@
                                 <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " />
                             </div>
                         </div> 						
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
-                            <div class="col-lg-2">
-                                <input type="text" class="form-control" name="captcha" />
-                            </div>
-                        </div>
+                    
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Garbage Truck</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add BMW vehicle</button>
                                 
                             </div>
                         </div>
@@ -165,12 +160,7 @@
     </section>
 	<script type="text/javascript">
 $(document).ready(function() {
-    // Generate a simple captcha
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
-
+    
     $('#defaultForm').bootstrapValidator({
 //       
         fields: {
@@ -181,7 +171,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[A-Za-z0-9]{10}$/,
-					message: 'Truck Regn number can only consist of alphanumaric, space and dot'
+					message: 'Truck Regn number can only consist of Alphanumeric and digits'
 					}
 				}
             },
@@ -192,7 +182,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Owner name can only consist of alphanumaric, space and dot'
+					message: 'Owner name can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -203,7 +193,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Truck Insurence Number can only consist of alphanumaric, space and dot'
+					message: 'Truck Insurence Number can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -225,7 +215,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Driver name can only consist of alphanumaric, space and dot'
+					message: 'Driver name can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -236,7 +226,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Driver Licence Number can only consist of alphanumaric, space and dot'
+					message: 'Driver Licence Number can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -247,7 +237,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Driver Licence badge number can only consist of alphanumaric, space and dot'
+					message: 'Driver Licence badge number can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -269,7 +259,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Route Number can only consist of alphanumaric, space and dot'
+					message: 'Route Number can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -280,7 +270,7 @@ $(document).ready(function() {
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Description can only consist of alphanumaric, space and dot'
+					message: 'Description can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -382,19 +372,6 @@ $(document).ready(function() {
 					message: 'Pin code  must be  5 to 7 characters'
 					}
 				}
-            },
-            
-            
-            captcha: {
-                validators: {
-                    callback: {
-                        message: 'Wrong answer',
-                        callback: function(value, validator) {
-                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-                            return value == sum;
-                        }
-                    }
-                }
             }
         }
     });

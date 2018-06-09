@@ -261,7 +261,7 @@ $dat = explode("-", $cri['create_at']);
     	data: [{
     		type: "spline",
 			showInLegend: true,
-			name: "Genaral Waste",
+			name: "General Waste",
 			lineDashType: "solid", 
 			color: "#E91E63",
     		dataPoints: <?php echo json_encode($gen_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
@@ -317,7 +317,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">local_hospital</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Genaral Waste</div>
+                            <div class="text">Total General Waste</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($gen_waste_in_Kgs['gen_waste'])?$gen_waste_in_Kgs['gen_waste']:'0'; ?>" data-speed="15" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -339,7 +339,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">local_hospital</i>
                         </div>
                         <div class="content">
-                            <div class="text">Toatal Infected Waste </div>
+                            <div class="text">Total Infected Waste </div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($inf_waste_in_Kgs['inf_waste'])?$inf_waste_in_Kgs['inf_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>

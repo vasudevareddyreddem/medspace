@@ -38,27 +38,16 @@
         <div class="card card-container" style="top:50">
             <div class="body">
 			<div class="">
-				<h1 class="text-center">Medspace</h1>
+				<h1 class="text-center">Forgot Password</h1>
 			</div>
-                <form id="defaultForm" method="post" class="form-horizontal py-5" action="<?php echo base_url('admin/loginpost'); ?>">
+                <form id="defaultForm" method="post" class="form-horizontal py-5" action="<?php echo base_url('admin/forgotpost'); ?>">
 						<div class="form-group">
                           
                             <div class="">
-                                <input type="text" name="email_id" id="email_id" class="form-control border-r-0" name="username" placeholder="Enter User Name" />
+                                <input type="text" name="email_id" id="email_id" class="form-control border-r-0" name="username" placeholder="Enter Email" />
                             </div>
                         </div>
-						<div class="form-group">
-                     
-                            <div class="">
-                                <input type="password" name="password" id="password" class="form-control border-r-0"  placeholder="Enter Password" />
-                            </div>
-                        </div>
-						<div class="form-group">
-                     
-                            <div class="pull-right">
-                               <a href="<?php echo base_url('admin/forgotpassword'); ?>">Forgot Password?</a>
-                            </div>
-                        </div>
+						
 						
 
                        
@@ -66,7 +55,7 @@
                         <div class="form-group">
                           
                             <div class=" ">
-                                <button type="submit" class="btn btn-primary btn-block" name="signup" value="Sign up">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block" name="signup" value="Sign up">submit</button>
                                 
                             </div>
                         </div>
@@ -89,21 +78,6 @@ $(document).ready(function() {
 					regexp: {
 					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
-            password: {
-               validators: {
-					notEmpty: {
-						message: 'Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Password  must be at least 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
 					}
 				}
             }

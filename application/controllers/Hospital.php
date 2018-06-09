@@ -91,10 +91,10 @@ class Hospital extends CI_Controller {
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 								if($status==1){
-									$this->session->set_flashdata('success','Hospital Successfully deactivate');
+									$this->session->set_flashdata('success','Hcf sucessfully deactivated');
 
 								}else{
-									$this->session->set_flashdata('success','Hospital Successfully activate');
+									$this->session->set_flashdata('success','Hcf sucessfully activated');
 
 								}
 								redirect('hospital/lists');
@@ -130,7 +130,7 @@ class Hospital extends CI_Controller {
 								'status'=>2,
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital details Successfully Deleted');
+								$this->session->set_flashdata('success','Hcf details Successfully Deleted');
 								redirect('hospital/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -175,7 +175,6 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				$post=$this->input->post();
-				//echo '<pre>';print_r($post);exit;
 				$check_email=$this->Admin_model->email_check_details($post['email']);
 				if(count($check_email)>0){
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
@@ -191,13 +190,15 @@ class Hospital extends CI_Controller {
 					);
 					$hos_save=$this->Admin_model->save_admin($addhos);
 					if(count($hos_save)>0){
+						$barcode_name = strtoupper(substr($post['hospital_name'], 0, 4));
 						$this->zend->load('Zend/Barcode');
-						$file = Zend_Barcode::draw('code128', 'image', array('text' => $hos_save), array());
+						$file = Zend_Barcode::draw('code128', 'image', array('text' => $barcode_name.$post['type'].$post['state'].$hos_save), array());
 						$code = time().$hos_save;
 						$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
 						$addhospital=array(
 							'a_id'=>isset($hos_save)?$hos_save:'',
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'type'=>isset($post['type'])?$post['type']:'',
 							'hospital_id'=>isset($hos_save)?$hos_save:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
@@ -211,11 +212,12 @@ class Hospital extends CI_Controller {
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'barcode'=>$code.'.png',
+							'barcodetext'=>$barcode_name.$post['type'].$post['state'].$hos_save,
 							'create_by'=>$admindetails['a_id']
 						);
 						$hospital_save=$this->Admin_model->save_hospital($addhospital);
 						if(count($hospital_save)>0){
-							$this->session->set_flashdata('success','Hospital Successfully added');
+							$this->session->set_flashdata('success','Hcf Successfully added');
 							redirect('hospital/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -261,6 +263,7 @@ class Hospital extends CI_Controller {
 						}else{
 							$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'type'=>isset($post['type'])?$post['type']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
@@ -278,7 +281,7 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hospital details Successfully updated');
+								$this->session->set_flashdata('success','Hcf details Successfully updated');
 									if($admindetails['role']==2){
 										redirect('dashboard/profile');
 									}else{
@@ -299,6 +302,7 @@ class Hospital extends CI_Controller {
 				}else{
 					$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'type'=>isset($post['type'])?$post['type']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
@@ -318,7 +322,7 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-							$this->session->set_flashdata('success','Hospital details Successfully updated');
+							$this->session->set_flashdata('success','Hcf details Successfully updated');
 							if($admindetails['role']==2){
 									redirect('dashboard/profile');
 							}else{
@@ -379,6 +383,48 @@ class Hospital extends CI_Controller {
 				$data['garbage_list']=$this->Hospital_model->get_hospital_invoice_list_details($hospital_detail['h_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/hospita_garbage_list', $data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function hospital_report()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				
+				$data['hospital_reports']=$this->Admin_model->get_hospitalreport_list();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/hospital_report_list',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function cbwtf_report()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				
+				$data['hospital_reports']=$this->Admin_model->get_cbwtfreport_list();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/cbwtf_report_list',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");

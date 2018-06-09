@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label"> password</label>
+                            <label class="col-lg-3 control-label"> New Password</label>
                             <div class="col-lg-5">
                                 <input type="password" class="form-control" id="password" name="password"  />
                             </div>
@@ -94,11 +94,11 @@ $(document).ready(function() {
 			password: {
                  validators: {
 					notEmpty: {
-						message: 'Password is required'
+						message: 'New Password is required'
 					},
 					stringLength: {
                         min: 6,
-                        message: 'Password  must be at least 6 characters'
+                        message: 'New Password  must be at least 6 characters'
                     },
 					regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,

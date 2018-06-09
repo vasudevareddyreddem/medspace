@@ -17,7 +17,7 @@
                                             <th>Disposal Total</th>
                                             <th>Disposal Qty</th>
                                             <th>Remaining Qty</th>
-                                            <th>Date</th>
+                                            <th>Date & time</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>

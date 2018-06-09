@@ -260,7 +260,7 @@ $dat = explode("-", $cri['create_at']);
     	data: [{
     		type: "spline",
 			showInLegend: true,
-			name: "Hospital List",
+			name: "Health Care Facility List",
 			lineDashType: "solid", 
 			color: "#E91E63",
     		dataPoints: <?php echo json_encode($hospital_list, JSON_NUMERIC_CHECK); ?>
@@ -275,7 +275,7 @@ $dat = explode("-", $cri['create_at']);
     	},{
     		type: "spline",
 			showInLegend: true,
-			name: "Truck List",
+			name: "BMW vehicle List",
 			lineDashType: "solid",
 			color: "#8BC34A",			
     		dataPoints: <?php echo json_encode($total_truck_list, JSON_NUMERIC_CHECK); ?>
@@ -283,7 +283,7 @@ $dat = explode("-", $cri['create_at']);
 		{
     		type: "spline",
 			showInLegend: true,
-			name: "Total plants",
+			name: "Total CBWTF",
 			lineDashType: "solid",
 			color: "#FF9800",			
     		dataPoints: <?php echo json_encode($total_plants_list, JSON_NUMERIC_CHECK); ?>
@@ -315,7 +315,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">local_hospital</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Hospitals</div>
+                            <div class="text">Total Health Care Facility</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_hospital['total_hos'])?$total_hospital['total_hos']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -337,7 +337,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">local_shipping</i>
                         </div>
                         <div class="content">
-                            <div class="text">Toatal BMW vehical </div>
+                            <div class="text">Total BMW vehicle </div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_trucks['total_trucks'])?$total_trucks['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -348,7 +348,7 @@ $dat = explode("-", $cri['create_at']);
                             <i class="material-icons">payment</i>
                         </div>
                         <div class="content">
-                            <div class="text">Toatal CBWTF</div>
+                            <div class="text">Total CBWTF</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_plants['total_plants'])?$total_plants['total_plants']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>

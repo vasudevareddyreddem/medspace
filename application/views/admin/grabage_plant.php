@@ -99,12 +99,12 @@
 								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter Glassware waste in qtys">
 							</div>
 							<div class="col-md-3">
-							<h4 class="text-center text-success">Genaral Waste</h4>
+							<h4 class="text-center text-success">General Waste</h4>
 								<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
 								</div>
-								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter Genaral waste in Kgs"><br>
-								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter Genaral waste in qtys">
+								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter General waste in Kgs"><br>
+								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter General waste in qtys">
 							</div>
 							
 						</div>
@@ -184,11 +184,11 @@ $(document).ready(function() {
             gen_waste_in_Kg: {
                 validators: {
 					notEmpty: {
-						message: 'Genaral waste in Kgs is required'
+						message: 'General waste in Kgs is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Genaral waste in Kgs can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'General waste can only consist of digits and dot'
 					}
 				}
             },
@@ -198,8 +198,8 @@ $(document).ready(function() {
 						message: 'Genaral waste in Qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Genaral waste in Qty can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Genaral waste can only consist of digits and dot'
 					}
 				}
             },
@@ -209,8 +209,8 @@ $(document).ready(function() {
 						message: 'Infected Plastics in kgs is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Infected Plastics in kgs can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Infected Plastics can only consist of digits and dot'
 					}
 				}
             },
@@ -220,8 +220,8 @@ $(document).ready(function() {
 						message: 'Infected Plastics in Qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Infected Plastics in Qty can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Infected Plastics can only consist of digits and dot'
 					}
 				}
             },
@@ -231,8 +231,8 @@ $(document).ready(function() {
 						message: 'Infected waste in kgs is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Infected waste in kgs  can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Infected waste can only consist of digits and dot'
 					}
 				}
             },
@@ -242,8 +242,8 @@ $(document).ready(function() {
 						message: 'Infected waste in qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Infected waste in qty  can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Infected waste can only consist of digits and dot'
 					}
 				}
             },
@@ -253,8 +253,8 @@ $(document).ready(function() {
 						message: 'Glassware waste in kgs is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Glassware waste in kgs  can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Glassware waste can only consist of digits and dot'
 					}
 				}
             },
@@ -264,8 +264,8 @@ $(document).ready(function() {
 						message: 'Glassware waste in qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Glassware waste in qty  can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Glassware waste can only consist of digits and dot'
 					}
 				}
             }

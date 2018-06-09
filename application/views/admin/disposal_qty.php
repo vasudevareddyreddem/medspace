@@ -26,7 +26,7 @@
 						<div class="form-group">
                             <label class="label-control">Disposal Qty</label>
                             <div class="">
-                                <input type="text" class="form-control" id="disposal_qty" name="disposal_qty" value="" />
+                                <input type="text" class="form-control" onkeyup="remainingqty(this.value)" id="disposal_qty" name="disposal_qty" value="" />
                             </div>
                         </div>
                         </div>
@@ -57,6 +57,12 @@
             
     </section>
 	<script type="text/javascript">
+	function remainingqty(id){
+		var amt=document.getElementById("disposal_total").value;
+		var total= amt- id;
+		$('#disposal_remaining').val(total);
+	
+}
 $(document).ready(function() {
      $('#defaultForm').bootstrapValidator({
 //      
@@ -67,8 +73,8 @@ $(document).ready(function() {
 						message: 'Disposal Total is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Disposal Total can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Disposal Total can only consist of digits and dot'
 					}
 				}
             },
@@ -78,8 +84,8 @@ $(document).ready(function() {
 						message: 'Disposal Qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Disposal Qty can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Disposal Qty can only consist of digits and dot'
 					}
 				}
             },
@@ -89,8 +95,8 @@ $(document).ready(function() {
 						message: 'Remaining Qty is required'
 					},
 					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Remaining Qty can only consist of alphanumaric, space and dot'
+					regexp: /^[0-9.]*$/,
+					message: 'Remaining Qty can only consist of digits and dot'
 					}
 				}
             }
@@ -106,4 +112,6 @@ $(document).ready(function() {
         $('#defaultForm').data('bootstrapValidator').resetForm(true);
     });
 });
+
+
 </script>

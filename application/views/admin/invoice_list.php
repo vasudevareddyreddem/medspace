@@ -17,7 +17,7 @@
                                             <th>Invoice id</th>
                                             <th>Name</th>
                                             <th>Current address</th>
-                                            <th>Date</th>
+                                            <th>Date & time</th>
                                             <th>Status</th>
                                             <th>Acion</th>
                                         </tr>

@@ -4,7 +4,7 @@
 <?php //echo '<pre>';print_r($garbage_details);exit; ?>
 <head>
     <meta charset="utf-8">
-    <title>hospital invoice</title>
+    <title>Medspace invoice</title>
     
     <style>
 	.page-invoice{
@@ -128,11 +128,11 @@ th, td {
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="<?php echo base_url(); ?>assets/vendor/img/fav.png" style=" width:100px;">
+                                <img src="<?php echo base_url(); ?>assets/vendor/img/logo.png" style=" width:100px;">
                             </td>
 							<td >
                                <h1 style="text-align:center;">Medspace</h1>
-                               <p style="text-align:center;color:#F80">BY PRACHA TECHNOLOGIES PVT LTD.  </p>
+                               <p style="text-align:center;color:#F80">By Medspace Softtech Pvt ltd.</p>
                             </td>
                             
                           
@@ -147,10 +147,10 @@ th, td {
                         <tr>
                             <td>
                              <div>
-								<strong>Hospital Name : </strong> <?php echo $details['hospital_name']; ?>, 
+								<strong>Hospital Name : </strong> <?php echo $details['hospital_name']; ?> 
 							 </div>
 							 <div>
-								<strong>Hospital ID : </strong> <?php echo $details['hospital_id']; ?>, 
+								<strong>Hospital ID : </strong> <?php echo $details['hospital_id']; ?>
 							 </div>
 							 <div>
 								<strong>Garbage collection Adddress:  </strong> <?php echo $garbage_details['current_address']; ?> 
@@ -178,45 +178,40 @@ th, td {
     <td colspan="3"><?php echo date('Y-m-d H:i:s'); ?></td>
   
   </tr>
-  <tr>
-    <td>Payment Mode </td>
-    <td colspan="3">&nbsp;</td>
-  
-  </tr>
   
    
 
   <tr>
-    <td colspan="2"> Genaral Waste in Bags Qty(kg's):</td>
-    <td> <?php echo $garbage_details['genaral_waste_kgs']; ?></td>
+    <th colspan="2"> General Waste in Bags Qty(kgs):</th>
+    <th> <?php echo $garbage_details['genaral_waste_kgs']; ?></th>
   </tr> 
   <tr>
-    <th colspan="2">Genaral Waste in Bags(no's):  </th>
+    <th colspan="2">General Waste in Bags(no's):  </th>
     <th><?php echo $garbage_details['genaral_waste_qty']; ?></th>
   </tr>
   <tr>
-     <th colspan="2">Infected Plastics in Bags Qty(kg's):</th>
+     <th colspan="2">Infected Plastics in Bags Qty(kgs):</th>
     <th><?php echo $garbage_details['infected_plastics_kgs']; ?></th>
   </tr> 
     <tr>
      <th colspan="2">Infected Plastics in Bags(no's):</td>
-    <td> <?php echo $garbage_details['infected_plastics_qty']; ?></td>
+    <th> <?php echo $garbage_details['infected_plastics_qty']; ?></th>
   </tr>
   <tr>
-     <th colspan="2">Infected Waste in Bags Qty(kg's):</th>
+     <th colspan="2">Infected Waste in Bags Qty(kgs):</th>
     <th><?php echo $garbage_details['infected_waste_kgs']; ?></th>
   </tr> 
     <tr>
      <th colspan="2">Infected Waste  in Bags(no's): </td>
-    <td> <?php echo $garbage_details['infected_waste_qty']; ?></td>
+    <th> <?php echo $garbage_details['infected_waste_qty']; ?></th>
   </tr>
   <tr>
-     <th colspan="2">Glassware Waste in Bags Qty(kg's):</th>
+     <th colspan="2">Glassware Waste in Bags Qty(kgs):</th>
     <th><?php echo $garbage_details['glassware_watse_kgs']; ?></th>
   </tr> 
     <tr>
      <th colspan="2">Glassware Waste in Bags(no's):</td>
-    <td> <?php echo $garbage_details['glassware_watse_qty']; ?></td>
+    <th> <?php echo $garbage_details['glassware_watse_qty']; ?></th>
   </tr> 
   
 

@@ -13,6 +13,7 @@ class Hospital_model extends CI_Model
 		$this->db->select('*')->from('hospital_list');		
 		$this->db->where('create_by', $admin_id);
 		$this->db->where('status !=', 2);
+		$this->db->order_by('create_by',"DESC");
         return $this->db->get()->result_array();	
 	}
 	public function get_hospital_details($h_id){

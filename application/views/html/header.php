@@ -38,7 +38,7 @@
 
 <body class="theme-red">
     <!-- Page Loader -->
-    <div class="page-loader-wrapper">
+    <!--<div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">
                 <div class="spinner-layer pl-red">
@@ -52,7 +52,7 @@
             </div>
             <p>Please wait Medspace is Loading...</p>
         </div>
-    </div>
+    </div>-->
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
@@ -74,7 +74,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="<?php echo base_url(); ?>">Medspace</a>
+                <a class="navbar-brand" href="<?php echo base_url('dashboard'); ?>">Medspace</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
 			
@@ -125,14 +125,14 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>Hospital</span>
+                            <span>Health Care Facility</span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('hospital/add'); ?>">Add hospital</a>
+								<a href="<?php echo base_url('hospital/add'); ?>">Add Health Care Facility</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('hospital/lists'); ?>">Hospital List</a>
+								<a href="<?php echo base_url('hospital/lists'); ?>">Health Care Facility List</a>
 							</li>
                             
                         </ul>
@@ -140,14 +140,14 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>BMW vehical </span>
+                            <span>BMW vehicle </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW vehical </a>
+								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW vehicle</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('garbage/lists'); ?>">BMW vehical List</a>
+								<a href="<?php echo base_url('garbage/lists'); ?>">BMW vehicle List</a>
 							</li>
                             
                         </ul>
@@ -173,7 +173,7 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>BMW vehical  Man portal </span>
+                            <span>BMW vehicle  Man portal </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
@@ -188,7 +188,7 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>Garbage Plant </span>
+                            <span>CBWTF </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
@@ -206,7 +206,7 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('plant/disposal'); ?>">Disposal  Waste</a>
+								<a href="<?php echo base_url('plant/disposal'); ?>">Add Disposal Waste</a>
 								<a href="<?php echo base_url('plant/disposal_list'); ?>">Disposal  List</a>
 							</li>
 							

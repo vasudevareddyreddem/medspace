@@ -37,7 +37,7 @@
 					 
 					 <?php if($profile_detail['role']==4){ ?>
                      <div class="col-sm-6">
-                        <h4 >Plant  Name </h4>
+                        <h4 >CBWTF</h4>
                         </span>
                         <span>
                            <p><?php echo isset($profile_detail['disposal_plant_name'])?$profile_detail['disposal_plant_name']:''; ?></p>
@@ -46,7 +46,7 @@
                      <div class="clearfix"></div>
                      <hr style="margin:5px 0 5px 0;">
 					 <br>
-                     <div class="col-sm-5 col-xs-6 tital " >Disposal Plant ID:</div>
+                     <div class="col-sm-5 col-xs-6 tital " >CBWTF ID:</div>
                      <div class="col-sm-7 col-xs-6 "><?php echo isset($profile_detail['disposal_plant_id'])?$profile_detail['disposal_plant_id']:''; ?></div>
                      <div class="clearfix"></div>
                      <div class="bot-border"></div>
@@ -59,11 +59,19 @@
                      <div class="clearfix"></div>
                      <div class="bot-border"></div>
                      <div class="col-sm-5 col-xs-6 tital " >Address:</div>
-                     <div class="col-sm-7"><?php echo isset($profile_detail['address'])?$profile_detail['address']:''; ?></div>
+                     <div class="col-sm-7">
+					 <?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
+					 <?php echo isset($profile_detail['address2'])?$profile_detail['address2']:''; ?>,
+					 <?php echo isset($profile_detail['city'])?$profile_detail['city']:''; ?>,
+					 <?php echo isset($profile_detail['state'])?$profile_detail['state']:''; ?>,
+					 <?php echo isset($profile_detail['country'])?$profile_detail['country']:''; ?>,
+					 <?php echo isset($profile_detail['pincode'])?$profile_detail['pincode']:''; ?>
+					 
+					 </div>
                      <div class="clearfix"></div>
                     <?php }else if($profile_detail['role']==2){ ?>
 					 <div class="col-sm-6">
-                        <h4 >Hospital  Name </h4>
+                        <h4 >HCF </h4>
                         </span>
                         <span>
                            <p><?php echo isset($profile_detail['hospital_name'])?$profile_detail['hospital_name']:''; ?></p>
@@ -72,7 +80,7 @@
                      <div class="clearfix"></div>
                      <hr style="margin:5px 0 5px 0;">
 					 <br>
-                     <div class="col-sm-5 col-xs-6 tital " >Hospital  ID:</div>
+                     <div class="col-sm-5 col-xs-6 tital " >HCF  ID:</div>
                      <div class="col-sm-7 col-xs-6 "><?php echo isset($profile_detail['hospital_id'])?$profile_detail['hospital_id']:''; ?></div>
                      <div class="clearfix"></div>
 					  <div class="bot-border"></div>
@@ -85,7 +93,26 @@
                      <div class="clearfix"></div>
 					  <div class="bot-border"></div>
                      <div class="col-sm-5 col-xs-6 tital " >Address:</div>
-                     <div class="col-sm-7"><?php echo isset($profile_detail['address'])?$profile_detail['address']:''; ?></div>
+                     <div class="col-sm-7">
+					  <?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
+					 <?php echo isset($profile_detail['address2'])?$profile_detail['address2']:''; ?>,
+					 <?php echo isset($profile_detail['city'])?$profile_detail['city']:''; ?>,
+					 
+						<?php $states = array ('AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CG' => 'Chhattisgarh', 'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir', 'JH' => 'Jharkhand', 'KA' => 'Karnataka', 'KL' => 'Kerala', 'MP' => 'Madhya Pradesh', 'MH' => 'Maharashtra', 'MN' => 'Manipur', 'ML' => 'Meghalaya', 'MZ' => 'Mizoram', 'NL' => 'Nagaland', 'OD' => 'Odisha', 'PB' => 'Punjab', 'RJ' => 'Rajasthan', 'SK' => 'Sikkim', 'TN' => 'Tamil Nadu', 'TS' => 'Telangana', 'TR' => 'Tripura', 'UK' => 'Uttarakhand','UP' => 'Uttar Pradesh', 'WB' => 'West Bengal', 'AN' => 'Andaman & Nicobar', 'CH' => 'Chandigarh', 'DN' => 'Dadra and Nagar Haveli', 'DD' => 'Daman & Diu', 'DL' => 'Delhi', 'LD' => 'Lakshadweep', 'PY' => 'Puducherry'); ?>
+						<?php foreach($states as $key=>$state):
+						if(isset($profile_detail['state'])&& $profile_detail['state'] == $key):
+						echo $state;
+						else : 
+						$selected = '';
+						endif;
+						?>
+						<?php endforeach; ?>
+					 
+					 <?php echo isset($profile_detail['country'])?$profile_detail['country']:''; ?>,
+					 <?php echo isset($profile_detail['pincode'])?$profile_detail['pincode']:''; ?>
+					 
+					 </div>
+					 
                      <div class="clearfix"></div>
 					 <div class="bot-border"></div>
                      <div class="col-sm-5 col-xs-6 tital " >Barcode:</div>

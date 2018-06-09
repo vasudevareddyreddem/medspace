@@ -147,6 +147,7 @@ class Mobile extends REST_Controller {
 		'glassware_watse_kgs'=>$glassware_watse_kgs,
 		'glassware_watse_qty'=>$glassware_watse_qty,
 		'current_address'=>$current_address,
+		'total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 		'status'=>1,
 		'create_at'=>date('Y-m-d H:i:s'),
 		'create_by'=>$userid,
@@ -167,7 +168,7 @@ class Mobile extends REST_Controller {
 					$pdfFilePath = $path."/assets/invoices/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('admin/pdf', $data, true); // render the view into HTML
-					echo '<pre>';print_r($html);exit;
+					//echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">

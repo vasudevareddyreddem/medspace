@@ -6,15 +6,15 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add Disposal Plant</h2>
+                            <h2>Add CBWTF</h2>
                        
                         </div>
                         <div class="body">
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/addpost'); ?>">
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Disposal Plant Name</label>
+                            <label class="col-lg-3 control-label">CBWTF Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="disposal_plant_name" id="disposal_plant_name" placeholder="Disposal Plant Name" />
+                                <input type="text" class="form-control" name="disposal_plant_name" id="disposal_plant_name" placeholder="CBWTF Name" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -91,19 +91,11 @@
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " />
                             </div>
-                        </div> 	
-
-                       
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
-                            <div class="col-lg-2">
-                                <input type="text" class="form-control" name="captcha" />
-                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Disposal Plant</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add CBWTF</button>
                                 
                             </div>
                         </div>
@@ -118,12 +110,7 @@
     </section>
 	<script type="text/javascript">
 $(document).ready(function() {
-    // Generate a simple captcha
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
-
+    
     $('#defaultForm').bootstrapValidator({
 //       
         fields: {
@@ -131,11 +118,11 @@ $(document).ready(function() {
             disposal_plant_name: {
                 validators: {
 					notEmpty: {
-						message: 'Disposal Plant Name is required'
+						message: 'CBWTF Name is required'
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Disposal Plant Name can only consist of alphanumaric, space and dot'
+					message: 'CBWTF Name can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -249,18 +236,6 @@ $(document).ready(function() {
 					message: 'Pin code  must be  5 to 7 characters'
 					}
 				}
-            },
-            
-            captcha: {
-                validators: {
-                    callback: {
-                        message: 'Wrong answer',
-                        callback: function(value, validator) {
-                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-                            return value == sum;
-                        }
-                    }
-                }
             }
         }
     });

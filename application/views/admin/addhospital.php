@@ -6,17 +6,35 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add Hospital</h2>
+                            <h2>Add Health Care Facility</h2>
                        
                         </div>
                         <div class="body">
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('hospital/addpost'); ?>">
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Hospital Name</label>
+                            <label class="col-lg-3 control-label">Health Care Facility</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="hospital_name" id="hospital_name" placeholder="Enter Hospital Name" />
+                                <input type="text" class="form-control" name="hospital_name" id="hospital_name" placeholder="Enter Health Care Facility" />
                             </div>
                         </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Type of HCF</label>
+                            <div class="col-lg-5">
+							<?php $states = array ('BH' => 'Bedded Hospital', 'CL' => 'Clinic', 'DI' => 'Dispensary', 'HO' => 'Homeopathy', 'MH' => 'Mobile Hospital', 'SI' => 'Siddha', 'UN' => 'Unani', 'VH' => 'Veterinary Hospital', 'YO' => 'Yoga', 'AH' => 'Animal House', 'BB' => 'Blood Bank', 'DH' => 'Dental Hospital ', 'NH' => 'Nursing Home', 'PL' => 'Pathological Laboratory', 'FA' => 'Institutions/Schools/Companies etc. with First Aid facilities', 'HC' => 'Health Camp'); ?>
+								  <select class="form-control" required="required" name="type" id="type" style="width:100%;">
+								  <option value = "">Select Type</option>
+									<?php foreach($states as $key=>$state):
+											if(isset($hospital_detail['type']) && $hospital_detail['type'] == $state):
+											$selected ='selected=selected';
+											else : 
+											$selected = '';
+											endif;
+										 ?>
+										<option value = "<?php echo $key?>" <?php echo $selected;?> ><?php echo $state?></option>
+									<?php endforeach; ?>
+								  </select>  
+                            </div>
+                        </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Mobile</label>
                             <div class="col-lg-5">
@@ -65,17 +83,17 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">State</label>
                             <div class="col-lg-5">
-							<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
+							<?php $states = array ('AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CG' => 'Chhattisgarh', 'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir', 'JH' => 'Jharkhand', 'KA' => 'Karnataka', 'KL' => 'Kerala', 'MP' => 'Madhya Pradesh', 'MH' => 'Maharashtra', 'MN' => 'Manipur', 'ML' => 'Meghalaya', 'MZ' => 'Mizoram', 'NL' => 'Nagaland', 'OD' => 'Odisha', 'PB' => 'Punjab', 'RJ' => 'Rajasthan', 'SK' => 'Sikkim', 'TN' => 'Tamil Nadu', 'TS' => 'Telangana', 'TR' => 'Tripura', 'UK' => 'Uttarakhand','UP' => 'Uttar Pradesh', 'WB' => 'West Bengal', 'AN' => 'Andaman & Nicobar', 'CH' => 'Chandigarh', 'DN' => 'Dadra and Nagar Haveli', 'DD' => 'Daman & Diu', 'DL' => 'Delhi', 'LD' => 'Lakshadweep', 'PY' => 'Puducherry'); ?>
 								  <select class="form-control" required="required" name="state" id="state" style="width:100%;">
 								  <option value = "">Select State</option>
 									<?php foreach($states as $key=>$state):
-											if($hospital_detail['state'] == $state):
+											if(isset($hospital_detail['state'])&& $hospital_detail['state'] == $state):
 											$selected ='selected=selected';
 											else : 
 											$selected = '';
 											endif;
 										 ?>
-										<option value = "<?php echo $state?>" <?php echo $selected;?> ><?php echo $state?></option>
+										<option value = "<?php echo $key?>" <?php echo $selected;?> ><?php echo $state?></option>
 									<?php endforeach; ?>
 								  </select>  
                             </div>
@@ -94,16 +112,10 @@
                         </div> 
 
                        
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
-                            <div class="col-lg-2">
-                                <input type="text" class="form-control" name="captcha" />
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Hospital</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add Hcf</button>
                                 
                             </div>
                         </div>
@@ -118,25 +130,28 @@
     </section>
 	<script type="text/javascript">
 $(document).ready(function() {
-    // Generate a simple captcha
-    function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
-
+    
     $('#defaultForm').bootstrapValidator({
 //     
         fields: {
             hospital_name: {
                  validators: {
 					notEmpty: {
-						message: 'Hospital Name is required'
+						message: 'Health Care Facility is required'
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Hospital Name can only consist of alphanumaric, space and dot'
+					message: 'Health Care Facility can only consist of Alphanumeric, space and dot'
 					}
 				}
+            },
+			
+			type: {
+                 validators: {
+					  notEmpty: {
+						message: 'Type is required'
+					}
+                }
             },
             
             mobile: {
@@ -248,18 +263,6 @@ $(document).ready(function() {
 					message: 'Pin code  must be  5 to 7 characters'
 					}
 				}
-            },
-            
-            captcha: {
-                validators: {
-                    callback: {
-                        message: 'Wrong answer',
-                        callback: function(value, validator) {
-                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-                            return value == sum;
-                        }
-                    }
-                }
             }
         }
     });

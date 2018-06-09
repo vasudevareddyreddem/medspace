@@ -14,8 +14,8 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-                                            <th>Genaral Waste in Kgs</th>
-                                            <th>Genaral Waste packet qty</th>
+                                            <th>General Waste in Kgs</th>
+                                            <th>General Waste packet qty</th>
                                             <th>Infected Plastics in Kgs</th>
                                             <th>Infected Plastics packet qty</th>
                                             <th>Infected waste in Kgs</th>
