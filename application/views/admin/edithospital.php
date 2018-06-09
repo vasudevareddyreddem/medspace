@@ -37,6 +37,12 @@
                             </div>
                         </div> 
 						<div class="form-group">
+                            <label class="col-lg-3 control-label">Route Number</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="route_number" id="route_number" value="<?php echo isset($hospital_detail['route_number'])?$hospital_detail['route_number']:'';?>" placeholder="Enter Number" />
+                            </div>
+                        </div>
+						<div class="form-group">
                             <label class="col-lg-3 control-label">Mobile</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile"  value="<?php echo isset($hospital_detail['mobile'])?$hospital_detail['mobile']:'';?>"/>
@@ -141,6 +147,17 @@ $(document).ready(function() {
                  validators: {
 					  notEmpty: {
 						message: 'Type is required'
+					}
+                }
+            },
+			route_number: {
+                 validators: {
+					  notEmpty: {
+						message: 'Route Number is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Route Number can only consist of digits'
 					}
                 }
             },

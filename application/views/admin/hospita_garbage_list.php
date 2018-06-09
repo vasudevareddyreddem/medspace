@@ -14,14 +14,16 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-                                            <th>General Waste in Kgs</th>
-                                            <th>General Waste packet qty</th>
-                                            <th>Infected Plastics in Kgs</th>
-                                            <th>Infected Plastics packet qty</th>
-                                            <th>Infected waste in Kgs</th>
-                                            <th>Infected waste packet qty</th>
-                                            <th>Glassware waste in Kgs</th>
-                                            <th>Glassware waste packet qty</th>
+											<th>Yellow No of bags</th>
+                                            <th>Yellow No of kgs</th>
+                                            
+											<th>Red No of bags</th>
+                                            <th>Red No of kgs</th>
+											
+                                           	<th>Blue No of bags</th>
+                                            <th>Blue No of Kgs</th>
+											<th>White No of bags</th>
+                                            <th>White No of Kgs</th>
                                             <th>Date</th>
                                             <th>Status</th>
                                         </tr>
@@ -31,14 +33,19 @@
 									<?php foreach($garbage_list as $list){ ?>
                                 
                                         <tr>
-                                            <td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
-                                            <td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
-                                            <td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
-                                            <td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
-                                            <td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
+											<td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
+
+											<td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
+											<td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
+
+											<td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
+											<td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
+
+											<td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
+											<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
+
+											<td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
+                                            
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             

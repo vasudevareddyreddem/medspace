@@ -70,41 +70,45 @@
 							<input type="hidden" name="truck_id" id="truck_id" value="">
 							<input type="hidden" name="route_id" id="route_id" value="">
 						<div class="row">
-							
 							<div class="col-md-3">
-							<h4 class="text-center text-danger">Infected Plastics</h4>
-									<div class="py-4">
-									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
-								</div>
-								<input type="text" id="inf_pla_waste_in_Kg" name="inf_pla_waste_in_Kg" class="form-control" placeholder="Enter Infected Plastics in Kgs">
-								<br>
-								<input type="text" id="inf_pla_waste_in_qty" name="inf_pla_waste_in_qty" class="form-control" placeholder="Enter Infected Plastics in qtys">
-							</div>
-							<div class="col-md-3">
-								<h4 class="text-center text-warning">Infected Waste</h4>
+								<h4 class="text-center text-warning">Yellow</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
 								</div>
-								<input type="text" id="inf_waste_in_Kg" name="inf_waste_in_Kg" class="form-control" placeholder="Enter Infected waste in Kgs">
+								<input type="text" id="inf_waste_in_qty" name="inf_waste_in_qty" class="form-control" placeholder="Enter No of bags">
 								<br>
-								<input type="text" id="inf_waste_in_qty" name="inf_waste_in_qty" class="form-control" placeholder="Enter Infected waste in qtys">
-														</div>
+								<input type="text" id="inf_waste_in_Kg" name="inf_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
+
+							</div>
 							<div class="col-md-3">
-								<h4 class="text-center text-primary">Glassware</h4>
+							<h4 class="text-center text-danger">Red</h4>
+									<div class="py-4">
+									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
+								</div>
+									
+								<input type="text" id="inf_pla_waste_in_qty" name="inf_pla_waste_in_qty" class="form-control" placeholder="Enter No of bags">
+							<br>
+								<input type="text" id="inf_pla_waste_in_Kg" name="inf_pla_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
+							</div>
+							
+							<div class="col-md-3">
+								<h4 class="text-center text-primary">Blue</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
 								</div>
-								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter Glassware waste in Kgs">
-								<br>
-								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter Glassware waste in qtys">
+									
+								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter No of bags">
+							<br>
+								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
 							<div class="col-md-3">
-							<h4 class="text-center text-success">General Waste</h4>
+							<h4 class="text-center text-success">White</h4>
 								<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
 								</div>
-								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter General waste in Kgs"><br>
-								<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter General waste in qtys">
+																<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter No of bags"><br>
+
+								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs"><br>
 							</div>
 							
 						</div>
@@ -184,88 +188,88 @@ $(document).ready(function() {
             gen_waste_in_Kg: {
                 validators: {
 					notEmpty: {
-						message: 'General waste in Kgs is required'
+						message: 'No of Kgs is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'General waste can only consist of digits and dot'
+					message: 'No of Kgs can only consist of digits and dot'
 					}
 				}
             },
             gen_waste_in_qty: {
                  validators: {
 					notEmpty: {
-						message: 'Genaral waste in Qty is required'
+						message: 'No of bags is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Genaral waste can only consist of digits and dot'
+					message: 'No of bags can only consist of digits and dot'
 					}
 				}
             },
 			inf_pla_waste_in_Kg: {
                 validators: {
 					notEmpty: {
-						message: 'Infected Plastics in kgs is required'
+						message: 'No of Kgs is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Infected Plastics can only consist of digits and dot'
+					message: 'No of Kgs can only consist of digits and dot'
 					}
 				}
             },
             inf_pla_waste_in_qty: {
                  validators: {
 					notEmpty: {
-						message: 'Infected Plastics in Qty is required'
+						message: 'No of bags is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Infected Plastics can only consist of digits and dot'
+					message: 'INo of bags can only consist of digits and dot'
 					}
 				}
             },
 			inf_waste_in_Kg: {
                   validators: {
 					notEmpty: {
-						message: 'Infected waste in kgs is required'
+						message: 'No of Kgs is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Infected waste can only consist of digits and dot'
+					message: 'No of Kgs can only consist of digits and dot'
 					}
 				}
             },
             inf_waste_in_qty: {
                  validators: {
 					notEmpty: {
-						message: 'Infected waste in qty is required'
+						message: 'No of bags is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Infected waste can only consist of digits and dot'
+					message: 'No of bags can only consist of digits and dot'
 					}
 				}
             },
 			glassware_waste_in_kg: {
                   validators: {
 					notEmpty: {
-						message: 'Glassware waste in kgs is required'
+						message: 'No of Kgs is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Glassware waste can only consist of digits and dot'
+					message: 'No of Kgs can only consist of digits and dot'
 					}
 				}
             },
             glassware_waste_in_qty: {
                  validators: {
 					notEmpty: {
-						message: 'Glassware waste in qty is required'
+						message: 'No of bags is required'
 					},
 					regexp: {
 					regexp: /^[0-9.]*$/,
-					message: 'Glassware waste can only consist of digits and dot'
+					message: 'No of bags can only consist of digits and dot'
 					}
 				}
             }

@@ -198,6 +198,7 @@ class Hospital extends CI_Controller {
 						$addhospital=array(
 							'a_id'=>isset($hos_save)?$hos_save:'',
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'type'=>isset($post['type'])?$post['type']:'',
 							'hospital_id'=>isset($hos_save)?$hos_save:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
@@ -264,6 +265,7 @@ class Hospital extends CI_Controller {
 							$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 							'type'=>isset($post['type'])?$post['type']:'',
+							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
@@ -303,6 +305,7 @@ class Hospital extends CI_Controller {
 					$updatehospital=array(
 							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 							'type'=>isset($post['type'])?$post['type']:'',
+							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',

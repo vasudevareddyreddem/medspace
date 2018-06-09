@@ -61,12 +61,7 @@
                                 <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile" />
                             </div>
                         </div>
-						<div class="form-group">
-                            <label class="col-lg-3 control-label"> Route Number</label>
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" name="route_no" id="route_no" placeholder="Route Number" />
-                            </div>
-                        </div>
+						
 						<div class="form-group">
                             <label class="col-lg-3 control-label"> Description</label>
                             <div class="col-lg-5">
@@ -251,17 +246,6 @@ $(document).ready(function() {
 					message:' Driver Mobile Number must be 10 digits'
 					}
                 }
-            },
-			route_no: {
-               validators: {
-					notEmpty: {
-						message: 'Route Number is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Route Number can only consist of Alphanumeric, space and dot'
-					}
-				}
             },
 			description: {
                validators: {

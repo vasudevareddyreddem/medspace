@@ -147,13 +147,13 @@ th, td {
                         <tr>
                             <td>
                              <div>
-								<strong>Hospital Name : </strong> <?php echo $details['hospital_name']; ?> 
+								<strong>Health Care Facility: </strong> <?php echo $details['hospital_name']; ?> 
 							 </div>
 							 <div>
-								<strong>Hospital ID : </strong> <?php echo $details['hospital_id']; ?>
+								<strong>Health Care Facility ID : </strong> <?php echo $details['hospital_id']; ?>
 							 </div>
 							 <div>
-								<strong>Garbage collection Adddress:  </strong> <?php echo $garbage_details['current_address']; ?> 
+								<strong>BMW vehicle collection Adddress:  </strong> <?php echo $garbage_details['current_address']; ?> 
 							 </div> 
 							 <div>
 								<strong>Date:  </strong> <?php echo date('Y-m-d H:i:s'); ?> 
@@ -178,41 +178,44 @@ th, td {
     <td colspan="3"><?php echo date('Y-m-d H:i:s'); ?></td>
   
   </tr>
-  
    
-
-  <tr>
-    <th colspan="2"> General Waste in Bags Qty(kgs):</th>
-    <th> <?php echo $garbage_details['genaral_waste_kgs']; ?></th>
-  </tr> 
-  <tr>
-    <th colspan="2">General Waste in Bags(no's):  </th>
-    <th><?php echo $garbage_details['genaral_waste_qty']; ?></th>
-  </tr>
-  <tr>
-     <th colspan="2">Infected Plastics in Bags Qty(kgs):</th>
-    <th><?php echo $garbage_details['infected_plastics_kgs']; ?></th>
-  </tr> 
     <tr>
-     <th colspan="2">Infected Plastics in Bags(no's):</td>
+     <th colspan="2">Yellow No of bags </td>
+    <th> <?php echo $garbage_details['infected_waste_qty']; ?></th>
+  </tr>
+   <tr>
+     <th colspan="2">Yellow No of kgs</th>
+    <th><?php echo $garbage_details['infected_waste_kgs']; ?></th>
+  </tr>
+  
+    <tr>
+     <th colspan="2">Red No of bags</td>
     <th> <?php echo $garbage_details['infected_plastics_qty']; ?></th>
   </tr>
   <tr>
-     <th colspan="2">Infected Waste in Bags Qty(kgs):</th>
-    <th><?php echo $garbage_details['infected_waste_kgs']; ?></th>
+     <th colspan="2">Red No of Kgs</th>
+    <th><?php echo $garbage_details['infected_plastics_kgs']; ?></th>
   </tr> 
+
+   
     <tr>
-     <th colspan="2">Infected Waste  in Bags(no's): </td>
-    <th> <?php echo $garbage_details['infected_waste_qty']; ?></th>
+     <th colspan="2">Blue No of bags</td>
+    <th> <?php echo $garbage_details['glassware_watse_qty']; ?></th>
   </tr>
   <tr>
-     <th colspan="2">Glassware Waste in Bags Qty(kgs):</th>
+     <th colspan="2">Blue No of kgs</th>
     <th><?php echo $garbage_details['glassware_watse_kgs']; ?></th>
   </tr> 
-    <tr>
-     <th colspan="2">Glassware Waste in Bags(no's):</td>
-    <th> <?php echo $garbage_details['glassware_watse_qty']; ?></th>
-  </tr> 
+   
+  <tr>
+    <th colspan="2">White No of bags </th>
+    <th><?php echo $garbage_details['genaral_waste_qty']; ?></th>
+  </tr>
+  <tr>
+    <th colspan="2"> White No of Kgs</th>
+    <th> <?php echo $garbage_details['genaral_waste_kgs']; ?></th>
+  </tr>
+  
   
 
 </table>

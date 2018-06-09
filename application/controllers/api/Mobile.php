@@ -82,10 +82,10 @@ class Mobile extends REST_Controller {
 		}
 		$user_details=$this->Mobile_model->get_hospital_details($userid);
 		if(count($user_details)>0){
-					$message = array('status'=>1,'userdetails'=>$user_details,'profilepath'=>base_url('assets/files/'),'barcodepath'=>base_url('assets/hospital_barcodes/'),'message'=>'Hospital details are found');
+					$message = array('status'=>1,'userdetails'=>$user_details,'profilepath'=>base_url('assets/files/'),'barcodepath'=>base_url('assets/hospital_barcodes/'),'message'=>'HCF details are found');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}else{
-					$message = array('status'=>0,'message'=>'Hospital id is wrong. Please  try again once');
+					$message = array('status'=>0,'message'=>'Barcode Scan id is wrong. Please  try again once');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}
 	}
@@ -198,7 +198,7 @@ class Mobile extends REST_Controller {
 					$message = array('status'=>1,'a_id'=>$userid,'h_id'=>$hospital_id,'message'=>'Garbage successfully added');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}else{
-					$message = array('status'=>0,'message'=>'Hospital id is wrong. Please  try again once');
+					$message = array('status'=>0,'message'=>'HCF  is wrong. Please  try again once');
 					$this->response($message, REST_Controller::HTTP_OK);
 				}
 		

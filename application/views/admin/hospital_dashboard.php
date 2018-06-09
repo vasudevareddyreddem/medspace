@@ -264,37 +264,38 @@ $dat = explode("-", $cri['create_at']);
 		dockInsidePlotArea: true,
 		itemclick: toogleDataSeries
 		},
-    	data: [{
-    		type: "spline",
-			showInLegend: true,
-			name: "General Waste",
-			lineDashType: "solid", 
-			color: "#E91E63",
-    		dataPoints: <?php echo json_encode($gen_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
-    	},
+    	data: [
+		
 		{
     		type: "spline",
 			showInLegend: true,
-			name: "Infected Plastics",
+			name: "Yellow",
 			lineDashType: "solid",
-			color: "#00BCD4",			
-    		dataPoints: <?php echo json_encode($inf_pla_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
-    	},
-		{
-    		type: "spline",
-			showInLegend: true,
-			name: "Infected Waste",
-			lineDashType: "solid",
-			color: "#8BC34A",			
+			color: "#ffe821",			
     		dataPoints: <?php echo json_encode($inf_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
     	},
 		{
     		type: "spline",
 			showInLegend: true,
-			name: "Glassware",
+			name: "Red",
 			lineDashType: "solid",
-			color: "#FF9800",			
+			color: "#F44336",			
+    		dataPoints: <?php echo json_encode($inf_pla_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
+    	},{
+    		type: "spline",
+			showInLegend: true,
+			name: "Blue",
+			lineDashType: "solid",
+			color: "#2196F3",			
     		dataPoints: <?php echo json_encode($glassware_waste_in_kg, JSON_NUMERIC_CHECK); ?>
+    	},
+		{
+    		type: "spline",
+			showInLegend: true,
+			name: "White",
+			lineDashType: "solid", 
+			color: "#ddd",
+    		dataPoints: <?php echo json_encode($gen_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
     	}
 		]
     });
@@ -317,47 +318,48 @@ $dat = explode("-", $cri['create_at']);
 
             <!-- Widgets -->
             <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-yellow hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total General Waste</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo isset($gen_waste_in_Kgs['gen_waste'])?$gen_waste_in_Kgs['gen_waste']:'0'; ?>" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">local_hospital</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Total Infected Plastics</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo isset($inf_pla_waste_in_Kgs['inf_pla_waste'])?$inf_pla_waste_in_Kgs['inf_pla_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">local_hospital</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Total Infected Waste </div>
+                            <div class="text">Total Yellow </div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($inf_waste_in_Kgs['inf_waste'])?$inf_waste_in_Kgs['inf_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
+                    <div class="info-box bg-red hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Glassware</div>
+                            <div class="text">Total Red</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($inf_pla_waste_in_Kgs['inf_pla_waste'])?$inf_pla_waste_in_Kgs['inf_pla_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-blue hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Total Blue</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($glassware_waste_in_kgs['glassware_waste'])?$glassware_waste_in_kgs['glassware_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-default hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Total White</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($gen_waste_in_Kgs['gen_waste'])?$gen_waste_in_Kgs['gen_waste']:'0'; ?>" data-speed="15" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>

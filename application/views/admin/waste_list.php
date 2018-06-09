@@ -17,14 +17,16 @@
                                             <th>BMW vehicle Id</th>
                                             <th>Driver Name</th>
                                             <th>Driver Mobile</th>
-                                            <th>General Waste in Bags Qty(kgs)</th>
-                                            <th>General Waste in Bags(no's)</th>
-                                            <th>Infected Plastics in Bags Qty(kgs)</th>
-                                            <th>Infected Plastics in Bags(no's)</th>
-                                            <th>Infected Waste in Bags Qty(kgs)</th>
-                                            <th>Infected Waste  in Bags(no's)</th>
-                                            <th>Glassware Waste in Bags Qty(kgs)</th>
-                                            <th>Glassware Waste in Bags(no's)</th>
+											<th>Yellow No of bags</th>
+                                            <th>Yellow No of kgs</th>											 
+											<th>Red No of bags</th>
+                                            <th>Red No of kgs</th>
+											
+                                            <th>Blue No of bags</th> 
+											<th>Blue No of Kgs</th>											
+                                            <th>White No of bags</th>											
+
+											<th>White No of Kgs</th>
                                             <th>Date & time</th>
                                             <th>Status</th>
                                         </tr>
@@ -38,15 +40,15 @@
                                             <td><?php echo htmlentities($list['truck_reg_no']); ?></td>
                                             <td><?php echo htmlentities($list['driver_name']); ?></td>
                                             <td><?php echo htmlentities($list['driver_mobile']); ?></td>
+											 <td><?php echo htmlentities($list['inf_waste_in_qty']); ?></td>
+											<td><?php echo htmlentities($list['inf_waste_in_Kg']); ?></td>
+											 <td><?php echo htmlentities($list['inf_pla_waste_in_qty']); ?></td>
+											<td><?php echo htmlentities($list['inf_pla_waste_in_Kg']); ?></td>
+											 <td><?php echo htmlentities($list['glassware_waste_in_qty']); ?></td>
+											<td><?php echo htmlentities($list['glassware_waste_in_kg']); ?></td>
+											<td><?php echo htmlentities($list['gen_waste_in_qty']); ?></td>
                                             <td><?php echo htmlentities($list['gen_waste_in_Kg']); ?></td>
-                                            <td><?php echo htmlentities($list['gen_waste_in_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['inf_pla_waste_in_Kg']); ?></td>
-                                            <td><?php echo htmlentities($list['inf_pla_waste_in_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['inf_waste_in_Kg']); ?></td>
-                                            <td><?php echo htmlentities($list['inf_waste_in_qty']); ?></td>
-                                            <td><?php echo htmlentities($list['glassware_waste_in_kg']); ?></td>
-                                            <td><?php echo htmlentities($list['glassware_waste_in_qty']); ?></td>
-                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
+                                           <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             
                                         </tr>
