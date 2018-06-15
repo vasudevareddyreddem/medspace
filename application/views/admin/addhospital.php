@@ -10,6 +10,20 @@
                        
                         </div>
                         <div class="body">
+						<div  class="row">
+							<div  class="col-md-6 col-md-offset-3">
+								<div class="text-center">
+									<h4>Date:<span>15-June-2018</span></h4>
+									<h4>Bio Medical Waste Disposal</h4>
+									<img style="width:100px; height: auto;" src="<?php echo base_url(); ?>assets/vendor/images/medwasteicon.png" alt="bar code">
+									<div class="clearfix">&nbsp;</div>
+									<img style="width:auto; height: 60px;" src="<?php echo base_url(); ?>assets/vendor/images/barcode-sticker.png" alt="bar code">
+									<h4>Red 5.Kg [Bags 1/2]</h4>
+									<p>Medispace Hospital</p>
+									<p>Lorem Ipsum is simply dummy text of the printing</p>
+								</div>
+							</div>
+						</div>
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('hospital/addpost'); ?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Health Care Facility</label>
