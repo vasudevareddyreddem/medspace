@@ -218,6 +218,20 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
+                            <span> Bio medical waste </span>
+                        </a>
+                        <ul class="ml-menu">
+                           <li>
+								<a href="<?php echo base_url('hospital/bio_medical'); ?>">Add</a>
+								<a href="<?php echo base_url('hospital/bio_medical_view'); ?>">View</a>
+							</li>
+							
+                            
+                        </ul>
+                    </li>
+					<li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">home</i>
                             <span>Invoice </span>
                         </a>
                         <ul class="ml-menu">

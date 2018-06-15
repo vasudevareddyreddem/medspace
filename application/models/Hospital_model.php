@@ -41,6 +41,12 @@ class Hospital_model extends CI_Model
         return $this->db->get()->result_array();	
 	}
 	
+	public function save_bio_medical_waste($data){
+		$this->db->insert('bio_medical_waste', $data);
+		return $insert_id = $this->db->insert_id();
+		
+	}
+	
 	
 
 }

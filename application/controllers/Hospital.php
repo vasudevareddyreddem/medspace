@@ -439,5 +439,74 @@ class Hospital extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function bio_medical()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==2){
+				
+				$data['hospital_reports']=$this->Admin_model->get_cbwtfreport_list();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('bio_medical/add_bio_medical',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function addbio_medical_post()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==2){
+				$post=$this->input->post();
+				
+				echo '<pre>';print_r($post);
+						$add_bio=array(
+							'no_of_bags'=>isset($post['no_of_bags'])?$post['no_of_bags']:'',
+							'no_of_kgs'=>isset($post['no_of_kgs'])?$post['no_of_kgs']:'',
+							'color_type'=>isset($post['color_type'])?$post['color_type']:'',
+							'weight_type'=>isset($post['weight_type'])?$post['weight_type']:'',
+							'status'=>1,
+							'create_at'=>date('Y-m-d H:i:s'),
+							'create_by'=>$admindetails['a_id']
+						);
+						$add_bio_medical=$this->Hospital_model->save_bio_medical_waste($add_bio);
+						//echo '<pre>';print_r($add_bio_medical);exit;
+						if(count($add_bio_medical)>0){
+							$this->zend->load('Zend/Barcode');
+							$file = Zend_Barcode::draw('code128', 'image', array('text' =>$add_bio_medical), array());
+							$code = time();
+							$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/bio_medical_barcodes/{$code}.png");
+							$update_data=array(
+							'barcode'=>$code.'.png',
+							);
+							$this->Hospital_model->update_barcode($add_bio_medical,$update_data);
+							$this->session->set_flashdata('success','Bio Medical waste Successfully added');
+							redirect('hospital/bio_medical_view');
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							redirect('hospital/bio_medical');
+						}
+						
+					
+					
+				}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	
 }
