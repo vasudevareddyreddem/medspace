@@ -218,7 +218,7 @@ class Hospital extends CI_Controller {
 						);
 						$hospital_save=$this->Admin_model->save_hospital($addhospital);
 						if(count($hospital_save)>0){
-							$this->session->set_flashdata('success','Hcf Successfully added');
+							$this->session->set_flashdata('success','HCF added succcessfully');
 							redirect('hospital/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");

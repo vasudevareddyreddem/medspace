@@ -19,9 +19,7 @@
                                             <th>Health Care Facility Type</th>
                                             <th>Mobile</th>
                                             <th>Barcode</th>
-                                            <th>Reg Date & time</th>
-                                            <th>Amount Paid (Rs)</th>
-                                            <th>Due Amount</th>
+                                            <th>Reg Date & Time</th>
                                             <th>Status</th>
                                             <th>&nbsp;</th>
                                         </tr>

@@ -12,7 +12,7 @@
                         <div class="body">
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('garbage/addpost');?>">
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Truck Regn number</label>
+                            <label class="col-lg-3 control-label">Vehicle Registration Number</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS02AB4562" />
                             </div>
@@ -20,7 +20,7 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Regd Owner</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner name" />
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner Name" />
                             </div>
                         </div>
 						<div class="form-group">
