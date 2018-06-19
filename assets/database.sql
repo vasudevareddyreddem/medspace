@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
 
 /*Data for the table `admin` */
 
-insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin','admin@gmail.com','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-06-05 14:57:54'),(2,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,2,'reddem',NULL,'adminvxcvdgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(16,2,'pushkar',NULL,'pusjkar123@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(17,2,'vasudevaruyu',NULL,'admin987@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(18,4,'babu plant',NULL,'babu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(19,2,'like that',NULL,'hos@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL);
+insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin','admin@gmail.com','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-06-05 14:57:54'),(2,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,2,'reddem',NULL,'adminvxcvdgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(16,2,'pushkar',NULL,'pusjkar123@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(17,2,'vasudevaruyu',NULL,'admin987@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(18,4,'babu plant',NULL,'babu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(19,2,'like that',NULL,'hos@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456','0.8976950015290487086final.jpg',1,NULL);
 
 /*Table structure for table `bio_medical_waste` */
 
@@ -53,11 +53,11 @@ CREATE TABLE `bio_medical_waste` (
   `create_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bio_medical_waste` */
 
-insert  into `bio_medical_waste`(`id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`barcode`,`status`,`create_at`,`create_by`) values (1,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:38',19),(2,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:48',19),(3,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:23:27',19);
+insert  into `bio_medical_waste`(`id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`barcode`,`status`,`create_at`,`create_by`) values (1,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:38',19),(2,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:48',19),(3,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:23:27',19),(4,'10','20','Blue','Kgs','1529042661.png',1,'2018-06-15 11:34:21',19),(5,'10','66','White (ppc)','Kgs','1529062323.png',1,'2018-06-15 17:02:03',19),(6,'10','20','Blue','Grams','1529062817.png',1,'2018-06-15 17:10:17',16);
 
 /*Table structure for table `cbwtf_daily_report` */
 

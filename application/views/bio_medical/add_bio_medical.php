@@ -12,6 +12,7 @@
                        
                         </div>
 						<div class="body">
+						
 							<form id="defaultForm" method="post"  action="<?php echo base_url('hospital/addbio_medical_post'); ?>">
 							<div class="col-md-6 px-25px">
 						<div class="form-group">
@@ -30,14 +31,14 @@
                         </div>
                         </div>
 						<div class="col-md-6 px-25px">
-                            <label class="col-lg-3 control-label">Color Type</label>
+                            <label class="col-lg-3 control-label">Category</label>
                             <div class="col-lg-12 form-group">
 								  <select class="form-control"  name="color_type" id="color_type" style="width:100%;">
 								  <option value = "">Select</option>
 								  <option value = "yellow">Yellow</option>
 								  <option value = "Red">Red</option>
 								  <option value = "Blue">Blue</option>
-								  <option value = "White">White</option>
+								  <option value = "White (ppc)">White (ppc)</option>
 								  </select>  
                             </div>
                         </div>
@@ -103,7 +104,7 @@ $(document).ready(function() {
 			color_type: {
                 validators: {
 					notEmpty: {
-						message: 'Color Type is required'
+						message: 'Category is required'
 					}
 				}
             },

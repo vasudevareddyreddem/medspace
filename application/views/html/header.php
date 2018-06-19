@@ -230,14 +230,14 @@
                         </ul>
                     </li>
 					<li>
-                        <a href="javascript:void(0);" class="menu-toggle">
+                        <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">
                             <i class="material-icons">home</i>
-                            <span>Invoice </span>
+                            <span>BMW data Report </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('hospital/invoice_list'); ?>">Invoice List</a>
-								<a href="<?php echo base_url('hospital/garbage_list'); ?>">BMW List</a>
+								<!--<a href="<?php echo base_url('hospital/invoice_list'); ?>">Invoice List</a>
+								<a href="<?php echo base_url('hospital/garbage_list'); ?>">BMW List</a>-->
 							</li>
 							
                             

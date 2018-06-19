@@ -40,10 +40,23 @@ class Hospital_model extends CI_Model
 		$this->db->where('h_id', $h_id);
         return $this->db->get()->result_array();	
 	}
-	
 	public function save_bio_medical_waste($data){
 		$this->db->insert('bio_medical_waste', $data);
 		return $insert_id = $this->db->insert_id();
+	}
+	public  function update_barcode($id,$data){
+		$this->db->where('id',$id);
+		return $this->db->update('bio_medical_waste',$data);
+		
+	}
+	
+	public function get_bio_medical_waste_list($a_id){
+		
+		$this->db->select('bio_medical_waste.*,admin.profile_pic,hospital_list.hospital_name,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode')->from('bio_medical_waste');
+		$this->db->join('hospital_list ', 'hospital_list.a_id = bio_medical_waste.create_by', 'left');
+		$this->db->join('admin ', 'admin.a_id = bio_medical_waste.create_by', 'left');
+		$this->db->where('bio_medical_waste.create_by',$a_id);
+		return $this->db->get()->result_array();
 		
 	}
 	
