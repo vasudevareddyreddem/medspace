@@ -19,7 +19,7 @@
                                             <th>Driver Mobile Number</th>
 											<th>Yellow No of Bags</th>
                                             <th>Yellow No of kgs</th>											 
-											<th>Red No No of Bags</th>
+											<th>Red  No of Bags</th>
                                             <th>Red No of kgs</th>
 											
                                             <th>Blue No of Bags</th> 

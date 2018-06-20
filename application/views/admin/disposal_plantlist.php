@@ -18,7 +18,7 @@
                                             <th>CBWTF ID</th>
                                             <th>Mobile</th>
                                             <th>Reg Date & time</th>
-                                            <th>Status</th>
+                                           
                                             <th>&nbsp;</th>
                                         </tr>
                                     </thead>
@@ -31,10 +31,10 @@
                                             <td><?php echo htmlentities($list['disposal_plant_id']); ?></td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                            
                                             <td>
 											<a href="<?php echo base_url('plant/edit/'.base64_encode($list['p_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 
-											<a href="<?php echo base_url('plant/status/'.base64_encode($list['p_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==0){ echo "Active"; }else{ echo "Deactive";} ?></a> 
+											 
 											<a href="<?php echo base_url('plant/delete/'.base64_encode($list['p_id'])); ?>" class="btn btn-sm btn-primary">Delete</a> 
 											</td>
                                         </tr>

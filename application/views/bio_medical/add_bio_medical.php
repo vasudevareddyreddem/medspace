@@ -35,10 +35,10 @@
                             <div class="col-lg-12 form-group">
 								  <select class="form-control"  name="color_type" id="color_type" style="width:100%;">
 								  <option value = "">Select</option>
-								  <option value = "yellow">Yellow</option>
-								  <option value = "Red">Red</option>
-								  <option value = "Blue">Blue</option>
-								  <option value = "White (ppc)">White (ppc)</option>
+								  <option value = "yellow">YELLOW</option>
+								  <option value = "Red">RED</option>
+								  <option value = "Blue">BLUE</option>
+								  <option value = "White (ppc)">WHITE (PPC)</option>
 								  </select>  
                             </div>
                         </div>

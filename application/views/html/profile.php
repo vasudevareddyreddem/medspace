@@ -46,15 +46,15 @@
                      <div class="clearfix"></div>
                      <hr style="margin:5px 0 5px 0;">
 					 <br>
-                     <div class="col-sm-5 col-xs-6 tital " >CBWTF ID:</div>
+                     <div class="col-sm-5 col-xs-6 tital " >CBWTF ID: </div>
                      <div class="col-sm-7 col-xs-6 "><?php echo isset($profile_detail['disposal_plant_id'])?$profile_detail['disposal_plant_id']:''; ?></div>
                      <div class="clearfix"></div>
                      <div class="bot-border"></div>
-                     <div class="col-sm-5 col-xs-6 tital " >Mobile:</div>
+                     <div class="col-sm-5 col-xs-6 tital " >Mobile: </div>
                      <div class="col-sm-7"> <?php echo isset($profile_detail['mobile'])?$profile_detail['mobile']:''; ?></div>
                      <div class="clearfix"></div>
                      <div class="bot-border"></div>
-                     <div class="col-sm-5 col-xs-6 tital " >Email address:</div>
+                     <div class="col-sm-5 col-xs-6 tital " >Email address: </div>
                      <div class="col-sm-7"> <?php echo isset($profile_detail['email'])?$profile_detail['email']:''; ?></div>
                      <div class="clearfix"></div>
                      <div class="bot-border"></div>
