@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                BMW vehical List
+                                BMW Vehicle List
                             </h2>
                          
                         </div>
@@ -18,9 +18,9 @@
                                             <th>Owner Name</th>
                                             <th>Driver Name</th>
                                             <th>Driver Licence No</th>
-                                            <th>Join Date & time</th>
+                                            <th>Join Date & Time</th>
                                             <th>Status</th>
-                                            <th>
+                                             <th>Action
 											</th>
                                         </tr>
                                     </thead>

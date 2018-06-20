@@ -114,10 +114,10 @@ class Garbage extends CI_Controller {
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
 									if($status==1){
-									$this->session->set_flashdata('success','BMW vehicle Successfully deactivated');
+									$this->session->set_flashdata('success','BMW Vehicle Successfully deactivated');
 
 									}else{
-									$this->session->set_flashdata('success','BMW vehicle Successfully activated');
+									$this->session->set_flashdata('success','BMW Vehicle Successfully activated');
 
 									}
 								redirect('garbage/lists');
@@ -153,7 +153,7 @@ class Garbage extends CI_Controller {
 								'status'=>2,
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','BMW vehicle Successfully Deleted');
+								$this->session->set_flashdata('success','BMW Vehicle Successfully Deleted');
 								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -218,7 +218,7 @@ class Garbage extends CI_Controller {
 						);
 						$truck_save=$this->Admin_model->save_truck($addgarbagetruckl);
 						if(count($truck_save)>0){
-							$this->session->set_flashdata('success','BMW vehicle Successfully Added');
+							$this->session->set_flashdata('success','BMW Vehicle Successfully Added');
 							redirect('garbage/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -284,7 +284,7 @@ class Garbage extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','BMW vehicle details Successfully updated');
+								$this->session->set_flashdata('success','BMW Vehicle details Successfully updated');
 								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -321,7 +321,7 @@ class Garbage extends CI_Controller {
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
 								//echo $this->db->last_query();exit;
-								$this->session->set_flashdata('success','BMW vehicle details Successfully updated');
+								$this->session->set_flashdata('success','BMW Vehicle details Successfully updated');
 								redirect('garbage/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
