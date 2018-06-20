@@ -218,7 +218,7 @@
 					<li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span> Bio medical waste </span>
+                            <span> Bio Medical Waste </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
@@ -232,7 +232,7 @@
 					<li>
                         <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">
                             <i class="material-icons">home</i>
-                            <span>BMW data Report </span>
+                            <span>BMW Data Report </span>
                         </a>
                         <ul class="ml-menu">
                            <li>

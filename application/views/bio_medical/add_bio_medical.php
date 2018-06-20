@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-							Add Bio Medical Waste details</h2>
+							Add Biomedical waste Details</h2>
                        
                         </div>
 						<div class="body">
@@ -16,9 +16,9 @@
 							<form id="defaultForm" method="post"  action="<?php echo base_url('hospital/addbio_medical_post'); ?>">
 							<div class="col-md-6 px-25px">
 						<div class="form-group">
-                            <label class="label-control">No of bags</label>
+                            <label class="label-control">No of Bags</label>
                             <div class="">
-								<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of bags">
+								<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of Bags">
                             </div>
                         </div>
                         </div>

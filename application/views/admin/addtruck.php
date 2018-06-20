@@ -44,15 +44,15 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Driver Lience Badge Number</label>
+                            <label class="col-lg-3 control-label">Driver Licence Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_no"  id="driver_lic_no" placeholder="Driver Lience Badge Number" />
+                                <input type="text" class="form-control" name="driver_lic_no"  id="driver_lic_no" placeholder="Driver Licence Number" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Driver Licence badge number</label>
+                            <label class="col-lg-3 control-label">Driver Lience Badge Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number" />
+                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Lience Badge Number" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -62,12 +62,7 @@
                             </div>
                         </div>
 						
-						<div class="form-group">
-                            <label class="col-lg-3 control-label"> Description</label>
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Description" />
-                            </div>
-                        </div>
+						
 						<hr>
 						 <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
@@ -247,17 +242,7 @@ $(document).ready(function() {
 					}
                 }
             },
-			description: {
-               validators: {
-					notEmpty: {
-						message: 'Description is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Description can only consist of Alphanumeric, space and dot'
-					}
-				}
-            },
+			
             email: {
                  validators: {
 					notEmpty: {

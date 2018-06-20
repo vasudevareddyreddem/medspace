@@ -40,7 +40,7 @@
                                             <th>Category</th>
                                             <th>Weight Type</th>
                                             <th>Barcode</th>
-                                            <th>Date </th>
+                                            <th>Date & Time </th>
                                             <th>Action </th>
                                             
                                         </tr>

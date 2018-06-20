@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-							BMW vehical details</h2>
+							BMW Vehicle Details</h2>
                        
                         </div>
                         <div class="body">
@@ -17,7 +17,7 @@
 						
 						<div class="col-md-4  col-md-offset-2">
 						 
-							<input type="text" class="form-control" onkeyup="search_truck(this.value);" placeholder="Enter Truck Regn number">
+							<input type="text" class="form-control" onkeyup="search_truck(this.value);" placeholder="Enter Vehicle Registration Number">
 						</div>
 						<div class="col-md-6 hidden-sm hidden-xs" style="z-index:1" >
 						<div class="popover fade right in" role="tooltip" id="popover436935" style="top: 0;  display: block;">
@@ -39,14 +39,7 @@
                             </div>
                         </div>
                         </div>
-						<div class="col-md-6 px-25px">
-						<div class="form-group">
-                            <label class="label-control">Description</label>
-                            <div class="">
-                                <input type="text" class="form-control" id="description" name="description" value="" />
-                            </div>
-                        </div>
-                        </div>
+						
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
                             <label class="label-control">Driver Name</label>
@@ -57,7 +50,7 @@
                         </div>
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
-                            <label class="label-control"> Driver Mobile</label>
+                            <label class="label-control"> Driver Mobile Number</label>
                             <div class="">
                                 <input type="text" class="form-control" id="drivermobile" name="drivermobile" value="" />
                             </div>
@@ -75,7 +68,7 @@
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
 								</div>
-								<input type="text" id="inf_waste_in_qty" name="inf_waste_in_qty" class="form-control" placeholder="Enter No of bags">
+								<input type="text" id="inf_waste_in_qty" name="inf_waste_in_qty" class="form-control" placeholder="Enter No of Bags">
 								<br>
 								<input type="text" id="inf_waste_in_Kg" name="inf_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
 
@@ -86,7 +79,7 @@
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
 								</div>
 									
-								<input type="text" id="inf_pla_waste_in_qty" name="inf_pla_waste_in_qty" class="form-control" placeholder="Enter No of bags">
+								<input type="text" id="inf_pla_waste_in_qty" name="inf_pla_waste_in_qty" class="form-control" placeholder="Enter No of Bags">
 							<br>
 								<input type="text" id="inf_pla_waste_in_Kg" name="inf_pla_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
@@ -97,7 +90,7 @@
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
 								</div>
 									
-								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter No of bags">
+								<input type="text" id="glassware_waste_in_qty" name="glassware_waste_in_qty" class="form-control" placeholder="Enter No of Bags">
 							<br>
 								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
@@ -106,7 +99,7 @@
 								<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
 								</div>
-																<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter No of bags"><br>
+																<input type="text" id="gen_waste_in_qty" name="gen_waste_in_qty" class="form-control" placeholder="Enter No of Bags"><br>
 
 								<input type="text" id="gen_waste_in_Kg" name="gen_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs"><br>
 							</div>
@@ -150,14 +143,12 @@
 						jQuery('#sucessmsg').show();
 						$('#truck_id').val();
 						$('#route_number').val();
-						$('#description').val();
 						$('#drivermobile').val();
 						$('#drivername').val();
 						$('#route_id').val();
 						if(data.msg==1){
 							$('#truck_id').val(data.t_id);
 							$('#route_number').val(data.r_no);
-							$('#description').val(data.desc);
 							$('#drivermobile').val(data.number);
 							$('#drivername').val(data.name);
 							$('#route_id').val(data.r_no);

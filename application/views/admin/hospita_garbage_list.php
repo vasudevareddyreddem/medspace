@@ -14,15 +14,15 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-											<th>Yellow No of bags</th>
+											<th>Yellow No of Bags</th>
                                             <th>Yellow No of kgs</th>
                                             
-											<th>Red No of bags</th>
+											<th>Red  No of Bags</th>
                                             <th>Red No of kgs</th>
 											
-                                           	<th>Blue No of bags</th>
+                                           	<th>Blue  No of Bags</th>
                                             <th>Blue No of Kgs</th>
-											<th>White No of bags</th>
+											<th>White No of Bags</th>
                                             <th>White No of Kgs</th>
                                             <th>Date</th>
                                             <th>Status</th>
