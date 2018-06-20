@@ -28,7 +28,7 @@
 
 											<th>White No of Kgs</th>
                                             <th>Date & time</th>
-                                            <th>Status</th>
+                                            
                                         </tr>
                                     </thead>
                                     <?php if(isset($waste_list) && count($waste_list)>0){ ?>
@@ -49,7 +49,7 @@
 											<td><?php echo htmlentities($list['gen_waste_in_qty']); ?></td>
                                             <td><?php echo htmlentities($list['gen_waste_in_Kg']); ?></td>
                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                            
                                             
                                         </tr>
 										

@@ -13,44 +13,44 @@
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/editpost'); ?>">
 					<input type="hidden" name="p_id" id="p_id" value="<?php echo isset($plant_detail['p_id'])?$plant_detail['p_id']:'';?>">
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">CBWTF Name</label>
+                            <label class="col-lg-3 control-label">CBWTF Name </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="disposal_plant_name" id="disposal_plant_name" placeholder="Disposal Plant Name" value="<?php echo isset($plant_detail['disposal_plant_name'])?$plant_detail['disposal_plant_name']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Mobile</label>
+                            <label class="col-lg-3 control-label">Mobile </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile" value="<?php echo isset($plant_detail['mobile'])?$plant_detail['mobile']:'';?>" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Email address</label>
+                            <label class="col-lg-3 control-label">Email address </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="email"  id="email" placeholder="Enter Email address" value="<?php echo isset($plant_detail['email'])?$plant_detail['email']:'';?>" />
                             </div>
                         </div>
 <div class="form-group">
-                            <label class="col-lg-3 control-label">Address 1</label>
+                            <label class="col-lg-3 control-label">Address 1 </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address " value="<?php echo isset($plant_detail['address1'])?$plant_detail['address1']:'';?>"/>
                             </div>
                         </div> 
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Address 2</label>
+                            <label class="col-lg-3 control-label">Address 2 </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address " value="<?php echo isset($plant_detail['address2'])?$plant_detail['address2']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">City</label>
+                            <label class="col-lg-3 control-label">City </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="city" name="city" placeholder="Enter City "  value="<?php echo isset($plant_detail['city'])?$plant_detail['city']:'';?>"/>
                             </div>
                         </div> 
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">State</label>
+                            <label class="col-lg-3 control-label">State </label>
                             <div class="col-lg-5">
 							<?php $states = array ('Andhra Pradesh' => 'Andhra Pradesh', 'Arunachal Pradesh' => 'Arunachal Pradesh', 'Assam' => 'Assam', 'Bihar' => 'Bihar', 'Chhattisgarh' => 'Chhattisgarh', 'Goa' => 'Goa', 'Gujarat' => 'Gujarat', 'Haryana' => 'Haryana', 'Himachal Pradesh' => 'Himachal Pradesh', 'Jammu & Kashmir' => 'Jammu & Kashmir', 'Jharkhand' => 'Jharkhand', 'Karnataka' => 'Karnataka', 'Kerala' => 'Kerala', 'Madhya Pradesh' => 'Madhya Pradesh', 'Maharashtra' => 'Maharashtra', 'Manipur' => 'Manipur', 'Meghalaya' => 'Meghalaya', 'Mizoram' => 'Mizoram', 'Nagaland' => 'Nagaland', 'Odisha' => 'Odisha', 'Punjab' => 'Punjab', 'Rajasthan' => 'Rajasthan', 'Sikkim' => 'Sikkim', 'Tamil Nadu' => 'Tamil Nadu', 'Telangana' => 'Telangana', 'Tripura' => 'Tripura', 'Uttarakhand' => 'Uttarakhand','Uttar Pradesh' => 'Uttar Pradesh', 'West Bengal' => 'West Bengal', 'Andaman & Nicobar' => 'Andaman & Nicobar', 'Chandigarh' => 'Chandigarh', 'Dadra and Nagar Haveli' => 'Dadra and Nagar Haveli', 'Daman & Diu' => 'Daman & Diu', 'Delhi' => 'Delhi', 'Lakshadweep' => 'Lakshadweep', 'Puducherry' => 'Puducherry'); ?>
 								  <select class="form-control" required="required" name="state" id="state" style="width:100%;">
@@ -68,13 +68,13 @@
                             </div>
                         </div>  
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Country</label>
+                            <label class="col-lg-3 control-label">Country </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country " value="<?php echo isset($plant_detail['country'])?$plant_detail['country']:'';?>" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Pincode</label>
+                            <label class="col-lg-3 control-label">Pincode </label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " value="<?php echo isset($plant_detail['pincode'])?$plant_detail['pincode']:'';?>" />
                             </div>
