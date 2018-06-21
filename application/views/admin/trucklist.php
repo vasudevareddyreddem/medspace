@@ -19,8 +19,7 @@
                                             <th>Driver Name</th>
                                             <th>Driver Licence No</th>
                                             <th>Join Date & Time</th>
-                                            
-											</th>
+											<th>&nbsp;</th>
                                         </tr>
                                     </thead>
                                     
