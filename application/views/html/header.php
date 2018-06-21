@@ -129,10 +129,10 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('hospital/add'); ?>">Add Health Care Facility</a>
+								<a href="<?php echo base_url('hospital/add'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add Health Care Facility</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('hospital/lists'); ?>">Health Care Facility List</a>
+								<a href="<?php echo base_url('hospital/lists'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Health Care Facility List</a>
 							</li>
                             
                         </ul>
@@ -144,10 +144,10 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW Vehicle</a>
+								<a href="<?php echo base_url('garbage/add'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add BMW Vehicle</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('garbage/lists'); ?>">BMW Vehicle List</a>
+								<a href="<?php echo base_url('garbage/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> BMW Vehicle List</a>
 							</li>
                             
                         </ul>
@@ -159,10 +159,10 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('plant/add'); ?>">Add CBWTF</a>
+								<a href="<?php echo base_url('plant/add'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add CBWTF</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('plant/lists'); ?>">CBWTF List</a>
+								<a href="<?php echo base_url('plant/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> CBWTF List</a>
 							</li>
                             
                         </ul>
@@ -192,8 +192,8 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('plant/details'); ?>">Add Waste</a>
-								<a href="<?php echo base_url('plant/details_list'); ?>">Waste List</a>
+								<a href="<?php echo base_url('plant/details'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add Waste</a>
+								<a href="<?php echo base_url('plant/details_list'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Waste List</a>
 							</li>
 							
                             
@@ -206,8 +206,8 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('plant/disposal'); ?>">Add Disposal Waste</a>
-								<a href="<?php echo base_url('plant/disposal_list'); ?>">Disposal  List</a>
+								<a href="<?php echo base_url('plant/disposal'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add Disposal Waste</a>
+								<a href="<?php echo base_url('plant/disposal_list'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Disposal  List</a>
 							</li>
 							
                             
@@ -223,8 +223,8 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('hospital/bio_medical'); ?>">Add</a>
-								<a href="<?php echo base_url('hospital/bio_medical_view'); ?>">View</a>
+								<a href="<?php echo base_url('hospital/bio_medical'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add</a>
+								<a href="<?php echo base_url('hospital/bio_medical_view'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> View</a>
 							</li>
 							
                             
