@@ -19,9 +19,10 @@ class Hospital extends CI_Controller {
 		$this->load->library('zend');
 		if($this->session->userdata('userdetails'))
 			{
+			$data['u_url']= current_url();
 			$admindetails=$this->session->userdata('userdetails');
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
-			//echo '<pre>';print_r($data['details']);exit;
+			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
 			}
 		

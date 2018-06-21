@@ -113,7 +113,7 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('dashboard')){echo "active"; } ?>">
                         <a href="<?php echo base_url('dashboard'); ?>">
                             <i class="material-icons">dashboard </i>
                             <span>Dashboard</span>
@@ -122,7 +122,7 @@
 					
 					<?php if($details['role']==1){ ?>
                    
-                    <li>
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span>Health Care Facility</span>
@@ -137,7 +137,7 @@
                             
                         </ul>
                     </li>
-					<li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('garbage/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('garbage/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span>BMW vehicle </span>
@@ -152,7 +152,7 @@
                             
                         </ul>
                     </li>
-					<li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span>CBWTF</span>
@@ -185,7 +185,7 @@
                     </li>
 					
 					<?php }else if($details['role']==4){   ?>
-					<li>
+					 <li class="<?php if(isset($u_url) && $u_url==base_url('plant/details')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/details_list')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span>CBWTF </span>
@@ -199,7 +199,7 @@
                             
                         </ul>
                     </li>
-					<li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/disposal')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/disposal_list')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span>Disposal Waste </span>
@@ -215,7 +215,8 @@
                     </li>
 					
 					<?php }else if($details['role']==2){  ?>
-					<li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical_view')){echo "active"; } ?>">
+
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
                             <span> Bio medical waste </span>
@@ -229,7 +230,8 @@
                             
                         </ul>
                     </li>
-					<li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/garbage_list')){echo "active"; } ?>">
+
                         <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">
                             <i class="material-icons">home</i>
                             <span>BMW data Report </span>

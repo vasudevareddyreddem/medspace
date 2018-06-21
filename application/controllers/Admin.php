@@ -53,7 +53,7 @@ class Admin extends CI_Controller {
 				$this->session->set_userdata('userdetails',$login_details);
 				redirect('dashboard');
 			}else{
-				$this->session->set_flashdata('loginerror',"Invalid Email Address or Password!");
+				$this->session->set_flashdata('error',"Invalid Email Address or Password!");
 				redirect('admin');
 			}
 		
