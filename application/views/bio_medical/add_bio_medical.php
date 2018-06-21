@@ -12,6 +12,8 @@
                        
                         </div>
 						<div class="body">
+						<form id="defaultForm" method="post"  action="<?php echo base_url('hospital/addbio_medical_post'); ?>">
+							
 						<div class="">
     <div class="row clearfix">
         <div class="col-md-12 column table-responsive">
@@ -24,7 +26,7 @@
                        <div class="form-group">
 									<label class="label-control">No of Bags</label>
 									<div class="">
-										<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of Bags">
+										<input type="text" id="no_of_bags" name="no_of_bags[]" class="form-control" placeholder="Enter No of Bags">
 									</div>
 								</div>
                         </td>
@@ -32,7 +34,7 @@
 							<div class="form-group">
 								<label class="label-control">No of Kgs</label>
 								<div class="">
-									<input type="text" id="no_of_kgs" name="no_of_kgs" class="form-control" placeholder="Enter No of Kgs">
+									<input type="text" id="no_of_kgs" name="no_of_kgs[]" class="form-control" placeholder="Enter No of Kgs">
 								</div>
 							</div>
                         </td>
@@ -40,7 +42,7 @@
 							<div class="form-group">
 								<label class="label-control">Category</label>
 								<div class="">
-									<select class="form-control"  name="color_type" id="color_type" style="width:100%;">
+									<select class="form-control"  name="color_type[]" id="color_type" style="width:100%;">
 									  <option value = "">Select</option>
 									  <option value = "yellow">YELLOW</option>
 									  <option value = "Red">RED</option>
@@ -53,7 +55,7 @@
 							<div class="form-group">
 						<label class="label-control">Weight Type</label>
 						<div class="">
-							<select class="form-control"  name="weight_type" id="weight_type" style="width:100%;">
+							<select class="form-control"  name="weight_type[]" id="weight_type" style="width:100%;">
 							  <option value = "">Select</option>
 							  <option value = "Grams">Grams</option>
 							  <option value = "Kgs">Kgs</option>
@@ -69,64 +71,16 @@
         </div>
     </div>
     <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
-	<div class="clearfix">&nbsp;</div>
-</div>
-						
-							<!--<form id="defaultForm" method="post"  action="<?php echo base_url('hospital/addbio_medical_post'); ?>">
-							<div class="col-md-3 px-25px">
-								<div class="form-group">
-									<label class="label-control">No of Bags</label>
-									<div class="">
-										<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of Bags">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 px-25px">
-							<div class="form-group">
-								<label class="label-control">No of Kgs</label>
-								<div class="">
-									<input type="text" id="no_of_kgs" name="no_of_kgs" class="form-control" placeholder="Enter No of Kgs">
-								</div>
-							</div>
-							</div>
-							<div class="col-md-3 px-25px">
-							<div class="form-group">
-								<label class="label-control">Category</label>
-								<div class="">
-									<select class="form-control"  name="color_type" id="color_type" style="width:100%;">
-									  <option value = "">Select</option>
-									  <option value = "yellow">YELLOW</option>
-									  <option value = "Red">RED</option>
-									  <option value = "Blue">BLUE</option>
-									  <option value = "White (ppc)">WHITE (PPC)</option>
-									  </select> 								</div>
-							</div>
-							</div>
-							<div class="col-md-2 px-25px">
-								<div class="form-group">
-								<label class="label-control">Weight Type</label>
-								<div class="">
-									<select class="form-control"  name="weight_type" id="weight_type" style="width:100%;">
-									  <option value = "">Select</option>
-									  <option value = "Grams">Grams</option>
-									  <option value = "Kgs">Kgs</option>
-									  </select>
-									 </div>
-								</div>
-							</div>
-							
-						
-						<div class="clearfix"></div>
-						
-                        <div class="form-group ">
+	<div class="form-group ">
                             <div class="text-center ">
                                 <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
                                 
                             </div>
                         </div>
-                    </form>
-					<div class="clearfix">&nbsp;</div>-->
-					
+	<div class="clearfix">&nbsp;</div>
+</div>
+  </form>
+						
                         </div>
                     </div>
                 </div>
@@ -140,7 +94,7 @@
 	<script type="text/javascript">
 	      var i=1;
      $("#add_row").click(function(){
-      $('#addr'+i).html("<td><div class='form-group'><div class=''><input type='text' id='' name='no_of_bags' class='form-control' placeholder='Enter No of Bags'></div></div></td><td><div class='form-group'><div class=''><input type='text' id='' name='no_of_bags' class='form-control' placeholder='Enter No of Kgs'></div></div></td><td>  <div class='form-group'><div class=''><select class='form-control'  name='color_type' id='' style='width:100%;'><option value =''>Select</option><option value ='yellow'>YELLOW</option><option value = 'Red'>RED</option><option value = 'Blue'>BLUE</option><option value = 'White (ppc)'>WHITE (PPC)</option></select></div></div></td><td>  <div class='form-group'><div class=''><select class='form-control'  name='color_type' id='' style='width:100%;'><option value =''>Select</option><option value ='Grams'>Grams</option><option value = 'Kgs'>Kgs</option></select></div></div></td>");
+      $('#addr'+i).html("<td><div class='form-group'><div class=''><input type='text' id='' name='no_of_bags[]' class='form-control' placeholder='Enter No of Bags'></div></div></td><td><div class='form-group'><div class=''><input type='text' id='' name='no_of_kgs[]' class='form-control' placeholder='Enter No of Kgs'></div></div></td><td>  <div class='form-group'><div class=''><select class='form-control'  name='color_type[]' id='' style='width:100%;'><option value =''>Select</option><option value ='yellow'>YELLOW</option><option value = 'Red'>RED</option><option value ='Blue'>BLUE</option><option value ='White (ppc)'>WHITE (PPC)</option></select></div></div></td><td>  <div class='form-group'><div class=''><select class='form-control'  name='color_type[]' id='' style='width:100%;'><option value =''>Select</option><option value ='Grams'>Grams</option><option value = 'Kgs'>Kgs</option></select></div></div></td>");
 
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
@@ -160,7 +114,7 @@ $(document).ready(function() {
     $('#defaultForm').bootstrapValidator({
 //        
         fields: {
-            no_of_kgs: {
+            'no_of_kgs[]': {
                 validators: {
 					notEmpty: {
 						message: 'No of Kgs is required'
@@ -171,7 +125,7 @@ $(document).ready(function() {
 					}
 				}
             },
-            no_of_bags: {
+            'no_of_bags[]': {
                  validators: {
 					notEmpty: {
 						message: 'No of bags is required'
@@ -182,14 +136,14 @@ $(document).ready(function() {
 					}
 				}
             },
-			color_type: {
+			'color_type[]': {
                 validators: {
 					notEmpty: {
 						message: 'Category is required'
 					}
 				}
             },
-			weight_type: {
+			'weight_type[]': {
                 validators: {
 					notEmpty: {
 						message: 'Weight Type is required'

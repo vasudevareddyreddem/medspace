@@ -469,7 +469,7 @@ class Hospital extends CI_Controller {
 			if($admindetails['role']==2){
 				$post=$this->input->post();
 				
-				echo '<pre>';print_r($post);
+				echo '<pre>';print_r($post);exit;
 						$add_bio=array(
 							'no_of_bags'=>isset($post['no_of_bags'])?$post['no_of_bags']:'',
 							'no_of_kgs'=>isset($post['no_of_kgs'])?$post['no_of_kgs']:'',
