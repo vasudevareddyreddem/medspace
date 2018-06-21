@@ -48,9 +48,7 @@
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
                                             <td ><img style="max-height:550px;width:auto;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><span> </td>
-                                            <td><span> </td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                           <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<a href="<?php echo base_url('hospital/edit/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 
 											<a href="<?php echo base_url('hospital/status/'.base64_encode($list['h_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==0){ echo "Active"; }else{ echo "Deactive";} ?></a> 

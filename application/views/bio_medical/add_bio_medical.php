@@ -14,44 +14,48 @@
 						<div class="body">
 						
 							<form id="defaultForm" method="post"  action="<?php echo base_url('hospital/addbio_medical_post'); ?>">
-							<div class="col-md-6 px-25px">
-						<div class="form-group">
-                            <label class="label-control">No of Bags</label>
-                            <div class="">
-								<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of Bags">
-                            </div>
-                        </div>
-                        </div>
-						<div class="col-md-6 px-25px">
-						<div class="form-group">
-                            <label class="label-control">No of Kgs</label>
-                            <div class="">
-								<input type="text" id="no_of_kgs" name="no_of_kgs" class="form-control" placeholder="Enter No of Kgs">
-                            </div>
-                        </div>
-                        </div>
-						<div class="col-md-6 px-25px">
-                            <label class="col-lg-3 control-label">Category</label>
-                            <div class="col-lg-12 form-group">
-								  <select class="form-control"  name="color_type" id="color_type" style="width:100%;">
-								  <option value = "">Select</option>
-								  <option value = "yellow">YELLOW</option>
-								  <option value = "Red">RED</option>
-								  <option value = "Blue">BLUE</option>
-								  <option value = "White (ppc)">WHITE (PPC)</option>
-								  </select>  
-                            </div>
-                        </div>
-						<div class="col-md-6 px-25px">
-                            <label class="col-lg-3 control-label">Weight Type</label>
-                            <div class="col-lg-12 form-group">
-								  <select class="form-control"  name="weight_type" id="weight_type" style="width:100%;">
-								  <option value = "">Select</option>
-								  <option value = "Grams">Grams</option>
-								  <option value = "Kgs">Kgs</option>
-								  </select>  
-                            </div>
-                        </div> 
+							<div class="col-md-3 px-25px">
+								<div class="form-group">
+									<label class="label-control">No of Bags</label>
+									<div class="">
+										<input type="text" id="no_of_bags" name="no_of_bags" class="form-control" placeholder="Enter No of Bags">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 px-25px">
+							<div class="form-group">
+								<label class="label-control">No of Kgs</label>
+								<div class="">
+									<input type="text" id="no_of_kgs" name="no_of_kgs" class="form-control" placeholder="Enter No of Kgs">
+								</div>
+							</div>
+							</div>
+							<div class="col-md-3 px-25px">
+							<div class="form-group">
+								<label class="label-control">Category</label>
+								<div class="">
+									<select class="form-control"  name="color_type" id="color_type" style="width:100%;">
+									  <option value = "">Select</option>
+									  <option value = "yellow">YELLOW</option>
+									  <option value = "Red">RED</option>
+									  <option value = "Blue">BLUE</option>
+									  <option value = "White (ppc)">WHITE (PPC)</option>
+									  </select> 								</div>
+							</div>
+							</div>
+							<div class="col-md-2 px-25px">
+								<div class="form-group">
+								<label class="label-control">Weight Type</label>
+								<div class="">
+									<select class="form-control"  name="weight_type" id="weight_type" style="width:100%;">
+									  <option value = "">Select</option>
+									  <option value = "Grams">Grams</option>
+									  <option value = "Kgs">Kgs</option>
+									  </select>
+									 </div>
+								</div>
+							</div>
+							
 						
 						<div class="clearfix"></div>
 						
@@ -72,7 +76,9 @@
             
             
     </section>
+
 	<script type="text/javascript">
+
 	
 $(document).ready(function() {
     

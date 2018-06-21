@@ -89,16 +89,14 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
-			
-			<?php //echo '<pre>';print_r($details);exit; ?>
                 <div class="image">
 				<?php if($details['profile_pic']!=''){ ?>
                     <img src="<?php echo base_url('assets/files/'.$details['profile_pic']); ?>" width="48" height="48" alt="User" />
                 <?php }else{ ?>
 				        <img src="<?php echo base_url(); ?>assets/vendor/images/user.png" width="48" height="48" alt="User" />
 
-				<?php } ?>
-				</div>
+				<?php } ?>  
+                </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo isset($details['name'])?$details['name']:''; ?></div>
                     <div class="email"><?php echo isset($details['email_id'])?$details['email_id']:''; ?></div>
