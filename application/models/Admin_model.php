@@ -41,7 +41,7 @@ class Admin_model extends CI_Model
         return $this->db->get()->row_array();	
 	}
 	public function get_adminbasic_details($admin_id){
-		$this->db->select('a_id,name,email_id,status,role')->from('admin');		
+		$this->db->select('a_id,name,email_id,status,role,profile_pic')->from('admin');		
 		$this->db->where('a_id', $admin_id);
         return $this->db->get()->row_array();	
 	}
