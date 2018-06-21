@@ -15,6 +15,7 @@
 						<div class="">
     <div class="row clearfix">
         <div class="col-md-12 column table-responsive">
+		<form>
             <table class="table table-bordered table-hover" id="tab_logic">
               
                 <tbody>
@@ -66,6 +67,7 @@
                     <tr id='addr1'></tr>
                 </tbody>
             </table>
+			</form>
         </div>
     </div>
     <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
