@@ -468,18 +468,21 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==2){
 				$post=$this->input->post();
-				
-				echo '<pre>';print_r($post);exit;
-						$add_bio=array(
-							'no_of_bags'=>isset($post['no_of_bags'])?$post['no_of_bags']:'',
-							'no_of_kgs'=>isset($post['no_of_kgs'])?$post['no_of_kgs']:'',
-							'color_type'=>isset($post['color_type'])?$post['color_type']:'',
-							'weight_type'=>isset($post['weight_type'])?$post['weight_type']:'',
+				$cnt=0;foreach($post['no_of_bags'] as $list){
+					$add_bio=array(
+							'no_of_bags'=>$list,
+							'no_of_kgs'=>$post['no_of_kgs'][$cnt],
+							'color_type'=>$post['color_type'][$cnt],
+							'weight_type'=>$post['weight_type'][$cnt],
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'create_by'=>$admindetails['a_id']
 						);
-						$add_bio_medical=$this->Hospital_model->save_bio_medical_waste($add_bio);
+						
+					$add_bio_medical=$this->Hospital_model->save_bio_medical_waste($add_bio);
+					
+				$cnt++;
+				}
 						//echo '<pre>';print_r($add_bio_medical);exit;
 						if(count($add_bio_medical)>0){
 							$this->zend->load('Zend/Barcode');
