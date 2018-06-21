@@ -124,7 +124,7 @@
                    
                     <li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">accessibility</i>
                             <span>Health Care Facility</span>
                         </a>
                         <ul class="ml-menu">
@@ -139,7 +139,7 @@
                     </li>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('garbage/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('garbage/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">local_shipping</i>
                             <span>BMW Vehicle </span>
                         </a>
                         <ul class="ml-menu">
@@ -154,7 +154,7 @@
                     </li>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">ac_unit</i>
                             <span>CBWTF</span>
                         </a>
                         <ul class="ml-menu">
