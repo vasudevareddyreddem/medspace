@@ -6,33 +6,33 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add BMW vehicle</h2>
+                            <h2>Add BMW Vehicle</h2>
                        
                         </div>
                         <div class="body">
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('garbage/addpost');?>">
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Truck Regn number</label>
+                            <label class="col-lg-3 control-label">Vehicle Registration Number</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="truck_reg_no" id="truck_reg_no" placeholder="Ex : TS02AB4562" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Regd Owner</label>
+                            <label class="col-lg-3 control-label">Vehicle Owner Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Owner name" />
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Enter Vehicle Owner Name" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Truck Insurance Number</label>
+                            <label class="col-lg-3 control-label">Vehicle Insurance Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Truck Insurance Number" />
+                                <input type="text" class="form-control" name="insurence_number" id="insurence_number" placeholder="Enter Vehicle Insurance Number" />
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label"> Owner Mobile</label>
+                            <label class="col-lg-3 control-label"> Owner Mobile Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="owner_mobile" id="owner_mobile" placeholder="Enter Owner Mobile" />
+                                <input type="text" class="form-control" name="owner_mobile" id="owner_mobile" placeholder="Enter Owner Mobile Number" />
                             </div>
                         </div>
 						
@@ -50,9 +50,9 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Driver Licence badge number</label>
+                            <label class="col-lg-3 control-label">Driver Lience Badge Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number" />
+                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Lience Badge Number" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -62,12 +62,7 @@
                             </div>
                         </div>
 						
-						<div class="form-group">
-                            <label class="col-lg-3 control-label"> Description</label>
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Description" />
-                            </div>
-                        </div>
+						
 						<hr>
 						 <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
@@ -91,13 +86,13 @@
 <div class="form-group">
                             <label class="col-lg-3 control-label">Address 1</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address " />
+                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address 1  " />
                             </div>
                         </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address 2</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address " />
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address 2" />
                             </div>
                         </div>
 						<div class="form-group">
@@ -140,7 +135,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add BMW vehicle</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add BMW Vehicle</button>
                                 
                             </div>
                         </div>
@@ -247,17 +242,7 @@ $(document).ready(function() {
 					}
                 }
             },
-			description: {
-               validators: {
-					notEmpty: {
-						message: 'Description is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Description can only consist of Alphanumeric, space and dot'
-					}
-				}
-            },
+			
             email: {
                  validators: {
 					notEmpty: {

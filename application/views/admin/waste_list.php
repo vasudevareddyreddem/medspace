@@ -16,19 +16,18 @@
                                         <tr>
                                             <th>BMW vehicle Id</th>
                                             <th>Driver Name</th>
-                                            <th>Driver Mobile</th>
-											<th>Yellow No of bags</th>
+                                            <th>Driver Mobile Number</th>
+											<th>Yellow No of Bags</th>
                                             <th>Yellow No of kgs</th>											 
-											<th>Red No of bags</th>
+											<th>Red No of Bags</th>
                                             <th>Red No of kgs</th>
-											
-                                            <th>Blue No of bags</th> 
+                                            <th>Blue No of Bags</th> 
 											<th>Blue No of Kgs</th>											
-                                            <th>White No of bags</th>											
+                                            <th>White No of Bags</th>											
 
 											<th>White No of Kgs</th>
                                             <th>Date & time</th>
-                                            <th>Status</th>
+                                            
                                         </tr>
                                     </thead>
                                     <?php if(isset($waste_list) && count($waste_list)>0){ ?>
@@ -49,7 +48,7 @@
 											<td><?php echo htmlentities($list['gen_waste_in_qty']); ?></td>
                                             <td><?php echo htmlentities($list['gen_waste_in_Kg']); ?></td>
                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                            
                                             
                                         </tr>
 										

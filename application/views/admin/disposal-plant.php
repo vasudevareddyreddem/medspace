@@ -18,16 +18,16 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Mobile</label>
+                            <label class="col-lg-3 control-label">Mobile Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter mobile" />
+                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile Number" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="email"  id="email" placeholder="Enter Email address" />
+                                <input type="text" class="form-control" name="email"  id="email" placeholder="Enter Email Address" />
                             </div>
                         </div>
 

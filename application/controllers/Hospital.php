@@ -92,7 +92,7 @@ class Hospital extends CI_Controller {
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 								if($status==1){
-									$this->session->set_flashdata('success','Hcf sucessfully deactivated');
+									$this->session->set_flashdata('success','HCF successfully deactivated');
 
 								}else{
 									$this->session->set_flashdata('success','Hcf sucessfully activated');
@@ -131,7 +131,7 @@ class Hospital extends CI_Controller {
 								'status'=>2,
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hcf details Successfully Deleted');
+								$this->session->set_flashdata('success','HCF successfully deleted');
 								redirect('hospital/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -219,7 +219,7 @@ class Hospital extends CI_Controller {
 						);
 						$hospital_save=$this->Admin_model->save_hospital($addhospital);
 						if(count($hospital_save)>0){
-							$this->session->set_flashdata('success','Hcf Successfully added');
+							$this->session->set_flashdata('success','HCF added succcessfully');
 							redirect('hospital/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -326,7 +326,7 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-							$this->session->set_flashdata('success','Hcf details Successfully updated');
+							$this->session->set_flashdata('success','HCF details duccessfully updated');
 							if($admindetails['role']==2){
 									redirect('dashboard/profile');
 							}else{

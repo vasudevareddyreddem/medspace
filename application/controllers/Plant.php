@@ -1,4 +1,4 @@
-<?php
+ vc<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Plant extends CI_Controller {
@@ -485,7 +485,7 @@ class Plant extends CI_Controller {
 						);
 						$disposal_save=$this->Plant_model->save_disposal($add_disposal);
 						if(count($disposal_save)>0){
-							$this->session->set_flashdata('success','Disposal total Successfully Updated');
+							$this->session->set_flashdata('success','Disposal Waste Successfully Added');
 							redirect('plant/disposal_list');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");

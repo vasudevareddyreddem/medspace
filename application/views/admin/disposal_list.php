@@ -18,7 +18,7 @@
                                             <th>Disposal Qty</th>
                                             <th>Remaining Qty</th>
                                             <th>Date & time</th>
-                                            <th>Status</th>
+                                            
                                         </tr>
                                     </thead>
                                     <?php if(isset($disposal_list) && count($disposal_list)>0){ ?>
@@ -30,7 +30,7 @@
                                             <td><?php echo htmlentities($list['disposal_qty']); ?></td>
                                             <td><?php echo htmlentities($list['disposal_remaining']); ?></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+                                           
                                             
                                         </tr>
 										

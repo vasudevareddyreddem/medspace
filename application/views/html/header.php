@@ -140,14 +140,14 @@
 					<li class="<?php if(isset($u_url) && $u_url==base_url('garbage/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('garbage/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span>BMW vehicle </span>
+                            <span>BMW Vehicle </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW vehicle</a>
+								<a href="<?php echo base_url('garbage/add'); ?>">Add BMW Vehicle</a>
 							</li>
 							<li>
-								<a href="<?php echo base_url('garbage/lists'); ?>">BMW vehicle List</a>
+								<a href="<?php echo base_url('garbage/lists'); ?>">BMW Vehicle List</a>
 							</li>
                             
                         </ul>
@@ -219,7 +219,7 @@
 
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">home</i>
-                            <span> Bio medical waste </span>
+                            <span> Bio Medical Waste </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
@@ -234,7 +234,7 @@
 
                         <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">
                             <i class="material-icons">home</i>
-                            <span>BMW data Report </span>
+                            <span>BMW Data Report </span>
                         </a>
                         <ul class="ml-menu">
                            <li>
