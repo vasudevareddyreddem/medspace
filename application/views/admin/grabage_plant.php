@@ -23,7 +23,7 @@
 						<div class="popover fade right in" role="tooltip" id="popover436935" style="top: 0;  display: block;">
 							<div class="arrow" style="top: 50%;"></div>
 							
-							<div class="popover-content">Enter your Garbage truck Number to get Details</div>
+							<div class="popover-content">Enter your Garbage Truck Number to get details</div>
 						</div>
 						</div>
 						</div>
@@ -64,7 +64,7 @@
 							<input type="hidden" name="route_id" id="route_id" value="">
 						<div class="row">
 							<div class="col-md-3">
-								<h4 class="text-center text-warning">Yellow</h4>
+								<h4 class="text-center text-warning">YELLOW</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
 								</div>
@@ -74,7 +74,7 @@
 
 							</div>
 							<div class="col-md-3">
-							<h4 class="text-center text-danger">Red</h4>
+							<h4 class="text-center text-danger">RED</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
 								</div>
@@ -85,7 +85,7 @@
 							</div>
 							
 							<div class="col-md-3">
-								<h4 class="text-center text-primary">Blue</h4>
+								<h4 class="text-center text-primary">BLUE</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
 								</div>
@@ -95,7 +95,7 @@
 								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
 							<div class="col-md-3">
-							<h4 class="text-center text-success">White</h4>
+							<h4 class="text-center text-success">WHITE</h4>
 								<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
 								</div>

@@ -1,4 +1,8 @@
-
+<style>
+td{
+border:none !important;
+}
+</style>
 <?php //echo '<pre>';print_r($profile_detail);exit; ?>
 <section class="content">
    <div class="container-fluid">
@@ -46,55 +50,27 @@
                      <div class="clearfix"></div>
                      <hr style="margin:5px 0 5px 0;">
 					 <br>
-                     <div class="col-md-2  col-xs-6 tital " >CBWTF ID : </div>
-                     <div class="col-sm-7 col-xs-6 "><?php echo isset($profile_detail['disposal_plant_id'])?$profile_detail['disposal_plant_id']:''; ?></div>
-                     <div class="clearfix"></div>
-                     <div class="bot-border"></div>
-                     <div class="col-md-2  col-xs-6 tital " >Mobile : </div>
-                     <div class="col-sm-7"> <?php echo isset($profile_detail['mobile'])?$profile_detail['mobile']:''; ?></div>
-                     <div class="clearfix"></div>
-                     <div class="bot-border"></div>
-                     <div class="col-md-2  col-xs-6 tital " >Email address : </div>
-                     <div class="col-sm-7"> <?php echo isset($profile_detail['email'])?$profile_detail['email']:''; ?></div>
-                     <div class="clearfix"></div>
-                     <div class="bot-border"></div>
-                     <div class="col-md-2  col-xs-6 tital " >Address :</div>
-                     <div class="col-sm-7">
-					 <?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
-					 <?php echo isset($profile_detail['address2'])?$profile_detail['address2']:''; ?>,
-					 <?php echo isset($profile_detail['city'])?$profile_detail['city']:''; ?>,
-					 <?php echo isset($profile_detail['state'])?$profile_detail['state']:''; ?>,
-					 <?php echo isset($profile_detail['country'])?$profile_detail['country']:''; ?>,
-					 <?php echo isset($profile_detail['pincode'])?$profile_detail['pincode']:''; ?>
-					 
-					 </div>
-                     <div class="clearfix"></div>
-                    <?php }else if($profile_detail['role']==2){ ?>
-					 <div class="col-sm-6">
-                        <h4 >HCF </h4>
-                        </span>
-                        <span>
-                           <p><?php echo isset($profile_detail['hospital_name'])?$profile_detail['hospital_name']:''; ?></p>
-                        </span>
-                     </div>
-                     <div class="clearfix"></div>
-                     <hr style="margin:5px 0 5px 0;">
-					 <br>
-                     <div class="col-md-3  col-xs-6 tital " >HCF  ID:</div>
-                     <div class="col-sm-7 col-xs-6 "><?php echo isset($profile_detail['hospital_id'])?$profile_detail['hospital_id']:''; ?></div>
-                     <div class="clearfix"></div>
-					  <div class="bot-border"></div>
-                     <div class="col-md-3  col-xs-6 tital " >Mobile:</div>
-                     <div class="col-sm-7"> <?php echo isset($profile_detail['mobile'])?$profile_detail['mobile']:''; ?></div>
-                     <div class="clearfix"></div>
-                     <div class="bot-border"></div>
-                     <div class="col-md-3  col-xs-6 tital " >Email address:</div>
-                     <div class="col-sm-7"> <?php echo isset($profile_detail['email'])?$profile_detail['email']:''; ?></div>
-                     <div class="clearfix"></div>
-					  <div class="bot-border"></div>
-                     <div class="col-md-3  col-xs-6 tital " >Address:</div>
-                     <div class="col-sm-7">
-					  <?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
+                     <div class="col-md-6 ">
+					 <table class="table  ">
+					 <tr>
+						<td>CBWTF ID </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['disposal_plant_id'])?$profile_detail['disposal_plant_id']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Mobile </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['mobile'])?$profile_detail['mobile']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Email address </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['email'])?$profile_detail['email']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Address </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
 					 <?php echo isset($profile_detail['address2'])?$profile_detail['address2']:''; ?>,
 					 <?php echo isset($profile_detail['city'])?$profile_detail['city']:''; ?>,
 					 
@@ -110,13 +86,68 @@
 					 
 					 <?php echo isset($profile_detail['country'])?$profile_detail['country']:''; ?>,
 					 <?php echo isset($profile_detail['pincode'])?$profile_detail['pincode']:''; ?>
+					 </td>
+					 </tr>
+					 </table>
+					 </div>
+                     <div class="clearfix"></div>
+                    <?php }else if($profile_detail['role']==2){ ?>
+					 <div class="col-sm-6">
+                        <h4 >HCF </h4>
+                        </span>
+                        <span>
+                           <p><?php echo isset($profile_detail['hospital_name'])?$profile_detail['hospital_name']:''; ?></p>
+                        </span>
+                     </div>
+                     <div class="clearfix"></div>
+                     <hr style="margin:5px 0 5px 0;">
+					 <br>
+					 <div class="col-md-6 ">
+					 <table class="table  ">
+					 <tr>
+						<td>HCF  ID </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['hospital_id'])?$profile_detail['hospital_id']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Mobile </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['mobile'])?$profile_detail['mobile']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Email address </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['email'])?$profile_detail['email']:''; ?></td>
+					 </tr>
+					 <tr>
+						<td>Address </td>
+						<td>:</td>
+						<td><?php echo isset($profile_detail['address1'])?$profile_detail['address1']:''; ?>,
+					 <?php echo isset($profile_detail['address2'])?$profile_detail['address2']:''; ?>,
+					 <?php echo isset($profile_detail['city'])?$profile_detail['city']:''; ?>,
 					 
+						<?php $states = array ('AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CG' => 'Chhattisgarh', 'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir', 'JH' => 'Jharkhand', 'KA' => 'Karnataka', 'KL' => 'Kerala', 'MP' => 'Madhya Pradesh', 'MH' => 'Maharashtra', 'MN' => 'Manipur', 'ML' => 'Meghalaya', 'MZ' => 'Mizoram', 'NL' => 'Nagaland', 'OD' => 'Odisha', 'PB' => 'Punjab', 'RJ' => 'Rajasthan', 'SK' => 'Sikkim', 'TN' => 'Tamil Nadu', 'TS' => 'Telangana', 'TR' => 'Tripura', 'UK' => 'Uttarakhand','UP' => 'Uttar Pradesh', 'WB' => 'West Bengal', 'AN' => 'Andaman & Nicobar', 'CH' => 'Chandigarh', 'DN' => 'Dadra and Nagar Haveli', 'DD' => 'Daman & Diu', 'DL' => 'Delhi', 'LD' => 'Lakshadweep', 'PY' => 'Puducherry'); ?>
+						<?php foreach($states as $key=>$state):
+						if(isset($profile_detail['state'])&& $profile_detail['state'] == $key):
+						echo $state;
+						else : 
+						$selected = '';
+						endif;
+						?>
+						<?php endforeach; ?>
+					 
+					 <?php echo isset($profile_detail['country'])?$profile_detail['country']:''; ?>,
+					 <?php echo isset($profile_detail['pincode'])?$profile_detail['pincode']:''; ?>
+					 </td>
+					 </tr>
+					  <tr>
+						<td>Barcode </td>
+						<td>:</td>
+						<td><img style="max-height:50px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$profile_detail['barcode']);?>"></td>
+					 </tr>
+					 </table>
 					 </div>
 					 
-                     <div class="clearfix"></div>
-					 <div class="bot-border"></div>
-                     <div class="col-md-3  col-xs-6 tital " >Barcode:</div>
-                     <div class="col-sm-7"><img style="max-height:50px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$profile_detail['barcode']);?>"></div>
                      <div class="clearfix"></div>
 					
 					<?php } ?>

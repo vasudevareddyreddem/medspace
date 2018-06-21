@@ -24,7 +24,7 @@
                                             <th>Blue No of Kgs</th>
 											<th>White No of Bags</th>
                                             <th>White No of Kgs</th>
-                                            <th>Date</th>
+                                            <th>Date & Time</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>

@@ -26,7 +26,7 @@
                                             <th>White No of Bags</th>											
 
 											<th>White No of Kgs</th>
-                                            <th>Date & time</th>
+                                            <th>Date & Time</th>
                                             
                                         </tr>
                                     </thead>

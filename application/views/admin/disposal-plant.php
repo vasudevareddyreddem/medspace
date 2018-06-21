@@ -47,13 +47,13 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address 1</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address " />
+                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address 1 " />
                             </div>
                         </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address 2</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address " />
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address 2 " />
                             </div>
                         </div>
 						<div class="form-group">

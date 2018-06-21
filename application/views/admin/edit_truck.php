@@ -51,7 +51,7 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Driver Licence badge number</label>
+                            <label class="col-lg-3 control-label">Driver Licence Badge Number</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence badge number"  value="<?php echo isset($truck_detail['driver_lic_bad_no'])?$truck_detail['driver_lic_bad_no']:'';?>" />
                             </div>
@@ -126,7 +126,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update BMW vehicle</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update BMW Vehicle</button>
                                 
                             </div>
                         </div>

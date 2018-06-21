@@ -50,9 +50,9 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Driver Lience Badge Number</label>
+                            <label class="col-lg-3 control-label">Driver Licence Badge Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Lience Badge Number" />
+                                <input type="text" class="form-control" name="driver_lic_bad_no" id="driver_lic_bad_no" placeholder="Driver Licence Badge Number" />
                             </div>
                         </div>
 						<div class="form-group">

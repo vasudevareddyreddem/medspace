@@ -17,7 +17,7 @@
                                             <th>CBWTF Name</th>
                                             <th>CBWTF ID</th>
                                             <th>Mobile</th>
-                                            <th>Reg Date & time</th>
+                                            <th>Reg Date & Time</th>
                                            
                                             <th>&nbsp;</th>
                                         </tr>

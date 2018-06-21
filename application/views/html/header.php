@@ -222,18 +222,11 @@
 					<?php }else if($details['role']==2){  ?>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical_view')){echo "active"; } ?>">
 
-                        <a href="javascript:void(0);" class="menu-toggle">
+                        <a href="<?php echo base_url('hospital/bio_medical'); ?>" class="">
                             <i class="material-icons">filter_hdr</i>
                             <span> Bio Medical Waste </span>
                         </a>
-                        <ul class="ml-menu">
-                           <li>
-								<a href="<?php echo base_url('hospital/bio_medical'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add</a>
-								<a href="<?php echo base_url('hospital/bio_medical_view'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> View</a>
-							</li>
-							
-                            
-                        </ul>
+                       
                     </li>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/garbage_list')){echo "active"; } ?>">
 

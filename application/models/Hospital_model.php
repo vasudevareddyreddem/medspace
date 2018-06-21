@@ -56,6 +56,7 @@ class Hospital_model extends CI_Model
 		$this->db->join('hospital_list ', 'hospital_list.a_id = bio_medical_waste.create_by', 'left');
 		$this->db->join('admin ', 'admin.a_id = bio_medical_waste.create_by', 'left');
 		$this->db->where('bio_medical_waste.create_by',$a_id);
+		$this->db->order_by('bio_medical_waste.id',"desc");
 		return $this->db->get()->result_array();
 		
 	}
