@@ -31,7 +31,7 @@ class Admin_model extends CI_Model
 		return $this->db->query($sql)->row_array();	
 	}
 	public function email_check_details($email){
-		$sql = "SELECT * FROM admin WHERE email_id ='".$email."'";
+		$sql = "SELECT * FROM admin WHERE email_id ='".$email."' AND status !=2";
 		return $this->db->query($sql)->row_array();	
 	}
 	public function get_admin_details($admin_id){
