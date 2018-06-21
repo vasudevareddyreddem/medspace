@@ -187,7 +187,7 @@
 					<?php }else if($details['role']==4){   ?>
 					 <li class="<?php if(isset($u_url) && $u_url==base_url('plant/details')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/details_list')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">ac_unit</i>
                             <span>CBWTF </span>
                         </a>
                         <ul class="ml-menu">
@@ -201,7 +201,7 @@
                     </li>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/disposal')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/disposal_list')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">filter_hdr</i>
                             <span>Disposal Waste </span>
                         </a>
                         <ul class="ml-menu">
@@ -218,7 +218,7 @@
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical_view')){echo "active"; } ?>">
 
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">filter_hdr</i>
                             <span> Bio Medical Waste </span>
                         </a>
                         <ul class="ml-menu">
@@ -233,7 +233,7 @@
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/garbage_list')){echo "active"; } ?>">
 
                         <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">insert_drive_file</i>
                             <span>BMW Data Report </span>
                         </a>
                         <ul class="ml-menu">
