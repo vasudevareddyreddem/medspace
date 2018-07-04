@@ -214,10 +214,11 @@ class Mobile extends REST_Controller {
 		}if($hospital_id ==''){
 		$message = array('status'=>0,'message'=>'Hospital Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
-		}if($text ==''){
+		}
+		/*if($text ==''){
 		$message = array('status'=>0,'message'=>'Text is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
-		}
+		}*/
 		if(count($_FILES)==0){
 			$message = array('status'=>0,'message'=>'upload image is required');
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -230,7 +231,7 @@ class Mobile extends REST_Controller {
 			$addimg=array(
 			'hos_id'=>$hospital_id,
 			'image'=>$imgname,
-			'text'=>$text,
+			'text'=>isset($text)?$text:'',
 			'create_at'=>date('Y-m-d H:i:s'),
 			'creayte_by'=>$userid,
 			);
@@ -265,6 +266,80 @@ class Mobile extends REST_Controller {
 	//echo '<pre>';print_r($_FILES);exit;
 		
 	}
+	
+	/* bio medical  post*/
+	public function bio_medical_barcode_scan_post()
+    {
+		$barcode_id=$this->post('barcode_id');
+		if($barcode_id ==''){
+		$message = array('status'=>0,'message'=>'Barcode Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$waste_details=$this->Mobile_model->get_bio_medical_waste_details($barcode_id);
+		if(count($waste_details)>0){
+					$message = array('status'=>1,'barcode_details'=>$waste_details,'barcodepath'=>base_url('assets/bio_medical_barcodes/'),'message'=>'Bio Medical Waste details are found');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'Barcode Scan id is wrong. Please  try again once');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
+	public function bio_medical_waste_update_post()
+    {
+		$userid=$this->post('id');
+		$no_of_bags=$this->post('no_of_bags');
+		$no_of_kgs=$this->post('no_of_kgs');
+		$category=$this->post('category');
+		$weight_type=$this->post('weight_type');
+		$create_by=$this->post('create_by');
+		if($userid ==''){
+		$message = array('status'=>0,'message'=>'Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($no_of_bags ==''){
+		$message = array('status'=>0,'message'=>'No of bags is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($no_of_kgs ==''){
+		$message = array('status'=>0,'message'=>'No of kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($category ==''){
+		$message = array('status'=>0,'message'=>'Category is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($weight_type ==''){
+		$message = array('status'=>0,'message'=>'Weight Type is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($create_by ==''){
+		$message = array('status'=>0,'message'=>'Login User id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$waste_details=$this->Mobile_model->get_bio_waste_details($userid);
+		if($waste_details['no_of_bags']!=$no_of_bags ||$waste_details['no_of_kgs']!=$no_of_kgs ||$waste_details['color_type']!=$category ||$waste_details['weight_type']!=$weight_type){
+			$changes=1;
+		}else{
+			$changes=0;
+		}
+		$update_data=array(
+		"hos_bio_m_id"=>isset($userid)?$userid:'',
+		"no_of_bags"=>isset($no_of_bags)?$no_of_bags:'',
+		"no_of_kgs"=>isset($no_of_kgs)?$no_of_kgs:'',
+		"color_type"=>isset($category)?$category:'',
+		"weight_type"=>isset($weight_type)?$weight_type:'',
+		"edited"=>$changes,
+		"status"=>1,
+		"create_at"=>date('Y-m-d H:i:s'),
+		"create_by"=>isset($create_by)?$create_by:'',
+		);
+		
+		//echo '<pre>';print_r($update_data);exit;
+		$update=$this->Mobile_model->save_plant_biomedical_waste($update_data);
+		if(count($update)>0){
+					$message = array('status'=>1,'id'=>$update,'message'=>'Bio Medical Waste details are successfully updated');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'Technical problem will occurred .Please try again');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
+	/* bio medical  post*/
 	
 	
 	

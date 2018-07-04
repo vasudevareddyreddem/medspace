@@ -45,11 +45,12 @@
 								<div class="">
 									<select class="form-control"  name="color_type" id="color_type" style="width:100%;">
 									  <option value = "">Select</option>
-									  <option value = "yellow">YELLOW</option>
-									  <option value = "Red">RED</option>
-									  <option value = "Blue">BLUE</option>
-									  <option value = "White (ppc)">WHITE (PPC)</option>
-									  </select> 								</div>
+									  <option value = "Yellow">Yellow</option>
+									  <option value = "Red">Red</option>
+									  <option value = "Blue">Blue</option>
+									  <option value = "White (ppc)">White (ppc)</option>
+									 </select> 
+									 </div>
 							</div>
                         </td>
                         <td>

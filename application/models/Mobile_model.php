@@ -39,4 +39,22 @@ class Mobile_model extends CI_Model
 		$this->db->insert('hospital_waste_images', $data);
 		return $insert_id = $this->db->insert_id();
 	}
+	/* bio medical waste*/
+	public  function get_bio_medical_waste_details($bar_id){
+		$this->db->select('hospital_list.hospital_name,bio_medical_waste.no_of_bags,bio_medical_waste.no_of_kgs,bio_medical_waste.color_type,bio_medical_waste.weight_type,bio_medical_waste.barcode,bio_medical_waste.create_at,bio_medical_waste.id')->from('bio_medical_waste');
+		$this->db->join('hospital_list', 'hospital_list.h_id = bio_medical_waste.create_by', 'left');
+		$this->db->where('bio_medical_waste.id', $bar_id);
+		return $this->db->get()->row_array();
+	}
+	public  function save_plant_biomedical_waste($data){
+		$this->db->insert("plant_bio_medical_waste",$data);
+		return $this->db->insert_id();
+		
+	}
+	public  function get_bio_waste_details($bar_id){
+		$this->db->select('*')->from('bio_medical_waste');
+		$this->db->where('bio_medical_waste.id', $bar_id);
+		return $this->db->get()->row_array();
+	}
+	
 }
