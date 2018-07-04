@@ -41,7 +41,7 @@ class Mobile_model extends CI_Model
 	}
 	/* bio medical waste*/
 	public  function get_bio_medical_waste_details($bar_id){
-		$this->db->select('hospital_list.hospital_name,bio_medical_waste.no_of_bags,bio_medical_waste.no_of_kgs,bio_medical_waste.color_type,bio_medical_waste.weight_type,bio_medical_waste.barcode,bio_medical_waste.create_at,bio_medical_waste.id')->from('bio_medical_waste');
+		$this->db->select('hospital_list.h_id,hospital_list.hospital_name,bio_medical_waste.no_of_bags,bio_medical_waste.no_of_kgs,bio_medical_waste.color_type,bio_medical_waste.weight_type,bio_medical_waste.barcode,bio_medical_waste.create_at,bio_medical_waste.id')->from('bio_medical_waste');
 		$this->db->join('hospital_list', 'hospital_list.h_id = bio_medical_waste.create_by', 'left');
 		$this->db->where('bio_medical_waste.id', $bar_id);
 		return $this->db->get()->row_array();
@@ -55,6 +55,19 @@ class Mobile_model extends CI_Model
 		$this->db->select('*')->from('bio_medical_waste');
 		$this->db->where('bio_medical_waste.id', $bar_id);
 		return $this->db->get()->row_array();
+	}
+	public  function get_bio_medical_list($id){
+		$this->db->select('plant_bio_medical_waste.no_of_bags,plant_bio_medical_waste.no_of_kgs,plant_bio_medical_waste.color_type,plant_bio_medical_waste.weight_type,plant_bio_medical_waste.edited,plant_bio_medical_waste.create_at')->from('plant_bio_medical_waste');
+		$this->db->where('plant_bio_medical_waste.create_by', $id);
+		return $this->db->get()->result_array();
+	}
+	public  function datewise_bio_medical_data($hos_name,$date){
+		$this->db->select('plant_bio_medical_waste.no_of_bags,plant_bio_medical_waste.no_of_kgs,plant_bio_medical_waste.color_type,plant_bio_medical_waste.weight_type,plant_bio_medical_waste.edited,plant_bio_medical_waste.create_at')->from('plant_bio_medical_waste');
+		$this->db->join('hospital_list', 'hospital_list.h_id = plant_bio_medical_waste.hos_bio_m_id', 'left');
+		$this->db->where('hospital_list.hospital_name', $hos_name);
+		//$this->db->where('plant_bio_medical_waste.create_at', $date);
+		$this->db->where("DATE_FORMAT(plant_bio_medical_waste.create_at,'%Y-%m-%d')", $date);
+		return $this->db->get()->result_array();	
 	}
 	
 }

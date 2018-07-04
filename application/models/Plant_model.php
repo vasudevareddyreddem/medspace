@@ -64,6 +64,12 @@ class Plant_model extends CI_Model
         return $this->db->get()->result_array();	
 	}
 	
+	public  function get_bio_medical_waste_list($id){
+		$this->db->select('*')->from('plant_bio_medical_waste');
+		$this->db->where('plant_bio_medical_waste.create_by', $id);
+		return $this->db->get()->result_array();
+	}
+	
 	
 
 }

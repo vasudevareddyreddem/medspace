@@ -339,6 +339,51 @@ class Mobile extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_OK);
 				}
 	}
+	public function bio_medical_waste_list_post()
+    {
+		$id=$this->post('id');
+		if($id==''){
+		$message = array('status'=>0,'message'=>'User Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$waste_list=$this->Mobile_model->get_bio_medical_list($id);
+		if(count($waste_list)>0){
+					$message = array('status'=>1,'details'=>$waste_list,'message'=>'Bio Medical Waste details are found');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'Bio Medical waste are not found.Please  try again once');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
+	public function bio_medical_waste_search_post()
+    {
+		$hospital_name=$this->post('hospital_name');
+		$date=$this->post('date');
+		if($hospital_name==''){
+		$message = array('status'=>0,'message'=>'Hospital name is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		if($date==''){
+		$message = array('status'=>0,'message'=>'Date is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}else {
+			if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+				//return true;
+			} else {
+				$message = array('status'=>0,'message'=>'Date formate is wrog.example is 2018-06-24');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+		}
+		$waste_list=$this->Mobile_model->datewise_bio_medical_data($hospital_name,$date);
+		//echo $this->db->last_query();exit;
+		if(count($waste_list)>0){
+					$message = array('status'=>1,'details'=>$waste_list,'message'=>'Bio Medical Waste details are found');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'Bio Medical waste are not found.Please  try again once');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
 	/* bio medical  post*/
 	
 	

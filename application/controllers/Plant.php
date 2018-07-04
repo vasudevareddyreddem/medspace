@@ -1,4 +1,4 @@
- vc<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Plant extends CI_Controller {
@@ -534,6 +534,29 @@ class Plant extends CI_Controller {
 				$data['waste_list']=$this->Plant_model->get_waste_details_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/waste_list', $data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function bio_medical_waste_list()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==4){
+				
+				$data['bio_medical_list']=$this->Plant_model->get_bio_medical_waste_list($admindetails['a_id']);
+				
+				//echo $this->db->last_query();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('bio_medical/add_bio_medical_list',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");

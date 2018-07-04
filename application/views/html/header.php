@@ -218,6 +218,13 @@
                             
                         </ul>
                     </li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/bio_medical_waste_list')){echo "active"; } ?>">
+                        <a href="<?php echo base_url('plant/bio_medical_waste_list'); ?>" class="">
+                            <i class="material-icons">filter_hdr</i>
+                            <span>Bio Medical Waste </span>
+                        </a>
+                       
+                    </li>
 					
 					<?php }else if($details['role']==2){  ?>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical_view')){echo "active"; } ?>">
