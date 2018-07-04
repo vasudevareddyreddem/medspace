@@ -32,11 +32,11 @@ CREATE TABLE `admin` (
   `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   PRIMARY KEY (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `admin` */
 
-insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin','admin@gmail.com','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-06-05 14:57:54'),(2,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(15,2,'reddem',NULL,'adminvxcvdgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(16,2,'pushkar',NULL,'pusjkar123@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(17,2,'vasudevaruyu',NULL,'admin987@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(18,4,'babu plant',NULL,'babu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(19,2,'like that',NULL,'hos@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456','0.8976950015290487086final.jpg',1,NULL);
+insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin','admin@gmail.com','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-06-05 14:57:54'),(2,3,NULL,'gfdgdf','admindgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,2,NULL),(15,2,'reddem',NULL,'adminvxcvdgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(16,2,'pushkar',NULL,'pusjkar123@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(17,2,'vasudevaruyu',NULL,'admin987@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(18,4,'babu plant',NULL,'babu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(19,2,'like that',NULL,'hos@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456','0.72195200152956327122.jpg',1,NULL),(20,2,'like that',NULL,'admindgfdg@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL);
 
 /*Table structure for table `bio_medical_waste` */
 
@@ -53,11 +53,11 @@ CREATE TABLE `bio_medical_waste` (
   `create_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bio_medical_waste` */
 
-insert  into `bio_medical_waste`(`id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`barcode`,`status`,`create_at`,`create_by`) values (1,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:38',19),(2,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:21:48',19),(3,'10','20','yellow','Grams',NULL,1,'2018-06-15 11:23:27',19),(4,'10','20','Blue','Kgs','1529042661.png',1,'2018-06-15 11:34:21',19),(5,'10','66','White (ppc)','Kgs','1529062323.png',1,'2018-06-15 17:02:03',19),(6,'10','20','Blue','Grams','1529062817.png',1,'2018-06-15 17:10:17',16);
+insert  into `bio_medical_waste`(`id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`barcode`,`status`,`create_at`,`create_by`) values (11,'10','66','Yellow','Grams','1529573951.png',1,'2018-06-21 15:09:11',19),(12,'66','789','Red','Grams','1529574074.png',1,'2018-06-21 15:11:14',19),(13,'100','100','Red','Kgs','1529574133.png',1,'2018-06-21 15:12:13',19),(14,'55','5','Blue','Kgs','1529574277.png',1,'2018-06-21 15:14:37',19),(15,'100','66','Red','Grams','1529574289.png',1,'2018-06-21 15:14:49',19),(16,'100','66','Blue','Grams','1529574295.png',1,'2018-06-21 15:14:55',19),(17,'66','100','Red','Kgs','1529574302.png',1,'2018-06-21 15:15:02',19),(18,'10','66','Yellow','Grams','1529574309.png',1,'2018-06-21 15:15:09',19),(19,'89','89','Yellow','Kgs','1529574318.png',1,'2018-06-21 15:15:18',19),(20,'88','98','Yellow','Grams','1529574326.png',1,'2018-06-21 15:15:26',19),(21,'6767','67','Yellow','Grams','1529574336.png',1,'2018-06-21 15:15:36',19),(22,'222','222','Red','Kgs','1529574817.png',1,'2018-06-21 15:23:37',19),(23,'666','666','Red','Kgs','1529575018.png',1,'2018-06-21 15:26:58',19),(24,'20','120','Yellow','Kgs','1530694219.png',1,'2018-07-04 14:20:19',15),(25,'32','12','Red','Grams','1530708051.png',1,'2018-07-04 18:10:51',15);
 
 /*Table structure for table `cbwtf_daily_report` */
 
@@ -158,11 +158,11 @@ CREATE TABLE `hospital_list` (
   `barcodetext` varchar(250) DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `hospital_list` */
 
-insert  into `hospital_list`(`h_id`,`a_id`,`hospital_name`,`type`,`route_number`,`hospital_id`,`mobile`,`email`,`address`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`barcode`,`barcodetext`,`create_by`) values (8,2,'raghu',NULL,NULL,'','9581758358','raghuram7577@gmail.com',NULL,'flat 22','flat 33','Hyderabad','Telangana','india','500072','218',1,'2018-06-05 15:00:13','15281910132.png',NULL,1),(9,5,'pushkar',NULL,NULL,'5','9494422779','pushkar@gmail.com',NULL,'hyd','hyd','hyd','Telangana','india','516172','48',2,'2018-06-05 15:16:31','15281919915.png',NULL,1),(10,6,'vasudevareddy',NULL,NULL,'6','8500050944','vasudevareddy549@gmail.com',NULL,'kadapa','mydukur','kadapa','Arunachal Pradesh','india','516172','156',1,'2018-06-05 15:44:51','15281936916.png',NULL,1),(11,7,'blessy','HO','4','7','9502710179','anu.kulkarni3592@gmail.com',NULL,'nagole','nagole','hyderabad','AP','india','500035','',1,'2018-06-06 11:49:07','15282659477.png',NULL,1),(12,12,'like that','Clinic',NULL,'12','8500050944','adminvbn@gmail.com',NULL,'hyd','hyd','kadapa','Maharashtra','india','516172','',1,'2018-06-07 12:04:54','152835329412.png',NULL,1),(13,13,'like that','BH',NULL,'13','8500050944','adminbvbxcvbxcvb@gmail.com',NULL,'kadap','KADAP','kadapa','Karnataka','india','516172','',1,'2018-06-07 12:42:09','152835552913.png',NULL,1),(14,14,'vaasu','HO',NULL,'14','8500050944','adminvxcvxvcxc@gmail.com',NULL,'hyd','hyd','kadapa','Manipur','india','516172','',1,'2018-06-07 12:43:46','152835562614.png',NULL,1),(15,15,'reddem','HO',NULL,'15','8500050944','adminvxcvdgfdg@gmail.com',NULL,'hyd','hyd','kadapa','MH','india','516172','',1,'2018-06-07 13:11:32','152835729215.png',NULL,1),(16,16,'pushkar','SI',NULL,'16','9494422779','pusjkar123@gmail.com',NULL,'hyderbad','hyderbad','hyderabad','KA','india','516172','',1,'2018-06-07 13:55:38','152835993816.png',NULL,1),(17,17,'vasudevaruyu','CL',NULL,'17','8500050944','admin987@gmail.com',NULL,'hyderbad','hyderbad','hyderabad','KL','india','516172','',1,'2018-06-07 14:01:11','152836027117.png','VASUCLKL17',1),(18,19,'like that','HO','5','19','8500050944','hos@gmail.com',NULL,'hyderbad','hyd','kadapa','KL','india','516172','',1,'2018-06-09 14:38:26','152853530619.png','LIKEHOKL19',1);
+insert  into `hospital_list`(`h_id`,`a_id`,`hospital_name`,`type`,`route_number`,`hospital_id`,`mobile`,`email`,`address`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`barcode`,`barcodetext`,`create_by`) values (8,2,'raghu',NULL,NULL,'','9581758358','raghuram7577@gmail.com',NULL,'flat 22','flat 33','Hyderabad','Telangana','india','500072','218',2,'2018-06-05 15:00:13','15281910132.png',NULL,1),(9,5,'pushkar',NULL,NULL,'5','9494422779','pushkar@gmail.com',NULL,'hyd','hyd','hyd','Telangana','india','516172','48',2,'2018-06-05 15:16:31','15281919915.png',NULL,1),(10,6,'vasudevareddy',NULL,NULL,'6','8500050944','vasudevareddy549@gmail.com',NULL,'kadapa','mydukur','kadapa','Arunachal Pradesh','india','516172','156',1,'2018-06-05 15:44:51','15281936916.png',NULL,1),(11,7,'blessy','HO','4','7','9502710179','anu.kulkarni3592@gmail.com',NULL,'nagole','nagole','hyderabad','AP','india','500035','',0,'2018-06-06 11:49:07','15282659477.png',NULL,1),(12,12,'like that','Clinic',NULL,'12','8500050944','adminvbn@gmail.com',NULL,'hyd','hyd','kadapa','Maharashtra','india','516172','',1,'2018-06-07 12:04:54','152835329412.png',NULL,1),(13,13,'like that','BH',NULL,'13','8500050944','adminbvbxcvbxcvb@gmail.com',NULL,'kadap','KADAP','kadapa','Karnataka','india','516172','',1,'2018-06-07 12:42:09','152835552913.png',NULL,1),(14,14,'vaasu','HO',NULL,'14','8500050944','adminvxcvxvcxc@gmail.com',NULL,'hyd','hyd','kadapa','Manipur','india','516172','',1,'2018-06-07 12:43:46','152835562614.png',NULL,1),(15,15,'reddem','HO',NULL,'15','8500050944','adminvxcvdgfdg@gmail.com',NULL,'hyd','hyd','kadapa','MH','india','516172','',1,'2018-06-07 13:11:32','152835729215.png',NULL,1),(16,16,'pushkar','SI',NULL,'16','9494422779','pusjkar123@gmail.com',NULL,'hyderbad','hyderbad','hyderabad','KA','india','516172','',1,'2018-06-07 13:55:38','152835993816.png',NULL,1),(17,17,'vasudevaruyu','CL',NULL,'17','8500050944','admin987@gmail.com',NULL,'hyderbad','hyderbad','hyderabad','KL','india','516172','',1,'2018-06-07 14:01:11','152836027117.png','VASUCLKL17',1),(18,19,'like that','HO','5','19','8500050944','hos@gmail.com',NULL,'hyderbad','hyd','kadapa','KL','india','516172','',1,'2018-06-09 14:38:26','152853530619.png','LIKEHOKL19',1),(19,20,'like that','CL','','20','8500050944','admindgfdg@gmail.com',NULL,'hyderbad','hyderbad','kadapa','MP','india','51617','',1,'2018-06-21 11:11:15','152955967520.png','LIKECLMP20',1);
 
 /*Table structure for table `hospital_waste` */
 
@@ -238,6 +238,28 @@ CREATE TABLE `plant` (
 
 insert  into `plant`(`p_id`,`a_id`,`disposal_plant_name`,`disposal_plant_id`,`mobile`,`email`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`create_by`) values (7,4,'pracha disposal','4','8328579782','kishorebittu792@gmail.com','flat 22','hno 33','Hyderabad','Telangana','india','500072','220',1,'2018-06-05 15:04:26',1),(8,9,'prema','9','9502710179','prema@gmail.com','uppal','uppal','hyderabad','Telangana','india','500035','189',2,'2018-06-06 12:59:05',1),(9,11,'uytuplant','11','8500050944','adminbnn@gmail.com','hyderbad','hyd 2','kadapa','Madhya Pradesh','india','516172','',1,'2018-06-06 16:44:25',1),(10,18,'babu plant','18','8500050944','babu@gmail.com','hyderbad','hyderbad','kadapa','Madhya Pradesh','india','516172','',1,'2018-06-07 18:08:23',1);
 
+/*Table structure for table `plant_bio_medical_waste` */
+
+DROP TABLE IF EXISTS `plant_bio_medical_waste`;
+
+CREATE TABLE `plant_bio_medical_waste` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hos_bio_m_id` int(11) DEFAULT NULL,
+  `no_of_bags` varchar(250) DEFAULT NULL,
+  `no_of_kgs` varchar(250) DEFAULT NULL,
+  `color_type` varchar(250) DEFAULT NULL,
+  `weight_type` varchar(250) DEFAULT NULL,
+  `edited` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '1',
+  `create_at` datetime DEFAULT NULL,
+  `create_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+
+/*Data for the table `plant_bio_medical_waste` */
+
+insert  into `plant_bio_medical_waste`(`id`,`hos_bio_m_id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`edited`,`status`,`create_at`,`create_by`) values (25,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:44:32',12),(26,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:45:06',12),(27,15,'21','120','yellow','kgs',1,1,'2018-07-04 15:50:59',12),(28,15,'20','120','yellow','kgs',1,1,'2018-07-04 15:51:10',12),(29,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:52:22',12),(30,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:53:11',12),(31,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 15:58:30',12),(32,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 16:11:40',12),(33,24,'56550','564','Red','Grams',1,1,'2018-07-04 18:05:31',18),(34,24,'56550','560','Red','Grams',1,1,'2018-07-04 18:08:05',24),(35,24,'56546','500','Red','Grams',1,1,'2018-07-04 18:14:15',18);
+
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -286,7 +308,7 @@ CREATE TABLE `trucks` (
 
 /*Data for the table `trucks` */
 
-insert  into `trucks`(`t_id`,`a_id`,`role`,`truck_reg_no`,`owner_name`,`insurence_number`,`owner_mobile`,`driver_name`,`driver_lic_no`,`driver_lic_bad_no`,`driver_mobile`,`route_no`,`description`,`email`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`create_by`) values (9,3,3,'ts01ap2341','ram','667767','9898778787','raghu','gt656665','78','9898778787','02','gg','raghuram8328@gmail.com','flat 22','flat 33','Hyderabad','Telangana','india','500072','60',1,'2018-06-05 15:02:56',1),(10,8,3,'TS01AP2345','olive','1234','9502710179','priya','12','1','9502710179','6','ab','olive@gmail.com','abc','abc','hyderabad','Telangana','india','500035','147',2,'2018-06-06 12:16:59',1),(11,10,3,'AP04AP6382','BAYAPUREDDY','12','8500226782','SIVA','3','D','8500050944','4A','TESTING','bayapu@gmail.com','hyd1','hyd11','hyderabad','Andhra Pradesh','india','500072','226',1,'2018-06-06 14:34:44',1);
+insert  into `trucks`(`t_id`,`a_id`,`role`,`truck_reg_no`,`owner_name`,`insurence_number`,`owner_mobile`,`driver_name`,`driver_lic_no`,`driver_lic_bad_no`,`driver_mobile`,`route_no`,`description`,`email`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`create_by`) values (9,3,3,'ts01ap2341','ram','667767','9898778787','raghu','gt656665','78','9898778787','02','gg','raghuram8328@gmail.com','flat 22','flat 33','Hyderabad','Telangana','india','500072','60',1,'2018-06-05 15:02:56',1),(10,8,3,'TS01AP2345','olive','1234','9502710179','priya','12','1','9502710179','6','ab','olive@gmail.com','abc','abc','hyderabad','Telangana','india','500035','147',2,'2018-06-06 12:16:59',1),(11,10,3,'AP04AP6382','BAYAPUREDDY','12','8500226782','SIVA','3','D','8500050944','','TESTING','bayapu@gmail.com','hyd1','hyd11','hyderabad','Andhra Pradesh','india','500072','',1,'2018-06-06 14:34:44',1);
 
 /*Table structure for table `waste` */
 
