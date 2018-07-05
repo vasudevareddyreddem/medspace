@@ -65,9 +65,22 @@ class Plant_model extends CI_Model
 	}
 	
 	public  function get_bio_medical_waste_list($id){
-		$this->db->select('*')->from('plant_bio_medical_waste');
+		$this->db->select('plant_bio_medical_waste.*,hospital_list.hospital_name')->from('plant_bio_medical_waste');
+		$this->db->join('hospital_list', 'hospital_list.h_id = plant_bio_medical_waste.hos_bio_m_id', 'left');
+
 		$this->db->where('plant_bio_medical_waste.create_by', $id);
 		return $this->db->get()->result_array();
+	}
+	public  function get_bio_medical_waste_print_details($id){
+		$this->db->select('plant_bio_medical_waste.*,hospital_list.hospital_name,hospital_list.type,hospital_list.mobile,hospital_list.email,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode,hospital_list.hospital_id')->from('plant_bio_medical_waste');
+		$this->db->join('hospital_list', 'hospital_list.h_id = plant_bio_medical_waste.hos_bio_m_id', 'left');
+		$this->db->where('plant_bio_medical_waste.id', $id);
+		return $this->db->get()->row_array();
+	}
+	public function update_bio_medical_invoice_name($id,$data){
+		$this->db->where('id',$id);
+		return $this->db->update('plant_bio_medical_waste',$data);
+		
 	}
 	
 	
