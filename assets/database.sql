@@ -253,12 +253,14 @@ CREATE TABLE `plant_bio_medical_waste` (
   `status` int(11) DEFAULT '1',
   `create_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
+  `invoice_file` varchar(250) DEFAULT NULL,
+  `invoice_name` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 /*Data for the table `plant_bio_medical_waste` */
 
-insert  into `plant_bio_medical_waste`(`id`,`hos_bio_m_id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`edited`,`status`,`create_at`,`create_by`) values (25,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:44:32',12),(26,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:45:06',12),(27,15,'21','120','yellow','kgs',1,1,'2018-07-04 15:50:59',12),(28,15,'20','120','yellow','kgs',1,1,'2018-07-04 15:51:10',12),(29,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:52:22',12),(30,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:53:11',12),(31,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 15:58:30',12),(32,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 16:11:40',12),(33,24,'56550','564','Red','Grams',1,1,'2018-07-04 18:05:31',18),(34,24,'56550','560','Red','Grams',1,1,'2018-07-04 18:08:05',24),(35,24,'56546','500','Red','Grams',1,1,'2018-07-04 18:14:15',18);
+insert  into `plant_bio_medical_waste`(`id`,`hos_bio_m_id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`edited`,`status`,`create_at`,`create_by`,`invoice_file`,`invoice_name`) values (25,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:44:32',12,NULL,NULL),(26,15,'20','120','yellow','kgs',0,1,'2018-07-04 15:45:06',12,NULL,NULL),(27,15,'21','120','yellow','kgs',1,1,'2018-07-04 15:50:59',12,NULL,NULL),(28,15,'20','120','yellow','kgs',1,1,'2018-07-04 15:51:10',12,NULL,NULL),(29,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:52:22',12,NULL,NULL),(30,15,'20','120','YELLOW','Kgs',1,1,'2018-07-04 15:53:11',12,NULL,NULL),(31,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 15:58:30',12,NULL,NULL),(32,15,'20','120','Yellow','Kgs',0,1,'2018-07-04 16:11:40',12,NULL,NULL),(33,24,'56550','564','Red','Grams',1,1,'2018-07-04 18:05:31',18,'_33.pdf',' invoice'),(34,24,'56550','560','Red','Grams',1,1,'2018-07-04 18:08:05',24,NULL,NULL),(35,24,'56546','500','Red','Grams',1,1,'2018-07-04 18:14:15',18,'_35.pdf',' invoice');
 
 /*Table structure for table `roles` */
 
@@ -331,11 +333,11 @@ CREATE TABLE `waste` (
   `create_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`w_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Data for the table `waste` */
 
-insert  into `waste`(`w_id`,`truck_id`,`route_id`,`gen_waste_in_Kg`,`gen_waste_in_qty`,`inf_pla_waste_in_Kg`,`inf_pla_waste_in_qty`,`inf_waste_in_Kg`,`inf_waste_in_qty`,`glassware_waste_in_kg`,`glassware_waste_in_qty`,`total_waste`,`status`,`create_at`,`create_by`) values (12,'11','4A','10','10','10','10','10','10','10','10','400',1,'2018-06-07 18:48:33',4),(13,'11','4A','20','20','20','20','20','20','20','20','1600',1,'2018-06-07 18:49:20',4),(14,'11','4A','10','5','25','2','30','2','10','5','210',1,'2018-06-07 18:09:30',18);
+insert  into `waste`(`w_id`,`truck_id`,`route_id`,`gen_waste_in_Kg`,`gen_waste_in_qty`,`inf_pla_waste_in_Kg`,`inf_pla_waste_in_qty`,`inf_waste_in_Kg`,`inf_waste_in_qty`,`glassware_waste_in_kg`,`glassware_waste_in_qty`,`total_waste`,`status`,`create_at`,`create_by`) values (12,'11','4A','10','10','10','10','10','10','10','10','400',1,'2018-06-07 18:48:33',4),(13,'11','4A','20','20','20','20','20','20','20','20','1600',1,'2018-06-07 18:49:20',4),(14,'11','4A','10','5','25','2','30','2','10','5','210',1,'2018-06-07 18:09:30',18),(15,'9','02','20','02','02','2','20','20','02','02','448',1,'2018-07-05 12:33:07',18);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
