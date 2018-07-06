@@ -276,6 +276,8 @@ class Mobile extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
 		$waste_details=$this->Mobile_model->get_bio_medical_waste_details($barcode_id);
+		
+		//echo $this->db->last_query();exit;
 		if(count($waste_details)>0){
 					$message = array('status'=>1,'barcode_details'=>$waste_details,'barcodepath'=>base_url('assets/bio_medical_barcodes/'),'message'=>'Bio Medical Waste details are found');
 					$this->response($message, REST_Controller::HTTP_OK);

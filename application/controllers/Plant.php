@@ -597,7 +597,8 @@ class Plant extends CI_Controller {
 					'invoice_file'=>$file_name,
 					'invoice_name'=>$data['details']['hospital_name'].' invoice',
 					);
-					$this->Plant_models->update_bio_medical_invoice_name($id,$update_data);
+					$this->Plant_model->update_bio_medical_invoice_name($id,$update_data);
+					//echo $this->db->last_query();exit;
 					redirect("/assets/bio_invoices/".$file_name);
 				
 			}else{
