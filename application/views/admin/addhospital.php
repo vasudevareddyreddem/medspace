@@ -43,6 +43,12 @@
                             </div>
                         </div>
 						<div class="form-group">
+                            <label class="col-lg-3 control-label">No of Beds</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="no_of_beds" id="no_of_beds" placeholder="Enter No of Beds" />
+                            </div>
+                        </div>
+						<div class="form-group">
                             <label class="col-lg-3 control-label">Route Number</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="Route Number" id="Route Number" placeholder="Enter Route Number" />
@@ -180,6 +186,17 @@ $(document).ready(function() {
                     regexp: {
 					regexp:  /^[0-9]{10}$/,
 					message:'Mobile Number must be 10 digits'
+					}
+                }
+            },
+			no_of_beds: {
+                validators: {
+					 notEmpty: {
+						message: 'No of beds is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'No of beds must be 10 digits'
 					}
                 }
             },

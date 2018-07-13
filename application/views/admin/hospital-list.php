@@ -18,6 +18,7 @@
                                             <th>Health Care Facility ID</th>
                                             <th>Health Care Facility Type</th>
                                             <th>Mobile</th>
+                                            <th>No fo Beds</th>
                                             <th>Barcode</th>
                                             <th>Reg Date & Time</th>
                                             <th>Status</th>
@@ -46,6 +47,7 @@
 											
 											</td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
+                                            <td><?php echo htmlentities($list['no_of_beds']); ?></td>
                                             <td ><img style="max-height:550px;width:auto;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>

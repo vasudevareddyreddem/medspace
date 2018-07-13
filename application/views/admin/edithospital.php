@@ -48,6 +48,12 @@
                                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile Number"  value="<?php echo isset($hospital_detail['mobile'])?$hospital_detail['mobile']:'';?>"/>
                             </div>
                         </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">No of Beds</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="no_of_beds" id="no_of_beds" placeholder="Enter No of Beds" value="<?php echo isset($hospital_detail['no_of_beds'])?$hospital_detail['no_of_beds']:'';?>">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
