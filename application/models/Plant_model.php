@@ -72,8 +72,9 @@ class Plant_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 	public  function get_bio_medical_waste_print_details($id){
-		$this->db->select('plant_bio_medical_waste.*,hospital_list.hospital_name,hospital_list.type,hospital_list.mobile,hospital_list.email,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode,hospital_list.hospital_id')->from('plant_bio_medical_waste');
+		$this->db->select('plant_bio_medical_waste.*,hospital_list.hospital_name,hospital_list.type,hospital_list.mobile,hospital_list.email,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode,hospital_list.hospital_id,plant.disposal_plant_name')->from('plant_bio_medical_waste');
 		$this->db->join('hospital_list', 'hospital_list.h_id = plant_bio_medical_waste.hos_bio_m_id', 'left');
+		$this->db->join('plant', 'plant.a_id = plant_bio_medical_waste.create_by', 'left');
 		$this->db->where('plant_bio_medical_waste.id', $id);
 		return $this->db->get()->row_array();
 	}

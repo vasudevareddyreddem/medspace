@@ -155,6 +155,9 @@ th, td {
 							 
 							 <div>
 								<strong>Date:  </strong> <?php echo date('Y-m-d H:i:s'); ?> 
+							 </div> 
+							 <div>
+								<strong>Issued By:  </strong> <?php echo $details['disposal_plant_name']; ?>
 							 </div>
                             </td>
                         </tr>
