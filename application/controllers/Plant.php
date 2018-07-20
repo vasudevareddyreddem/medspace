@@ -585,7 +585,7 @@ class Plant extends CI_Controller {
 					$pdfFilePath = $path."/assets/bio_invoices/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('admin/bio_pdf', $data, true); // render the view into HTML
-					echo '<pre>';print_r($html);exit;
+					//echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
@@ -598,7 +598,7 @@ class Plant extends CI_Controller {
 					'invoice_name'=>$data['details']['hospital_name'].' invoice',
 					);
 					$this->Plant_model->update_bio_medical_invoice_name($id,$update_data);
-					echo $this->db->last_query();exit;
+					//echo $this->db->last_query();exit;
 					redirect("/assets/bio_invoices/".$file_name);
 				
 			}else{
