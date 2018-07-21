@@ -48,7 +48,7 @@ ol > li{
 	<div class="container card">
 		<h1 class="text-center">Privacy Policy</h1>
 		<br>
-		<a  style="position:absolute;top:20px;left:20px;" href="index.php" class="btn btn-primary">
+		<a  style="position:absolute;top:20px;left:20px;" href="<?php echo base_url(); ?>" class="btn btn-primary">
 		Back</a>
 		<hr>
 		<br>
