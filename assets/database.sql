@@ -1,6 +1,6 @@
 /*
 SQLyog Community v11.52 (64 bit)
-MySQL - 10.1.21-MariaDB : Database - grf
+MySQL - 10.1.32-MariaDB : Database - medspace
 *********************************************************************
 */
 
@@ -12,644 +12,331 @@ MySQL - 10.1.21-MariaDB : Database - grf
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`grf` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`medspace` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `grf`;
+USE `medspace`;
 
 /*Table structure for table `admin` */
 
 DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(45) DEFAULT NULL,
-  `username` varchar(250) DEFAULT NULL,
+  `a_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) DEFAULT NULL,
   `name` varchar(250) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
+  `username` varchar(250) DEFAULT NULL,
+  `email_id` varchar(250) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL,
   `org_password` varchar(250) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `notes` varchar(250) DEFAULT NULL,
   `profile_pic` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
+  `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`a_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `admin` */
 
-insert  into `admin`(`id`,`role`,`username`,`name`,`email`,`password`,`org_password`,`address`,`phone`,`notes`,`profile_pic`,`status`,`create_at`,`updated_at`) values (1,'Admin',NULL,'vasudevareddy reddem','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456','kadapa','8500050944','testing  purpose','1529212466.jpg',1,'2018-06-17 09:05:14','2018-06-17 11:01:34'),(2,NULL,NULL,NULL,'vasu@gmail.com','e10adc3949ba59abbe56e057f20f883e',NULL,NULL,NULL,NULL,NULL,1,NULL,NULL);
+insert  into `admin`(`a_id`,`role`,`name`,`username`,`email_id`,`password`,`org_password`,`profile_pic`,`status`,`create_at`) values (1,1,'Admin','admin@gmail.com','admin@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,'2018-06-05 14:57:54'),(20,2,'geetha',NULL,'geetha@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(22,3,'sow',NULL,'sow@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,2,NULL),(23,3,'bhanu',NULL,'bhanu@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(24,4,'navya',NULL,'navya@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(26,3,'priya',NULL,'raju@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,2,NULL),(27,2,'apollo',NULL,'apollo@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(28,2,'landmark',NULL,'landmark@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(29,2,'pooja Hospitals',NULL,'pooja@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(30,2,'apollo',NULL,'babuchwdr@gmail.com','6d6257e09ecdcb1bae0f5b723e0a5c01','pollutiony',NULL,1,NULL),(31,3,'RAGHU',NULL,'raghuram7577@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(32,3,'balakristna',NULL,'ravi@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(33,4,'awm consulting ltd',NULL,'awm@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL),(34,2,'svms',NULL,'svms@gmail.com','e10adc3949ba59abbe56e057f20f883e','123456',NULL,1,NULL);
 
-/*Table structure for table `article_in_process_fee` */
+/*Table structure for table `bio_medical_waste` */
 
-DROP TABLE IF EXISTS `article_in_process_fee`;
+DROP TABLE IF EXISTS `bio_medical_waste`;
 
-CREATE TABLE `article_in_process_fee` (
+CREATE TABLE `bio_medical_waste` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `table` text,
+  `no_of_bags` varchar(250) DEFAULT NULL,
+  `no_of_kgs` varchar(250) DEFAULT NULL,
+  `color_type` varchar(250) DEFAULT NULL,
+  `weight_type` varchar(250) DEFAULT NULL,
+  `barcode` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
-/*Data for the table `article_in_process_fee` */
+/*Data for the table `bio_medical_waste` */
 
-insert  into `article_in_process_fee`(`id`,`journal_id`,`journal_cat_id`,`table`,`status`,`create_at`,`update_at`,`create_by`) values (1,13,22,'<p>test like  that</p>\r\n',1,'2018-06-23 21:23:24','2018-06-24 17:09:00',1),(2,11,21,'<p><strong>Frontiers in Astronomy and Space Science</strong>is an open access journal covering in aspects like cosmology, space robotics and planetary materials.This journal helps to provide a unique platform to collect and disseminate state-of-the-art scientific understanding on and related discipline of Astronomy and Space sciences studies.</p>\r\n\r\n<p>Manuscripts like original articles, review articles, case reports, short communications, Perspective, Book Reviews, Image articles etc. can be accepted.</p>\r\n\r\n<p><strong>Aim and Scope</strong></p>\r\n\r\n<p>The main objective of the journal is to maintain and develop science and related research at an international level for the subject. FASS mainly focuses on cosmology, space robotics and planetary materials and related studies.</p>\r\n\r\n<p><strong>Indexing & Abstracting</strong></p>\r\n\r\n<p>All published articles are assigned to Digital Object Identifier (DOI) - Crossref.</p>\r\n\r\n<p>All published articles of this journal are included in the indexing and abstracting coverage of:</p>\r\n\r\n<p> *Google Scholar</p>\r\n\r\n<p>*Genamics – JournalSeek</p>\r\n\r\n<p>*Academic Keys</p>\r\n\r\n<p>*ResearchBib - Academic Research Index</p>\r\n\r\n<p>*Free Medical Journals - Geneva Foundation for Medical Education and Research</p>\r\n\r\n<p>*International Innovative Journal Impact Factor (IIJIF)</p>\r\n\r\n<p>*Al-Azhar University</p>\r\n\r\n<p>*Open J-Gate</p>\r\n\r\n<p>* Directory of Journals indexing</p>\r\n\r\n<p> </p>\r\n\r\n<p>All published articles are permanently archived and available at Gavin Publishers website in HTML and PDF formats.</p>\r\n',1,'2018-06-26 21:31:41','2018-06-27 21:56:10',1),(3,14,20,'<h3><a href=\"https://www.gavinpublishers.com/journals/articleprocessfee/journal-of-urology-and-renal-diseases-ISSN-2575-7903#\"><strong>Article Submission Guidelines </strong></a></h3>\r\n\r\n<h2> </h2>\r\n\r\n<p> </p>\r\n\r\n<p><strong>Manuscript Title</strong></p>\r\n\r\n<p>Manuscript title limit should not exceed 28 words. It should not contain abbreviations and the title should be a brief phrase which describes the contents present in the article.</p>\r\n\r\n<p><strong>Details of the Author</strong></p>\r\n\r\n<p>The details (full names and affiliations) of all the authors should be given in the manuscript. For corresponding author details (<strong>Live </strong>address with <strong>Telephone</strong>, <strong>Fax</strong> and <strong>E- mail </strong>address) should be provided in the manuscript.</p>\r\n\r\n<p><strong>Image Submission:</strong></p>\r\n\r\n<p>Images with high resolutions must be submitted by the author. Authors should take full responsibility for copyrighted images during submission and publication process.Clinical and Medical Imaging is an open access journal publishing research/original submissions, reviews, brief reports, case studies, rapid communications, letters to the editor etc. related to basic, experimental and clinical aspects of research.</p>\r\n\r\n<p><strong>Submission:</strong></p>\r\n\r\n<p>Submit your contribution through contact@gavinpublishers.org</p>\r\n\r\n<p><strong>Instructions to be followed:</strong></p>\r\n\r\n<ol>\r\n <li>A brief title describing, content of the image.</li>\r\n <li>Images must be submitted in TIFF, PDF or PPT.</li>\r\n <li>The description regarding the image must be limited (250 words).</li>\r\n <li>Images should be captured at the following minimum resolutions: halftones and colour (all colour must be RGB) 100-200 dpi; combination halftones 350 dpi; line art 500 dpi to match the journal criteria.</li>\r\n <li>Citations/References (URL) should be mentioned properly.</li>\r\n</ol>\r\n\r\n<p><strong>Presentation:</strong></p>\r\n\r\n<p>Presentation is a means of communication that helps a person to disclose his work under a broad spectrum of clinical and medical sciences. Presentations are of three types: Power Point Presentation, Flow Chart and Poster presentation.</p>\r\n\r\n<p><strong>Figures and Tables</strong></p>\r\n\r\n<p><strong>Figures:</strong></p>\r\n\r\n<p>Suggested formats for figures should be in bitmap formats (JPEG, GIF, TIFF, etc.). Please send us the Photoshop indexes, in case the pictures need any differential segments on distinctive layers.</p>\r\n\r\n<p><strong>Figure Legends:</strong></p>\r\n\r\n<p>Use numerical to designate figures (e.g., Figure 1). Use justifiable description, if necessary.</p>\r\n\r\n<p><strong>Figure Quality:</strong></p>\r\n\r\n<p>During submissions, figures are supposed to be at sufficient quality, preferably as JPEGs.</p>\r\n\r\n<p><strong>Tables:</strong></p>\r\n\r\n<p>Tables can be included in the text, if not submitted as a separate file, oriented in portrait form (not landscape) and upright on the page, not sideways.</p>\r\n\r\n<p><strong>Table Legends:</strong></p>\r\n\r\n<p>Use numerical to designate tables (e.g., Table 1). Use justifiable description, if necessary.</p>\r\n\r\n<p><strong>Equations as Graphics:</strong></p>\r\n\r\n<p>If equations cannot be encoded in MathML, submit them in TIFF or EPS format as discrete files (i.e., a file containing only the data for one equation). Only when tables cannot be encoded as XML/SGML can they be submitted as graphics. If this method is used, it is critical that the font size in all equations and tables is consistent and legible throughout all submissions.</p>\r\n\r\n<ol>\r\n <li>Suggested Equation Extraction Method</li>\r\n</ol>\r\n\r\n<ol>\r\n <li>Table Specifications</li>\r\n</ol>\r\n\r\n<ol>\r\n <li>Equation Specifications</li>\r\n</ol>\r\n\r\n<p><strong>Supplementary Information:</strong></p>\r\n\r\n<p>Discrete items of the Supplementary Information (Materials & Methods, Figures, Tables, etc.,) referred to at an appropriate point in the main text of the chapter.</p>\r\n\r\n<p>Summary diagram/figure included as part of the Supplementary Information (optional).</p>\r\n\r\n<p>All Supplementary Information is supplied as a single PDF file, where possible. File size within the permitted limits for Supplementary Information. Images should be a maximum size of 640 x 480 pixels (9 x 6.8 inches at 72 pixels per inch).</p>\r\n\r\n<p><strong>Author Corrections:</strong></p>\r\n\r\n<p>Suggestions from the authors, before or after the publication process, are acceptable and ensure that the corrections are clearly legible.</p>\r\n\r\n<p><strong>Article Processing Fee</strong></p>\r\n\r\n<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization; we do not have funding/support from any Private Organizations/Government to run. To run our organization in an organized way, we charge manuscript processing fee from the authors to publish their manuscripts. We charge fee to maintain published manuscripts in online repositories. All our articles are published in most updated formats (HTML, PDF, etc.,)</p>\r\n\r\n<p>Article processing fee varies from Journal to Journal.</p>\r\n\r\n<p> </p>\r\n\r\n<table align=\"center\" border=\"2\" xss=removed>\r\n <tbody>\r\n  <tr>\r\n   <td colspan=\"2\" xss=removed><strong>Journal of Urology and Renal Diseases</strong></td>\r\n  </tr>\r\n  <tr>\r\n   <td xss=removed>Article Type</td>\r\n   <td xss=removed>Publication Fee (USD)</td>\r\n  </tr>\r\n  <tr>\r\n   <td xss=removed>Research/Review/Video Article</td>\r\n   <td xss=removed>3560</td>\r\n  </tr>\r\n  <tr>\r\n   <td xss=removed>Case Report/Mini-Review</td>\r\n   <td xss=removed>1860</td>\r\n  </tr>\r\n  <tr>\r\n   <td xss=removed>Short Communication/Commentary/Letter to Editor/Opinion/Perspective/Book review</td>\r\n   <td xss=removed>960</td>\r\n  </tr>\r\n  <tr>\r\n   <td xss=removed>Image Article/Editorial</td>\r\n   <td xss=removed>360</td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n\r\n<p>\\For any queries or negotiations regarding article processing fee, please contact us at: <strong>contact@gavinpublishers.org</strong></p>\r\n\r\n<p><strong>Manuscript Withdrawal Policy</strong></p>\r\n\r\n<p>Author may wish to withdraw his manuscript after submitting it to Gavin Publishers. To withdraw a manuscript we do not charge any fee, only if he/she withdraws it within a week.</p>\r\n\r\n<p>If an author withdraws manuscript after a week, then he/she will be asked to pay partial processing fee. Each and every manuscript submission costs us (Gavin Publishers) certain amount along with overhead cost during processing. Manuscripts peer review process is completed (which can often happen within a week), and it has been worked into a journal issue, we have incurred costs on our end that need to be reimbursed.</p>\r\n\r\n<p>We ask authors to pay 30% of the original article processing fee in case of withdrawal.</p>\r\n\r\n<p>For any queries or any discussions regarding manuscript withdrawal/article processing fee, please contact us at: <strong>contact@gavinpublishers.org</strong></p>\r\n\r\n<p> </p>\r\n',1,'2018-06-28 22:17:00','2018-06-28 22:17:00',1);
+insert  into `bio_medical_waste`(`id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`barcode`,`status`,`create_at`,`create_by`) values (22,'12','25','Red','Kgs','1530776693.png',1,'2018-07-05 13:14:53',20),(23,'12','30','Blue','Kgs','1530855918.png',1,'2018-07-06 11:15:18',29),(24,'4','5','Yellow','Kgs','1530855934.png',1,'2018-07-06 11:15:34',29),(25,'2','800','White (ppc)','Grams','1530855946.png',1,'2018-07-06 11:15:46',29),(26,'2','22','Red','Kgs','1530940199.png',1,'2018-07-07 10:39:59',28),(27,'1','23','Yellow','Kgs','1530940236.png',1,'2018-07-07 10:40:36',28),(28,'1','12','Blue','Kgs','1530940257.png',1,'2018-07-07 10:40:57',28),(29,'1','13','White (ppc)','Kgs','1530940271.png',1,'2018-07-07 10:41:11',28),(30,'20','20','Blue','Kgs','1530942211.png',1,'2018-07-07 11:13:31',27),(31,'1','2.5','Yellow','Kgs','1531203096.png',1,'2018-07-10 11:41:36',30),(32,'1','2.5','Yellow','Kgs','1531206207.png',1,'2018-07-10 12:33:27',30),(33,'1','3','Yellow','Kgs','1531545813.png',1,'2018-07-14 10:53:33',34),(34,'1','5','Red','Kgs','1531545942.png',1,'2018-07-14 10:55:42',34),(35,'1','6','Yellow','Kgs','1531545971.png',1,'2018-07-14 10:56:11',34),(36,'1','5.8','Red','Kgs','1531972497.png',1,'2018-07-19 09:24:57',30),(37,'25','30','Red','Grams','1532083555.png',1,'2018-07-20 16:15:54',29);
 
-/*Table structure for table `article_procedures` */
+/*Table structure for table `cbwtf_daily_report` */
 
-DROP TABLE IF EXISTS `article_procedures`;
+DROP TABLE IF EXISTS `cbwtf_daily_report`;
 
-CREATE TABLE `article_procedures` (
+CREATE TABLE `cbwtf_daily_report` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `year_of_article` varchar(250) DEFAULT NULL,
-  `procedures_category` varchar(250) DEFAULT NULL,
-  `conference_title` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `author_name` varchar(250) DEFAULT NULL,
-  `doi_url` varchar(250) DEFAULT NULL,
-  `seo_url` varchar(250) DEFAULT NULL,
-  `seo_title` varchar(250) DEFAULT NULL,
-  `seo_keyword` text,
-  `seo_description` text,
-  `abstract` text,
-  `biography` text,
-  `pdf_file` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
+  `plant_id` int(11) DEFAULT NULL,
+  `plant_name` varchar(250) DEFAULT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `yellow_no_of_Bags` varchar(250) DEFAULT NULL,
+  `yellow_qty` varchar(250) DEFAULT NULL,
+  `red_no_of_Bags` varchar(250) DEFAULT NULL,
+  `red_qty` varchar(250) DEFAULT NULL,
+  `white_no_of_Bags` varchar(250) DEFAULT NULL,
+  `white_qty` varchar(250) DEFAULT NULL,
+  `blue_no_of_Bags` varchar(250) DEFAULT NULL,
+  `blue_qty` varchar(250) DEFAULT NULL,
+  `datetime` date DEFAULT NULL,
+  `create_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `cbwtf_daily_report` */
+
+/*Table structure for table `disposal` */
+
+DROP TABLE IF EXISTS `disposal`;
+
+CREATE TABLE `disposal` (
+  `d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `disposal_total` varchar(250) DEFAULT NULL,
+  `disposal_qty` varchar(250) DEFAULT NULL,
+  `disposal_remaining` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Data for the table `article_procedures` */
-
-insert  into `article_procedures`(`id`,`journal_id`,`journal_cat_id`,`year_of_article`,`procedures_category`,`conference_title`,`title`,`author_name`,`doi_url`,`seo_url`,`seo_title`,`seo_keyword`,`seo_description`,`abstract`,`biography`,`pdf_file`,`image`,`status`,`create_at`,`update_at`,`create_by`) values (3,3,22,'2016','Speaker Abstract','vbx','bxcvbx','cvbxcvb','cxvbxcv','vbxvb','vbxcvb','vcbvcb','vbxcvb','<p>vbxvb</p>\r\n','<p>vbxvb</p>\r\n',NULL,NULL,1,'2018-06-24 11:41:40','2018-06-24 11:51:24',1),(4,5,20,'2016','Speaker Abstract','Conference Title','Title','Author Name','DOI Url','vbvb','xcvbxcvb','vbxcvb','vbxcvb','<p>bvxcvb</p>\r\n','<p>vcbxcbv</p>\r\n',NULL,NULL,1,'2018-06-24 17:16:36','2018-06-26 08:11:19',1);
-
-/*Table structure for table `conference_process` */
-
-DROP TABLE IF EXISTS `conference_process`;
-
-CREATE TABLE `conference_process` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `url` varchar(250) DEFAULT NULL,
-  `venu_place` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `conference_process` */
-
-insert  into `conference_process`(`id`,`journal_id`,`journal_cat_id`,`title`,`url`,`venu_place`,`status`,`create_at`,`update_at`,`create_by`) values (2,12,22,'vbvbxvb','vbxvb','cxvbxcvb',1,'2018-06-23 22:15:43','2018-06-24 17:12:27',1),(3,11,21,'gfgfg','fgsfdg','kadapa',1,'2018-06-24 17:12:09','2018-06-26 08:10:13',1);
-
-/*Table structure for table `contactus` */
-
-DROP TABLE IF EXISTS `contactus`;
-
-CREATE TABLE `contactus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(250) DEFAULT NULL,
-  `lastName` varchar(250) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
-  `phone` varchar(250) DEFAULT NULL,
-  `message` varchar(250) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Data for the table `contactus` */
-
-insert  into `contactus`(`id`,`firstName`,`lastName`,`email`,`phone`,`message`,`create_at`) values (1,'fgfgdsf','gdfgsdf','gdfg@gmail.com','8500050944','dfgsdf','2018-06-14 23:18:41'),(2,'bb','cvbcvb','cvb@gmail.com','8500050944','ghsfghfg','2018-06-14 23:19:50'),(3,'fgsdfg','fgsdfg','cvb@gmail.com','65656345656','fgsdfg','2018-06-15 07:56:05'),(4,'hdfgshdghjGHGHFghfg','gfdgfdfgd','fghghg@gmail.com','8500050944','lithat','2018-06-17 10:22:42');
-
-/*Table structure for table `faqs` */
-
-DROP TABLE IF EXISTS `faqs`;
-
-CREATE TABLE `faqs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `question` varchar(250) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `status` varchar(250) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
-/*Data for the table `faqs` */
-
-insert  into `faqs`(`id`,`question`,`description`,`status`,`create_at`,`update_at`,`create_by`) values (10,'gdfg','dfgdfgdf','1','2018-06-26 08:21:25',NULL,1);
-
-/*Table structure for table `grf_conference_flyers` */
-
-DROP TABLE IF EXISTS `grf_conference_flyers`;
-
-CREATE TABLE `grf_conference_flyers` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
-  `title_color` varchar(250) DEFAULT NULL,
-  `fly_image` varchar(250) DEFAULT NULL,
-  `fly_org_image` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-/*Data for the table `grf_conference_flyers` */
-
-insert  into `grf_conference_flyers`(`f_id`,`title`,`title_color`,`fly_image`,`fly_org_image`,`status`,`create_at`,`create_by`,`update_at`) values (6,'ghdfghdgh','hdfghdfgh','1529223955.jpg','222.jpg',1,'2018-06-17 13:55:55',1,'2018-06-28 08:36:20'),(7,'ghdfghdgh','hdfghdfgh','1529224033.jpg','222.jpg',1,'2018-06-17 13:57:12',1,NULL);
-
-/*Table structure for table `grf_conference_images` */
-
-DROP TABLE IF EXISTS `grf_conference_images`;
-
-CREATE TABLE `grf_conference_images` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
-  `title_color` varchar(250) DEFAULT NULL,
-  `fly_image` varchar(250) DEFAULT NULL,
-  `fly_org_image` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`f_id`)
+  PRIMARY KEY (`d_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
-/*Data for the table `grf_conference_images` */
+/*Data for the table `disposal` */
 
-insert  into `grf_conference_images`(`f_id`,`title`,`title_color`,`fly_image`,`fly_org_image`,`status`,`create_at`,`create_by`,`update_at`) values (8,'ghdfghdgh','cvzxcvzxc','1529225120.jpg','222.jpg',0,'2018-06-17 14:15:19',1,'2018-06-26 07:54:57');
+insert  into `disposal`(`d_id`,`disposal_total`,`disposal_qty`,`disposal_remaining`,`status`,`create_at`,`create_by`) values (6,'100','50','50',1,'2018-06-19 14:36:34',24),(7,'200','100','100',1,'2018-06-19 14:37:24',24),(8,'20','10','10',1,'2018-06-21 16:15:35',24);
 
-/*Table structure for table `grf_flyers` */
+/*Table structure for table `hospital_daily_report` */
 
-DROP TABLE IF EXISTS `grf_flyers`;
+DROP TABLE IF EXISTS `hospital_daily_report`;
 
-CREATE TABLE `grf_flyers` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `title_color` varchar(250) DEFAULT NULL,
-  `fly_image` varchar(250) DEFAULT NULL,
-  `fly_org_image` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
+CREATE TABLE `hospital_daily_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hospital_id` int(11) DEFAULT NULL,
+  `hospital_name` varchar(250) DEFAULT NULL,
+  `type` varchar(250) DEFAULT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `yellow_no_of_Bags` varchar(250) DEFAULT NULL,
+  `yellow_qty` varchar(250) DEFAULT NULL,
+  `red_no_of_Bags` varchar(250) DEFAULT NULL,
+  `red_qty` varchar(250) DEFAULT NULL,
+  `white_no_of_Bags` varchar(250) DEFAULT NULL,
+  `white_qty` varchar(250) DEFAULT NULL,
+  `blue_no_of_Bags` varchar(250) DEFAULT NULL,
+  `blue_qty` varchar(250) DEFAULT NULL,
+  `datetime` date DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `grf_flyers` */
+/*Data for the table `hospital_daily_report` */
 
-insert  into `grf_flyers`(`f_id`,`journal_id`,`journal_cat_id`,`title`,`title_color`,`fly_image`,`fly_org_image`,`status`,`create_at`,`create_by`,`update_at`) values (5,11,22,'like that','ffff','1530152209.jpg','2.jpg',1,'2018-06-17 13:26:31',1,'2018-06-29 07:21:49'),(7,10,20,'this  is  very  impressive','blue','1530152200.jpg','1.jpg',1,'2018-06-25 21:45:44',1,'2018-06-29 07:42:06'),(8,11,21,'reddem vasudevareddy','red','1530152229.jpg','3.jpg',1,'2018-06-28 07:47:09',1,'2018-06-29 07:42:15'),(9,6,21,'ghdfghdgf','ghdfgh','1530236995.jpg','222.jpg',1,'2018-06-29 07:19:54',1,'2018-06-29 07:26:59');
+/*Table structure for table `hospital_list` */
 
-/*Table structure for table `grf_journal_category` */
+DROP TABLE IF EXISTS `hospital_list`;
 
-DROP TABLE IF EXISTS `grf_journal_category`;
-
-CREATE TABLE `grf_journal_category` (
-  `c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(250) DEFAULT NULL,
-  `seo_title` varchar(250) DEFAULT NULL,
-  `seo_url` varchar(250) DEFAULT NULL,
-  `seo_keyword` varchar(250) DEFAULT NULL,
-  `description` text,
-  `status` int(11) DEFAULT '1',
+CREATE TABLE `hospital_list` (
+  `h_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int(11) DEFAULT NULL,
+  `hospital_name` varchar(250) DEFAULT NULL,
+  `type` varchar(250) DEFAULT NULL,
+  `route_number` varchar(250) DEFAULT NULL,
+  `hospital_id` varchar(250) DEFAULT NULL,
+  `mobile` varchar(45) DEFAULT NULL,
+  `no_of_beds` varchar(250) DEFAULT NULL,
+  `email` varchar(250) DEFAULT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `address1` varchar(250) DEFAULT NULL,
+  `address2` varchar(250) DEFAULT NULL,
+  `city` varchar(250) DEFAULT NULL,
+  `state` varchar(250) DEFAULT NULL,
+  `country` varchar(250) DEFAULT NULL,
+  `pincode` varchar(250) DEFAULT NULL,
+  `captcha` varchar(250) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
+  `barcode` varchar(250) DEFAULT NULL,
+  `barcodetext` varchar(250) DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`c_id`)
+  PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
-/*Data for the table `grf_journal_category` */
+/*Data for the table `hospital_list` */
 
-insert  into `grf_journal_category`(`c_id`,`category`,`seo_title`,`seo_url`,`seo_keyword`,`description`,`status`,`create_at`,`update_at`,`create_by`) values (20,'Medical','Medical','Medical','Medical','Medical',1,'2018-06-22 22:51:30',NULL,1),(21,'Pharmaceutial','Pharmaceutial','Pharmaceutial','Pharmaceutial','Pharmaceutial',1,'2018-06-22 22:51:46',NULL,1),(22,'Clinical','Clinical','Clinical','Clinical','Clinical',1,'2018-06-22 22:51:59',NULL,1),(23,'Engineering','Engineering','Engineering','Engineering','Engineering',1,'2018-06-22 22:52:12',NULL,1),(24,'Basic-Sciences','Basic-Sciences','Basic-Sciences','Basic-Sciences','Basic-Sciences',1,'2018-06-22 22:52:27',NULL,1);
+insert  into `hospital_list`(`h_id`,`a_id`,`hospital_name`,`type`,`route_number`,`hospital_id`,`mobile`,`no_of_beds`,`email`,`address`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`barcode`,`barcodetext`,`create_by`) values (19,20,'geetha','HO','2','20','9502710179',NULL,'geetha@gmail.com',NULL,'nagole','nagole','hyd','TS','India','500035','',2,'2018-06-19 11:46:09','152938896920.png','GEETHOTS20',1),(20,27,'apollo','BH','','27','9845627210',NULL,'apollo@gmail.com',NULL,'Plot No: 3, Sheshadri Nagar','Kukatpally','hyderabad','TS','india','500072','',1,'2018-07-06 11:08:13','153085549327.png','APOLBHTS27',1),(21,28,'landmark','CL','','28','9000148000',NULL,'landmark@gmail.com',NULL,'Near JNTU Metro Station Opp.Vasantha Nagar Arch',' Hyder Nagar, Kukatpally','hyderabad','TS','india','500085','',1,'2018-07-06 11:11:32','153085569228.png','LANDCLTS28',1),(22,29,'pooja Hospitals','VH','','29','0448511992',NULL,'pooja@gmail.com',NULL,'Plot No.33, Opp Rainbow Hospital, Dharma Reddy Colony, KPHB Phase II','Hydernagar','Hyderabad','TS','india','500072','',1,'2018-07-06 11:14:28','153085586829.png','POOJVHTS29',1),(23,30,'apollo','BH','','30','9949905189',NULL,'babuchwdr@gmail.com',NULL,'tpt','tpt','tpt','AP','india','517502','',1,'2018-07-10 11:33:56','153120263630.png','APOLBHAP30',1),(24,34,'svms','BH','','34','1234567891','1000','svms@gmail.com',NULL,'alipiri Road Tirupathi','alipiri Road Tirupathi','tirupathi','AP','India','517502','',1,'2018-07-14 10:46:19','153154537934.png','SVMSBHAP34',1);
 
-/*Table structure for table `guidelines` */
+/*Table structure for table `hospital_waste` */
 
-DROP TABLE IF EXISTS `guidelines`;
+DROP TABLE IF EXISTS `hospital_waste`;
 
-CREATE TABLE `guidelines` (
+CREATE TABLE `hospital_waste` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pagename` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `seo_title` varchar(250) DEFAULT NULL,
-  `seo_url` varchar(250) DEFAULT NULL,
-  `seo_keyword` varchar(250) DEFAULT NULL,
-  `seo_description` varchar(250) DEFAULT NULL,
-  `status` varchar(250) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-
-/*Data for the table `guidelines` */
-
-insert  into `guidelines`(`id`,`pagename`,`title`,`description`,`seo_title`,`seo_url`,`seo_keyword`,`seo_description`,`status`,`create_at`,`update_at`,`create_by`) values (5,'reddy','gdg','<p>gfd</p>\r\n','fgdgf','df','dfdgf','dfd','1','2018-06-21 08:58:58','2018-06-21 09:08:05',1),(6,'fbghfhf','vasu','<p>gf</p>\r\n','ghfg','fghffg','fg','fgfgf','1','2018-06-21 08:59:14','2018-06-21 09:07:51',1),(8,'Page Name vasu','Title','<p>xcxc</p>\r\n','cvzxcv','cxvzxcv','cvzxc','cvzxcvzxcv','1','2018-06-22 20:33:17','2018-06-26 08:24:37',1);
-
-/*Table structure for table `home_banners` */
-
-DROP TABLE IF EXISTS `home_banners`;
-
-CREATE TABLE `home_banners` (
-  `b_id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text,
-  `image` varchar(250) DEFAULT NULL,
-  `org_image` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`b_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
-/*Data for the table `home_banners` */
-
-insert  into `home_banners`(`b_id`,`title`,`image`,`org_image`,`status`,`create_at`,`update_at`,`create_by`) values (7,'1','1530201642.jpg','1.jpg',1,'2018-06-28 21:30:41','2018-06-28 21:30:41',1),(8,'2','1530201698.jpg','1.jpg',1,'2018-06-28 21:31:37','2018-06-28 21:31:37',1),(9,'3','1530201728.jpg','2.jpg',1,'2018-06-28 21:32:08','2018-06-28 21:32:08',1);
-
-/*Table structure for table `home_scroll` */
-
-DROP TABLE IF EXISTS `home_scroll`;
-
-CREATE TABLE `home_scroll` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `scroll_content` text,
+  `h_id` int(11) DEFAULT NULL,
+  `genaral_waste_kgs` varchar(250) DEFAULT NULL,
+  `genaral_waste_qty` varchar(250) DEFAULT NULL,
+  `infected_plastics_kgs` varchar(250) DEFAULT NULL,
+  `infected_plastics_qty` varchar(250) DEFAULT NULL,
+  `infected_waste_kgs` varchar(250) DEFAULT NULL,
+  `infected_waste_qty` varchar(250) DEFAULT NULL,
+  `glassware_watse_kgs` varchar(250) DEFAULT NULL,
+  `glassware_watse_qty` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
+  `total` varchar(250) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
+  `current_address` varchar(250) DEFAULT NULL,
+  `invoice_name` varchar(250) DEFAULT NULL,
+  `invoice_file` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
-/*Data for the table `home_scroll` */
+/*Data for the table `hospital_waste` */
 
-insert  into `home_scroll`(`id`,`scroll_content`,`status`,`create_at`,`update_at`,`create_by`) values (1,'Do research. Feed your talent. Research not only wins the war on cliche, it\'s the key to victory over fear and it\'s cousin, depression.\r\n? Robert McKee\r\n\r\n',1,'2018-06-26 07:19:53','2018-06-28 21:36:04',1);
+insert  into `hospital_waste`(`id`,`h_id`,`genaral_waste_kgs`,`genaral_waste_qty`,`infected_plastics_kgs`,`infected_plastics_qty`,`infected_waste_kgs`,`infected_waste_qty`,`glassware_watse_kgs`,`glassware_watse_qty`,`status`,`total`,`create_at`,`date`,`create_by`,`current_address`,`invoice_name`,`invoice_file`) values (51,20,'2','2','2','2','2','2','2','2',1,'16','2018-06-19 12:35:06',NULL,23,'0.0,0.0','arya invoice','arya_20_51.pdf'),(52,20,'2','2','2','2','2','2','2','2',1,'16','2018-06-19 12:38:48',NULL,23,'17.4951125,78.3885862','arya invoice','arya_20_52.pdf'),(53,21,'4','3','4','3','4','3','4','3',1,'48','2018-06-21 16:20:59',NULL,23,'0.0,0.0','Anu invoice','Anu_21_53.pdf'),(54,21,'2','1','3','1','2','1','3','1',1,'10','2018-06-21 16:29:31',NULL,23,'17.4951213,78.3885971','Anu invoice','Anu_21_54.pdf'),(55,21,'100','10','500','45','55','566','667','10',1,'61300','2018-06-28 10:25:01',NULL,18,'17.4951684,78.3885117','Anu invoice','Anu_21_55.pdf'),(56,21,'66','5','87','2','10','6','20','5',1,'664','2018-06-29 14:05:58',NULL,20,'17.4951425,78.3885983','Anu invoice','Anu_21_56.pdf'),(57,21,'2','1','2','1','2','1','2','1',1,'8','2018-07-02 11:26:45',NULL,23,'0.0,0.0','Anu invoice','Anu_21_57.pdf'),(58,21,'2','1','2','1','2','1','2','1',1,'8','2018-07-02 11:28:02',NULL,23,'17.4951494,78.3886001','Anu invoice','Anu_21_58.pdf'),(59,21,'2','1','3','1','26','6','16','1',1,'177','2018-07-03 10:29:59',NULL,20,'17.4951438,78.3885972','Anu invoice','Anu_21_59.pdf'),(60,21,'20','2','25','2','46','4','50','2',1,'374','2018-07-05 12:29:58',NULL,23,'17.4950976,78.3885396','Anu invoice','Anu_21_60.pdf'),(61,21,'4','4','4','4','6','4','6','4',1,'80','2018-07-05 12:36:51',NULL,23,'17.4951477,78.3885992','Anu invoice','Anu_21_61.pdf'),(62,20,'1','1','2','2','3','3','4','1',1,'18','2018-07-06 15:08:43',NULL,23,'17.4951408,78.3885922','apollo invoice','apollo_20_62.pdf'),(63,21,'1','1','3','2','4','3','6','1',1,'25','2018-07-06 16:05:26',NULL,23,'0.0,0.0','landmark invoice','landmark_21_63.pdf'),(64,22,'8','4','9','7','3','4','8','4',1,'139','2018-07-06 16:07:11',NULL,23,'0.0,0.0','pooja Hospitals invoice','pooja Hospitals_22_64.pdf'),(65,22,'12','6','16','8','4','2','14','6',1,'292','2018-07-06 16:08:16',NULL,23,'17.4951439,78.3886094','pooja Hospitals invoice','pooja Hospitals_22_65.pdf'),(66,22,'5','2','5','2','5','2','5','2',1,'40','2018-07-07 15:10:26',NULL,23,'17.4951689,78.388615','pooja Hospitals invoice','pooja Hospitals_22_66.pdf'),(67,21,'2','1','4','3','4','2','4','1',1,'26','2018-07-12 12:28:19',NULL,23,'17.4951345,78.38859','landmark invoice','landmark_21_67.pdf'),(68,23,'4','5','7','4','7','6','9','5',1,'135','2018-07-12 12:46:26',NULL,23,'17.4951335,78.3885926','apollo invoice','apollo_23_68.pdf'),(69,23,'8','5','8','7','5','2','8','5',1,'146','2018-07-12 12:47:53',NULL,23,'0.0,0.0','apollo invoice','apollo_23_69.pdf'),(70,20,'4','2','6','6','5','4','9','2',1,'82','2018-07-12 12:58:31',NULL,23,'0.0,0.0','apollo invoice','apollo_20_70.pdf'),(71,23,'5','4','8','7','6','4','8','4',1,'132','2018-07-12 12:59:36',NULL,23,'0.0,0.0','apollo invoice','apollo_23_71.pdf'),(72,23,'12','12','56','23','3','2','5','12',1,'1498','2018-07-20 16:09:57',NULL,23,'17.4951588,78.3885896','apollo invoice','apollo_23_72.pdf');
 
-/*Table structure for table `issue_wise_article_list` */
+/*Table structure for table `hospital_waste_images` */
 
-DROP TABLE IF EXISTS `issue_wise_article_list`;
+DROP TABLE IF EXISTS `hospital_waste_images`;
 
-CREATE TABLE `issue_wise_article_list` (
-  `issue_a_id` int(11) NOT NULL AUTO_INCREMENT,
-  `i_a_id` int(11) DEFAULT NULL,
-  `article_id` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`issue_a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
-
-/*Data for the table `issue_wise_article_list` */
-
-insert  into `issue_wise_article_list`(`issue_a_id`,`i_a_id`,`article_id`,`status`,`create_at`,`create_by`) values (82,8,6,1,'2018-06-25 20:47:34',1),(83,8,7,1,'2018-06-25 20:47:34',1),(84,8,8,1,'2018-06-25 20:47:34',1),(85,8,9,1,'2018-06-25 20:47:34',1),(86,9,13,1,'2018-06-28 22:15:12',1),(87,10,10,1,'2018-07-06 08:02:45',1),(88,10,11,1,'2018-07-06 08:02:45',1);
-
-/*Table structure for table `issues` */
-
-DROP TABLE IF EXISTS `issues`;
-
-CREATE TABLE `issues` (
+CREATE TABLE `hospital_waste_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `number` varchar(250) DEFAULT NULL,
+  `hos_id` int(11) DEFAULT NULL,
+  `text` varchar(250) DEFAULT NULL,
   `image` varchar(250) DEFAULT NULL,
-  `journal_cat_id` varchar(250) DEFAULT NULL,
-  `journal_id` varchar(250) DEFAULT NULL,
-  `year` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
+  `creayte_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
-/*Data for the table `issues` */
+/*Data for the table `hospital_waste_images` */
 
-insert  into `issues`(`id`,`number`,`image`,`journal_cat_id`,`journal_id`,`year`,`status`,`create_at`,`update_at`,`create_by`) values (8,'1','1529939854.jpg','21','11','2013',1,'2018-06-25 20:47:34','2018-06-26 08:13:07',1),(9,'1','1530204312.jpg','20','14','2018',1,'2018-06-28 22:15:12',NULL,1),(10,'2','1530844365.jpg','21','11','2013',1,'2018-07-06 08:02:45',NULL,1);
+insert  into `hospital_waste_images`(`id`,`hos_id`,`text`,`image`,`create_at`,`creayte_by`) values (1,21,'','0.2915200015306980171530698016778.jpg','2018-07-04 15:23:37',20),(2,2,'','0.354821001530857141home.png','2018-07-06 11:35:41',1),(3,0,'','0.4921570015308597321530859731007.jpg','2018-07-06 12:18:52',23),(4,0,'','0.245480001530860015Screenshot_2018-05-15-20-33-26-479_com.king.candycrushsaga.png','2018-07-06 12:23:35',23),(5,0,'','0.719663001530860117Screenshot_2018-05-29-13-52-03-954_com.android.incallui.png','2018-07-06 12:25:17',23),(6,0,'','0.4123560015308601451511778487165Perfume.jpg','2018-07-06 12:25:45',23),(7,0,'','0.713704001530860826BeautyPlus_20171013183901_save.jpg','2018-07-06 12:37:06',23),(8,0,'','0.314537001530861099BeautyPlus_20171013183901_save.jpg','2018-07-06 12:41:39',23),(9,0,'','0.365867001530861192scanner_20180612_194346.jpg','2018-07-06 12:43:12',23),(10,0,'','0.533078001530863173IMG-20180706-WA0006.jpg','2018-07-06 13:16:13',23),(11,0,'','0.104202001530863318IMG-20180706-WA0003.jpg','2018-07-06 13:18:38',23),(12,0,'','0.041219001530863557IMG-20180706-WA0001.jpg','2018-07-06 13:22:37',23),(13,20,'','0.689792001530869715IMG-20180706-WA0006.jpg','2018-07-06 15:05:15',23),(14,20,'','0.784142001530869725IMG-20180706-WA0006.jpg','2018-07-06 15:05:25',23),(15,20,'','0.9157120015308698311530869825910.jpg','2018-07-06 15:07:11',23),(16,20,'','0.211153001532078593BeautyPlus_20170824094259_save.jpg','2018-07-20 14:53:16',23),(17,20,'','0.702471001532078629IMG_20180720_133009.jpg','2018-07-20 14:53:49',23);
 
-/*Table structure for table `journal_article_in_press` */
+/*Table structure for table `plant` */
 
-DROP TABLE IF EXISTS `journal_article_in_press`;
+DROP TABLE IF EXISTS `plant`;
 
-CREATE TABLE `journal_article_in_press` (
-  `a_id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` varchar(25) DEFAULT NULL,
-  `year_of_article` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `author_name` varchar(250) DEFAULT NULL,
-  `article_type` varchar(250) DEFAULT NULL,
-  `url` varchar(250) DEFAULT NULL,
-  `seo_title` varchar(250) DEFAULT NULL,
-  `seo_keyword` text,
-  `seo_description` text,
-  `research_article` text,
-  `abstract` text,
-  `introduction` text,
-  `references` text,
-  `figures` text,
-  `suggested_citation` text,
-  `tables` text,
-  `pdf_file` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `video` varchar(250) DEFAULT NULL,
-  `video_article` int(11) DEFAULT '0',
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
-
-/*Data for the table `journal_article_in_press` */
-
-insert  into `journal_article_in_press`(`a_id`,`journal_id`,`journal_cat_id`,`year_of_article`,`title`,`author_name`,`article_type`,`url`,`seo_title`,`seo_keyword`,`seo_description`,`research_article`,`abstract`,`introduction`,`references`,`figures`,`suggested_citation`,`tables`,`pdf_file`,`image`,`video`,`video_article`,`status`,`create_at`,`update_at`,`create_by`) values (5,5,'20','2010','vbxcvb','vbxcvb','xcvbxcvb','vbxcvb','xcvbx','vcbxcvb','xcvb','<p>vbxcvb</p>\r\n','<p>vbxcvbxcvb</p>\r\n','<p>vbxcvbxc</p>\r\n','<p>vbxbvxvb</p>\r\n','<p>vbxvbxcvbcv</p>\r\n','<p>vbxcvbxcvb</p>\r\n','<p>vbxcvbxcv</p>\r\n','1529687924.pdf','1529687924.html','1529687924.mp4',1,1,'2018-06-22 22:48:43','2018-06-24 17:56:39',1),(6,11,'21','2013',' Lorem Ipsum has been the industrys standard dummy text ever since the 1500s','testing','Article Type','URL','SEO Title','SEO Keywords','SEO Description','<p>Research Article</p>\r\n','<p>Abstract</p>\r\n','<p>Introduction</p>\r\n','<p>References</p>\r\n','<p>Figures</p>\r\n','<p>Suggested citation</p>\r\n','<p>Tables</p>\r\n','1529839780.pdf','1529839780.docx','',0,1,'2018-06-24 16:59:39','2018-06-28 08:14:20',1),(7,11,'21','2013','Lorem Ipsum is simply dummy text of the printing and typesetting','Author Name','Article Type','url','seo title','seo keywords','SEO Description','<p>Research Article</p>\r\n','<p>Abstract</p>\r\n','<p>Introduction</p>\r\n','<p>References</p>\r\n','<p>Figures</p>\r\n','<p>Suggested citation</p>\r\n','<p>Tables</p>\r\n','1529843950.pdf','1529843950.jpg','',0,1,'2018-06-24 18:09:10','2018-06-28 08:14:15',1),(8,11,'21','2013','Editors shall be honoured in position as chair/co-chair for any conferences organized','Author Name','Article Type','url','SEO Title','Annals of Medical & Surgical Case Reports(AMSC)','stes','<p>sddfds</p>\r\n','<p>dfasdfasdf</p>\r\n','','<p>asdfsdfsad</p>\r\n','<p>fasdfasd</p>\r\n','<p>fasdfasdfsd</p>\r\n','<p>dfsdfasdfsd</p>\r\n','1529853128.pdf','1529853128.jpg','',0,1,'2018-06-24 20:42:07',NULL,1),(9,11,'21','2013','We promote all the articles of the Editors that are published in our journals','vaas','Article Type','url','SEO Title','seo keywords','test','<p>dfasdfs</p>\r\n','<p>cvzxcvzxcv</p>\r\n','<p>cvzxcvzxcv</p>\r\n','<p>cvzcxvzxcv</p>\r\n','<p>cvzxcv dfdfadsf</p>\r\n','<p>dfdsf df asd</p>\r\n','<p>dfasdfasdfsd</p>\r\n','1529853190.pdf','1529853190.jpg','',0,1,'2018-06-24 20:43:09',NULL,1),(10,11,'21','2013','The review comments that are given by the editors','Author Name','Article Type','url','seo title','The review comments that are given by the editors','The review comments that are given by the editors','<p>The review comments that are given by the editors</p>\r\n','<p>The review comments that are given by the editors</p>\r\n','<p>The review comments that are given by the editors</p>\r\n','<p>The review comments that are given by the editors</p>\r\n','<p>The review comments that are given by the editors</p>\r\n','<p>The review comments that are given by the editors</p>\r\n','<p>cvzcv</p>\r\n','1529853247.pdf','1529853247.jpg','',0,1,'2018-06-24 20:44:06',NULL,1),(11,11,'21','2013','After one year of due course','After one year of due course','After one year of due course','After-one-year-of-due-course','After one year of due course','After one year of due course','After one year of due course','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','<p>After one year of due course</p>\r\n','1529853304.pdf','1529853304.jpg','',0,1,'2018-06-24 20:45:03',NULL,1),(12,11,'21','2013','Editors can be promoted as senior editor and executive','vasudevareddy reddem','research article','Editors-can-be-promoted-as-senior-editor-and-executive','Editors can be promoted as senior editor and executive','Editors can be promoted as senior editor and executive','Editors can be promoted as senior editor and executive','<p><strong>Peter Catalano, MD1*,</strong> <strong>John Walker, DMD2</strong></p>\r\n\r\n<p>1Department of Otolaryngology, St. Elizabeth&#39;s Medical Center, Tufts University School of Medicine Medical, MA, USA</p>\r\n\r\n<p>2Department of Orthodontics, Bost</p>\r\n','<ol>\r\n <li><strong>Abstract</strong></li>\r\n</ol>\r\n\r\n<p> </p>\r\n\r\n<p>Nasal breathing is a basic and critical function that we rarely think much about, and most would be quite surprised to learn how important and influential it is in growth and development, and a healthy productive life. Fundamentally speaking, nasal breathing provides us with a sense of smell, enhances oxygen absorption by our lungs (via nitric oxide production from the sinuses [1]), warms and humidifies the air we breathe before it reaches the lower airway, and helps filter impurities from the air. However, it is also responsible for proper craniofacial development [2], tempero-mandibular joint function [3], head posture [4] and more. When nasal breathing does not occur for any reason, the body is forced into a series of compromises that prioritize getting oxygen into our blood at the expense of the functions provided by the nasal breathing. Because oxygen is required for survival, we are forced to live with a host of acquired health issues as a consequence of chronic or intermittent mouth breathing. One such consequence, known as Sleep Disordered Breathing [5] (SDB), is becoming pandemic in children, and directly affects their growth, development, intellect, academic performance, behavior, and much more. Let’s begin with a quick review of the causes of nasal obstruction.</p>\r\n','<ol>\r\n <li><strong>The Common Etiologies of Nasal Obstruction</strong></li>\r\n</ol>\r\n\r\n<p>Nasal breathing is an extremely important function, and we have come to appreciate that many health problems develop when nasal breathing is compromised. The etiology of reduced nasal airflow is limited, and includes the following 5 major categories. <strong>Anatomic deformities,</strong> such as a septal deviation, alar collapse, turbinate hypertrophy, or the presence of concha bullosa are relatively common. These problems are typically genetic, but the first two can also be the result of nasal trauma. <strong>Atopy</strong> can cause swelling of the nasal submucosa and mucosal glands, and thus limit airflow. The majority of glands are located in the nasal turbinates and septal swell body, and are a major cause of their hypertrophy [6]. Atopy can be treated with various medications, however, while topical nasal steroids are the preferred treatment, a paradox arises when nasal congestion actually minimizes the access of topical medications to the nose, this markedly decreasing their effectiveness. <strong>A nasal mass or nasal polyps </strong>can also cause nasal obstruction, with symptoms that can include congestion, bloody discharge, facial pain or pressure, headache, and hyposmia.</p>\r\n\r\n<p>These growths can occur in children and adults, be benign or malignant, and have the best prognosis when diagnosed and treated early. <strong>Adenoid hypertrophy </strong>is very common in children and can cause severe nasal obstruction. The adenoids typically shrink by age > 4. Adenoids, like tonsils, are part of our immune system and serve little purpose after age 2 [7]. In addition to nasal obstruction, enlarged adenoids are implicated in the development of chronic serous otitis media and chronic sinusitis in children [8]. <strong>Vasomotor Rhinitis (VMR)</strong> is perhaps the most challenging cause of nasal obstruction and is due to and imbalance in the autonomic nervous system which controls nasal blood flow. This leads to intermittent vascular engorgement on one side or in one part of the nose, and is occasionally non-remitting. Improved breathing may occur sporadically during the day, and symptoms are almost always worse after lying down, especially on one’s side. As with most conditions, there are varying degrees of VMR. These patients often describe alternating nasal congestion, especially when supine. It is also possible to have several of these factors present simultaneously (i.e. anatomic and atopic, or atopy and polyps).</p>\r\n\r\n<ol>\r\n <li><strong>Symptoms Differ in Adults Vs Children</strong></li>\r\n</ol>\r\n\r\n<p>The most common etiology of nasal obstruction differs between adults and children. For the former they are, in order of decreasing frequency, anatomic deformities, allergy, VMR, a nasal mass (adenoid remnants are extremely rare); whereas in the latter the order would be adenoid hypertrophy, anatomic deformities, allergy, VMR, and a nasal mass. Regardless of the cause(s), nasal obstruction in adults and children leads to major physiologic changes that can have serious health consequences. In adults, a common example of the consequence of nasal obstruction is <strong>snoring and Obstructive Sleep Apnea (OSA).</strong> The most common symptom of OSA in adults is daytime fatigue and cognitive impairment, followed by a significantly increased risk for heart disease, high blood pressure, stroke, diabetes, memory loss, and reduced libido [9]. Bruxism and TMJ dysfunction are now also linked to nasal obstruction in sleep [3]. In children, OSA and <strong>Sleep Disordered Breathing (SDB)</strong> leads to very different signs and symptoms that are very common, yet often overlooked or misunderstood. These include mouth breathing, snoring, restless sleep, frequent awakenings, enuresis, lack of focus, head-forward posturing, disinterest in eating, <strong>Attention Deficit Disorder (ADD), Hyperactivity (ADHD)</strong>, poor school performance, anger, and frank aggression [10]. Headaches may also be a significant complaint. Teens can show more of the daytime fatigue seen in adults.</p>\r\n\r\n<p>A key point to remember is that not all symptoms are present in each patient and the exact constellation of symptoms varies widely among patients. For patients with OSA and SDB, more sleep is not helpful because it is during sleep when their heart, brain and other organs are stressed due to oxygen debt. They are also in what is called “sympathetic dystrophy”, where their body is subject to continuous release of adrenaline during sleep. The repetitive adrenaline surge (often called arousals on a polysomnogram) has very different physiologic effects in adults versus children. More on this to follow. CPAP (continuous positive airway pressure) machines, worn on the face or nose, attempt to force oxygen past the nasal obstruction to provide adequate oxygen during sleep. (Figure 1) However, CPAP tolerance in generally quite poor, with large sample data showing few patients using it more than 4 hours a night [11].</p>\r\n\r\n<p>Another very important point is that many patients with OSA or SDB are unaware of their nasal congestion. The two most common reasons for this are that in many patients, <strong>nasal obstruction is positional</strong> and only occurs once the patient is lying down for sleep. It takes anywhere from 30 to 90 minutes for the nasal congestion to develop when supine, and by then the patient is often already asleep and unaware of the problem. The second reason is the variability in subjective appreciation or self-awareness of nasal compromise. Many of these patients have had nasal obstruction since early childhood, thus they have no frame of reference for normal nasal breathing. It is for this very reason that we test children for hearing and visual loss in grade school. Children have no frame of reference for normal hearing or sight.</p>\r\n\r\n<p>Likewise, they have no frame of reference for normal nasal breathing, and unfortunately, there is no standard screening test for them at this time. Another common compensation for nasal obstruction is forward head posturing [10]. In order to mouth breath better, the oral airway needs to be aligned with the trachea, this would produce a chin up, extended head position. (Figure 2) Many children will sleep in an extended head position for this reason. (Figure 3) However, during daytime, we cannot see where we are going in this position. Therefore, we must lean our extended neck forward. This forward head posturing places significant stress on the posterior neck muscles and leads to cervical spine alignment. Poor cervical spine alignment can lead to nerve root compression and mal-alignment of the lower spine. Thus, once the first domino falls, it is uncertain which will be the last domino to fall- i.e. will head forward posturing affect cervical spine position alone, or will it result in lower back problems, gait issues, neck pain, etc. The bottom line is that many children who suffer from SDB go undiagnosed. Awareness for the signs and symptoms as described herein should alert teachers, parents, and physicians to the possibility of SDB in children.</p>\r\n\r\n<ol>\r\n <li><strong>The Primate Studies in Dentistry</strong></li>\r\n</ol>\r\n\r\n<p>That said, the most likely person to diagnose a child with SDB is their family dentist or orthodontist. This is directly related to the fact that nasal breathing has a tremendous impact on cranio-facial development [12], which in turn determines our dental profile and occlusion. <strong>Over 90% of children with crooked teeth, teeth grinding, or malocclusion have compromised nasal breathing </strong>[13]. (Figures 4-6) This important medical fact was first observed in the 1970’s by a Norwegian orthodontist named Dr. Egil Harvold. He noticed that many of his patients with these dental issues had nasal problems and were often mouth breathers. He reported his landmark study in 1981 entitled “<strong>Primate experiments in oral respiration” </strong>[14], where he took two groups of baby monkeys and secured silicone plugs into the nostrils of half of them. He watched as the monkeys grew over the next 6 months and noticed the ones with nasal plugs began to mouth breath by default, which in turn lead to many changes in cranio-facial growth compared to the monkeys without nasal obstruction.</p>\r\n\r\n<p>He reported the narrow maxilla, high arched palate, elongated and downwards rotation of the mandible, and varying degrees of malocclusion were hallmarks of nasal obstruction in children. Not only were skeletal changes being observed, but compensatory changes by the masticator muscles were causing lower jaw malposition. The affected monkeys subsequently developed narrow faces with elongated mandibles, known today as “adenoid facies”. (Figure 7) This finding is the physical hallmark of nasal obstruction in young children, and unfortunately, is an end-stage situation. Interestingly, Harvold then removed the nasal plugs from the monkeys who had them, and noted that many of the occlusion and jaw issues resolved over the next 6 months, therefore proving that restoration of nasal breathing can lead to reversal of these changes</p>\r\n\r\n<p>As a result of compromised nasal breathing, the narrow maxilla cannot accommodate the full complement of upper teeth and a crowded dental pattern develops. (Figure 8) It is important to note that if nasal obstruction is not corrected after the teeth have been repositioned, the once straightened teeth will likely shift again because the forces causing the shift has never been corrected. We frequently see adults and teens requiring a <strong>second, and sometimes third set of braces</strong> for this exact reason. In the past, orthodontists would extract teeth to “un-crowd” the maxilla and use braces to realign the remaining teeth. Historically, orthodontics has been the science of restorative aesthetic dentistry, whereas now it is far more focused on functional upper airway development. Thus, it is also important to diagnose and treat children at an early age because 60% of their facial growth occurs by age 4, 70% by age 5, and 90% by age 12 [15].</p>\r\n\r\n<p>The old philosophy of waiting until a child is a teen or pre-teen to address their crooked teeth is no longer appropriate. Dental extractions to un-crowd the maxilla are now largely abandoned in place of what is called <strong>palatal expansion </strong>[16]. By temporarily attaching an oral device onto the inner table of the alveolar ridge of the maxilla, the orthodontist can perform osteo-distraction, whereby they slowly move the palatal bones apart over a 6-12-month period. (Figure 9) There is no pain as the process is slow and gentle. Palatal expanders can actually bear the child’s initials or name and have become an oral fashion statement for kids. Palatal expansion ultimately causes widening of the constricted maxilla and will allow proper alignment of all teeth using braces without requiring extractions.</p>\r\n\r\n<ol>\r\n <li><strong>Palatal Expansion</strong></li>\r\n</ol>\r\n\r\n<p>It was recently reported by Dr. Melih Motro, a researcher at Boston University’s Goldman School of Dentistry, that for every 1 mm of lateral palatal expansion, the nasal airway increases by 2.4% [17]. This is an extremely important discovery because it shows us how a simple minimally invasive office treatment can begin to correct the craniofacial abnormalities that develop from reduced nasal breathing. Since the palatal bones in children are not yet fused in the midline, it is relatively easy to obtain expansion of 4-10 mm in a relatively short time. Unfortunately, this is not as easy in adults because the palatal suture has already fused. As a result of this study, palatal expansion in children with SDB and dental mal-alignment is now standard practice as the first step in modern orthodontic care [18]. Wearing head-frames or other dental devices designed to correct these orthodontic problems are actually counter-productive and place restrictive forces on a maxilla that is developing in an anterior and inferior direction [18].</p>\r\n\r\n<ol>\r\n <li><strong>ADD/ADHD and Behavioral Changes in Children</strong></li>\r\n</ol>\r\n\r\n<p>It has also been shown with increasing evidence, that approximately 40% of children who suffer from SDB develop ADD, ADHD, and/or a learning disability [19]. Statistically, if a child snores by the age of 8 and is untreated, there is an 80% chance the child will have a permanent 20% reduction in mental capacity [20]. Additionally, if a child is diagnosed with SDB in the first 5 years of life and untreated, they are 60% more likely to require special needs education by age 8 [21]. However, the clinicians diagnosing these children and offering treatment for ADD/ADHD rarely consider nasal obstruction as a cause, and are also unaware that the condition is likely reversible without the need for medications or psychological therapy. ADD and ADHD are the direct result of the concept of sympathetic dystrophy I introduced earlier. Sleep deprived children develop hyperactive behavior, and this phenomenon is witnessed in most young children as their bedtime approaches. Exposing a child to hours of adrenaline over the course of a night leads to restless sleep at night and hours of hyperactive behavior the following day. It is also responsible for their enuresis, frequent awakenings, etc. [22]. In adults, sympathetic dystrophy leads to hypertension, heart disease, stroke, and diabetes. The fatigue and cognitive issues are due to hours of oxygen debt during poor sleep. Note the vastly different phenotypes of SDB and OSA in children versus adults.</p>\r\n\r\n<p>Our group is currently investigating the reversibility of ADD/ADHD in these children. Early results show a significant ability to reverse the condition once normal nasal breathing is established. While the results of this study are not complete, we are extremely encouraged by the early data and the significant number of children whose behavior has been positively affected by reversing mouth breathing tendencies and providing quality sleep. We are currently evaluating the data with respect to the child’s age, gender, and severity of baseline ADD/ADHD to determine if there are any differences in outcomes with respect to these parameters. The ability to reverse or reduce the effects of ADD/ADHD in children is a major breakthrough with profound quality of life, social, and family implications. We have even seen children with mild autism, anxiety, or aggression become highly functioning students to the astonishment of their parents and teachers.</p>\r\n\r\n<ol>\r\n <li><strong>The Role of Tonsils & Adenoids</strong></li>\r\n</ol>\r\n\r\n<p>Thus far, we have described the major causes of compromised nasal breathing, the different phenotypes in children versus adults, and have introduced some treatment options. In the 1980’s it was discovered that hypertrophic tonsils and adenoids were responsible for SDB and OSA, and at that time, it was considered the primary etiology [23]. Hence, many children underwent <strong>T&A</strong> with the goal of correcting their SDB. Did we finally have a cure for SDB in children? (Figure 10) The answer is yes and no! Studies looking at large groups of children with SDB who underwent corrective T&A have shown that about 67% relapse with SDB > 2 years of surgery [24]. This is a very important point that was revealed after longitudinal study of affected children, and shows the importance of long-term follow-up.</p>\r\n\r\n<p>It also highlights a knowledge gap between the dental and medical communities due to a lack of communication and knowledge sharing. I mentioned earlier how Dr. Harvold had discovered the importance of nasal obstruction in craniofacial development in 1981. Yet this information was not well known or shared with medical colleagues, and largely stayed within the dental community. T&A can improve nasal breathing and sleep in many patients, however, if we do not evaluate the other 4 causes of nasal obstruction mentioned earlier, we cannot expect better outcomes for ALL who are affected. Therefore, correcting nasal airflow often requires much more than adenoidectomy [25], however, this fact was lost for years among medical specialists. In the end, the results from T&A were limited, yet helped expose the fact that physicians did not yet have all the pieces to this puzzle, and we did not fully appreciate the complexity of the problem.  </p>\r\n\r\n<p>Shortly after all of this was happening in the dental world, we began acquiring significant experience in improving the nasal airway in adults via a minimally invasive surgical procedure called MIST (minimally invasive sinus technique) [26]. MIST was originally introduced in the mid-1990’s by my mentor, Dr. Reuben Setliff. Reuben did not practice in an academic institution, had no fancy titles, yet he had a unique insight into nasal pathophysiology and how best to correct those suffering from all forms of inflammatory sinus disease. He was a superb surgeon with exceptional skills, insight, and intellect. His minimally invasive concepts have revolutionized nasal surgery and proved that less is often more when it comes to surgery in the nose. His techniques and philosophies were validated in adults and children [27], and provided a safe and effective platform upon which to expand our knowledge. The MIST procedure for airway correction often takes less than 1 hour to complete, and allows patients to return home 2 hours after surgery, and back to work or school in 1 day. There is no external evidence of the surgery, no nasal packing, splints, or sutures, and minimal patient discomfort.</p>\r\n\r\n<ol>\r\n <li><strong>Correction of Nasal Obstruction</strong></li>\r\n</ol>\r\n\r\n<p>Since 2002, we have continued to modify the MIST procedure based on the critical review of our outcomes and feedback from our patients. In the mid-2000’s we introduced a simplified in-office procedure for the correction of nasal valve collapse [28]. In 2015 we published the first article on safe and effective ablation of the septal swell body [29] (Figure 11), which has greatly improved nasal breathing in adults and children. We have learned the true path of nasal breathing within the nose from computational flow studies performed by our colleagues in Singapore [30] and China [31] (Figure 12). Based on these collective advances, we now have the first reported</p>\r\n\r\n<p>results demonstrating that our minimally invasive nasal surgery, used alone as the sole intervention, can cure OSA in 48.7% of adults, regardless of the severity of their apnea, BMI, and gender [32]. An additional 43% of patients showed improvement in their AHI although not enough to be labeled a “cure”.</p>\r\n\r\n<p>Previously, nasal surgery alone had been shown ineffective in correcting OSA with cure rates < 17></p>\r\n\r\n<p>The latter surgery takes about 3-5 hours to complete, prevents the use of MR imaging in the future, and is far more morbid and costly than MIST. Almost all the patients who were not cured after MIST had absolute or relative macroglossia, due to either a large tongue or small oral cavity. Our solution to tongue base prolapse is a device called <strong>Linguaflex</strong>. Linguaflex is an elastic tongue implant that is easily placed into the tongue in about 3-5 minutes using a straight needle [35]. Patients are unaware it is present once placed and it does not interfere with their speech or swallowing. It is adjustable, and easily reversible should the patient want it removed. This device is currently before the FDA awaiting 510K approval, and our data from clinical trials done in SE Asia show OSA cure rates from Linguaflex alone of over 70%. Combined with MIST, we believe we will have the ultimate minimally invasive options to cure OSA, SDB, and snoring in the majority of adult patients.</p>\r\n\r\n<ol>\r\n <li><strong>New Data Supports the Concept</strong></li>\r\n</ol>\r\n\r\n<p>Since 2015, we have applied these minimally invasive surgical principles to children with OSA and SDB, and continue to receive tremendous feedback from the children and their parents. With the use of a 3-dimensional CT imaging program (Figure 13), we have begun to measure the actual airway changes responsible for the subjective improvement in these children. We have found that both minimal throat area (2 dimensional measurement) and volume (3 dimensional space) have both increased an average of 42%, with every child studied showing improvement [36]. We have also just completed another study measuring the volume changes in the nasal airway that occur after our modified MIST procedure, and the average child saw a 46% improvement in nasal airway volume [37], which translates into a 3-4-fold increase in nasal airflow!</p>\r\n\r\n<p>These findings were predictable based on the Starling Resistor Model of airway collapse and also validate the concept. (Figure 14) This model states that when one reduces nasal/upstream airway resistance, you will simultaneously reduce collapse of the pharyngeal airway by reducing negative intraluminal pressure. These ground-breaking results demonstrate that we can now accurately diagnose children with SDB, identify the cause of their compromised nasal breathing, appreciate the breath and variation in their symptoms, and implement an effective treatment strategy that combines palatal expansion with minimally invasive nasal surgery, and T&A in selective individuals. Linguaflex will be a welcome addition to the adult population.</p>\r\n\r\n<p>The last item to mention is VMR, which heretofore has been almost impossible to correct medically or surgically. However, in mid-2017, a company called Arrinex developed and received FDA approval for a new device called Clarifix [38]. Using a cryo-probe strategically placed into the nose, the nerves responsible for autonomic control of nasal blood flow and secretions are literally frozen trans-mucosally in a 30 second application per side. The procedure can be performed in the office using local anesthesia in adults, and in the OR in children. Results are typically seen within 3-6 weeks and 2-year follow-up data shows over 90% success rates. Combined with MIST, we can now treat all causes of nasal obstruction in adults and children in a minimally invasive and effective manner.</p>\r\n\r\n<ol>\r\n <li><strong>More Than Hope</strong></li>\r\n</ol>\r\n\r\n<p> </p>\r\n\r\n<p>This “perfect storm” of understanding the science, appreciating patient variability, creating and adopting technical innovations, and fostering peer-to-peer learning between disciplines, has given us the unique ability to confront and treat the pandemic that is OSA and SDB, and improve the quality of life for most who suffer from them. Our work is just beginning, but we are confident we have “broken the code” on a condition that afflicts millions of people worldwide, and is responsible for a huge health care burden for society. Today there is more than hope.</p>\r\n','<ol>\r\n <li><a href=\"https://europepmc.org/abstract/med/27378676\">Jankowski R, Nguyen, DT, Poussel M, Chenuel B, Gallet P, et al. (2016) Sinusology, European annals of otorhinolaryngology. head and neck diseases 133: 263-268.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28859912\">Torre C, Guilleminault C (2018) Establishment of nasal breathing should be the ultimate goal to secure adequate craniofacial and airway development in children. J Pediatr (Rio J) 94: 101-103.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28805272\">Tay DKL, Pang KP (2018) Clinical phenotype of South-East Asian temporomandibular disorder patients with upper airway resistance syndrome. Journal of oral rehabilitation 45: 25-33.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/22484864\">Bharadwaj R, Ravikumar A, Krishnaswamy NR (2011) Evaluation of craniofacial morphology in patients with obstructive sleep apnea using lateral cephalometry and dynamic MRI. Indian Journal of Dental Research 22: 739-748.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5664014/\">Tolaymat A, Liu Z (2017) Sleep Disorders in Childhood Neurological Diseases. Children 4: 84.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/16564379\">Wexler D, Braverman I, Amar M (2006) Histology of the nasal septal swell body (septal turbinate). Otolaryngology-Head and Neck Surgery 134: 596-600.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28169009\">Ciolek PJ, Xu A, Anne S, Geelan-Hansen K (2017) Role of adenoidectomy in chronic nasal obstruction after nasal steroid therapy failure. American journal of otolaryngology 38: 305-308.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/27442398\">Davcheva-Chakar M, Kaftandzhieva A, Zafirovska B (2015) Adenoid Vegetations–Reservoir of Bacteria for Chronic Otitis Media with Effusion and Chronic Rhinosinusitis. prilozi 36: 71-76.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/26763546\">Campos-Juanatey F, Fernandez-Barriales M, Gonzalez M, Portillo-Martin JA (2017) Effects of obstructive sleep apnea and its treatment over the erectile function: a systematic review. Asian journal of andrology 19: 303.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/25127644\">Hvolby A (2015) Associations of sleep disturbance with ADHD: implications for treatment. ADHD Attention Deficit and Hyperactivity Disorders 7: 1-18.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/27092702\">Hawkins SM, Jensen EL, Simon SL, Friedman NR (2016) Correlates of pediatric CPAP adherence. Journal of clinical sleep medicine: JCSM: official publication of the American Academy of Sleep Medicine 12: 879-884.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/24833165\">Muñoz ICL, Orta PB (2014) Comparison of cephalometric patterns in mouth breathing and nose breathing children. International journal of pediatric otorhinolaryngology 78: 1167-1172.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/26086193\">Šidlauskien? M, Smailien? D, Lopatien? K, ?ekanauskas E, Pribuišien? R, et al. (2015) Relationships between malocclusion, body posture, and nasopharyngeal pathology in pre-orthodontic children. Medical science monitor: international medical journal of experimental and clinical research 21: 1765-1773.</a></li>\r\n <li><a href=\"https://www.sciencedirect.com/science/article/pii/0002941673901620\">Harvold EP, Vargervik K, Chierici G (1973) Primate experiments on oral sensation and dental malocclusions. American journal of orthodontics 63: 494-508.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28468136\">Ant A, Kemaloglu YK, Yilmaz M, Dilci A (2017) Craniofacial Deviations in the Children with Nasal Obstruction. Journal of Craniofacial Surgery 28: 625-628.</a></li>\r\n <li>Shah A, Shah P, Goje SK, Shah R, Modi B (2017) Palatal Expansion and its Effects in Orthodontics. Advanced Journal of Graduate Research 2: 31-36.</li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/25837986\">Motro M, Schauseil M, Ludwig B, Zorkun B, Mainusch S, et al. (2016) Rapid-maxillary-expansion induced rhinological effects: a retrospective multicenter study. European Archives of Oto-Rhino-Laryngology 273: 679-687.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/25790946\">Bellerive A, Montpetit A, El-Khatib H, Carra MC, Remise C, et al. (2015) The effect of rapid palatal expansion on sleep bruxism in children. Sleep and Breathing 19: 1265-1271.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/29487248\">Goyal A, Pakhare AP, Bhatt GC, Choudhary B, Patil R (2018) Association of pediatric obstructive sleep apnea with poor academic performance: A school-based study from India. Lung India 35: 132-136.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/19382210\">Owens JA (2009) Neurocognitive and behavioral impact of sleep disordered breathing in children. Pediatric pulmonology 44: 417-422.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28848496\">Smith DL, Gozal D, Hunter SJ, Kheirandish-Gozal L (2017) Parent-reported behavioral and psychiatric problems mediate the relationship between sleep-disordered breathing and cognitive deficits in school-aged children. Frontiers in neurology 11: 410.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/28165541\">Zaffanello M, Piacentini G, Lippi G, Fanos V, Gasperi E, et al. (2017) Obstructive sleepdisordered breathing, enuresis and combined disorders in children: chance or related association. Swiss Med Wkly 147: 14400.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/1385922\">Laurikainen E, Aitasalo K, Erkinjuntti M, Wanne O (1992) Sleep apnea syndrome in children-secondary to adenotonsillar hypertrophy? Acta Otolaryngol Suppl 492: 38-41.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/24470697\">Huang YS, Guilleminault C, Lee LA, Lin CH, Hwang FM (2014) Treatment outcomes of adenotonsillectomy for children with obstructive sleep apnea: a prospective longitudinal study. Sleep 37: 71-76.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/29447890\">Thadikonda KM, Shaffer AD, Stapleton AL (2018) Outcomes of adenoidectomy-alone in patients less than 3-years old. International Journal of Pediatric Otorhinolaryngology 106:46-49.</a></li>\r\n <li><a href=\"https://link.springer.com/chapter/10.1007/978-1-4939-0265-1_21\">Catalano PJ, Gupta RC, Warman M, Wijewickrama RC (2014) Sinus Surgical Techniques from Caldwell-Luc to MIST. In Diseases of the Sinuses: 389-410.</a></li>\r\n <li>Setliff III RC (1996) Min Imally in Vasive Sin Us Surgery. Otolaryngologic Clinics of North America 29: 115.</li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/19379624\">Dolan RW, Catalano PJ, Innis W, Wanees E (2009) In-office surgical repair of nasal valve stenosis. Am J Rhinol Allergy 23: 111-114.</a></li>\r\n <li><a href=\"https://www.jscimedcentral.com/Otolaryngology/otolaryngology-2-1069.pdf\">Catalano P, Ashmead MG, Carlson D (2015) Radiofrequency ablation of septal swell body. Ann Otolaryngol Rhinol 2: 1069.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/23205221\">Wang de Y, Lee HP, Gordon BR (2012) Impacts of fluid dynamics simulation in study of nasal airflow physiology and pathophysiology in realistic human three-dimensional nose models. Clinical and experimental otorhinolaryngology 5: 181-187.</a></li>\r\n <li><a href=\"https://link.springer.com/article/10.1007/s00405-011-1771-z\">Tan J, Han D, Wang J, Liu T, Wang T, et al. (2012) Numerical simulation of normal nasal cavity airflow in Chinese adult: a computational flow dynamics model. European archives of oto-rhino-laryngology 269: 881-889.</a></li>\r\n <li>Peter Catalano Curative role of MIST in OSA (Publishing in progress).</li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/23575772\">Poirier J, George C, Rotenberg B (2014) The effect of nasal surgery on nasal continuous positive airway pressure compliance. The Laryngoscope 124: 317-319.</a></li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pubmed/29582703\">Woodson BT, Strohl KP, Soose RJ, Gillespie MB, Maurer JT, et al. (2018) Upper Airway Stimulation for Obstructive Sleep Apnea: 5-Year Outcomes. Otolaryngology-Head and Neck Surgery: 0194599818762383.</a></li>\r\n <li>Catalano PJ (2014). U.S. Patent Application No. 14/055,159.</li>\r\n <li><a href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5387252/\">Alsufyani NA, Noga ML, Witmans M, Cheng I, El-Hakim H, et al. (2017) Using cone beam CT to assess the upper airway after surgery in children with sleep disordered breathing symptoms and maxillary-mandibular disproportions: a clinical pilot. Journal of Otolaryngology-Head & Neck Surgery 46: 31.</a></li>\r\n <li>Catalano P, Schlewet M Nasal airway changes after nasal and sinus surgery in children with sleep disordered breathing (Publishing in progress).</li>\r\n <li>ClinicalTrials.gov Identifier: NCT03181594.</li>\r\n</ol>\r\n','','<p><strong>Citation:</strong> Catalano P, Walker J (2018) Understanding Nasal Breathing: The Key to Evaluating and Treating Sleep Disordered Breathing in Adults and Children. Curr Trends Otolaryngol Rhinol: CTOR-121. DOI: 10.29011/ CTOR-121. 000021</p>\r\n','<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" xss=removed summary=\"This is vasudeva reddy\">\r\n <caption>Title</caption>\r\n <tbody>\r\n  <tr>\r\n   <td>helo</td>\r\n   <td>vasu</td>\r\n  </tr>\r\n  <tr>\r\n   <td>deva</td>\r\n   <td>reddy</td>\r\n  </tr>\r\n  <tr>\r\n   <td>hello</td>\r\n   <td>hi</td>\r\n  </tr>\r\n </tbody>\r\n</table>\r\n\r\n<p> </p>\r\n','1529853353.pdf','1529853353.jpg','',0,1,'2018-06-24 20:45:52','2018-06-27 08:12:36',1),(13,14,'20','2018','Clinical Oncology Research Journal','vasudevareddy reddem','Clinical Oncology Research Journal','Clinical -Oncology -Research-Journal','Clinical Oncology Research Journal','Clinical Oncology Research Journal','Clinical Oncology Research Journal','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','<p>Gavin Publishers is an online international open access, peer reviewed journals publishing organization which publishes all kinds of manuscripts (Research, Review, Case Reports, Editorials, Brief Reviews, Research Highlights, etc.,) from the fields related to Clinical, Pharmaceutical, Medical Sciences and Engineering.</p>\r\n\r\n<p>Our passion for serving the scientific community drove us to publish our journals through an open access mode (free to read and free to download). We strive hard to spread the knowledge and to broaden the scope of Gavin Publishers Journals worldwide. We welcome distinguished researchers, scholar, academicians and people involved in and around the fields of Clinical, Biological, Pharmaceutical, Medical, Life Sciences and Engineering with open arms to come forward to share and to gain the knowledge by an open access mode and generate a platform for emerging scholars and researchers where they can build a huge forum of scientific community at global level.</p>\r\n','1530204214.pdf','1530204214.jpg','',0,1,'2018-06-28 22:13:33',NULL,1);
-
-/*Table structure for table `journal_banners` */
-
-DROP TABLE IF EXISTS `journal_banners`;
-
-CREATE TABLE `journal_banners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `baneer_image` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `alt_tags` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-/*Data for the table `journal_banners` */
-
-insert  into `journal_banners`(`id`,`journal_id`,`baneer_image`,`title`,`alt_tags`,`status`,`create_at`,`update_at`,`create_by`) values (2,5,'1529253750.jpg','ghdfghdgh','bvbxcvb',1,'2018-06-17 21:59:39','2018-06-25 20:58:39',1),(3,11,'1530111927.jpg','like  that','dfgdg',1,'2018-06-27 20:29:43','2018-06-27 20:35:26',1),(4,11,'1530111918.jpg','vasudevareddy','cbvbvc',1,'2018-06-27 20:30:22','2018-06-27 20:35:18',1),(5,14,'1530202500.jpg','Clinical Oncology Research Journal (CORJ)','Clinical Oncology Research Journal (CORJ)',1,'2018-06-28 21:44:59','2018-06-28 21:44:59',1),(6,14,'1530202513.jpg','Clinical Oncology Research Journal (CORJ)','Clinical Oncology Research Journal (CORJ)',1,'2018-06-28 21:45:12','2018-06-28 21:45:12',1),(7,14,'1530202527.jpg','Clinical Oncology Research Journal (CORJ)','Clinical Oncology Research Journal (CORJ)',1,'2018-06-28 21:45:26','2018-06-28 21:45:26',1);
-
-/*Table structure for table `journal_editors` */
-
-DROP TABLE IF EXISTS `journal_editors`;
-
-CREATE TABLE `journal_editors` (
-  `j_e_id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `name` varchar(250) DEFAULT NULL,
+CREATE TABLE `plant` (
+  `p_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int(11) DEFAULT NULL,
+  `disposal_plant_name` varchar(250) DEFAULT NULL,
+  `disposal_plant_id` varchar(250) DEFAULT NULL,
+  `mobile` varchar(250) DEFAULT NULL,
   `email` varchar(250) DEFAULT NULL,
-  `phone` varchar(250) DEFAULT NULL,
-  `designation` varchar(250) DEFAULT NULL,
-  `position` varchar(250) DEFAULT NULL,
+  `address1` varchar(250) DEFAULT NULL,
+  `address2` varchar(250) DEFAULT NULL,
+  `city` varchar(250) DEFAULT NULL,
+  `state` varchar(250) DEFAULT NULL,
   `country` varchar(250) DEFAULT NULL,
-  `university` varchar(250) DEFAULT NULL,
-  `priority` varchar(250) DEFAULT NULL,
-  `biography` text,
+  `pincode` varchar(250) DEFAULT NULL,
+  `captcha` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`j_e_id`)
+  PRIMARY KEY (`p_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
-/*Data for the table `journal_editors` */
+/*Data for the table `plant` */
 
-insert  into `journal_editors`(`j_e_id`,`journal_id`,`journal_cat_id`,`image`,`name`,`email`,`phone`,`designation`,`position`,`country`,`university`,`priority`,`biography`,`status`,`create_at`,`update_at`,`create_by`) values (2,12,22,'1529334192.jpg','vasudevareddy reddem','cvb@gmail.com','8500050944','des','Editor in cheif','Aruba','bxcvbxcvb','1','testing',1,'2018-06-18 20:33:11','2018-06-24 16:52:09',1),(3,12,22,'1529336187.jpg','bxcvbxcvb','vcbxcvb@gmail.com','8500050944','des','Editorial board member','Australia','cvzxcv','1','fgfgdfg',1,'2018-06-18 20:38:50','2018-06-24 16:51:46',1),(4,11,21,'1529838815.jpg','vaasudevareddy','vaasudevareddy@gmail.com','8500050944','Designation','Editor in cheif','United States','us','1','biography',1,'2018-06-24 16:43:34','2018-06-25 20:57:21',1),(5,11,21,'1530112368.jpg','vasudevareddy reddem','admin@gmail.com','8500050944','designation','Editor in cheif','Iceland','University','1','vbxvbxcvbxcvb',1,'2018-06-27 20:42:48','2018-06-27 20:42:48',1),(6,11,21,'1530112397.jpg','vasudevareddy reddem','admin@gmail.com','8500050944','designation','Editor in cheif','Bahrain','University','3','cvcvzxcv',1,'2018-06-27 20:43:17','2018-06-27 20:43:17',1),(7,11,21,'1530112449.jpg','bayapu reddy','bayapu@gmail.com','8500050944','designation','Editorial board member','Andorra','University','5','Images with high resolutions must be submitted by the author. Authors should take full responsibility for copyrighted images during submission and publication process.Clinical and Medical Imaging is an open access journal publishing research/original submissions, reviews, brief reports, case studies, rapid communications, letters to the editor etc. related to basic, experimental and clinical aspects of research.',1,'2018-06-27 20:44:08','2018-06-27 21:20:33',1),(8,14,20,'1530202990.jpg','prudhvi raj','prudhviraj@gmail.com','8500050944','designation','Editor in cheif','United States','University','1','Clinical Oncology Research Journal (CORJ) welcomes distinguished team of cancer researchers, scholars, scientists, medical/surgical/clinical practioners who have hardcore motivation for this ongoing oncology research to generate forum at a global stage and express, exchanges their updates for its reader as the single most credible, authoritative resource for disseminating significant clinical oncology',1,'2018-06-28 21:53:10','2018-06-28 21:53:10',1),(9,14,20,'1530203974.jpg','vasudevareddy reddem','admin@gmail.com','8500050944','designation','Executive editor','Bangladesh','University','5','So, keeping this as strategy the journal maintains rapid publication of high quality results in cancer research through original Research articles, Short research communication, Reviews, Mini reviews, Image articles, Case studies,  Hypothesis, Method and protocol, New instruments and regimens, Letter to the editor by electronic format of publications.',1,'2018-06-28 22:09:34','2018-06-28 22:09:34',1),(10,14,20,'1530204007.jpg','name','test@gmail.com','8500050944','designation','Editor in cheif','Bahrain','University','5','So, keeping this as strategy the journal maintains rapid publication of high quality results in cancer research through original Research articles, Short research communication, Reviews, Mini reviews, Image articles, Case studies,  Hypothesis, Method and protocol, New instruments and regimens, Letter to the editor by electronic format of publications.',1,'2018-06-28 22:10:06','2018-06-28 22:10:06',1),(11,14,20,'1530204035.jpg','bayapu reddy','bayapu@gmail.com','65656345656','designation','Executive editor','Bangladesh','University','2','So, keeping this as strategy the journal maintains rapid publication of high quality results in cancer research through original Research articles, Short research communication, Reviews, Mini reviews, Image articles, Case studies,  Hypothesis, Method and protocol, New instruments and regimens, Letter to the editor by electronic format of publications.',1,'2018-06-28 22:10:35','2018-06-28 22:10:35',1),(12,14,20,'','vcvxcv','vasu@gmail.com','8500050944','designation','Editor in cheif','Austria','University','2','cvcv   vbvbxbxvb',1,'2018-07-04 20:21:00','2018-07-04 20:21:00',1);
+insert  into `plant`(`p_id`,`a_id`,`disposal_plant_name`,`disposal_plant_id`,`mobile`,`email`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`create_by`) values (11,24,'navya','24','9502710179','navya@gmail.com','nagole','nagole','hyd','Telangana','India','500035','',1,'2018-06-19 12:24:27',1),(12,33,'awm consulting ltd','33','9949905189','awm@gmail.com','tpt','tpt','tpt','Andhra Pradesh','India','517502','',1,'2018-07-12 12:28:18',1);
 
-/*Table structure for table `journals` */
+/*Table structure for table `plant_bio_medical_waste` */
 
-DROP TABLE IF EXISTS `journals`;
+DROP TABLE IF EXISTS `plant_bio_medical_waste`;
 
-CREATE TABLE `journals` (
-  `j_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` int(11) DEFAULT NULL,
-  `baneer_image` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `subject` varchar(250) DEFAULT NULL,
-  `alt_tags` varchar(250) DEFAULT NULL,
-  `seo_title` varchar(250) DEFAULT NULL,
-  `seo_url` varchar(250) DEFAULT NULL,
-  `seo_keywords` varchar(250) DEFAULT NULL,
-  `seo_description` text,
-  `key_words` text,
-  `description` text,
-  `prices` text,
+CREATE TABLE `plant_bio_medical_waste` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hos_bio_m_id` int(11) DEFAULT NULL,
+  `no_of_bags` varchar(250) DEFAULT NULL,
+  `no_of_kgs` varchar(250) DEFAULT NULL,
+  `color_type` varchar(250) DEFAULT NULL,
+  `weight_type` varchar(250) DEFAULT NULL,
+  `edited` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`j_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `invoice_file` varchar(250) DEFAULT NULL,
+  `invoice_name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
-/*Data for the table `journals` */
+/*Data for the table `plant_bio_medical_waste` */
 
-insert  into `journals`(`j_id`,`category`,`baneer_image`,`title`,`subject`,`alt_tags`,`seo_title`,`seo_url`,`seo_keywords`,`seo_description`,`key_words`,`description`,`prices`,`status`,`create_at`,`update_at`,`create_by`) values (5,20,'1529837540.jpg','Advanced Research in Biosensor and Bioelectronics(ARBB)','Advanced Research in Biosensor and Bioelectronics(ARBB)','Advanced Research in Biosensor and Bioelectronics(ARBB)','Advanced Research in Biosensor and Bioelectronics(ARBB)','Advanced Research-in-Biosensor-and-Bioelectronics','Advanced Research in Biosensor and Bioelectronics(ARBB)','Advanced Research in Biosensor and Bioelectronics(ARBB)','<p>Advanced Research in Biosensor and Bioelectronics(ARBB)</p>\r\n','<p>Advanced Research in Biosensor and Bioelectronics(ARBB)</p>\r\n','Advanced Research in Biosensor and Bioelectronics(ARBB)',1,'2018-06-24 16:22:20','2018-06-24 16:22:20',1),(6,20,'1529837589.jpg','Annals of Medical & Surgical Case Reports(AMSC)','Annals of Medical & Surgical Case Reports(AMSC)','Annals of Medical & Surgical Case Reports(AMSC)','Annals of Medical & Surgical Case Reports(AMSC)','Annals-of-Medical-&-Surgica-ase-Reports','Annals of Medical & Surgical Case Reports(AMSC)','Annals of Medical & Surgical Case Reports(AMSC)','<p>Annals of Medical & Surgical Case Reports(AMSC)</p>\r\n','<p>Annals of Medical & Surgical Case Reports(AMSC)</p>\r\n','Annals of Medical & Surgical Case Reports(AMSC)',1,'2018-06-24 16:23:09','2018-06-24 16:23:09',1),(7,20,'1529837614.jpg','Annals of Pediatrics and Child Care','Annals of Pediatrics and Child Care','Annals of Pediatrics and Child Care','Annals of Pediatrics and Child Care','Annals-of-Pediatrics-and-Child-Care','Annals of Pediatrics and Child Care','Annals of Pediatrics and Child Care','<p>Annals of Pediatrics and Child Care</p>\r\n','<p>Annals of Pediatrics and Child Care</p>\r\n','Annals of Pediatrics and Child Care',1,'2018-06-24 16:23:34','2018-06-24 16:23:34',1),(9,20,'1529837664.jpg','Current Updates in Dermatological Problems (CUDP)','Current Updates in Dermatological Problems (CUDP)','Current Updates in Dermatological Problems (CUDP)','Current Updates in Dermatological Problems (CUDP)','Current Updates in Dermatological Problems ','Current Updates in Dermatological Problems (CUDP)','Current Updates in Dermatological Problems (CUDP)','<p>Current Updates in Dermatological Problems (CUDP)</p>\r\n','<p>Current Updates in Dermatological Problems (CUDP)</p>\r\n','Current Updates in Dermatological Problems (CUDP)',1,'2018-06-24 16:24:23','2018-06-24 16:24:23',1),(10,20,'1529837689.jpg','Dentistry and Dental Ailments Journal (DDAJ)','Dentistry and Dental Ailments Journal (DDAJ)','Dentistry and Dental Ailments Journal (DDAJ)','Dentistry and Dental Ailments Journal (DDAJ)','Dentistry and Dental Ailments Journal','Dentistry and Dental Ailments Journal (DDAJ)','Dentistry and Dental Ailments Journal (DDAJ)','<p>Dentistry and Dental Ailments Journal (DDAJ)</p>\r\n','<p>Dentistry and Dental Ailments Journal (DDAJ)</p>\r\n','Dentistry and Dental Ailments Journal (DDAJ)',1,'2018-06-24 16:24:49','2018-06-24 16:24:49',1),(11,21,'1529837715.jpg','Insights of Cardiology: Open Access (ICOA)','Insights of Cardiology: Open Access (ICOA)','Insights of Cardiology: Open Access (ICOA)','Insights of Cardiology: Open Access (ICOA)','Insights of Cardiology: Open Access ','Insights of Cardiology: Open Access (ICOA)','Insights of Cardiology: Open Access (ICOA)','<p>Insights of Cardiology: Open Access (ICOA)</p>\r\n','<p>Insights of Cardiology: Open Access (ICOA)</p>\r\n','Insights of Cardiology: Open Access (ICOA)',1,'2018-06-24 16:25:14','2018-06-24 16:25:14',1),(12,22,'1530107701.jpg','International Journal of Education Advancement (IJEA)','International Journal of Education Advancement (IJEA)','International Journal of Education Advancement (IJEA)','International Journal of Education Advancement (IJEA)','International Journal of Education Advancement','International Journal of Education Advancement (IJEA)','International Journal of Education Advancement (IJEA)','<p>International Journal of Education Advancement (IJEA)</p>\r\n','<p>International Journal of Education Advancement (IJEA)</p>\r\n','International Journal of Education Advancement (IJEA)',1,'2018-06-24 16:25:43','2018-06-27 19:25:00',1),(13,22,'1530107424.jpg','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','Journal of Biomarker Research and Studies','<h3><a href=\"https://www.gavinpublishers.com/journals/journals_details/health-medical-informatics-open-access.html#\"><strong>Highlighted Topics</strong></a></h3>\r\n\r\n<ul>\r\n <li>Clinical Informatics</li>\r\n <li>Applied Clinical Informatics</li>\r\n <li>Computational Health Informatics</li>\r\n <li>Consumer Health Informatics</li>\r\n <li>Dental Informatics</li>\r\n <li>Health Informatics Applications</li>\r\n <li>Health Informatics</li>\r\n <li>Health Information Management</li>\r\n <li>Human Bioinformatics</li>\r\n <li>Innovation Studies</li>\r\n <li>Medical Informatics Applications</li>\r\n</ul>\r\n\r\n<p> </p>\r\n','<h3><a href=\"https://www.gavinpublishers.com/journals/journals_details/health-medical-informatics-open-access.html#\"><strong>About the Journal</strong></a></h3>\r\n\r\n<p>Health & Medical Informatics Open Access is an open access online journal provides an international medium comprising of extensive range of current research in the field of Health & Medical informatics. Health and Medical informatics is a multidisciplinary field that uses Health Information Technology (HIT) to improve health care by the combination of higher quality and efficiency. This Journal emphasizes the evaluation of systems in healthcare setting creating a unique platform to collect and share valuable studies that gives a wide knowledge for researchers/students in the field.</p>\r\n\r\n<h3><strong>Aim and Scope</strong></h3>\r\n\r\n<p>Health & Medical Informatics Open Accessis a peer-reviewed scientific journal covers high quality manuscripts that broadens the scope of the journal.</p>\r\n\r\n<p>The Journal aims to serve the scientific community with information provided and related research and take it to international level. In order to achieve this, it is important to bring into light disseminate outstanding research and development results to the world instantaneously the latest advances in the domain of health &medical informatics. Journal intended to collect precise data in the fields of health care informatics, healthcare management,informatics and telematics,information systems and all related aspects.</p>\r\n\r\n<p>  </p>\r\n\r\n<p>All published articles are assigned to Digital Object Identifier <a name=\"_GoBack\"></a>(DOI) - Crossref.</p>\r\n\r\n<p> </p>\r\n\r\n<p>All published articles are permanently archived and available at Gavin Publishers website in HTML and PDF formats.</p>\r\n','Journal of Biomarker Research and Studies',1,'2018-06-24 16:26:07','2018-06-27 20:03:33',1),(14,20,'1530202418.jpg','Clinical Oncology Research Journal ','Oncology ','Clinical Oncology Research Journal ','clinical-Oncology- Research -journal ','clinical-Oncology- Research -journal ','clinical-Oncology- Research -journal ','clinical-Oncology- Research -journal ','<p><strong>Coverage Topics</strong></p>\r\n\r\n<p>Manuscripts are highly encouraged to be submitted topics mentioned with:</p>\r\n\r\n<ul>\r\n <li>Cancer signs and symptoms</li>\r\n <li>Causes of cancer</li>\r\n <li>Carcinogenesis</li>\r\n <li>Cancer epigenetics</li>\r\n <li>Cancer and risk factors</li>\r\n <li>Cancer prevention</li>\r\n <li>Cancer screening</li>\r\n <li>Cancer immunotherapy</li>\r\n <li>Cancer and medication</li>\r\n <li>Complementary and alternative cancer treatments</li>\r\n <li>Cancer survivor and health care</li>\r\n <li>Cancer research</li>\r\n <li>Diet and cancer</li>\r\n <li>Epidemiology of cancer</li>\r\n <li>Geriatric oncology</li>\r\n <li>Gynecologic oncology</li>\r\n <li>Management of cancer and oncology</li>\r\n <li>Pediatric oncology</li>\r\n <li>Surgical oncology</li>\r\n <li>Radiation oncology</li>\r\n <li>Oncogenomics</li>\r\n <li>Types of cancer and symptoms</li>\r\n</ul>\r\n','<p><strong>Scope:</strong></p>\r\n\r\n<p>Clinical Oncology Research Journal (CORJ) welcomes distinguished team of cancer researchers, scholars, scientists, medical/surgical/clinical practioners who have hardcore motivation for this ongoing oncology research to generate forum at a global stage and express, exchanges their updates for its reader as the single most credible, authoritative resource for disseminating significant clinical oncology research. So, keeping this as strategy the journal maintains rapid publication of high quality results in cancer research through original Research articles, Short research communication, Reviews, Mini reviews, Image articles, Case studies,  Hypothesis, Method and protocol, New instruments and regimens, Letter to the editor by electronic format of publications.</p>\r\n\r\n<p>The journal provides all its scholarly based archives in pdf/html format with free access and downloads.</p>\r\n','test',1,'2018-06-28 21:43:38','2018-06-28 21:43:38',1);
+insert  into `plant_bio_medical_waste`(`id`,`hos_bio_m_id`,`no_of_bags`,`no_of_kgs`,`color_type`,`weight_type`,`edited`,`status`,`create_at`,`create_by`,`invoice_file`,`invoice_name`) values (39,19,'12','25','Red','Kgs',0,1,'2018-07-05 13:20:21',24,NULL,NULL),(40,19,'12','25','Red','Kgs',0,1,'2018-07-06 10:29:02',24,'geetha_40.pdf','geetha invoice'),(41,19,'12','24','Red','Kgs',1,1,'2018-07-06 10:37:48',24,'geetha_41.pdf','geetha invoice'),(42,19,'12','25','Red','Kgs',0,1,'2018-07-06 10:44:40',24,NULL,NULL),(43,19,'12','25','Red','Kgs',1,1,'2018-07-06 10:47:44',24,NULL,NULL),(44,19,'12','25','Red','Kgs',1,1,'2018-07-06 10:52:51',24,NULL,NULL),(45,19,'12','25','Red','Kgs',1,1,'2018-07-06 10:53:03',24,NULL,NULL),(46,22,'12','32','Blue','Kgs',1,1,'2018-07-06 11:16:17',24,NULL,NULL),(47,22,'4','5','Yellow','Kgs',1,1,'2018-07-06 11:16:35',24,'pooja Hospitals_47.pdf','pooja Hospitals invoice'),(48,22,'2','800','White (ppc)','Grams',1,1,'2018-07-06 11:16:44',24,NULL,NULL),(49,20,'20','20','Blue','Kgs',1,1,'2018-07-07 11:13:47',24,NULL,NULL),(50,21,'2','22','Red','Kgs',1,1,'2018-07-07 15:14:52',24,NULL,NULL),(51,21,'1','23','Yellow','Kgs',1,1,'2018-07-07 15:15:06',24,'landmark_51.pdf','landmark invoice'),(52,21,'1','13','White (ppc)','Kgs',1,1,'2018-07-07 15:15:32',24,NULL,NULL),(53,21,'1','13','White (ppc)','Kgs',1,1,'2018-07-07 15:15:37',24,'landmark_53.pdf','landmark invoice'),(54,23,'1','2.5','Yellow','Kgs',1,1,'2018-07-10 11:47:13',24,NULL,NULL),(55,24,'1','3','Yellow','Kgs',1,1,'2018-07-14 11:03:56',24,NULL,NULL),(56,24,'1','3','Yellow','Kgs',1,1,'2018-07-14 11:04:20',24,NULL,NULL),(57,22,'25','30','Red','Grams',1,1,'2018-07-20 16:16:06',24,NULL,NULL);
 
-/*Table structure for table `media_partners` */
+/*Table structure for table `roles` */
 
-DROP TABLE IF EXISTS `media_partners`;
+DROP TABLE IF EXISTS `roles`;
 
-CREATE TABLE `media_partners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `alt_tags` varchar(250) DEFAULT NULL,
+CREATE TABLE `roles` (
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `create` datetime DEFAULT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `media_partners` */
+/*Data for the table `roles` */
 
-insert  into `media_partners`(`id`,`title`,`image`,`alt_tags`,`status`,`create_at`,`update_at`,`create_by`) values (4,'vasu','1529678018.jpg','nhfg hgh fgsfgsf',1,'2018-06-26 08:14:19','2018-06-22 20:02:57',1);
+/*Table structure for table `trucks` */
 
-/*Table structure for table `menuscript_list` */
+DROP TABLE IF EXISTS `trucks`;
 
-DROP TABLE IF EXISTS `menuscript_list`;
-
-CREATE TABLE `menuscript_list` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
-  `firstName` varchar(250) DEFAULT NULL,
-  `lastName` varchar(250) DEFAULT NULL,
-  `university` varchar(250) DEFAULT NULL,
-  `country` varchar(250) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
-  `phone` varchar(250) DEFAULT NULL,
-  `menuscript_title` varchar(250) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
-  `message` varchar(250) DEFAULT NULL,
-  `journel` varchar(250) DEFAULT NULL,
-  `abstract` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
-/*Data for the table `menuscript_list` */
-
-insert  into `menuscript_list`(`id`,`title`,`firstName`,`lastName`,`university`,`country`,`email`,`phone`,`menuscript_title`,`address`,`message`,`journel`,`abstract`,`image`,`create_at`) values (1,'MR','reddem','vasudevareddy','jntua','Algeria','test@gmail.com','8500050944','cvcv','cvxcvxcvxcv ','cxvzxcvxzcv','Journal of Gastroenterology and Digestive Disorders (JGDD)','test',NULL,'2018-06-14 23:22:23'),(2,'MR','vasudevareddy','htrtytry','University','India','vasu@gmail.com','8500050944','menu ttile','hyd','i like  that','Annals of Medical & Surgical Case Reports(AMSC)','dgfg','','2018-06-16 14:07:09'),(3,'MR','vasudevareddy','htrtytry','University','India','vasu@gmail.com','8500050944','menu ttile','hyd','i like  that','Annals of Medical & Surgical Case Reports(AMSC)','dgfg','','2018-06-16 14:09:21'),(4,'MR','vasudevareddy','htrtytry','University','India','vasu@gmail.com','8500050944','menu ttile','hyd','i like  that','Annals of Medical & Surgical Case Reports(AMSC)','dgfg','','2018-06-16 14:10:41'),(5,'MR','vasudevareddy','htrtytry','University','India','vasu@gmail.com','8500050944','menu ttile','hyd','i like  that','Annals of Medical & Surgical Case Reports(AMSC)','dgfg','','2018-06-16 14:11:24'),(6,'MR','vasudevareddy','htrtytry','University','India','vasu@gmail.com','8500050944','menu ttile','hyd','i like  that','Annals of Medical & Surgical Case Reports(AMSC)','dgfg','','2018-06-16 14:11:49');
-
-/*Table structure for table `news_article` */
-
-DROP TABLE IF EXISTS `news_article`;
-
-CREATE TABLE `news_article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
+CREATE TABLE `trucks` (
+  `t_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int(11) DEFAULT NULL,
+  `role` int(1) DEFAULT '3',
+  `truck_reg_no` varchar(250) DEFAULT NULL,
+  `owner_name` varchar(250) DEFAULT NULL,
+  `insurence_number` varchar(250) DEFAULT NULL,
+  `owner_mobile` varchar(250) DEFAULT NULL,
+  `driver_name` varchar(250) DEFAULT NULL,
+  `driver_lic_no` varchar(250) DEFAULT NULL,
+  `driver_lic_bad_no` varchar(250) DEFAULT NULL,
+  `driver_mobile` varchar(250) DEFAULT NULL,
+  `route_no` varchar(250) DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL,
-  `link` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-/*Data for the table `news_article` */
-
-insert  into `news_article`(`id`,`title`,`description`,`link`,`status`,`create_at`,`update_at`,`create_by`) values (6,'dfgfgsfg','vasudevareddy','link',1,'2018-06-26 08:15:22','2018-06-22 20:26:44',1),(7,'title','sdfgsdf','gsdfgsdfg',1,'2018-06-26 08:15:30','2018-06-22 20:29:12',1);
-
-/*Table structure for table `newsletters` */
-
-DROP TABLE IF EXISTS `newsletters`;
-
-CREATE TABLE `newsletters` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) DEFAULT NULL,
   `email` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT '1',
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `newsletters` */
-
-insert  into `newsletters`(`id`,`name`,`email`,`status`,`create_at`,`update_at`) values (1,'vasudevareddy reddem','vasu@gmail.com',1,'2018-06-22 23:15:03','2018-06-26 08:26:44'),(2,'ghghd','ghdgfhf@gmail.com',0,'2018-06-22 23:15:56','2018-06-22 23:30:56'),(3,'vasudevareddy reddem','cvbbnvbn@gmail.com',1,'2018-06-28 22:54:06','2018-06-28 22:54:06');
-
-/*Table structure for table `published_gallery` */
-
-DROP TABLE IF EXISTS `published_gallery`;
-
-CREATE TABLE `published_gallery` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` varchar(250) DEFAULT NULL,
-  `alt_tags` varchar(250) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
-/*Data for the table `published_gallery` */
-
-insert  into `published_gallery`(`id`,`image`,`alt_tags`,`status`,`create_at`,`update_at`,`create_by`) values (2,'1529603448.jpg','testing',1,'2018-06-26 08:16:34','2018-06-21 23:20:47',1);
-
-/*Table structure for table `reviewerboard` */
-
-DROP TABLE IF EXISTS `reviewerboard`;
-
-CREATE TABLE `reviewerboard` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(45) DEFAULT NULL,
-  `journal` varchar(45) DEFAULT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `university` varchar(250) DEFAULT NULL,
+  `address1` varchar(250) DEFAULT NULL,
+  `address2` varchar(250) DEFAULT NULL,
+  `city` varchar(250) DEFAULT NULL,
+  `state` varchar(250) DEFAULT NULL,
   `country` varchar(250) DEFAULT NULL,
-  `reviewer_board` text,
-  `designation` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
+  `pincode` varchar(250) DEFAULT NULL,
+  `captcha` varchar(250) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
-  `craete_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
-/*Data for the table `reviewerboard` */
-
-insert  into `reviewerboard`(`id`,`category`,`journal`,`name`,`university`,`country`,`reviewer_board`,`designation`,`image`,`status`,`craete_at`,`update_at`,`create_by`) values (2,'20','14','vasudeva','vasu','Armenia','fgsdfgsdf',NULL,NULL,1,'2018-06-29 08:10:03','0000-00-00 00:00:00',1),(3,'20','14','name','us','Afghanistan','tetsing  hhdghdghdfgh',NULL,NULL,1,'2018-06-29 08:11:32','2018-06-24 17:21:54',1),(4,'20','5','vasudevareddy reddem','University','Australia','fkjkgjkgjghj',NULL,NULL,1,'2018-06-29 07:56:20','2018-06-29 07:56:20',1),(5,'20','14','gsfg','fgsdfg','Armenia','fgsfgsdf',NULL,'1530240586.jpg',1,'2018-06-29 08:19:45','2018-06-29 08:18:30',1),(6,'20','14','vbxcvb','vcbxvcb','Armenia','vbxvbxcv',NULL,'1530240604.jpg',1,'2018-06-29 08:20:04','2018-06-29 08:20:04',1);
-
-/*Table structure for table `special_issue` */
-
-DROP TABLE IF EXISTS `special_issue`;
-
-CREATE TABLE `special_issue` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `journal_id` int(11) DEFAULT NULL,
-  `journal_cat_id` int(11) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `details` text,
-  `status` int(11) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`t_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
-/*Data for the table `special_issue` */
+/*Data for the table `trucks` */
 
-insert  into `special_issue`(`id`,`journal_id`,`journal_cat_id`,`title`,`details`,`status`,`create_at`,`update_at`,`create_by`) values (10,14,20,'tyty','<p><img src=\"data:image/png;base64,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\" data-filename=\"download11.png\" style=\"width: 128px;\">tyrtyrt</p>',1,'2018-07-06 15:00:16','2018-07-06 15:00:16',1);
+insert  into `trucks`(`t_id`,`a_id`,`role`,`truck_reg_no`,`owner_name`,`insurence_number`,`owner_mobile`,`driver_name`,`driver_lic_no`,`driver_lic_bad_no`,`driver_mobile`,`route_no`,`description`,`email`,`address1`,`address2`,`city`,`state`,`country`,`pincode`,`captcha`,`status`,`create_at`,`create_by`) values (12,22,3,'Ts01ap2345','sow','1234','9502710179','sri','12345','1','9502710179','','test','sow@gmail.com','nagole','nagole','hyd','Telangana','India','500035','',2,'2018-06-19 12:10:12',1),(13,23,3,'Ts01ap2345','bhanu','1234','9502710179','sri','12345','1','9502710179','','test','bhanu@gmail.com','nagole','nagole','hyd','Telangana','India','500035','',1,'2018-06-19 12:19:13',1),(14,26,3,'TS01ap2548','priya','4457547452','9875412354','Raju','2354484785','58','9552455452','','','raju@gmail.com','7-78','SR Nagar','Hyderabad','Telangana','India','502484','',2,'2018-06-21 15:48:51',1),(15,31,3,'TS01RR2311','RAGHU','6767676','9878787878','SAI','878776','09','8789898987','','','raghuram7577@gmail.com','PLOT 66','PLOT 66','hyderabad','Andhra Pradesh','india','515001','',1,'2018-07-10 15:35:35',1),(16,32,3,'ap03td3674','balakristna','123456','9949905189','ravi','12','12','1234567891','','','ravi@gmail.com','tpt','tpt','tpt','Andhra Pradesh','India','517502','',1,'2018-07-12 12:26:50',1);
 
-/*Table structure for table `testimonial` */
+/*Table structure for table `waste` */
 
-DROP TABLE IF EXISTS `testimonial`;
+DROP TABLE IF EXISTS `waste`;
 
-CREATE TABLE `testimonial` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) DEFAULT NULL,
-  `professional` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `description` text,
-  `status` int(11) DEFAULT NULL,
+CREATE TABLE `waste` (
+  `w_id` int(11) NOT NULL AUTO_INCREMENT,
+  `truck_id` varchar(250) DEFAULT NULL,
+  `route_id` varchar(250) DEFAULT NULL,
+  `gen_waste_in_Kg` varchar(250) DEFAULT NULL,
+  `gen_waste_in_qty` varchar(250) DEFAULT NULL,
+  `inf_pla_waste_in_Kg` varchar(250) DEFAULT NULL,
+  `inf_pla_waste_in_qty` varchar(250) DEFAULT NULL,
+  `inf_waste_in_Kg` varchar(250) DEFAULT NULL,
+  `inf_waste_in_qty` varchar(250) DEFAULT NULL,
+  `glassware_waste_in_kg` varchar(250) DEFAULT NULL,
+  `glassware_waste_in_qty` varchar(250) DEFAULT NULL,
+  `total_waste` varchar(250) DEFAULT NULL,
+  `status` int(11) DEFAULT '1',
   `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
   `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`w_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
-/*Data for the table `testimonial` */
+/*Data for the table `waste` */
 
-insert  into `testimonial`(`id`,`name`,`professional`,`image`,`description`,`status`,`create_at`,`update_at`,`create_by`) values (2,'vasudevareddy reddem','profinal','1529423720.jpg','gdfgsfgdsf',1,'2018-06-19 21:25:19','2018-06-26 08:19:15',1),(3,'vasudevareddy reddem','profinal','1529424434.jpg','gdfgsfgdsf',1,'2018-06-19 21:35:03','0000-00-00 00:00:00',1);
-
-/*Table structure for table `updates` */
-
-DROP TABLE IF EXISTS `updates`;
-
-CREATE TABLE `updates` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) DEFAULT NULL,
-  `updates` text,
-  `status` int(11) DEFAULT NULL,
-  `create_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  `create_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `updates` */
-
-insert  into `updates`(`id`,`title`,`updates`,`status`,`create_at`,`update_at`,`create_by`) values (2,'this  vasu ','reddem',1,'2018-06-27 08:05:52','2018-06-26 08:20:14',1),(3,'like that psoot','vasu',1,'2018-06-19 22:28:10',NULL,1);
+insert  into `waste`(`w_id`,`truck_id`,`route_id`,`gen_waste_in_Kg`,`gen_waste_in_qty`,`inf_pla_waste_in_Kg`,`inf_pla_waste_in_qty`,`inf_waste_in_Kg`,`inf_waste_in_qty`,`glassware_waste_in_kg`,`glassware_waste_in_qty`,`total_waste`,`status`,`create_at`,`create_by`) values (15,'12','','3','3','3','3','3','3','3','3','36',1,'2018-06-19 14:28:03',24),(16,'12','','5','2','5','2','5','2','5','2','40',1,'2018-07-07 15:20:59',24);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
