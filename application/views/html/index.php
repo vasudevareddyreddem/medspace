@@ -56,8 +56,12 @@
                         </div>
 						<div class="form-group">
                      
-                            <div class="pull-right">
-                               <a target="_blnak" href="<?php echo base_url('privacypolicy'); ?>">Privacy policy</a>
+                            <div class="pull-left">
+                             
+                                 <a target="_blnak" href="<?php echo base_url('privacypolicy'); ?>">Privacy policy</a>
+                            </div>
+							<div class="pull-right">
+                             
                                <a href="<?php echo base_url('admin/forgotpassword'); ?>">Forgot Password?</a>
                             </div>
                         </div>
