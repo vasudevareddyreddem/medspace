@@ -127,7 +127,22 @@
 					
 					<?php if($details['role']==1){ ?>
                    
-                    <li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('user/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">accessibility</i>
+                            <span>Add User</span>
+                        </a>
+                        <ul class="ml-menu">
+                           <li>
+								<a href="<?php echo base_url('user/add'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add Users</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url('user/lists'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>List</a>
+							</li>
+                            
+                        </ul>
+                    </li> 
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">accessibility</i>
                             <span>Health Care Facility</span>
