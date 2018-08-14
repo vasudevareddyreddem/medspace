@@ -2,8 +2,9 @@
                        
 				<div   style="width:189px;height:189px;border:1px solid #ddd;overflow:hidden;">
 					<div style=" ;padding:10px;">
+					 <div  style="margin:3px 20px">Bio Medical Waste </div>
 							 <div style="margin:3px 20px">Date: <span><?php echo date('d- M- Y',strtotime(htmlentities($bio_medicaldetails['create_at'])));?></span></div>
-										 <div  style="margin:3px 20px">Bio Medical Waste </div>
+										
 							 <div class="" id="printThis<?php echo htmlentities($bio_medicaldetails['id']); ?>">
 								<img style="width:auto; height: 80px;margin-left:40px;" src="<?php echo base_url('assets/bio_medical_barcodes/'.$bio_medicaldetails['barcode']);?>" alt="bar code">
 										 <div style="margin:2px;font-size:11px;	"><?php echo htmlentities($bio_medicaldetails['color_type']); ?> <?php echo htmlentities($bio_medicaldetails['no_of_kgs']); ?>.<?php echo htmlentities($bio_medicaldetails['weight_type']); ?> [Bags <?php echo htmlentities($bio_medicaldetails['no_of_bags']); ?>]</div>
