@@ -60,6 +60,15 @@ class Hospital_model extends CI_Model
 		return $this->db->get()->result_array();
 		
 	}
+	public function get_bio_medical_details($b_id){
+		
+		$this->db->select('bio_medical_waste.*,admin.profile_pic,hospital_list.hospital_name,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode')->from('bio_medical_waste');
+		$this->db->join('hospital_list ', 'hospital_list.a_id = bio_medical_waste.create_by', 'left');
+		$this->db->join('admin ', 'admin.a_id = bio_medical_waste.create_by', 'left');
+		$this->db->where('bio_medical_waste.id',$b_id);
+		return $this->db->get()->row_array();
+		
+	}
 	
 	
 

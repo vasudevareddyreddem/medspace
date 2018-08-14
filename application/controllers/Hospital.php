@@ -466,6 +466,7 @@ class Hospital extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	
 	public function addbio_medical_post()
 	{	
 			if($this->session->userdata('userdetails'))

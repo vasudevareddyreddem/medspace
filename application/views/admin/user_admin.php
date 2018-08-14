@@ -6,62 +6,50 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add User</h2>
+                            <h2>Edit User</h2>
                        
                         </div>
                         <div class="body">
 						
-                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('user/addpost'); ?>">
-						
+                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('user/editpost'); ?>">
+						<input  type="hidden" name="a_id" id="a_id" value="<?php echo $user_detail['a_id']; ?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Name</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" />
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $user_detail['name']; ?>" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Mobile Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile Number" />
+                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile Number" value="<?php echo $user_detail['mobile']; ?>" />
                             </div>
                         </div>
 						
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address" />
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email address" value="<?php echo $user_detail['email_id']; ?>" />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Password</label>
-                            <div class="col-lg-5">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Confirm password</label>
-                            <div class="col-lg-5">
-                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Enter Confirm Password " />
-                            </div>
-                        </div>
+                        
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address 1</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address 1 " />
+                                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter Address 1 " value="<?php echo $user_detail['address1']; ?>"  />
                             </div>
                         </div> 
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Address 2</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address 2 " />
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Address 2 " value="<?php echo $user_detail['address2']; ?>"  />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">City</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="city" name="city" placeholder="Enter City " />
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Enter City " value="<?php echo $user_detail['city']; ?>"  />
                             </div>
                         </div> 
 						<div class="form-group">
@@ -71,7 +59,7 @@
 								  <select class="form-control" required="required" name="state" id="state" style="width:100%;">
 								  <option value = "">Select State</option>
 									<?php foreach($states as $key=>$state):
-											if(isset($hospital_detail['state'])&& $hospital_detail['state'] == $state):
+											if(isset($user_detail['state'])&& $user_detail['state'] == $key):
 											$selected ='selected=selected';
 											else : 
 											$selected = '';
@@ -85,13 +73,13 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Country</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country " />
+                                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country "  value="<?php echo $user_detail['country']; ?>" />
                             </div>
                         </div>
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Pincode</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " />
+                                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " value="<?php echo $user_detail['pincode']; ?>"  />
                             </div>
                         </div> 
 
@@ -99,7 +87,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Add User</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">update User</button>
                                 
                             </div>
                         </div>

@@ -32,7 +32,7 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==0){
 				
 				$this->load->view('admin/adduser');
 				$this->load->view('html/footer');
@@ -51,7 +51,7 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==0){
 				
 				$data['user_list']=$this->User_model->get_all_users_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
@@ -72,7 +72,7 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==0){
 				
 					$user_id=base64_decode($this->uri->segment(3));
 					$status=base64_decode($this->uri->segment(4));
@@ -85,23 +85,23 @@ class User extends CI_Controller {
 						$updatehospital=array(
 							'status'=>$sta,
 							);
-							$update=$this->Hospital_model->update_hospital_details($user_id,$updatehospital);
+							$update=$this->User_model->update_admin_details($user_id,$updatehospital);
 							if(count($update)>0){
 								$admin_detail=array(
 								'status'=>$sta,
 								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
+								$this->User_model->update_admin_details($details['a_id'],$admin_detail);
 								if($status==1){
-									$this->session->set_flashdata('success','HCF successfully deactivated');
+									$this->session->set_flashdata('success','User successfully deactivated');
 
 								}else{
-									$this->session->set_flashdata('success','Hcf sucessfully activated');
+									$this->session->set_flashdata('success','User sucessfully activated');
 
 								}
-								redirect('hospital/lists');
+								redirect('user/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								redirect('user/edit/'.base64_encode($post['hos_id']));
 								}
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -118,24 +118,20 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==0){
 				
-						$hos_id=base64_decode($this->uri->segment(3));
-						$details=$this->Hospital_model->get_hospital_details($hos_id);
+						$user_id=base64_decode($this->uri->segment(3));
+						$details=$this->User_model->get_user_details($user_id);
 						$updatehospital=array(
 							'status'=>2,
 							);
-							$update=$this->Hospital_model->update_hospital_details($hos_id,$updatehospital);
+							$update=$this->User_model->update_admin_details($user_id,$updatehospital);
 							if(count($update)>0){
-								$admin_detail=array(
-								'status'=>2,
-								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','HCF successfully deleted');
-								redirect('hospital/lists');
+								$this->session->set_flashdata('success','User successfully deleted');
+								redirect('user/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+								redirect('user/lists');
 								}
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -152,12 +148,12 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1 || $admindetails['role']==2){
+			if($admindetails['role']==0){
 				
-				$hos_id=base64_decode($this->uri->segment(3));
-				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($hos_id);
+				$a_id=base64_decode($this->uri->segment(3));
+				$data['user_detail']=$this->User_model->get_user_details($a_id);
 				//echo "<pre>";print_r($data);exit;
-				$this->load->view('admin/edithospital',$data);
+				$this->load->view('admin/user_admin',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -174,7 +170,7 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
+			if($admindetails['role']==0){
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
 				$check_email=$this->Admin_model->email_check_details($post['email']);
@@ -227,100 +223,70 @@ class User extends CI_Controller {
 			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1 || $admindetails['role']==2){
+			if($admindetails['role']==0){
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
-				$details=$this->Hospital_model->get_hospital_details($post['hos_id']);
-				if($details['email']!=$post['email']){
+				$details=$this->User_model->get_user_details($post['a_id']);
+				if($details['email_id']!=$post['email']){
 					$check_email=$this->Admin_model->email_check_details($post['email']);
 						if(count($check_email)>0){
 								$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
 								if($admindetails['role']==2){
 										redirect('dashboard/profile');
 									}else{
-										redirect('hospital/edit/'.base64_encode($post['hos_id']));
+										redirect('user/edit/'.base64_encode($post['a_id']));
 									}
 								
 						}else{
 							$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'type'=>isset($post['type'])?$post['type']:'',
-							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
+							'name'=>isset($post['name'])?$post['name']:'',
+							'email_id'=>isset($post['email'])?$post['email']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
-							'no_of_beds'=>isset($post['no_of_beds'])?$post['no_of_beds']:'',
-							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
 							'city'=>isset($post['city'])?$post['city']:'',
 							'state'=>isset($post['state'])?$post['state']:'',
 							'country'=>isset($post['country'])?$post['country']:'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
-							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
-							$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
+							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 							if(count($update)>0){
-								$admin_detail=array(
-								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-								'email_id'=>isset($post['email'])?$post['email']:'',
-								);
-								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hcf details Successfully updated');
-									if($admindetails['role']==2){
-										redirect('dashboard/profile');
-									}else{
-										redirect('hospital/lists');
-									}
+								$$this->session->set_flashdata('success','User details Successfully updated');
+										redirect('user/lists');
+									
 								
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-									if($admindetails['role']==2){
-										redirect('dashboard/profile');
-									}else{
-										redirect('hospital/edit/'.base64_encode($post['hos_id']));
-									}
+									redirect('user/edit/'.base64_encode($post['a_id']));
+									
 								
 								}
 						}
 					
 				}else{
 					$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-							'type'=>isset($post['type'])?$post['type']:'',
-							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
+							'name'=>isset($post['name'])?$post['name']:'',
+							'email_id'=>isset($post['email'])?$post['email']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
-							'no_of_beds'=>isset($post['no_of_beds'])?$post['no_of_beds']:'',
-							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
 							'city'=>isset($post['city'])?$post['city']:'',
 							'state'=>isset($post['state'])?$post['state']:'',
 							'country'=>isset($post['country'])?$post['country']:'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
-							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 						);
 						//echo "<pre>";print_r($updatehospital);
-						$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
+						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
-							$admin_detail=array(
-								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
-								'email_id'=>isset($post['email'])?$post['email']:'',
-								);
-							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 							$this->session->set_flashdata('success','HCF details duccessfully updated');
-							if($admindetails['role']==2){
-									redirect('dashboard/profile');
-							}else{
-								redirect('hospital/lists');
-								}
+							redirect('user/lists');
 							
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
-							if($admindetails['role']==2){
-									redirect('dashboard/profile');
-							}else{
+							
 								redirect('hospital/edit/'.base64_encode($post['hos_id']));
-								}
+							
 							
 						}
 				}

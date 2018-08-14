@@ -83,6 +83,8 @@
             </div>
         </div>
     </nav>
+	
+	<?php //echo '<pre>';print_r($details);exit; ?>
     <!-- #Top Bar -->
     <section>
         <!-- Left Sidebar -->
@@ -103,8 +105,8 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-						<?php if($details['role']!=1){  ?>
-                            <li><a href="<?php echo base_url('dashboard/profile'); ?>"><i class="material-icons">person</i>Profile</a></li>
+						<?php if($details['role']!=1 && $details['role']!=0){  ?>
+                            <li><a href="<?php echo base_url('dashboard/profile'); ?>"><i class="material-icons">person</i>Prgofile</a></li>
                         <?php } ?>
 							<li role="seperator" class="divider"></li>
                             <li><a href="<?php echo base_url('dashboard/changepassword'); ?>"><i class="material-icons">input</i>Change Password</a></li>
@@ -124,14 +126,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-					
-					<?php if($details['role']==1){ ?>
-                   
-                    <li class="<?php if(isset($u_url) && $u_url==base_url('user/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
+					<?php if($details['role']==0){ ?>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('user/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">accessibility</i>
                             <span>Add User</span>
-                        </a>
+                        </a> 
                         <ul class="ml-menu">
                            <li>
 								<a href="<?php echo base_url('user/add'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add Users</a>
@@ -142,6 +142,9 @@
                             
                         </ul>
                     </li> 
+					<?php }else if($details['role']==1){  ?>
+                   
+                    
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">accessibility</i>
