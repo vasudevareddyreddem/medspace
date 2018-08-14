@@ -13,7 +13,7 @@
 					</div>
                 </div>
 				<div class="clearfix">&nbsp;</div>
-				<button style="background-color:#00b0e4;color:#fff;padding:5px;border-radius:5px;">print</button>
+				<button style="border:none;background-color:#00b0e4;color:#fff;padding:5px;border-radius:5px;">print</button>
      
 
 
