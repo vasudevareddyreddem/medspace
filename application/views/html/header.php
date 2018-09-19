@@ -253,6 +253,15 @@
                         </a>
                        
                     </li>
+					
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/bio_medicallist')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/bio_medical_view')){echo "active"; } ?>">
+
+                        <a href="<?php echo base_url('hospital/bio_medicallist'); ?>" class="">
+                            <i class="material-icons">filter_hdr</i>
+                            <span> Bio Medical Waste List</span>
+                        </a>
+                       
+                    </li>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/garbage_list')){echo "active"; } ?>">
 
                         <a href="<?php echo base_url('hospital/garbage_list'); ?>" class="">

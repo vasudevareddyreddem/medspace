@@ -466,6 +466,36 @@ class Hospital extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function bio_medicallist()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==2){
+				
+				$data['hospital_reports']=$this->Admin_model->get_cbwtfreport_list();
+				$data['bio_medical_list']=$this->Hospital_model->get_bio_medical_waste_list($admindetails['a_id']);
+
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('bio_medical/bio_medical_list',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public function addbio_medical_post()
 	{	
