@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Biomedical waste List
+                                Biomedical Waste List
                             </h2>
                          
                         </div>
