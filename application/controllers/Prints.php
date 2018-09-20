@@ -41,7 +41,26 @@ class Prints extends CI_Controller {
 		}
 	}
 	
-	
+	public function barcode()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				$h_id=base64_decode($this->uri->segment(3));
+				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($h_id);
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/print',$data);
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	
 	
 }
