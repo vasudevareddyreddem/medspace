@@ -113,7 +113,12 @@
                             <label class="col-lg-3 control-label">Barcode</label>
                             <div class="col-lg-5">
                                <img style="max-height:550px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>">
+							   <br>
+							   <a target="_blank" href="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']); ?>">Print Barcode</a>
+								
                             </div>
+						
+							
                         </div>
 
                         <div class="form-group">
@@ -131,6 +136,7 @@
             
             
     </section>
+	
 	<script type="text/javascript">
 $(document).ready(function() {
    

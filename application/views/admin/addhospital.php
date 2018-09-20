@@ -51,7 +51,7 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Route Number</label>
                             <div class="col-lg-5">
-                                <input type="text" class="form-control" name="Route Number" id="Route Number" placeholder="Enter Route Number" />
+                                <input type="text" class="form-control" name="route_number" id="route_number" placeholder="Enter Route Number" />
                             </div>
                         </div>
 
