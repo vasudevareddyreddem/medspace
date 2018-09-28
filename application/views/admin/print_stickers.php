@@ -47,17 +47,24 @@
                                     <option value = "">White</option>
                                 </select>  
                             </div>
+                        </div>     
+					
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Sticker Size</label>
+                            <div class="col-lg-5">
+                                <select class="form-control" required="required" name="type" id="type" style="width:100%;">
+                                    <option value = "">Select</option>
+                                    <option value = "">100 x 40 (mm)</option>
+                                    <option value = "">50 x 35 (mm)</option>
+                                    
+                                </select>  
+                            </div>
                         </div> 
 
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">No.of Sheets</label>
-                            <div class="col-lg-5">
-                                <input type="number" class="form-control" name="" id="" placeholder="Enter required no.of sheets" />
-                            </div>
-                        </div>
+                      
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Print</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Genarate Stickers</button>
                             </div>
                         </div>
                     </form>
