@@ -11,40 +11,42 @@
                         </div>
                         <div class="body">
 						
-                    <form id="defaultForm" method="post" class="form-horizontal" action="">
+                    <form id="defaultForm" method="post" target="_blank" class="form-horizontal" action="<?php echo base_url('prints/stickers_print'); ?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">HCF</label>
                             <div class="col-lg-5">
-                                <select class="form-control" required="required" name="type" id="type" style="width:100%;">
-                                    <option value = "">Select</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
+                                <select class="form-control" name="hcf_name" id="hcf_name" style="width:100%;">
+                                    <option value="">Select</option>
+									<?php if(isset($hcf_list) && count($hcf_list)>0){ ?>
+										<?php  foreach($hcf_list as $list){ ?>
+										<option value ="<?php echo $list['h_id']; ?>"><?php echo $list['hospital_name']; ?></option>
+									   <?php } ?>
+                                   <?php } ?>
                                 </select>  
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">CBWTF</label>
                             <div class="col-lg-5">
-                                <select class="form-control" required="required" name="type" id="type" style="width:100%;">
-                                    <option value = "">Select</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
-                                    <option value = "">xxxxxx</option>
+                                <select class="form-control"  name="cbwtf_id" id="cbwtf_id" style="width:100%;">
+                                     <option value="">Select</option>
+									<?php if(isset($cbwtf_list) && count($cbwtf_list)>0){ ?>
+										<?php  foreach($cbwtf_list as $list){ ?>
+										<option value ="<?php echo $list['p_id']; ?>"><?php echo $list['disposal_plant_name']; ?></option>
+									   <?php } ?>
+                                   <?php } ?>
                                 </select>  
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Category</label>
                             <div class="col-lg-5">
-                                <select class="form-control" required="required" name="type" id="type" style="width:100%;">
+                                <select class="form-control" name="category_type" id="category_type" style="width:100%;">
                                     <option value = "">Select</option>
-                                    <option value = "">Yellow</option>
-                                    <option value = "">Red</option>
-                                    <option value = "">Blue</option>
-                                    <option value = "">White</option>
+                                    <option value = "Yellow">Yellow</option>
+                                    <option value = "Red">Red</option>
+                                    <option value = "Blue">Blue</option>
+                                    <option value = "White">White</option>
                                 </select>  
                             </div>
                         </div>     
@@ -52,10 +54,10 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Sticker Size</label>
                             <div class="col-lg-5">
-                                <select class="form-control" required="required" name="type" id="type" style="width:100%;">
+                                <select class="form-control"  name="sticker_size" id="sticker_size" style="width:100%;">
                                     <option value = "">Select</option>
-                                    <option value = "">100 x 40 (mm)</option>
-                                    <option value = "">50 x 35 (mm)</option>
+                                    <option value = "4">100 x 40 (mm)</option>
+                                    <option value = "2">50 x 35 (mm)</option>
                                     
                                 </select>  
                             </div>
@@ -82,157 +84,34 @@ $(document).ready(function() {
     $('#defaultForm').bootstrapValidator({
 //     
         fields: {
-            hospital_name: {
+            hcf_name: {
                  validators: {
 					notEmpty: {
-						message: 'Health Care Facility is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Health Care Facility can only consist of Alphanumeric, space and dot'
+						message: 'HCF is required'
 					}
 				}
             },
 			
-			type: {
+			cbwtf_id: {
                  validators: {
 					  notEmpty: {
-						message: 'Type is required'
+						message: 'CBWTF is required'
 					}
                 }
             },
-			route_number: {
+			category_type: {
                  validators: {
 					  notEmpty: {
-						message: 'Route Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]*$/,
-					message:'Route Number can only consist of digits'
+						message: 'Category is required'
 					}
                 }
             },
-            
-            mobile: {
-                validators: {
-					 notEmpty: {
-						message: 'Mobile Number is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]{10}$/,
-					message:'Mobile Number must be 10 digits'
-					}
-                }
-            },
-			no_of_beds: {
-                validators: {
-					 notEmpty: {
-						message: 'No of beds is required'
-					},
-                    regexp: {
-					regexp:  /^[0-9]*$/,
-					message:'No of beds must be 10 digits'
-					}
-                }
-            },
-            email: {
-                 validators: {
-					notEmpty: {
-						message: 'Email is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-					message: 'Please enter a valid email address. For example johndoe@domain.com.'
-					}
-				}
-            },
-            password: {
-                 validators: {
-					notEmpty: {
-						message: 'Password is required'
-					},
-					stringLength: {
-                        min: 6,
-                        message: 'Password  must be at least 6 characters'
-                    },
-					regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~'"\\|=^?$%*)(_+-]*$/,
-					message: 'Password wont allow <>[]'
-					}
-				}
-            },
-            confirmPassword: {
-                validators: {
-						 notEmpty: {
-						message: 'Confirm Password is required'
-					},
-					identical: {
-						field: 'password',
-						message: 'password and confirm Password do not match'
-					}
-					}
-            },
-            address1: {
+			sticker_size: {
                  validators: {
 					  notEmpty: {
-						message: 'Address 1 is required'
-					},
-                    regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message:'Address 1 wont allow <> [] = % '
+						message: 'Sticker Size is required'
 					}
                 }
-            },
-			address2: {
-                 validators: {
-					  notEmpty: {
-						message: 'Address 2 is required'
-					},
-                    regexp: {
-					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
-					message:'Address 2 wont allow <> [] = % '
-					}
-                }
-            },	
-			city: {
-                 validators: {
-					  notEmpty: {
-						message: 'City is required'
-					},
-                    regexp: {
-					regexp: /^[a-zA-Z]+$/,
-					message:'City can only consist of alphabets',
-					}
-                }
-            },
-			state: {
-                 validators: {
-					  notEmpty: {
-						message: 'State is required'
-					}
-                }
-            },
-			country: {
-                 validators: {
-					  notEmpty: {
-						message: 'Country is required'
-					},
-                    regexp: {
-					regexp: /^[a-zA-Z]+$/,
-					message:'Country can only consist of alphabets',
-					}
-                }
-            },
-            pincode: {
-                  validators: {
-					notEmpty: {
-						message: 'Pin code is required'
-					},
-					regexp: {
-					regexp: /^[0-9]{5,7}$/,
-					message: 'Pin code  must be  5 to 7 characters'
-					}
-				}
             }
         }
     });

@@ -620,7 +620,10 @@ class Plant extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-				$this->load->view('admin/print_stickers.php');
+				$data['hcf_list']=$this->Plant_model->get_hcf_plant_list($admindetails['a_id']);
+				$data['cbwtf_list']=$this->Plant_model->get_cbwtf_list($admindetails['a_id']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/print_stickers',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -633,25 +636,7 @@ class Plant extends CI_Controller {
 		}
 	}
     
-    public function print_pdf_design()
-	{	
-			if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
-				
-				$this->load->view('admin/print_pdf_design.php');
-				$this->load->view('html/footer');
-			}else{
-				$this->session->set_flashdata('error',"you don't have permission to access");
-				redirect('dashboard');
-			}
-
-		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	}
+    
 	
 	
 	

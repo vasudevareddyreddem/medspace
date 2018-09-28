@@ -12,7 +12,7 @@ class Plant_model extends CI_Model
 	public function get_all_plants_list($admin_id){
 		$this->db->select('*')->from('plant');		
 		$this->db->where('create_by', $admin_id);
-		$this->db->where('status !=', 2);
+		$this->db->where('status!=',2);
 		$this->db->order_by('p_id','desc');
         return $this->db->get()->result_array();	
 	}
@@ -82,6 +82,31 @@ class Plant_model extends CI_Model
 		$this->db->where('id',$id);
 		return $this->db->update('plant_bio_medical_waste',$data);
 		
+	}
+	
+	/* print strickes purpose*/
+	public  function get_hcf_plant_list($admin_id){
+		$this->db->select('h_id,a_id,hospital_name')->from('hospital_list');
+		$this->db->where('status',1);
+		$this->db->where('create_by', $admin_id);
+		return $this->db->get()->result_array();
+	}
+	public  function get_cbwtf_list($admin_id){
+		$this->db->select('p_id,a_id,disposal_plant_name')->from('plant');
+		$this->db->where('status',1);
+		$this->db->where('create_by', $admin_id);
+		return $this->db->get()->result_array();
+	}
+	
+	public  function get_hcf_details($hcf_id){
+		$this->db->select('h_id,a_id,hospital_name,barcode,barcodetext')->from('hospital_list');
+		$this->db->where('h_id',$hcf_id);
+		return $this->db->get()->row_array();
+	}
+	public  function get_cbwtf_details($cbwtf_id){
+		$this->db->select('p_id,a_id,disposal_plant_name')->from('plant');
+		$this->db->where('p_id',$cbwtf_id);
+		return $this->db->get()->row_array();
 	}
 	
 	
