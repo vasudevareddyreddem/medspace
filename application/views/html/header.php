@@ -187,8 +187,19 @@
 							<li>
 								<a href="<?php echo base_url('plant/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> CBWTF List</a>
 							</li>
-                            
                         </ul>
+                    </li>
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_stickers')){echo "active"; } ?>">
+                        <a href="<?php echo base_url('plant/print_stickers'); ?>">
+                            <i class="material-icons">ac_unit</i>
+                            <span>Print Stickers</span>
+                        </a>
+                    </li>
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_pdf_design')){echo "active"; } ?>">
+                        <a href="<?php echo base_url('plant/print_pdf_design'); ?>">
+                            <i class="material-icons">ac_unit</i>
+                            <span>Print Design Pattern</span>
+                        </a>
                     </li>
 					
 					<?php }else if($details['role']==3){  ?>
