@@ -286,7 +286,7 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','Hcf details Successfully updated');
+								$this->session->set_flashdata('success','User details successfully updated');
 									if($admindetails['role']==2){
 										redirect('dashboard/profile');
 									}else{
@@ -329,7 +329,7 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-							$this->session->set_flashdata('success','HCF details duccessfully updated');
+							$this->session->set_flashdata('success','User details duccessfully updated');
 							if($admindetails['role']==2){
 									redirect('dashboard/profile');
 							}else{
@@ -496,7 +496,7 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-				$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list();
+				$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('bio_medical/overall_hospital_waste',$data);
 				$this->load->view('html/footer');

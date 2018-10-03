@@ -66,7 +66,7 @@
                       
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Genarate Stickers</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Generate Stickers</button>
                             </div>
                         </div>
                     </form>

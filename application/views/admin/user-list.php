@@ -17,9 +17,9 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Mobile</th>
-											<th>Date</th>
+											<th>Date & Time</th>
                                             <th>Status</th>
-                                            <th>&nbsp;</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -33,7 +33,7 @@
                                             <td><?php echo htmlentities($list['email_id']); ?></td>
                                             
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
-                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
+                                            <td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<a href="<?php echo base_url('user/edit/'.base64_encode($list['a_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 

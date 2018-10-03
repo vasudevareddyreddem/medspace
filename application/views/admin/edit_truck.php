@@ -62,12 +62,7 @@
                                 <input type="text" class="form-control" name="driver_mobile" id="driver_mobile" placeholder="Driver Mobile"  value="<?php echo isset($truck_detail['driver_mobile'])?$truck_detail['driver_mobile']:'';?>" />
                             </div>
                         </div>
-						<div class="form-group">
-                            <label class="col-lg-3 control-label"> Description</label>
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Description"  value="<?php echo isset($truck_detail['description'])?$truck_detail['description']:'';?>" />
-                            </div>
-                        </div>
+						
 						<hr>
 						 <div class="form-group">
                             <label class="col-lg-3 control-label">Email address</label>
@@ -234,17 +229,7 @@ $(document).ready(function() {
                 }
             },
 			
-			description: {
-               validators: {
-					notEmpty: {
-						message: 'Description is required'
-					},
-					regexp: {
-					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Description can only consist of Alphanumeric, space and dot'
-					}
-				}
-            },
+			
 			 email: {
                  validators: {
 					notEmpty: {

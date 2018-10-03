@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-							Add Biomedical waste Details</h2>
+							Add Biomedical Waste Details</h2>
                        
                         </div>
 						<div class="body">

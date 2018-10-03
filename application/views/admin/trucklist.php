@@ -19,7 +19,8 @@
                                             <th>Driver Name</th>
                                             <th>Driver Licence No</th>
                                             <th>Join Date & Time</th>
-											<th>&nbsp;</th>
+                                            <th>Status</th>
+											<th>Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -33,10 +34,12 @@
                                             <td><?php echo htmlentities($list['owner_name']); ?></td>
                                             <td><?php echo htmlentities($list['driver_name']); ?></td>
                                             <td><?php echo htmlentities($list['driver_lic_no']); ?></td>
-                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
-                                            
+                                            <td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
+                                              <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
+
                                             <td>
 											<a href="<?php echo base_url('garbage/edit/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 
+											<a href="<?php echo base_url('garbage/status/'.base64_encode($list['t_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==0){ echo "Active"; }else{ echo "Deactive";} ?></a> 
 											
 											<a href="<?php echo base_url('garbage/delete/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Delete</a> 
 											</td>

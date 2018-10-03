@@ -15,15 +15,15 @@
                                     <thead>
                                         <tr>
 											<th>HCF Name</th>
-											<th>Yellow No of Bags</th>
-                                            <th>Yellow No of kgs</th>											 
-											<th>Red No of Bags</th>
-                                            <th>Red No of kgs</th>
-                                            <th>Blue No of Bags</th> 
-											<th>Blue No of Kgs</th>											
-                                            <th>White No of Bags</th>											
+											<th>No of Yellow bags</th>
+                                            <th>No of kgs (Yellow )</th>											 
+											<th>No of Red Bags</th>
+                                            <th>No of kgs (Red)</th>
+                                            <th>No of Blue Bags</th> 
+											<th>No of Kgs (Blue)</th>											
+                                            <th>No of White Bags</th>											
 
-											<th>White No of Kgs</th>
+											<th>No of Kgs (White)</th>
                                             
                                         </tr>
                                     </thead>

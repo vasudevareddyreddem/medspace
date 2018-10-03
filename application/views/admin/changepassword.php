@@ -36,7 +36,7 @@
                             </div>
                         </div>
 						<div class="form-group">
-                            <label class="col-lg-3 control-label">Confirm password</label>
+                            <label class="col-lg-3 control-label">Confirm Password</label>
                             <div class="col-lg-5">
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  />
                             </div>
@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">change password</button>
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Change Password</button>
                                 
                             </div>
                         </div>

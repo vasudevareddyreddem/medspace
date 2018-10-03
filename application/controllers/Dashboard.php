@@ -144,7 +144,7 @@ class Dashboard extends CI_Controller {
 						
 						//echo $this->db->last_query();exit;
 						if(count($upddateuser)>0){
-							$this->session->set_flashdata('success',"password successfully updated");
+							$this->session->set_flashdata('success',"Password successfully updated");
 							redirect('dashboard/changepassword');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -157,7 +157,7 @@ class Dashboard extends CI_Controller {
 				}
 				
 			}else{
-				$this->session->set_flashdata('error',"Old password are not matched");
+				$this->session->set_flashdata('error',"Old password didn't match");
 				redirect('dashboard/changepassword');
 			}
 				

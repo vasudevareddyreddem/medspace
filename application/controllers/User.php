@@ -192,6 +192,7 @@ class User extends CI_Controller {
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 						'status'=>1,
 						'role'=>1,
+						'create_at'=>date('Y-m-d H:i:s'),
 						'create_by'=>$admindetails['a_id']
 					);
 					$hos_save=$this->Admin_model->save_admin($addhos);
@@ -279,7 +280,7 @@ class User extends CI_Controller {
 						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
-							$this->session->set_flashdata('success','HCF details duccessfully updated');
+							$this->session->set_flashdata('success','User details duccessfully updated');
 							redirect('user/lists');
 							
 						}else{

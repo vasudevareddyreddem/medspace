@@ -70,10 +70,10 @@ class Hospital_model extends CI_Model
 		
 	}
 	
-	public  function get_hospital_wise_waste_list(){
+	public  function get_hospital_wise_waste_list($admin_id){
 		$this->db->select('hospital_waste.h_id,hospital_list.hospital_name')->from('hospital_waste');
 		$this->db->join('hospital_list ', 'hospital_list.h_id = hospital_waste.h_id', 'left');
-
+		$this->db->where('hospital_list.create_by', $admin_id);
 		$this->db->group_by('hospital_waste.h_id');
 		$return=$this->db->get()->result_array();
 		foreach($return as $list){

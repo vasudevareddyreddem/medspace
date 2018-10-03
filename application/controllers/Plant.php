@@ -115,10 +115,10 @@ class Plant extends CI_Controller {
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
 									if($status==1){
-									$this->session->set_flashdata('success','CBWTF Successfully deactivated');
+									$this->session->set_flashdata('success','CBWTF successfully deactivated');
 
 									}else{
-									$this->session->set_flashdata('success','CBWTF Successfully activated');
+									$this->session->set_flashdata('success','CBWTF successfully activated');
 
 									}
 								redirect('plant/lists');
@@ -154,7 +154,7 @@ class Plant extends CI_Controller {
 								'status'=>2,
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','CBWTF Successfully Deleted');
+								$this->session->set_flashdata('success','CBWTF successfully Deleted');
 								redirect('plant/lists');
 								}else{
 								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -212,7 +212,7 @@ class Plant extends CI_Controller {
 						);
 						$plant_save=$this->Plant_model->save_plant($add_plant);
 						if(count($plant_save)>0){
-							$this->session->set_flashdata('success','CBWTF Successfully added');
+							$this->session->set_flashdata('success','CBWTF successfully added');
 							redirect('plant/lists');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -275,7 +275,7 @@ class Plant extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','CBWTF details Successfully updated');
+								$this->session->set_flashdata('success','CBWTF details successfully updated');
 									if($admindetails['role']==4){
 										redirect('dashboard/profile');
 									}else{
@@ -315,7 +315,7 @@ class Plant extends CI_Controller {
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
 								//echo $this->db->last_query();exit;
-								$this->session->set_flashdata('success','CBWTF details Successfully updated');
+								$this->session->set_flashdata('success','CBWTF details successfully updated');
 								
 									if($admindetails['role']==4){
 											redirect('dashboard/profile');
@@ -445,7 +445,7 @@ class Plant extends CI_Controller {
 						);
 						$waste_save=$this->Plant_model->waste_plant($add_plant);
 						if(count($waste_save)>0){
-							$this->session->set_flashdata('success','BMW vehicle waste Successfully added');
+							$this->session->set_flashdata('success','BMW vehicle waste successfully added');
 							redirect('plant/details_list');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
@@ -485,7 +485,7 @@ class Plant extends CI_Controller {
 						);
 						$disposal_save=$this->Plant_model->save_disposal($add_disposal);
 						if(count($disposal_save)>0){
-							$this->session->set_flashdata('success','Disposal Waste Successfully Added');
+							$this->session->set_flashdata('success','Disposal Waste successfully Added');
 							redirect('plant/disposal_list');
 						}else{
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
