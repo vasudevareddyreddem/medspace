@@ -1,3 +1,4 @@
+https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css
 <section class="content">
 	<!-- Exportable Table -->
             <div class="row clearfix">
@@ -10,7 +11,43 @@
                          
                         </div>
                         <div class="body">
+						<form>
+								<div class="container">
+									<div class="row">
+       
+        <div class="col-sm-3">
+		<label>From</label>
+            <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control" id="data-date">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+		  <div class="col-sm-3">
+		  <label>To</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="js-date">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div> 
+		<div class="col-sm-3">
+		  <label>&nbsp;</label>
+            <div class="input-group date">
+               <button class="btn btn-primary btn-sm">Search</button>
+            </div>
+        </div>
+    </div>
+   
+  
+								</div>
+
+							</form>
+							<div class="clearfix">&nbsp;</div>
                             <div class="table-responsive">
+							
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
@@ -62,4 +99,8 @@
             <!-- #END# Exportable Table -->
         </div>
 </section>
-	
+	<script type="text/javascript">
+   $(document).ready(function() {
+    $('#js-date').datepicker();
+});
+</script>

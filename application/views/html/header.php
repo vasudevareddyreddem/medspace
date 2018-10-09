@@ -15,6 +15,7 @@
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url(); ?>assets/vendor/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/vendor/css/bootstrapValidator.min.css" rel="stylesheet">
+   
 	
 
     <!-- Waves Effect Css -->
@@ -30,6 +31,7 @@
 
     <!-- Custom Css -->
     <link href="<?php echo base_url(); ?>assets/vendor/css/style.css" rel="stylesheet">
+	 <link href="<?php echo base_url(); ?>assets/vendor/css/bootstrap-datepicker.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>assets/vendor/css/themes/all-themes.css" rel="stylesheet" />
