@@ -71,30 +71,31 @@ class Hospital_model extends CI_Model
 	}
 	
 	public  function get_hospital_wise_waste_list($admin_id){
-		$this->db->select('hospital_waste.h_id,hospital_list.hospital_name')->from('hospital_waste');
-		$this->db->join('hospital_list ', 'hospital_list.h_id = hospital_waste.h_id', 'left');
-		$this->db->where('hospital_list.create_by', $admin_id);
-		$this->db->group_by('hospital_waste.h_id');
-		$return=$this->db->get()->result_array();
+		
+		$sql = "SELECT hospital_waste.date,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."'   GROUP BY hospital_waste.h_id,hospital_waste.date";
+		$return=$this->db->query($sql)->result_array();
+		
+		
+		//echo '<pre>';print_r($return);exit;
 		foreach($return as $list){
-			$genaral_waste_kgs=$this->get_genaral_waste_kgs_list($list['h_id']);
-			$genaral_waste_qty=$this->get_genaral_waste_qty_list($list['h_id']);
-			$infected_plastics_kgs=$this->get_infected_plastics_kgs_list($list['h_id']);
-			$infected_plastics_qty=$this->get_infected_plastics_qty_list($list['h_id']);
-			$infected_waste_kgs=$this->get_infected_waste_kgs_list($list['h_id']);
-			$infected_waste_qty=$this->get_infected_waste_qty_list($list['h_id']);
-			$glassware_watse_kgs=$this->get_glassware_watse_kgs_list($list['h_id']);
-			$glassware_watse_qty=$this->get_glassware_watse_qty_list($list['h_id']);
+			$genaral_waste_kgs=$this->get_genaral_waste_kgs_list($list['h_id'],$list['date']);
+			$genaral_waste_qty=$this->get_genaral_waste_qty_list($list['h_id'],$list['date']);
+			$infected_plastics_kgs=$this->get_infected_plastics_kgs_list($list['h_id'],$list['date']);
+			$infected_plastics_qty=$this->get_infected_plastics_qty_list($list['h_id'],$list['date']);
+			$infected_waste_kgs=$this->get_infected_waste_kgs_list($list['h_id'],$list['date']);
+			$infected_waste_qty=$this->get_infected_waste_qty_list($list['h_id'],$list['date']);
+			$glassware_watse_kgs=$this->get_glassware_watse_kgs_list($list['h_id'],$list['date']);
+			$glassware_watse_qty=$this->get_glassware_watse_qty_list($list['h_id'],$list['date']);
 			//echo '<pre>';print_r($genaral_waste_kgs);exit;
-			$data[$list['h_id']]=$list;
-			$data[$list['h_id']]['genaral_waste_kgs']=isset($genaral_waste_kgs['total'])?$genaral_waste_kgs['total']:'';
-			$data[$list['h_id']]['genaral_waste_qty']=isset($genaral_waste_qty['total'])?$genaral_waste_qty['total']:'';
-			$data[$list['h_id']]['infected_plastics_kgs']=isset($infected_plastics_kgs['total'])?$infected_plastics_kgs['total']:'';
-			$data[$list['h_id']]['infected_plastics_qty']=isset($infected_plastics_qty['total'])?$infected_plastics_qty['total']:'';
-			$data[$list['h_id']]['infected_waste_kgs']=isset($infected_waste_kgs['total'])?$infected_waste_kgs['total']:'';
-			$data[$list['h_id']]['infected_waste_qty']=isset($infected_waste_qty['total'])?$infected_waste_qty['total']:'';
-			$data[$list['h_id']]['glassware_watse_kgs']=isset($glassware_watse_kgs['total'])?$glassware_watse_kgs['total']:'';
-			$data[$list['h_id']]['glassware_watse_qty']=isset($glassware_watse_qty['total'])?$glassware_watse_qty['total']:'';
+			$data[$list['h_id'].$list['date']]=$list;
+			$data[$list['h_id'].$list['date']]['genaral_waste_kgs']=isset($genaral_waste_kgs['total'])?$genaral_waste_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['genaral_waste_qty']=isset($genaral_waste_qty['total'])?$genaral_waste_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_plastics_kgs']=isset($infected_plastics_kgs['total'])?$infected_plastics_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_plastics_qty']=isset($infected_plastics_qty['total'])?$infected_plastics_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_waste_kgs']=isset($infected_waste_kgs['total'])?$infected_waste_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_waste_qty']=isset($infected_waste_qty['total'])?$infected_waste_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['glassware_watse_kgs']=isset($glassware_watse_kgs['total'])?$glassware_watse_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['glassware_watse_qty']=isset($glassware_watse_qty['total'])?$glassware_watse_qty['total']:'';
 			
 		}
 		if(!empty($data)){
@@ -102,42 +103,49 @@ class Hospital_model extends CI_Model
 		}
 	}
 	
-	public  function get_genaral_waste_kgs_list($h_id){
+	public  function get_genaral_waste_kgs_list($h_id,$date){
 		$this->db->select('SUM(genaral_waste_kgs) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
-	public  function get_genaral_waste_qty_list($h_id){
+	public  function get_genaral_waste_qty_list($h_id,$date){
 		$this->db->select('SUM(genaral_waste_qty) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
-	public  function get_infected_plastics_kgs_list($h_id){
+	public  function get_infected_plastics_kgs_list($h_id,$date){
 		$this->db->select('SUM(infected_plastics_kgs) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
 		return $this->db->get()->row_array();
 	}
-	public  function get_infected_plastics_qty_list($h_id){
+	public  function get_infected_plastics_qty_list($h_id,$date){
 		$this->db->select('SUM(infected_plastics_qty) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
-	public  function get_infected_waste_kgs_list($h_id){
+	public  function get_infected_waste_kgs_list($h_id,$date){
 		$this->db->select('SUM(infected_waste_kgs) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
-	public  function get_infected_waste_qty_list($h_id){
+	public  function get_infected_waste_qty_list($h_id,$date){
 		$this->db->select('SUM(infected_waste_qty) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
-	}public  function get_glassware_watse_kgs_list($h_id){
+	}public  function get_glassware_watse_kgs_list($h_id,$date){
 		$this->db->select('SUM(glassware_watse_kgs) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
-	}public  function get_glassware_watse_qty_list($h_id){
+	}public  function get_glassware_watse_qty_list($h_id,$date){
 		$this->db->select('SUM(glassware_watse_qty) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
 	

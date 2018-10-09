@@ -12,8 +12,9 @@
                         </div>
                         <div class="body">
 						
-                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/adddisposal'); ?>">
+                    <form id="defaultForm" onsubmit="return check_validations();" method="post" class="form-horizontal" action="<?php echo base_url('plant/adddisposal'); ?>">
 					
+						<div class="row">
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
                             <label class="label-control">Disposal Total</label>
@@ -22,6 +23,7 @@
                             </div>
                         </div>
                         </div>
+                        
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
                             <label class="label-control">Disposal Qty</label>
@@ -30,12 +32,15 @@
                             </div>
                         </div>
                         </div>
+						</div>
+						<div class="row">
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
                             <label class="label-control">Remaining Qty</label>
                             <div class="">
                                 <input type="text" class="form-control" id="disposal_remaining" name="disposal_remaining" value="" />
                             </div>
+                        </div>
                         </div>
                         </div>
 						
@@ -57,12 +62,22 @@
             
     </section>
 	<script type="text/javascript">
+	
+	function check_validations(){
+		var total=$('#disposal_remaining').val();
+		var d_total=$('#disposal_total').val();
+		var d_q_total=$('#disposal_qty').val();
+		if(total=='' && d_total!='' && d_q_total!=''){
+			alert('Remaining Qty is required');return false;
+		}
+	}
 	function remainingqty(id){
 		var amt=document.getElementById("disposal_total").value;
 		var total= amt- id;
 		$('#disposal_remaining').val(total);
+		
 	
-}
+	}
 $(document).ready(function() {
      $('#defaultForm').bootstrapValidator({
 //      
@@ -91,15 +106,14 @@ $(document).ready(function() {
             },
 			disposal_remaining: {
                 validators: {
-					notEmpty: {
-						message: 'Remaining Qty is required'
-					},
+					
 					regexp: {
 					regexp: /^[0-9.]*$/,
 					message: 'Remaining Qty can only consist of digits and dot'
 					}
 				}
             }
+			
         }
     });
 

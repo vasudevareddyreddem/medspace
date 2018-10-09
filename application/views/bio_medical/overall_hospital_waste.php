@@ -24,6 +24,7 @@
                                             <th>No of White Bags</th>											
 
 											<th>No of Kgs (White)</th>
+											<th>Date</th>
                                             
                                         </tr>
                                     </thead>
@@ -43,6 +44,7 @@
 											<td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
 											<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
                                             <td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
+                                            <td><?php echo htmlentities($list['date']); ?></td>
                                             
                                             
                                         </tr>

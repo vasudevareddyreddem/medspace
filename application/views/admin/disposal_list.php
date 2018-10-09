@@ -29,7 +29,7 @@
                                             <td><?php echo htmlentities($list['disposal_total']); ?></td>
                                             <td><?php echo htmlentities($list['disposal_qty']); ?></td>
                                             <td><?php echo htmlentities($list['disposal_remaining']); ?></td>
-                                            <td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
+                                            <td><?php echo date('j M Y   h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                            
                                             
                                         </tr>

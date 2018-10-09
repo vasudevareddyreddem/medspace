@@ -149,6 +149,7 @@ class Mobile extends REST_Controller {
 		'current_address'=>$current_address,
 		'total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 		'status'=>1,
+		'date'=>date('Y-m-d'),
 		'create_at'=>date('Y-m-d H:i:s'),
 		'create_by'=>$userid,
 		);

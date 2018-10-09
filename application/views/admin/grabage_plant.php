@@ -31,14 +31,14 @@
 						<hr>
 						<br>
 					
-						<div class="col-md-6 px-25px">
+						<!--<div class="col-md-6 px-25px">
 						<div class="form-group">
                             <label class="label-control">Route Number</label>
                             <div class="">
                                 <input type="text" class="form-control" id="route_number" name="route_number" value="" />
                             </div>
                         </div>
-                        </div>
+                        </div>-->
 						
 						<div class="col-md-6 px-25px">
 						<div class="form-group">
