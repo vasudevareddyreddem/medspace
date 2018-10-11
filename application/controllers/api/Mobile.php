@@ -242,10 +242,13 @@ class Mobile extends REST_Controller {
 			$save_img=$this->Mobile_model->save_waste_image($addimg);
 			if(count($save_img)>0){
 					$data['details']=$this->Mobile_model->get_all_hospital_details($hospital_id);
+					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
+		
 					$pdfFilePath=base_url("/assets/hospital-waste-images/".$imgname);
 					$this->email->set_newline("\r\n");
 					$this->email->from('admin@medspace.com');
 					$this->email->to($data['details']['email']);
+					 $this->email->cc($g4_plant_email['email']);
 					$this->email->subject($text);
 					$this->email->message($text.'Please find out below attachment');
 					$this->email->attach($pdfFilePath);

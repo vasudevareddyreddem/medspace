@@ -24,6 +24,13 @@ class Admin_model extends CI_Model
 		$sql = "SELECT * FROM admin WHERE email_id ='".$email."'";
 		return $this->db->query($sql)->row_array();	
 	}
+	public function get_email_details_check($email){
+		
+		$this->db->select('*')->from('admin');		
+		$this->db->where('email_id', $email);
+		$this->db->where('status !=',2);
+        return $this->db->get()->row_array();
+	}
 	
 	
 	public function login_details($data){

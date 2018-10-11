@@ -101,24 +101,27 @@ class Admin extends CI_Controller {
 	}
 	public function forgotpost(){
 		$post=$this->input->post();
-		$check_login=$this->Admin_model->get_email_details($post['email_id']);
+		$check_login=$this->Admin_model->get_email_details_check($post['email_id']);
+		//echo $this->db->last_query();exit;
 		if(count($check_login)>0){
-				
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");
-					$this->email->set_mailtype("html");
-					$this->email->to($check_login['email_id']);
-					$this->email->from('customerservice@medspace.com');
-					$body = "<b> Your Account login Password is </b> : ".$check_login['org_password'];
-					 $this->email->message($body);
-					if ($this->email->send())
-					{
-						$this->session->set_flashdata('success',"Password sent to your registered email address. Please Check your registered email address");
-						redirect('admin');
-					}else{
-						$this->session->set_flashdata('error'," In Localhost mail  didn't sent");
-						redirect('admin');
-					}
+			//echo '<pre>';print_r($check_login);exit;	
+					
+				$this->load->library('email');
+				$this->email->set_newline("\r\n");
+				$this->email->set_mailtype("html");
+				$this->email->to($check_login['email_id']);
+				$this->email->from('customerservice@medspace.com', 'Medcbwtf'); 
+				$this->email->subject('Forgot Password'); 
+				$body = "<b> Your Account login Password is </b> : ".$check_login['org_password'];
+				$this->email->message($body);
+				if ($this->email->send())
+				{
+					$this->session->set_flashdata('success',"Password sent to your registered email address. Please Check your registered email address");
+					redirect('admin');
+				}else{
+					$this->session->set_flashdata('error'," In Localhost mail  didn't sent");
+					redirect('admin');
+				}
 			}else{
 				$this->session->set_flashdata('error',"Invalid email id. Please try again once");
 				redirect('admin');
