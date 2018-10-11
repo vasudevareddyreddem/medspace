@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Confirm password</label>
+                            <label class="col-lg-3 control-label">Confirm Password</label>
                             <div class="col-lg-5">
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Enter Confirm Password " />
                             </div>
@@ -177,7 +177,7 @@ $(document).ready(function() {
 					},
 					identical: {
 						field: 'password',
-						message: 'password and confirm Password do not match'
+						message: 'Password and Confirm Password do not match'
 					}
 					}
             },
@@ -194,9 +194,7 @@ $(document).ready(function() {
             },
 			address2: {
                  validators: {
-					  notEmpty: {
-						message: 'Address 2 is required'
-					},
+					  
                     regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message:'Address 2 wont allow <> [] = % '

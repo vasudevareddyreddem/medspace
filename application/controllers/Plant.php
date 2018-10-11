@@ -184,7 +184,7 @@ class Plant extends CI_Controller {
 						redirect('plant/add');
 				}else{
 					$addplant=array(
-						'name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+						'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
@@ -195,15 +195,15 @@ class Plant extends CI_Controller {
 					if(count($sav_plant)>0){
 						$add_plant=array(
 							'a_id'=>$sav_plant,
-							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 							'disposal_plant_id'=>isset($sav_plant)?$sav_plant:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
@@ -257,21 +257,21 @@ class Plant extends CI_Controller {
 								}
 						}else{
 							$updateplant=array(
-							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){
 								$admin_detail=array(
-								'name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
@@ -296,21 +296,21 @@ class Plant extends CI_Controller {
 					
 				}else{
 					$updateplant=array(
-							'disposal_plant_name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){
 								$admin_detail=array(
-								'name'=>isset($post['disposal_plant_name'])?$post['disposal_plant_name']:'',
+								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
@@ -394,8 +394,9 @@ class Plant extends CI_Controller {
 					$post=$this->input->post();
 					$admindetails=$this->session->userdata('userdetails');
 					//echo '<pre>';print_r($post);exit;
+					$get_created_by=$this->Plant_model->get_created_by_id($admindetails['a_id']);
 			
-					$details=$this->Plant_model->get_truck_details($post['truck_id']);
+					$details=$this->Plant_model->get_truck_details($post['truck_id'],$get_created_by['create_by']);
 					//echo $this->db->last_query();exit;
 					if(count($details) > 0)
 					{

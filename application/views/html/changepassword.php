@@ -109,11 +109,11 @@ $(document).ready(function() {
             confirmPassword: {
                 validators: {
 						 notEmpty: {
-						message: 'Confirm Password is required'
+						message: 'Confirm password is required'
 					},
 					identical: {
 						field: 'password',
-						message: 'password and confirm Password do not match'
+						message: 'Password and Confirm Password do not match'
 					}
 					}
             }

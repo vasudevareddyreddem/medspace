@@ -55,7 +55,7 @@
                         <div class="form-group">
                           
                             <div class=" ">
-                                <button type="submit" class="btn btn-primary btn-block" name="signup" value="Sign up">submit</button>
+                                <button type="submit" class="btn btn-primary btn-block" name="signup" value="Sign up">Submit</button>
                                 
                             </div>
                         </div>

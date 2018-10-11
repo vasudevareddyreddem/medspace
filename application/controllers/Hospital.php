@@ -182,7 +182,7 @@ class Hospital extends CI_Controller {
 						redirect('hospital/add');
 				}else{
 					$addhos=array(
-						'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+						'name'=>isset($post['hospital_name'])?strtoupper($post['hospital_name']):'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
@@ -198,7 +198,7 @@ class Hospital extends CI_Controller {
 						$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
 						$addhospital=array(
 							'a_id'=>isset($hos_save)?$hos_save:'',
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'hospital_name'=>isset($post['hospital_name'])?strtoupper($post['hospital_name']):'',
 							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'type'=>isset($post['type'])?$post['type']:'',
 							'hospital_id'=>isset($hos_save)?$hos_save:'',
@@ -207,9 +207,9 @@ class Hospital extends CI_Controller {
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
@@ -265,7 +265,7 @@ class Hospital extends CI_Controller {
 								
 						}else{
 							$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'hospital_name'=>isset($post['hospital_name'])?strtoupper($post['hospital_name']):'',
 							'type'=>isset($post['type'])?$post['type']:'',
 							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
@@ -273,9 +273,9 @@ class Hospital extends CI_Controller {
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							);
@@ -286,10 +286,12 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-								$this->session->set_flashdata('success','User details successfully updated');
+								
 									if($admindetails['role']==2){
+										$this->session->set_flashdata('success','Hcf details successfully updated');
 										redirect('dashboard/profile');
 									}else{
+										$this->session->set_flashdata('success','Hcf details successfully updated');
 										redirect('hospital/lists');
 									}
 								
@@ -306,7 +308,7 @@ class Hospital extends CI_Controller {
 					
 				}else{
 					$updatehospital=array(
-							'hospital_name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
+							'hospital_name'=>isset($post['hospital_name'])?strtoupper($post['hospital_name']):'',
 							'type'=>isset($post['type'])?$post['type']:'',
 							'route_number'=>isset($post['route_number'])?$post['route_number']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
@@ -314,9 +316,9 @@ class Hospital extends CI_Controller {
 							'email'=>isset($post['email'])?$post['email']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 						);
@@ -329,10 +331,12 @@ class Hospital extends CI_Controller {
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
-							$this->session->set_flashdata('success','User details duccessfully updated');
+							
 							if($admindetails['role']==2){
+								$this->session->set_flashdata('success','Hcf details successfully updated');
 									redirect('dashboard/profile');
 							}else{
+								$this->session->set_flashdata('success','Hcf details successfully updated');
 								redirect('hospital/lists');
 								}
 							
@@ -495,8 +499,17 @@ class Hospital extends CI_Controller {
 		{
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
+				$post=$this->input->post();
+				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+					
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($admindetails['a_id'],$post['from_date'],$post['to_date']);
+					//echo '<pre>';print_r($data);exit;
+				}else{
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
+
+				}
 				
-				$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
+				
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('bio_medical/overall_hospital_waste',$data);
 				$this->load->view('html/footer');

@@ -63,7 +63,7 @@
 							<input type="hidden" name="truck_id" id="truck_id" value="">
 							<input type="hidden" name="route_id" id="route_id" value="">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3 form-group">
 								<h4 class="text-center text-warning">YELLOW</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/yellowbox.png" alt="greenbox">
@@ -73,7 +73,7 @@
 								<input type="text" id="inf_waste_in_Kg" name="inf_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
 
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 form-group">
 							<h4 class="text-center text-danger">RED</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/redbox.png" alt="greenbox">
@@ -84,7 +84,7 @@
 								<input type="text" id="inf_pla_waste_in_Kg" name="inf_pla_waste_in_Kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
 							
-							<div class="col-md-3">
+							<div class="col-md-3 form-group">
 								<h4 class="text-center text-primary">BLUE</h4>
 									<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/bluebox.png" alt="greenbox">
@@ -94,7 +94,7 @@
 							<br>
 								<input type="text" id="glassware_waste_in_kg" name="glassware_waste_in_kg" class="form-control" placeholder="Enter No of Kgs">
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 form-group">
 							<h4 class="text-center text-success">WHITE</h4>
 								<div class="py-4">
 									<img class="img-responsive" src="<?php echo base_url(); ?>assets/vendor/images/greenbox.png" alt="greenbox">
@@ -155,7 +155,7 @@
 							//$('#sucessmsg').html('<div class="alert_msg1 animated slideInUp bg-succ">Truck Regn number are displayed. <i class="glyphicon glyphicon-ok text-success ico_bac" aria-hidden="true"></i></div>');  
 
 						}else{
-							alert("Truck Regn number is  wrong. Please  try  again once");  
+							alert("Vehicle Registration Number is  wrong. Please  try  again once");  
 
 						}
 						

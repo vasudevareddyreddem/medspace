@@ -179,16 +179,16 @@ class User extends CI_Controller {
 						redirect('user/add');
 				}else{
 					$addhos=array(
-						'name'=>isset($post['name'])?$post['name']:'',
+						'name'=>isset($post['name'])?strtoupper($post['name']):'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
 						'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 						'status'=>1,
 						'role'=>1,
@@ -240,14 +240,14 @@ class User extends CI_Controller {
 								
 						}else{
 							$updatehospital=array(
-							'name'=>isset($post['name'])?$post['name']:'',
+							'name'=>isset($post['name'])?strtoupper($post['name']):'',
 							'email_id'=>isset($post['email'])?$post['email']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							);
 							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
@@ -266,21 +266,21 @@ class User extends CI_Controller {
 					
 				}else{
 					$updatehospital=array(
-							'name'=>isset($post['name'])?$post['name']:'',
+							'name'=>isset($post['name'])?strtoupper($post['name']):'',
 							'email_id'=>isset($post['email'])?$post['email']:'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 							'address1'=>isset($post['address1'])?$post['address1']:'',
 							'address2'=>isset($post['address2'])?$post['address2']:'',
-							'city'=>isset($post['city'])?$post['city']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
 							'state'=>isset($post['state'])?$post['state']:'',
-							'country'=>isset($post['country'])?$post['country']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 						);
 						//echo "<pre>";print_r($updatehospital);
 						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
-							$this->session->set_flashdata('success','User details duccessfully updated');
+							$this->session->set_flashdata('success','User details successfully updated');
 							redirect('user/lists');
 							
 						}else{

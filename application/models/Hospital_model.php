@@ -69,6 +69,39 @@ class Hospital_model extends CI_Model
 		return $this->db->get()->row_array();
 		
 	}
+	public  function get_hospital_wise_waste_with_dates($admin_id,$from_date,$todate){
+		
+		$sql = "SELECT hospital_waste.date,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."' and date_format(hospital_waste.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'  GROUP BY hospital_waste.h_id,hospital_waste.date";
+		//echo $sql;exit;
+		$return=$this->db->query($sql)->result_array();
+		
+		
+		//echo '<pre>';print_r($return);exit;
+		foreach($return as $list){
+			$genaral_waste_kgs=$this->get_genaral_waste_kgs_list($list['h_id'],$list['date']);
+			$genaral_waste_qty=$this->get_genaral_waste_qty_list($list['h_id'],$list['date']);
+			$infected_plastics_kgs=$this->get_infected_plastics_kgs_list($list['h_id'],$list['date']);
+			$infected_plastics_qty=$this->get_infected_plastics_qty_list($list['h_id'],$list['date']);
+			$infected_waste_kgs=$this->get_infected_waste_kgs_list($list['h_id'],$list['date']);
+			$infected_waste_qty=$this->get_infected_waste_qty_list($list['h_id'],$list['date']);
+			$glassware_watse_kgs=$this->get_glassware_watse_kgs_list($list['h_id'],$list['date']);
+			$glassware_watse_qty=$this->get_glassware_watse_qty_list($list['h_id'],$list['date']);
+			//echo '<pre>';print_r($genaral_waste_kgs);exit;
+			$data[$list['h_id'].$list['date']]=$list;
+			$data[$list['h_id'].$list['date']]['genaral_waste_kgs']=isset($genaral_waste_kgs['total'])?$genaral_waste_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['genaral_waste_qty']=isset($genaral_waste_qty['total'])?$genaral_waste_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_plastics_kgs']=isset($infected_plastics_kgs['total'])?$infected_plastics_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_plastics_qty']=isset($infected_plastics_qty['total'])?$infected_plastics_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_waste_kgs']=isset($infected_waste_kgs['total'])?$infected_waste_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['infected_waste_qty']=isset($infected_waste_qty['total'])?$infected_waste_qty['total']:'';
+			$data[$list['h_id'].$list['date']]['glassware_watse_kgs']=isset($glassware_watse_kgs['total'])?$glassware_watse_kgs['total']:'';
+			$data[$list['h_id'].$list['date']]['glassware_watse_qty']=isset($glassware_watse_qty['total'])?$glassware_watse_qty['total']:'';
+			
+		}
+		if(!empty($data)){
+			return $data;
+		}
+	}
 	
 	public  function get_hospital_wise_waste_list($admin_id){
 		

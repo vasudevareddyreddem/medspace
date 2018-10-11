@@ -11,23 +11,23 @@ https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-
                          
                         </div>
                         <div class="body">
-						<form>
+						<form action="<?php echo base_url('hospital/waste_list'); ?>" method="post">
 								<div class="container">
 									<div class="row">
        
-        <div class="col-sm-3">
-		<label>From</label>
-            <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="data-date">
+         <div class="col-sm-3">
+		  <label>From</label>
+            <div class="input-group date">
+                <input type="text" name="from_date" class="form-control" id="jss-date" required>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
             </div>
         </div>
-		  <div class="col-sm-3">
+		 <div class="col-sm-3">
 		  <label>To</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="js-date">
+                <input type="text" name="to_date" class="form-control" id="js-date" required>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -101,6 +101,21 @@ https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-
 </section>
 	<script type="text/javascript">
    $(document).ready(function() {
-    $('#js-date').datepicker();
+    $('#js-date').datepicker(
+	{  
+		format: 'mm-dd-yyyy',
+		autoclose:true,
+		endDate: "today",
+	});
+	
+}); 
+ $(document).ready(function() {
+    $('#jss-date').datepicker(
+	{  
+		format: 'mm-dd-yyyy',
+		autoclose:true,
+		endDate: "today",
+	});
+	
 });
 </script>

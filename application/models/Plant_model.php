@@ -47,9 +47,10 @@ class Plant_model extends CI_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	
-	public function get_truck_details($r_id){
+	public function get_truck_details($r_id,$created_by){
 		$this->db->select('trucks.truck_reg_no,trucks.t_id,trucks.description,trucks.route_no,trucks.driver_name,trucks.driver_mobile')->from('trucks');		
 		$this->db->where('truck_reg_no', $r_id);
+		$this->db->where('create_by', $created_by);
         return $this->db->get()->row_array();	
 	}
 	public function get_disposal_list($a_id){
@@ -106,6 +107,13 @@ class Plant_model extends CI_Model
 	public  function get_cbwtf_details($cbwtf_id){
 		$this->db->select('p_id,a_id,disposal_plant_name')->from('plant');
 		$this->db->where('p_id',$cbwtf_id);
+		return $this->db->get()->row_array();
+	}
+	
+	public  function get_created_by_id($a_id){
+		$this->db->select('p_id,a_id,create_by')->from('plant');
+		$this->db->where('status',1);
+		$this->db->where('a_id', $a_id);
 		return $this->db->get()->row_array();
 	}
 	

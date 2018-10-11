@@ -162,9 +162,7 @@ $(document).ready(function() {
             },
 			route_number: {
                  validators: {
-					  notEmpty: {
-						message: 'Route Number is required'
-					},
+					  
                     regexp: {
 					regexp:  /^[0-9]*$/,
 					message:'Route Number can only consist of digits'
@@ -206,9 +204,7 @@ $(document).ready(function() {
             },
 			address2: {
                  validators: {
-					  notEmpty: {
-						message: 'Address 2 is required'
-					},
+					  
                     regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message:'Address 2 wont allow <> [] = % '

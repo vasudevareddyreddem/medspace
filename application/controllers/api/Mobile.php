@@ -153,13 +153,15 @@ class Mobile extends REST_Controller {
 		'create_at'=>date('Y-m-d H:i:s'),
 		'create_by'=>$userid,
 		);
-	$add_garbage=$this->Mobile_model->save_garbage_data($addgarbage);
+		$add_garbage=$this->Mobile_model->save_garbage_data($addgarbage);
 		if(count($add_garbage)>0){
 			
 			
 			/*pdf*/
 			$post=$this->input->post();
 					$data['details']=$this->Mobile_model->get_all_hospital_details($hospital_id);
+					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
+		
 					$data['garbage_details']=$addgarbage;
 					$data['garbage_details']['invoice_id']=$add_garbage;
 					//echo '<pre>';print_r($data);exit;
@@ -185,6 +187,7 @@ class Mobile extends REST_Controller {
 					$this->email->set_newline("\r\n");
 					$this->email->from('admin@medspace.com');
 					$this->email->to($data['details']['email']);
+					 $this->email->cc($g4_plant_email['email']);
 					$this->email->subject($data['details']['hospital_name'].' Inovice');
 					$this->email->message('Please find out below attachment');
 					$this->email->attach($pdfFilePath);

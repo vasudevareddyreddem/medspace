@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Confirm password</label>
+                            <label class="col-lg-3 control-label">Confirm Password</label>
                             <div class="col-lg-5">
                                 <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Enter Confirm Password " />
                             </div>
@@ -157,11 +157,11 @@ $(document).ready(function() {
             truck_reg_no: {
                 validators: {
 					notEmpty: {
-						message: 'Truck Regn number is required'
+						message: 'Vehicle Registration Number is required'
 					},
 					regexp: {
 					regexp: /^[A-Za-z0-9]{10}$/,
-					message: 'Truck Regn number can only consist of Alphanumeric and digits'
+					message: 'Vehicle Registration Number can only consist of Alphanumeric and digits'
 					}
 				}
             },
@@ -179,11 +179,11 @@ $(document).ready(function() {
 			insurence_number: {
                 validators: {
 					notEmpty: {
-						message: 'Truck Insurence Number is required'
+						message: 'Vehicle Insurance Number is required'
 					},
 					regexp: {
 					regexp: /^[a-zA-Z0-9. ]+$/,
-					message: 'Truck Insurence Number can only consist of Alphanumeric, space and dot'
+					message: 'Vehicle Insurance Number can only consist of Alphanumeric, space and dot'
 					}
 				}
             },
@@ -276,7 +276,7 @@ $(document).ready(function() {
 					},
 					identical: {
 						field: 'password',
-						message: 'password and confirm Password do not match'
+						message: 'Password and Confirm Password do not match'
 					}
 					}
             },
@@ -293,9 +293,7 @@ $(document).ready(function() {
             },
 			address2: {
                  validators: {
-					  notEmpty: {
-						message: 'Address 2 is required'
-					},
+					 
                     regexp: {
 					regexp:/^[ A-Za-z0-9_@.,/!;:}{@#&`~"\\|^?$*)(_+-]*$/,
 					message:'Address 2 wont allow <> [] = % '
