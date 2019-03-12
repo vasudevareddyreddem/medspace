@@ -15,7 +15,7 @@
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-top:1mm">
 				<div >
 					<h3 style="padding:0px;margin:0px;">Bio-medical waste barcode</h3>
-					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
+					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div class="">
 					<div>
@@ -41,7 +41,7 @@
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-left:3mm;margin-top:1mm">
 				<div >
 					<h3 style="padding:0px;margin:0px;">Bio-medical waste barcode</h3>
-					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
+					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
 				<div class="">
 					<div>

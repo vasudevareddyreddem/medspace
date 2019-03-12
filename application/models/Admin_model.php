@@ -176,8 +176,9 @@ class Admin_model extends CI_Model
 	}
 	
 	/*total waste*/
-	public  function get_gen_waste(){
-		$this->db->select('sum(waste.total_waste) as total')->from('waste');		
+	public  function get_gen_waste($a_id){
+		$this->db->select('sum(waste.total_waste) as total')->from('waste');
+		$this->db->where('waste.create_by', $a_id);		
         return $this->db->get()->row_array();
 	}
 	public  function get_inf_pla_waste(){

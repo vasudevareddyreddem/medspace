@@ -2,7 +2,7 @@
 SQLyog Community v11.52 (64 bit)
 MySQL - 10.1.32-MariaDB : Database - medspace
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 

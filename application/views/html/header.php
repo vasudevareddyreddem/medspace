@@ -128,7 +128,37 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-					<?php if($details['role']==0){ ?>
+					<?php if($details['role']==5){ ?>
+					<?php if(isset($admin_list) && count($admin_list)>0){ ?>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/waste')){echo "active"; } ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">accessibility</i>
+                            <span>Waste List</span>
+                        </a>
+                        <ul class="ml-menu">
+							<?php foreach($admin_list as $list){?>
+							   <li>
+									<a href="<?php echo base_url('hospital/waste/'.base64_encode($list['a_id'])); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> <?php echo isset($list['name'])?$list['name']:''; ?></a>
+								</li>
+							<?php } ?>
+                        </ul>
+                    </li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/wasteimages')){echo "active"; } ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">accessibility</i>
+                            <span>Waste Images List</span>
+                        </a>
+                        <ul class="ml-menu">
+							<?php foreach($admin_list as $list){?>
+							   <li>
+									<a href="<?php echo base_url('hospital/wasteimages/'.base64_encode($list['a_id'])); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> <?php echo isset($list['name'])?$list['name']:''; ?></a>
+								</li>
+							<?php } ?>
+                        </ul>
+                    </li>
+					<?php } ?>
+					
+					<?php }else if($details['role']==0){ ?>
 					<li class="<?php if(isset($u_url) && $u_url==base_url('user/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">accessibility</i>
@@ -161,6 +191,9 @@
 							</li>
 							<li>
 								<a href="<?php echo base_url('hospital/waste_list'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Waste List</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url('hospital/wasteimages/'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Waste Images List</a>
 							</li>
                             
                         </ul>

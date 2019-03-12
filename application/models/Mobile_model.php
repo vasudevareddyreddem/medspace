@@ -10,10 +10,8 @@ class Mobile_model extends CI_Model
 	}
 
 	public function check_login_details($email,$pwd){
-		$this->db->select('admin.a_id,admin.role,admin.name,admin.email_id,admin.status')->from('admin');		
-		$this->db->where('email_id', $email);
-		$this->db->where('password', $pwd);
-		return $this->db->get()->row_array();
+		$sql = "SELECT a_id,role,name,email_id,status FROM admin WHERE (email_id='".$email."' AND password='".$pwd."') OR (mobile='".$email."' AND password='".$pwd."')";
+		return $this->db->query($sql)->row_array();
 	}
 	public function get_hospital_details($a_id){
 		$this->db->select('hospital_list.h_id,hospital_list.a_id,hospital_list.hospital_name,hospital_list.hospital_id,hospital_list.mobile,hospital_list.email,hospital_list.address,hospital_list.address1,hospital_list.address2,hospital_list.city,hospital_list.state,hospital_list.country,hospital_list.pincode,hospital_list.barcode,admin.profile_pic')->from('hospital_list');		
@@ -23,7 +21,7 @@ class Mobile_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 	public function get_all_hospital_details($h_id){
-		$this->db->select('')->from('hospital_list');		
+		$this->db->select('*')->from('hospital_list');		
 		$this->db->where('hospital_list.h_id', $h_id);
 		return $this->db->get()->row_array();
 	}
@@ -44,6 +42,12 @@ class Mobile_model extends CI_Model
 		$this->db->select('hospital_list.h_id,hospital_list.hospital_name,bio_medical_waste.no_of_bags,bio_medical_waste.no_of_kgs,bio_medical_waste.color_type,bio_medical_waste.weight_type,bio_medical_waste.barcode,bio_medical_waste.create_at,bio_medical_waste.id')->from('bio_medical_waste');
 		$this->db->join('hospital_list', 'hospital_list.a_id = bio_medical_waste.create_by', 'left');
 		$this->db->where('bio_medical_waste.id', $bar_id);
+		return $this->db->get()->row_array();
+	}
+	public  function get_Hospital_waste_details($bar_id){
+		$this->db->select('hospital_list.h_id,hospital_list.hospital_name,bio_medical_waste.no_of_bags,bio_medical_waste.no_of_kgs,bio_medical_waste.color_type,bio_medical_waste.weight_type,bio_medical_waste.barcode,bio_medical_waste.create_at,bio_medical_waste.id')->from('bio_medical_waste');
+		$this->db->join('hospital_list', 'hospital_list.a_id = bio_medical_waste.create_by', 'left');
+		$this->db->where('hospital_list.barcodetext', $bar_id);
 		return $this->db->get()->row_array();
 	}
 	public  function save_plant_biomedical_waste($data){
@@ -78,5 +82,16 @@ class Mobile_model extends CI_Model
 		$this->db->order_by('plant.p_id','desc');
 		return $this->db->get()->row_array();
 	}
+	
+	public function get_wast_previous_data($scan_code){
+		$this->db->select('id,total')->from('hospital_waste');
+		$this->db->where('hospital_waste.scan_code', $scan_code);
+		return $this->db->get()->row_array();
+	}
+	public function update_garbage_data($waset_id,$data){
+		$this->db->where('id',$waset_id);
+		return $this->db->update('hospital_waste',$data);
+	}
+	
 	
 }

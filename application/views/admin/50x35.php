@@ -13,7 +13,7 @@
 		<div class="sticker" style="width:50mm;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
-					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
+					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div class="">
 					<div>
@@ -39,7 +39,7 @@
 		<div class="sticker" style="width:50mm;float:left;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm;margin-left:1mm">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
-					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" >
+					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" >
 				</div>
 				<div class="">
 					<div>
@@ -65,7 +65,7 @@
 		<div class="sticker" style="width:50mm;float:left;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm;margin-left:1mm">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
-					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" >
+					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" >
 				</div>
 				<div class="">
 					<div>
@@ -91,7 +91,7 @@
 		<div class="sticker" style="width:50mm;float:left;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm;margin-left:1mm">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
-					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" >
+					<img style="width:auto;height:12mm;padding:4px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" >
 				</div>
 				<div class="">
 					<div>

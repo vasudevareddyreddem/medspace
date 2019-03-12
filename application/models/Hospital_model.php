@@ -71,7 +71,7 @@ class Hospital_model extends CI_Model
 	}
 	public  function get_hospital_wise_waste_with_dates($admin_id,$from_date,$todate){
 		
-		$sql = "SELECT hospital_waste.date,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."' and date_format(hospital_waste.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'  GROUP BY hospital_waste.h_id,hospital_waste.date";
+		$sql = "SELECT hospital_waste.date,hospital_waste.create_at,hospital_waste.current_address,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."' and date_format(hospital_waste.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'  GROUP BY hospital_waste.h_id,hospital_waste.date";
 		//echo $sql;exit;
 		$return=$this->db->query($sql)->result_array();
 		
@@ -105,7 +105,7 @@ class Hospital_model extends CI_Model
 	
 	public  function get_hospital_wise_waste_list($admin_id){
 		
-		$sql = "SELECT hospital_waste.date,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."'   GROUP BY hospital_waste.h_id,hospital_waste.date";
+		$sql = "SELECT hospital_waste.date,hospital_waste.create_at,hospital_waste.current_address,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  where hospital_list.create_by = '".$admin_id."'   GROUP BY hospital_waste.h_id,hospital_waste.date";
 		$return=$this->db->query($sql)->result_array();
 		
 		
@@ -151,6 +151,7 @@ class Hospital_model extends CI_Model
 	public  function get_infected_plastics_kgs_list($h_id,$date){
 		$this->db->select('SUM(infected_plastics_kgs) as total')->from('hospital_waste');
 		$this->db->where('hospital_waste.h_id',$h_id);
+		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
 	public  function get_infected_plastics_qty_list($h_id,$date){
@@ -181,6 +182,19 @@ class Hospital_model extends CI_Model
 		$this->db->where('hospital_waste.date',$date);
 		return $this->db->get()->row_array();
 	}
+	
+	public  function check_invoice_sent_or_not($h_id,$date,$invoice_name){
+		$this->db->select('*')->from('hospital_waste_invoice');
+		$this->db->where('hos_id',$h_id);
+		$this->db->where('date',$date);
+		$this->db->where('invoice_name',$invoice_name);
+		return $this->db->get()->row_array();
+	}
+	public  function insert_invoice_name($data){
+		$this->db->insert('hospital_waste_invoice', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	
 	
 	
 	

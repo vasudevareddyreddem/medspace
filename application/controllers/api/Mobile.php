@@ -55,6 +55,7 @@ class Mobile extends REST_Controller {
 		}
 		$useremail = $this->security->sanitize_filename($email, TRUE);
 		$check_login=$this->Mobile_model->check_login_details($useremail,md5($password));
+		//echo '<pre>';print_r($check_login);exit;
 			if(count($check_login)>0){
 				if($check_login['status']!=0){
 					$message = array('status'=>1,'userdetails'=>$check_login,'message'=>'User successfully Login');
@@ -189,7 +190,7 @@ class Mobile extends REST_Controller {
 					$this->email->to($data['details']['email']);
 					 $this->email->cc($g4_plant_email['email']);
 					$this->email->subject($data['details']['hospital_name'].' Inovice');
-					$this->email->message('Please find out below attachment');
+					$this->email->message('Current Address:'.$current_address.' .Please find out below attachment');
 					$this->email->attach($pdfFilePath);
 					$this->email->send();
 					//redirect("/assets/patient_bills/".$file_name);
@@ -212,6 +213,7 @@ class Mobile extends REST_Controller {
 		$userid=$this->post('a_id');
 		$hospital_id=$this->post('hospital_id');
 		$text=$this->post('text');
+		$address=$this->post('address');
 		if($userid ==''){
 		$message = array('status'=>0,'message'=>'User Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
@@ -219,10 +221,10 @@ class Mobile extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Hospital Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
-		/*if($text ==''){
-		$message = array('status'=>0,'message'=>'Text is required');
+		if($address==''){
+		$message = array('status'=>0,'message'=>'Address is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
-		}*/
+		}
 		if(count($_FILES)==0){
 			$message = array('status'=>0,'message'=>'upload image is required');
 			$this->response($message, REST_Controller::HTTP_OK);	
@@ -236,6 +238,7 @@ class Mobile extends REST_Controller {
 			'hos_id'=>$hospital_id,
 			'image'=>$imgname,
 			'text'=>isset($text)?$text:'',
+			'address'=>isset($address)?$address:'',
 			'create_at'=>date('Y-m-d H:i:s'),
 			'creayte_by'=>$userid,
 			);
@@ -250,7 +253,7 @@ class Mobile extends REST_Controller {
 					$this->email->to($data['details']['email']);
 					 $this->email->cc($g4_plant_email['email']);
 					$this->email->subject($text);
-					$this->email->message($text.'Please find out below attachment');
+					$this->email->message($text.'. Address'.$address.'. Please find out below attachment');
 					$this->email->attach($pdfFilePath);
 					$this->email->send();
 					$message = array('status'=>1,'a_id'=>$userid,'hospital_id'=>$hospital_id,'message'=>'Image successfully sent');
@@ -283,6 +286,7 @@ class Mobile extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
 		$waste_details=$this->Mobile_model->get_bio_medical_waste_details($barcode_id);
+		//echo $this->db->last_query();exit;
 		
 		//echo $this->db->last_query();exit;
 		if(count($waste_details)>0){
@@ -394,6 +398,167 @@ class Mobile extends REST_Controller {
 				}
 	}
 	/* bio medical  post*/
+	
+	//through barcode add waste 
+	public function addwaste_post(){
+		$userid=$this->post('a_id');
+		$waste=$this->post('waste');
+		$scan_code=$this->post('scan_code');
+		$current_address=$this->post('current_address');
+		if($userid ==''){
+		$message = array('status'=>0,'message'=>'User Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($scan_code ==''){
+		$message = array('status'=>0,'message'=>'Scan code is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($waste ==''){
+		$message = array('status'=>0,'message'=>'Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($current_address ==''){
+		$message = array('status'=>0,'message'=>'Current Address qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		
+			$get_previou_data=$this->Mobile_model->get_wast_previous_data($scan_code);
+			if(count($get_previou_data)>0){
+				$message = array('status'=>0,'a_id'=>$userid,'message'=>'Qr code already scanned. Please use another qr code');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty='';
+			$w_da=explode('_',$waste);
+			$hospital_id=$w_da[0];
+			if($w_da[1]=='Yellow'){
+				$infected_waste_kgs +=$w_da[3];
+				$infected_waste_qty++;
+			}else if($w_da[1]=='Red'){
+				$infected_plastics_kgs =$w_da[3]++;
+				$infected_plastics_qty++;
+			}else if($w_da[1]=='Blue'){
+				$glassware_watse_kgs =$w_da[3]++;
+				$glassware_watse_qty++;
+			}else if($w_da[1]=='White'){
+				$genaral_waste_kgs =$w_da[3]++;
+				$genaral_waste_qty++;
+			}
+			
+		
+		$addgarbage=array(
+		'h_id'=>$hospital_id,
+		'genaral_waste_kgs'=>isset($genaral_waste_kgs)?$genaral_waste_kgs:'0',
+		'genaral_waste_qty'=>isset($genaral_waste_qty)?$genaral_waste_qty:'0',
+		'infected_plastics_kgs'=>isset($infected_plastics_kgs)?$infected_plastics_kgs:'0',
+		'infected_plastics_qty'=>isset($infected_plastics_qty)?$infected_plastics_qty:'0',
+		'infected_waste_kgs'=>isset($infected_waste_kgs)?$infected_waste_kgs:'0',
+		'infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',
+		'glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
+		'glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
+		'current_address'=>$current_address,
+		'scan_code'=>$scan_code,
+		'total'=>($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs),
+		'status'=>1,
+		'date'=>date('Y-m-d'),
+		'create_at'=>date('Y-m-d H:i:s'),
+		'create_by'=>$userid,
+		);
+		//echo '<pre>';print_r($addgarbage);exit;
+		$add_garbage=$this->Mobile_model->save_garbage_data($addgarbage);
+		if(count($add_garbage)>0){
+				$message = array('status'=>1,'waste_id'=>$add_garbage,'a_id'=>$userid,'message'=>'Garbage successfully added');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+				$message = array('status'=>0,'message'=>'HCF  is wrong. Please  try again once');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+		
+	}/* bio medical  post*/
+	
+	//through barcode add waste 
+	public function scan_post(){
+		$userid=$this->post('a_id');
+		$scan_code=$this->post('scan_code');
+		if($userid ==''){
+		$message = array('status'=>0,'message'=>'User Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($scan_code ==''){
+		$message = array('status'=>0,'message'=>'Scan code is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		 $get_previou_data=$this->Mobile_model->get_wast_previous_data($scan_code);
+		 
+		if(count($get_previou_data)>0){
+				$message = array('status'=>1,'a_id'=>$userid, 'diff'=>'', 'total'=>strval($get_previou_data['total']), 'message'=>'details  are found');
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'a_id'=>$userid,'message'=>'Technical problem will occurred. Please try again');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		  //echo '<pre>';print_r($get_previou_data);exit;
+		
+		
+		
+	}
+	public function checkwaste_post(){
+		$userid=$this->post('a_id');
+		$waste=$this->post('waste');
+		$scan_code=$this->post('scan_code');
+		$current_address=$this->post('current_address');
+		if($userid ==''){
+		$message = array('status'=>0,'message'=>'User Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($scan_code ==''){
+		$message = array('status'=>0,'message'=>'Scan code is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($waste ==''){
+		$message = array('status'=>0,'message'=>'Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($current_address ==''){
+		$message = array('status'=>0,'message'=>'Current Address qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty='';
+			$w_da=explode('_',$waste);
+			//echo '<pre>';print_r($w_da);exit;
+			$hospital_id=$w_da[0];
+			if($w_da[1]=='Yellow'){
+				$infected_waste_kgs +=$w_da[3];
+				$infected_waste_qty++;
+			}else if($w_da[1]=='Red'){
+				$infected_plastics_kgs =$w_da[3]++;
+				$infected_plastics_qty++;
+			}else if($w_da[1]=='Blue'){
+				$glassware_watse_kgs =$w_da[3]++;
+				$glassware_watse_qty++;
+			}else if($w_da[1]=='White'){
+				$genaral_waste_kgs =$w_da[3]++;
+				$genaral_waste_qty++;
+			}
+		
+		$total_waste=(($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs));
+		
+		 $get_previou_data=$this->Mobile_model->get_wast_previous_data($scan_code);
+		 if($get_previou_data['total']==$total_waste){
+			 $msg='Previous total and present total waste are matched';
+		 }else if($get_previou_data['total'] > $total_waste){
+			 $msg='Previous total and present total waste are not matched';
+		 }else if($get_previou_data['total']< $total_waste){
+			 $msg='Previous total and present total waste are not matched';
+		 }
+		 $u_dat=array('crosscheck_total'=>$total_waste,'updated_time'=>date('Y-m-d H:i:s'));
+		$updat_garbage=$this->Mobile_model->update_garbage_data($get_previou_data['id'],$u_dat);
+			
+		if(count($updat_garbage)>0){
+				$message = array('status'=>1,'a_id'=>$userid, 'diff'=>strval(($get_previou_data['total']-$total_waste)), 'total'=>strval($total_waste), 'message'=>$msg);
+				$this->response($message, REST_Controller::HTTP_OK);
+		}else{
+			$message = array('status'=>0,'a_id'=>$userid,'message'=>'Technical problem will occurred. Please try again');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		  //echo '<pre>';print_r($get_previou_data);exit;
+		
+		
+		
+	}
 	
 	
 	

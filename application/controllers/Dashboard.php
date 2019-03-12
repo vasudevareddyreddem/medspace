@@ -21,6 +21,11 @@ class Dashboard extends CI_Controller {
 			$data['u_url']= current_url();
 			$admindetails=$this->session->userdata('userdetails');
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
+			if($data['details']['role']==5){
+				$this->load->model('Govt_model');
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+			}
+			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
 			}
 		
@@ -61,12 +66,29 @@ class Dashboard extends CI_Controller {
 				$data['graph_glassware_waste_in_kg']=$this->Admin_model->get_hospital_graph_glassware_waste_in_kg_details($hos_details['h_id'],date('Y'));
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/hospital_dashboard',$data);	
+			}else if($admindetails['role']==5){
+				
+				$this->load->model('Govt_model');
+				$data['total_hospital_list']=$this->Govt_model->get_all_admins_wise_hospitals(2);
+				//echo '<pre>';print_r($data);exit;
+				$data['total_hospital']=$this->Govt_model->get_total_hospital(date('Y'));
+				$data['total_plants']=$this->Govt_model->get_total_plants(date('Y'));
+				$data['total_trucks']=$this->Govt_model->get_total_trucks(date('Y'));
+				$total_gen_waste=$this->Govt_model->get_gen_waste(date('Y'));
+				//echo '<pre>';print_r($total_gen_waste);exit;
+				$data['total_waste']=$total_gen_waste['total'];
+				$data['graph_total_hospital']=$this->Govt_model->get_graph_total_hospital_list(date('Y'));
+				$data['graph_total_plants']=$this->Govt_model->get_graph_total_plants_list(date('Y'));
+				$data['graph_total_truck']=$this->Govt_model->get_graph_total_truck_list(date('Y'));
+				$data['graph_total_waste']=$this->Govt_model->get_graph_total_waste_list(date('Y'));
+				
+				$this->load->view('admin/govt/dashboard',$data);
 			}else{
 				
 				$data['total_hospital']=$this->Admin_model->get_total_hospital($admindetails['a_id']);
 				$data['total_plants']=$this->Admin_model->get_total_plants($admindetails['a_id']);
 				$data['total_trucks']=$this->Admin_model->get_total_trucks($admindetails['a_id']);
-				$total_gen_waste=$this->Admin_model->get_gen_waste();
+				$total_gen_waste=$this->Admin_model->get_gen_waste($admindetails['a_id']);
 				//echo '<pre>';print_r($total_gen_waste);exit;
 				$data['total_waste']=$total_gen_waste['total'];
 				$data['graph_total_hospital']=$this->Admin_model->get_graph_total_hospital_list($admindetails['a_id'],date('Y'));

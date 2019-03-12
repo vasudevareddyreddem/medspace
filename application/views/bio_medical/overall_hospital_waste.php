@@ -1,4 +1,3 @@
-https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css
 <section class="content">
 	<!-- Exportable Table -->
             <div class="row clearfix">
@@ -62,6 +61,7 @@ https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-
 
 											<th>No of Kgs (White)</th>
 											<th>Date</th>
+											<th>Address</th>
                                             
                                         </tr>
                                     </thead>
@@ -82,7 +82,7 @@ https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-
 											<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
                                             <td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
                                             <td><?php echo htmlentities($list['date']); ?></td>
-                                            
+                                            <td title="<?php echo htmlentities($list['current_address']); ?>"><?php echo substr($list['current_address'], 0, 15); ?>...</td>
                                             
                                         </tr>
 										

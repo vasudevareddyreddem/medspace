@@ -71,17 +71,28 @@ class Prints extends CI_Controller {
 			//echo '<pre>';print_r($post);
 			$hcf_details=$this->Plant_model->get_hcf_details($post['hcf_name']);
 			$cbwtf_details=$this->Plant_model->get_cbwtf_details($post['cbwtf_id']);
+			//echo '<pre>';print_r($hcf_details);exit;
 			if(isset($post['sticker_size']) && $post['sticker_size']==4){
 				for ($k = 0 ; $k < 14; $k++){
+						$this->load->library('ciqrcode');
+						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['cachedir'] = FCPATH.'assets/hospital_waste_barcodes/';
+						$path_img=microtime().'.png';
+						$path='assets/hospital_waste_barcodes/'.$path_img;
+						$params['savename'] =FCPATH.$path;
+						$g=$this->ciqrcode->generate($params);
 					$print_data=array(
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
 					'category'=>isset($post['category_type'])?$post['category_type']:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
+					'barcode'=>isset($path_img)?$path_img:'',
 					);
 					$details[]=$print_data;
-					}
+				}
 				$data['print_details']=array_chunk($details,2);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/100x40',$data);
@@ -90,12 +101,22 @@ class Prints extends CI_Controller {
 			}else{
 				
 					for ($k = 0 ; $k < 32; $k++){
+						$this->load->library('ciqrcode');
+						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['cachedir'] = FCPATH.'assets/hospital_waste_barcodes/';
+						$path_img=microtime().'.png';
+						$path='assets/hospital_waste_barcodes/'.$path_img;
+						$params['savename'] =FCPATH.$path;
+						$this->ciqrcode->generate($params);
 					$print_data=array(
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
 					'category'=>isset($post['category_type'])?$post['category_type']:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
+					'barcode'=>isset($path_img)?$path_img:'',
 					);
 					$details[]=$print_data;
 					}

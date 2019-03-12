@@ -22,6 +22,10 @@ class User extends CI_Controller {
 			$data['u_url']= current_url();
 			$admindetails=$this->session->userdata('userdetails');
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
+			if($data['details']['role']==5){
+				$this->load->model('Govt_model');
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+			}
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
 			}

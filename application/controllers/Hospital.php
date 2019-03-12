@@ -22,6 +22,11 @@ class Hospital extends CI_Controller {
 			$data['u_url']= current_url();
 			$admindetails=$this->session->userdata('userdetails');
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
+			if($data['details']['role']==5){
+				$data['u_url']= base_url().$this->uri->segment(1).'/'.$this->uri->segment(2);
+				$this->load->model('Govt_model');
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+			}
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
 			}
@@ -176,6 +181,7 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				$post=$this->input->post();
+				//echo '<pre>';print_r($post);
 				$check_email=$this->Admin_model->email_check_details($post['email']);
 				if(count($check_email)>0){
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
@@ -193,9 +199,19 @@ class Hospital extends CI_Controller {
 					if(count($hos_save)>0){
 						$barcode_name = strtoupper(substr($post['hospital_name'], 0, 4));
 						$this->zend->load('Zend/Barcode');
-						$file = Zend_Barcode::draw('code128', 'image', array('text' => $barcode_name.$post['type'].$post['state'].$hos_save), array());
-						$code = time().$hos_save;
-						$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
+						$this->load->library('ciqrcode');
+						$params['data'] =$barcode_name.$post['type'].$post['state'].$hos_save;
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['cachedir'] = FCPATH.'assets/hospital_barcodes/';
+						$path_img=time().'.png';
+						$path='assets/hospital_barcodes/'.$path_img;
+						$params['savename'] =FCPATH.$path;
+						$this->ciqrcode->generate($params);
+						
+						//$file = Zend_Barcode::draw('code128', 'image', array('text' => $barcode_name.$post['type'].$post['state'].$hos_save), array());
+						//$code = time().$hos_save;
+						//$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/hospital_barcodes/{$code}.png");
 						$addhospital=array(
 							'a_id'=>isset($hos_save)?$hos_save:'',
 							'hospital_name'=>isset($post['hospital_name'])?strtoupper($post['hospital_name']):'',
@@ -214,10 +230,11 @@ class Hospital extends CI_Controller {
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
-							'barcode'=>$code.'.png',
+							'barcode'=>$path_img,
 							'barcodetext'=>$barcode_name.$post['type'].$post['state'].$hos_save,
 							'create_by'=>$admindetails['a_id']
 						);
+						//echo '<pre>';print_r($addhospital);exit;
 						$hospital_save=$this->Admin_model->save_hospital($addhospital);
 						if(count($hospital_save)>0){
 							$this->session->set_flashdata('success','HCF added succcessfully');
@@ -544,12 +561,18 @@ class Hospital extends CI_Controller {
 						$add_bio_medical=$this->Hospital_model->save_bio_medical_waste($add_bio);
 						//echo '<pre>';print_r($add_bio_medical);exit;
 						if(count($add_bio_medical)>0){
-							$this->zend->load('Zend/Barcode');
-							$file = Zend_Barcode::draw('code128', 'image', array('text' =>$add_bio_medical), array());
-							$code = time();
-							$store_image1 = imagepng($file, $this->config->item('documentroot')."assets/bio_medical_barcodes/{$code}.png");
+							
+							$this->load->library('ciqrcode');
+							$params['data'] =$add_bio_medical;
+							$params['level'] = 'H';
+							$params['size'] = 5;
+							$params['cachedir'] = FCPATH.'assets/bio_medical_barcodes/';
+							$path_img=microtime().'.png';
+							$path='assets/bio_medical_barcodes/'.$path_img;
+							$params['savename'] =FCPATH.$path;
+							$this->ciqrcode->generate($params);
 							$update_data=array(
-							'barcode'=>$code.'.png',
+							'barcode'=>$path_img,
 							);
 							$this->Hospital_model->update_barcode($add_bio_medical,$update_data);
 							$this->session->set_flashdata('success','Bio Medical waste Successfully added');
@@ -570,6 +593,130 @@ class Hospital extends CI_Controller {
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
 		}
+	}
+	//for govt
+	public function waste()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==5){
+				$post=$this->input->post();
+				$login_id=base64_decode($this->uri->segment(3));
+				if($login_id==''){
+					$a_id=$post['a_id'];
+					$data['a_id']=$post['a_id'];
+				}else{
+					$a_id=$login_id;
+					$data['a_id']=$login_id;
+				}
+				
+				//echo $a_id;exit;
+				
+				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+					
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($a_id,$post['from_date'],$post['to_date']);
+					//echo '<pre>';print_r($data);exit;
+				}else{
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($a_id);
+
+				}
+				
+				
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/govt/overall_hospital_waste',$data);
+				$this->load->view('html/footer');
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function wasteimages()
+	{	
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==5 || $admindetails['role']==1){
+				$login_id=base64_decode($this->uri->segment(3));
+				if($login_id==''){
+					$a_id=$admindetails['a_id'];
+				}else{
+					$a_id=$login_id;
+				}
+				$this->load->model('Govt_model');
+				$data['waste_imgs']=$this->Govt_model->get_hospital_wise_waste_img_list($a_id);
+				//echo $this->db->last_query();
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/govt/overall_hospital_waste_image',$data);
+				$this->load->view('html/footer');
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	
+	public  function cron(){
+		$this->load->model('Govt_model');
+		$hos_list=$this->Govt_model->get_hospital_wise_waste_for_invoice();
+		if(isset($hos_list) && count($hos_list)>0){
+			foreach($hos_list as $lis){
+				$post=$this->input->post();
+					$this->load->model('Mobile_model');
+					$data['details']=$this->Mobile_model->get_all_hospital_details($lis['h_id']);
+					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
+		
+					$data['garbage_details']=$lis;
+					$data['garbage_details']['invoice_id']=$lis['h_id'].'_'.$lis['date'];
+					//echo '<pre>';print_r($data);exit;
+					$path = rtrim(FCPATH,"/");
+					$file_name = $data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$lis['date'].'.pdf';                
+					$data['page_title'] = $data['details']['hospital_name'].'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/invoices/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html = $this->load->view('admin/pdf', $data, true); // render the view into HTML
+					//echo '<pre>';print_r($html);exit;
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F');
+					$update_data=array(
+					'hos_id'=>$lis['h_id'],
+					'invoice_file'=>$file_name,
+					'invoice_name'=>$data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$lis['date'],
+					'date'=>$lis['date'],
+					'created_at'=>date('Y-m-d H:i:s'),
+					);
+					$check=$this->Hospital_model->check_invoice_sent_or_not($lis['h_id'],$lis['date'],$update_data['invoice_name']);
+					//echo '<pre>';print_r($check);exit;
+					if(count($check)==0){
+					$this->Hospital_model->insert_invoice_name($update_data);
+					$this->email->set_newline("\r\n");
+					$this->email->from('admin@medspace.com');
+					$this->email->to($data['details']['email']);
+					 $this->email->cc($g4_plant_email['email']);
+					$this->email->subject($data['details']['hospital_name'].' Inovice');
+					$this->email->message('Current Address:'.$lis['current_address'].' .Please find out below attachment');
+					$this->email->attach($pdfFilePath);
+					$this->email->send();
+					}
+			}
+		}
+		//exit;
 	}
 	
 	
