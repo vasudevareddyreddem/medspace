@@ -544,7 +544,20 @@ class Mobile extends REST_Controller {
 		 }else if($get_previou_data['total']< $total_waste){
 			 $msg='Previous total and present total waste are not matched';
 		 }
-		 $u_dat=array('crosscheck_total'=>$total_waste,'updated_time'=>date('Y-m-d H:i:s'));
+		 $u_dat=array(
+			'crosscheck_total'=>$total_waste,
+			'updated_time'=>date('Y-m-d H:i:s'),		 
+			'bio_genaral_waste_kgs'=>isset($genaral_waste_kgs)?$genaral_waste_kgs:'0',
+			'bio_genaral_waste_qty'=>isset($genaral_waste_qty)?$genaral_waste_qty:'0',
+			'bio_infected_plastics_kgs'=>isset($infected_plastics_kgs)?$infected_plastics_kgs:'0',
+			'bio_infected_plastics_qty'=>isset($infected_plastics_qty)?$infected_plastics_qty:'0',
+			'bio_infected_waste_kgs'=>isset($infected_waste_kgs)?$infected_waste_kgs:'0',
+			'bio_infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',
+			'bio_glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
+			'bio_glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
+			'bio_current_address'=>$current_address,
+			'updated_by'=>$userid,
+		);
 		$updat_garbage=$this->Mobile_model->update_garbage_data($get_previou_data['id'],$u_dat);
 			
 		if(count($updat_garbage)>0){
