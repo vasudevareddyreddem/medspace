@@ -1,19 +1,77 @@
 
                        
-				<div   style="width:189px;height:189px;border:1px solid #ddd;overflow:hidden;">
-					<div style=" ;padding:10px;">
-					 <div  style="margin:3px 10px">Bio Medical Waste</div>
-					<div style="margin:3px 10px;font-size:15px">Hospital Name:<strong><?php echo $hospital_detail['hospital_name']; ?></strong></div> 		 
+				<div   style="width:29.7cm;height:42.0cm;border:1px solid #ddd;overflow:hidden;">
+				<div class="row" style="position:relative;margin-top:12px">
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden;margin-left:20px;">
+					<div style=" ;padding:20px 10px;">
+				
+					 
 										
-							 <div class="" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
-								<img style="width:auto; height:auto;margin-right:30px;" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
 								
 										
 							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
 					</div>
                 </div>
-				<div class="clearfix">&nbsp;</div>
-				<a onclick="myFunction()" id="print_btn" style="border:none;background-color:#00b0e4;color:#fff;padding:5px;border-radius:5px;">print</button>
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden;float:right;position:absolute;top:0;right:20px;">
+					<div style=" ;padding:20px 10px;">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
+								
+										
+							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
+					</div>
+                </div>
+                </div>
+				<div class="row" style="position:relative; margin-top:12px">
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden; margin-left:20px;">
+					<div style=" ;padding:20px 10px;">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
+							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
+					</div>
+                </div>
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden;float:right;position:absolute;top:0;right:20px;">
+					<div style=" ;padding:20px 10px;">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
+							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
+					</div>
+                </div>
+                </div>
+				<div class="row" style="position:relative; margin-top:12px">
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden; margin-left:20px;">
+					<div style=" ;padding:20px 10px;">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
+							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
+					</div>
+                </div>
+				<div   style="width:14cm;height:13.5cm;border:1px solid #ddd;overflow:hidden;float:right;position:absolute;top:0;right:20px;">
+					<div style=" ;padding:20px 10px;">
+							 <div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
+								<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code"/>
+								
+										
+							 </div>
+							 	 <div  style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
+							 	<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span></div> 	
+					</div>
+                </div>
+                </div>
+                </div>
+			
      
 
 
