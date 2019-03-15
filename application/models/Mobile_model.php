@@ -88,9 +88,46 @@ class Mobile_model extends CI_Model
 		$this->db->where('hospital_waste.scan_code', $scan_code);
 		return $this->db->get()->row_array();
 	}
+	public function get_check_wast_previous_data($scan_code){
+		$this->db->select('id,total')->from('hospital_waste');
+		$this->db->where('hospital_waste.scan_code', $scan_code);
+		$this->db->where('hospital_waste.crosscheck_total !=','');
+		return $this->db->get()->row_array();
+	}
 	public function update_garbage_data($waset_id,$data){
 		$this->db->where('id',$waset_id);
 		return $this->db->update('hospital_waste',$data);
+	}
+	// hospital id purpose
+	public  function get_hospital_ids_details($barcode){
+		$this->db->select('h_id,a_id,barcodetext')->from('hospital_list');
+		$this->db->where('hospital_list.barcodetext', $barcode);
+		return $this->db->get()->row_array();
+	}
+	// waste Details purpose
+	public  function get_wateid_details($id){
+		$this->db->select('*')->from('hospital_waste');
+		$this->db->where('hospital_waste.id', $id);
+		return $this->db->get()->row_array();
+	}
+	// waste Details purpose
+	public  function get_all_wateid_details($id){
+		$this->db->select('id,genaral_waste_kgs,genaral_waste_qty,infected_plastics_kgs,infected_plastics_qty,infected_waste_kgs,infected_waste_qty,glassware_watse_kgs,glassware_watse_qty,total')->from('hospital_waste');
+		$this->db->where('hospital_waste.id', $id);
+		return $this->db->get()->row_array();
+	}
+	public  function get_check_wateid_details($id){
+		$this->db->select('*')->from('hospital_waste');
+		$this->db->where('hospital_waste.id', $id);
+		$this->db->where('crosscheck_total!=','');
+		return $this->db->get()->row_array();
+	}
+	// waste id list 
+	public  function get_waste_ids_list($h_id){
+		$this->db->select('hospital_waste.id as waste_id,hospital_waste.date,hospital_waste.h_id,hospital_list.hospital_name')->from('hospital_waste');
+		$this->db->join('hospital_list', 'hospital_list.h_id = hospital_waste.h_id', 'left');
+		$this->db->where('hospital_waste.h_id', $h_id);
+		return $this->db->get()->result_array();
 	}
 	
 	

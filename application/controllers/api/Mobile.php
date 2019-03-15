@@ -516,6 +516,12 @@ class Mobile extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Current Address qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
+		
+		$get_previou_data=$this->Mobile_model->get_check_wast_previous_data($scan_code);
+		if(count($get_previou_data)>0){
+			$message = array('status'=>0,'a_id'=>$userid,'message'=>'Qr code already scanned. Please use another qr code');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
 			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty='';
 			$w_da=explode('_',$waste);
 			//echo '<pre>';print_r($w_da);exit;
@@ -570,6 +576,132 @@ class Mobile extends REST_Controller {
 		  //echo '<pre>';print_r($get_previou_data);exit;
 		
 		
+		
+	}
+	public function waste_ids_post(){
+		$hospital_qr_code=$this->post('hospital_bar_code');
+		if($hospital_qr_code ==''){
+		$message = array('status'=>0,'message'=>'Hospital Qr code is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$hospital_id=$this->Mobile_model->get_hospital_ids_details($hospital_qr_code);
+		if(count($hospital_id)>0){
+			
+				$waste_id=$this->Mobile_model->get_waste_ids_list($hospital_id['h_id']);
+				if(count($waste_id)>0){
+					$message = array('status'=>1,'h_id'=>$hospital_id['h_id'],'details'=>$waste_id,'message'=>'Hospital waste details are found');
+					$this->response($message, REST_Controller::HTTP_OK);
+					
+				}else{
+					$message = array('status'=>0,'h_id'=>$hospital_id['h_id'],'message'=>'Hospital having no waste ids. Please try again');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+				//echo '<pre>';print_r($waste_id);exit;
+		}else{
+			$message = array('status'=>0,'message'=>'Hospital details are not found. Please try again');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+	}
+	public function waste_details_post(){
+		$waste_id=$this->post('waste_id');
+		if($waste_id ==''){
+		$message = array('status'=>0,'message'=>'Waste id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$waste_details=$this->Mobile_model->get_all_wateid_details($waste_id);
+		if(count($waste_details)>0){
+			$message = array('status'=>1,'waste_id'=>$waste_id,'details'=>$waste_details,'message'=>'Hospital waste details are found');
+			$this->response($message, REST_Controller::HTTP_OK);
+				
+				//echo '<pre>';print_r($waste_id);exit;
+		}else{
+			$message = array('status'=>0,'waste_id'=>'','details'=>(object)array(),'message'=>'waste details are not found. Please try again');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		
+	}
+	public function waste_id_scan_post(){
+		$userid=$this->post('a_id');
+		$waste_id=$this->post('waste_id');
+		$genaral_waste_kgs=$this->post('genaral_waste_kgs');
+		$genaral_waste_qty=$this->post('genaral_waste_qty');
+		$infected_plastics_kgs=$this->post('infected_plastics_kgs');
+		$infected_plastics_qty=$this->post('infected_plastics_qty');
+		$infected_waste_kgs=$this->post('infected_waste_kgs');
+		$infected_waste_qty=$this->post('infected_waste_qty');
+		$glassware_watse_kgs=$this->post('glassware_watse_kgs');
+		$glassware_watse_qty=$this->post('glassware_watse_qty');
+		$current_address=$this->post('current_address');
+		if($userid ==''){
+		$message = array('status'=>0,'message'=>'User Id is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($waste_id ==''){
+			$message = array('status'=>0,'message'=>'Waste Id is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+		}if($genaral_waste_kgs ==''){
+		$message = array('status'=>0,'message'=>'Genaral Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($genaral_waste_qty ==''){
+		$message = array('status'=>0,'message'=>'Genaral Waste qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_plastics_kgs ==''){
+		$message = array('status'=>0,'message'=>'Infected Plastics kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_plastics_qty ==''){
+		$message = array('status'=>0,'message'=>'Infected Plastics qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_waste_kgs ==''){
+		$message = array('status'=>0,'message'=>'Infected Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_waste_qty ==''){
+		$message = array('status'=>0,'message'=>'Infected Waste qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($glassware_watse_kgs ==''){
+		$message = array('status'=>0,'message'=>'Glassware Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($glassware_watse_qty ==''){
+		$message = array('status'=>0,'message'=>'Glassware Waste qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($current_address ==''){
+		$message = array('status'=>0,'message'=>'Current Address qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$waste_details=$this->Mobile_model->get_wateid_details($waste_id);
+		$check_details=$this->Mobile_model->get_check_wateid_details($waste_id);
+		if(count($check_details)>0){
+			$message = array('status'=>0,'a_id'=>$userid,'message'=>'Waste id already updated. Please use another waste id');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+		if(count($waste_details)>0){
+				$updategarbage=array(
+				'bio_genaral_waste_kgs'=>$genaral_waste_kgs,
+				'bio_genaral_waste_qty'=>$genaral_waste_qty,
+				'bio_infected_plastics_kgs'=>$infected_plastics_kgs,
+				'bio_infected_plastics_qty'=>$infected_plastics_qty,
+				'bio_infected_waste_kgs'=>$infected_waste_kgs,
+				'bio_infected_waste_qty'=>$infected_waste_qty,
+				'bio_glassware_watse_kgs'=>$glassware_watse_kgs,
+				'bio_glassware_watse_qty'=>$glassware_watse_qty,
+				'bio_current_address'=>$current_address,
+				'crosscheck_total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
+				'updated_time'=>date('Y-m-d H:i:s'),
+				'updated_by'=>$userid,
+				);
+				$update=$this->Mobile_model->update_garbage_data($waste_id,$updategarbage);
+				//echo $this->db->last_query();exit;
+				if(count($update)>0){
+					$message = array('status'=>1,'a_id'=>$userid,'waste_id'=>$waste_id,'message'=>'Garbage successfully update');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'message'=>'HCF  is wrong. Please  try again once');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+				
+		}else{
+			$message = array('status'=>0,'message'=>'Waste id are not found. Please try again');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
 		
 	}
 	
