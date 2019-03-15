@@ -5,6 +5,11 @@
 		
 		 vertical-align: middle ;
 	}
+	table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+    border-left-width: 0;
+    vertical-align: middle;
+	text-align:center;
+}
 </style>
 <section class="content">
 	<!-- Exportable Table -->
@@ -20,10 +25,10 @@
                         <div class="body">
 						<form action="<?php echo base_url('hospital/waste'); ?>" method="post">
 						<input type="hidden" id="a_id" name="a_id" value="<?php echo isset($a_id)?$a_id:''; ?>">
-								<div class="container">
+								<div class="">
 									<div class="row">
        
-         <div class="col-sm-3">
+         <div class="col-md-4">
 		  <label>From</label>
             <div class="input-group date">
                 <input type="text" name="from_date" class="form-control" id="jss-date" required>
@@ -32,7 +37,7 @@
                 </div>
             </div>
         </div>
-		 <div class="col-sm-3">
+		 <div class="col-md-4">
 		  <label>To</label>
             <div class="input-group date">
                 <input type="text" name="to_date" class="form-control" id="js-date" required>
@@ -41,7 +46,7 @@
                 </div>
             </div>
         </div> 
-		<div class="col-sm-3">
+		<div class="col-md-4">
 		  <label>&nbsp;</label>
             <div class="input-group date">
                <button class="btn btn-primary btn-sm">Search</button>
@@ -69,17 +74,17 @@
 											  </tr> 
 											  <tr>
 												<th rowspan="2">Date</th>
-												<th colspan="2">Yellow</th>
-												<th colspan="2">Red</th>
+												<th class="bg-yellow" colspan="2">Yellow</th>
+												<th class="bg-red" colspan="2">Red</th>
 												<th colspan="2">White</th>
-												<th colspan="2">Blue</th>
+												<th class="bg-blue" colspan="2">Blue</th>
 												<th rowspan="2">Date</th>
 												<th rowspan="2">Address of receipt of waste
 </th>
-												<th colspan="2">Yellow</th>
-												<th colspan="2">Red</th>
+												<th class="bg-yellow" colspan="2">Yellow</th>
+												<th class="bg-red" colspan="2">Red</th>
 												<th colspan="2">White</th>
-												<th colspan="2">Blue</th>
+												<th class="bg-blue" colspan="2">Blue</th>
 											  </tr>
 											  <tr>
 												<th>No. of Bags</th>
