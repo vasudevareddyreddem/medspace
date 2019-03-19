@@ -256,12 +256,12 @@ class User extends CI_Controller {
 							);
 							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 							if(count($update)>0){
-								$$this->session->set_flashdata('success','User details Successfully updated');
+								$this->session->set_flashdata('success','User details Successfully updated');
 										redirect('user/lists');
 									
 								
 								}else{
-								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 									redirect('user/edit/'.base64_encode($post['a_id']));
 									
 								
