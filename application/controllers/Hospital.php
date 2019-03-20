@@ -192,6 +192,7 @@ class Hospital extends CI_Controller {
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
+						'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 						'status'=>1,
 						'role'=>2
 					);
@@ -301,6 +302,7 @@ class Hospital extends CI_Controller {
 								$admin_detail=array(
 								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 								);
 								$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 								
@@ -346,6 +348,7 @@ class Hospital extends CI_Controller {
 							$admin_detail=array(
 								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 								);
 							$this->Hospital_model->update_admin_details($details['a_id'],$admin_detail);
 							

@@ -192,6 +192,7 @@ class Garbage extends CI_Controller {
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
+						'mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 						'status'=>1,
 						'role'=>3
 					);
@@ -287,6 +288,7 @@ class Garbage extends CI_Controller {
 								$admin_detail=array(
 								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
 								$this->session->set_flashdata('success','BMW Vehicle details successfully updated');
@@ -323,6 +325,7 @@ class Garbage extends CI_Controller {
 								$admin_detail=array(
 								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
 								//echo $this->db->last_query();exit;

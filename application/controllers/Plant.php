@@ -192,6 +192,7 @@ class Plant extends CI_Controller {
 						'email_id'=>isset($post['email'])?$post['email']:'',
 						'password'=>isset($post['password'])?md5($post['password']):'',
 						'org_password'=>isset($post['password'])?$post['password']:'',
+						'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 						'status'=>1,
 						'role'=>4
 					);
@@ -277,6 +278,7 @@ class Plant extends CI_Controller {
 								$admin_detail=array(
 								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
 								$this->session->set_flashdata('success','CBWTF details successfully updated');
@@ -316,6 +318,7 @@ class Plant extends CI_Controller {
 								$admin_detail=array(
 								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
+								'mobile'=>isset($post['mobile'])?$post['mobile']:'',
 								);
 								$this->Plant_model->update_admin_details($details['a_id'],$admin_detail);
 								//echo $this->db->last_query();exit;
