@@ -120,7 +120,7 @@ class Prints extends CI_Controller {
 					);
 					$details[]=$print_data;
 					}
-				$data['print_details']=array_chunk($details,4);
+				$data['print_details']=array_chunk($details,3);
 				$this->load->view('admin/50x35',$data);
 			}
 			

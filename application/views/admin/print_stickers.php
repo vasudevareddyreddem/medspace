@@ -57,7 +57,7 @@
                                 <select class="form-control"  name="sticker_size" id="sticker_size" style="width:100%;">
                                     <option value = "">Select</option>
                                     <option value = "4">100 x 40 (mm)</option>
-                                    <option value = "2">50 x 35 (mm)</option>
+                                    <option value = "2">64 x 34 (mm)</option>
                                     
                                 </select>  
                             </div>
