@@ -673,23 +673,26 @@ class Hospital extends CI_Controller {
 	public  function cron(){
 		$this->load->model('Govt_model');
 		$hos_list=$this->Govt_model->get_hospital_wise_waste_for_invoice();
+		//echo '<pre>';print_r($hos_list);exit;
 		if(isset($hos_list) && count($hos_list)>0){
 			foreach($hos_list as $lis){
 				$post=$this->input->post();
 					$this->load->model('Mobile_model');
 					$data['details']=$this->Mobile_model->get_all_hospital_details($lis['h_id']);
+					//echo $this->db->last_query();
+					//echo '<pre>';print_r($data);exit;
 					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
-		
+					$data['plant_details']=$g4_plant_email;
 					$data['garbage_details']=$lis;
 					$data['garbage_details']['invoice_id']=$lis['h_id'].'_'.$lis['date'];
-					//echo '<pre>';print_r($data);exit;
+					//echo '<pre>';print_r($g4_plant_email);
 					$path = rtrim(FCPATH,"/");
 					$file_name = $data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$lis['date'].'.pdf';                
 					$data['page_title'] = $data['details']['hospital_name'].'invoice'; // pass data to the view
 					$pdfFilePath = $path."/assets/invoices/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('admin/pdf', $data, true); // render the view into HTML
-					//echo '<pre>';print_r($html);exit;
+					//echo '<pre>';print_r($html);
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
@@ -702,20 +705,26 @@ class Hospital extends CI_Controller {
 					'invoice_file'=>$file_name,
 					'invoice_name'=>$data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$lis['date'],
 					'date'=>$lis['date'],
+					'hos_wast_id'=>$lis['id'],
 					'created_at'=>date('Y-m-d H:i:s'),
 					);
 					$check=$this->Hospital_model->check_invoice_sent_or_not($lis['h_id'],$lis['date'],$update_data['invoice_name']);
-					//echo '<pre>';print_r($check);exit;
-					if(count($check)==0){
-					$this->Hospital_model->insert_invoice_name($update_data);
-					$this->email->set_newline("\r\n");
-					$this->email->from('admin@medspace.com');
-					$this->email->to($data['details']['email']);
-					 $this->email->cc($g4_plant_email['email']);
-					$this->email->subject($data['details']['hospital_name'].' Inovice');
-					$this->email->message('Current Address:'.$lis['current_address'].' .Please find out below attachment');
-					$this->email->attach($pdfFilePath);
-					$this->email->send();
+					//echo '<pre>';print_r($check);
+					if(count($check)>0){
+				
+					}else{
+						
+						$this->Hospital_model->insert_invoice_name($update_data);
+						//echo $this->db->last_query();
+						$this->email->set_newline("\r\n");
+						$this->email->from('admin@medspace.com');
+						$this->email->to($data['details']['email']);
+						 $this->email->cc($g4_plant_email['email']);
+						$this->email->subject($data['details']['hospital_name'].' Inovice');
+						$this->email->message('Current Address:'.$lis['current_address'].' .Please find out below attachment');
+						$this->email->attach($pdfFilePath);
+						$this->email->send();
+						
 					}
 			}
 		}

@@ -163,6 +163,7 @@ class Mobile extends REST_Controller {
 					$data['details']=$this->Mobile_model->get_all_hospital_details($hospital_id);
 					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
 		
+					$data['plant_details']=$g4_plant_email;
 					$data['garbage_details']=$addgarbage;
 					$data['garbage_details']['invoice_id']=$add_garbage;
 					//echo '<pre>';print_r($data);exit;

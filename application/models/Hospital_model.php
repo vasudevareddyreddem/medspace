@@ -36,7 +36,8 @@ class Hospital_model extends CI_Model
 	
 	
 	public function get_hospital_invoice_list_details($h_id){
-		$this->db->select('*')->from('hospital_waste');		
+		$this->db->select('hospital_waste.id,hospital_waste.h_id,hospital_waste.genaral_waste_kgs,hospital_waste.genaral_waste_qty,hospital_waste.infected_plastics_kgs,hospital_waste.infected_plastics_qty,hospital_waste.infected_waste_kgs,hospital_waste.infected_waste_qty,hospital_waste.glassware_watse_kgs,hospital_waste.glassware_watse_qty,hospital_waste.create_at,hospital_waste.date,hospital_waste.create_by,hospital_waste.status,hospital_waste_invoice.invoice_name,hospital_waste_invoice.invoice_file')->from('hospital_waste');
+		$this->db->join('hospital_waste_invoice ', 'hospital_waste_invoice.hos_wast_id = hospital_waste.id', 'left');
 		$this->db->where('h_id', $h_id);
         return $this->db->get()->result_array();	
 	}

@@ -100,7 +100,7 @@ class Prints extends CI_Controller {
 				
 			}else{
 				
-					for ($k = 0 ; $k < 32; $k++){
+					for ($k = 0 ; $k < 24; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';

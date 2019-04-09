@@ -10,6 +10,7 @@
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" style="margin:0 2mm;">
+		<?php if(isset($list[0]) && count($list[0])>0){ ?>
 		<div class="sticker" style="width:64mm;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
@@ -36,6 +37,8 @@
 					</div>
 				</div>
 		</div>
+		<?php } ?>
+		<?php if(isset($list[1]) && count($list[1])>0){ ?>
 		<div class="sticker" style="width:64mm;float:left;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm;margin-left:1mm;overflow:hidden">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
@@ -62,6 +65,8 @@
 					</div>
 				</div>
 		</div>
+		<?php } ?>
+		<?php if(isset($list[2]) && count($list[2])>0){ ?>
 		<div class="sticker" style="width:64mm;float:left;height:35mm;background:#fff;border:1px solid #ddd;margin-top:1mm;margin-left:1mm; overflow:hidden">
 				<div >
 					<h4 style="padding:0px;margin:0px;font-size:14px;">Bio-medical waste barcode</h4>
@@ -88,6 +93,7 @@
 					</div>
 				</div>
 		</div>
+		<?php } ?>
 		
 		</div>
 		

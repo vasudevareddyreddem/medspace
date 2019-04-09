@@ -131,8 +131,8 @@ th, td {
                                 <img src="<?php echo base_url(); ?>assets/vendor/img/logo.png" style=" width:100px;">
                             </td>
 							<td >
-                               <h1 style="text-align:center;">Medspace</h1>
-                               <p style="text-align:center;color:#F80">By Medspace Softtech Pvt ltd.</p>
+                               <h1 style="text-align:center;"><?php echo isset($plant_details['disposal_plant_name'])?$plant_details['disposal_plant_name']:'Medspace'; ?></h1>
+                               <p style="text-align:center;color:#F80"><?php echo isset($plant_details['address1'])?$plant_details['address1']:''; ?>,<?php echo isset($plat_details['city'])?$plat_details['city']:''; ?></p>
                             </td>
                             
                           

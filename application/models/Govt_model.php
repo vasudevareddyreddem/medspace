@@ -123,7 +123,7 @@ class Govt_model extends CI_Model
 		
 		public  function get_hospital_wise_waste_for_invoice(){
 			
-				$sql = "SELECT hospital_waste.date,hospital_waste.create_at,hospital_waste.current_address,hospital_waste.h_id,hospital_list.hospital_name From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  GROUP BY hospital_waste.h_id,hospital_waste.date";
+				$sql = "SELECT hospital_waste.id,hospital_waste.date,hospital_waste.create_at,hospital_waste.current_address,hospital_waste.h_id,hospital_list.hospital_name,hospital_list.create_by From hospital_waste  LEFT JOIN hospital_list on hospital_list.h_id= hospital_waste.h_id  GROUP BY hospital_waste.h_id,hospital_waste.date";
 				$return=$this->db->query($sql)->result_array();
 				foreach($return as $list){
 				$genaral_waste_kgs=$this->get_genaral_waste_kgs_list($list['h_id'],$list['date']);

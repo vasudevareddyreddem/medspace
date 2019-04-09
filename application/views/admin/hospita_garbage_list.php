@@ -49,7 +49,10 @@
                                             
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
-                                            <td><a target="_blank" href="<?php echo base_url('assets/invoices/'.$list['invoice_file']); ?>">Download Invoice</a></td>
+                                            <td>
+											<?php if($list['invoice_file']!=''){ ?>
+											<a target="_blank" href="<?php echo base_url('assets/invoices/'.$list['invoice_file']); ?>">Download Invoice</a></td>
+											<?php } ?>
                                             
                                         </tr>
 										
