@@ -58,6 +58,7 @@
                                     <option value = "">Select</option>
                                     <option value = "4">100 x 40 (mm)</option>
                                     <option value = "2">64 x 34 (mm)</option>
+                                    <option value = "3">45 x 21 (mm)</option>
                                     
                                 </select>  
                             </div>
