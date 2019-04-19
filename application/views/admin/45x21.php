@@ -11,7 +11,7 @@
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" style="margin:0 7.8mm;margin-top:22mm">
-		<div class="sticker" style="width:45.7mm;20mm;background:#fff;border:1px solid #ddd;overflow:hidden">
+		<div class="sticker" style="width:45.7mm;height:19mm;;background:#fff;border:1px solid #ddd;overflow:hidden">
 				<div >
 					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
 				
@@ -21,7 +21,7 @@
 						<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
+									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
 									<td style="">Category</td>
 									<td><span><?php echo $list[0]['category'] ; ?> </span>bag</td>
 								</tr>
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="sticker" style="width:45.7mm;20mm;background:#fff;border:1px solid #ddd;overflow:hidden">
+		<div class="sticker" style="width:45.7mm;height:19mm;;background:#fff;border:1px solid #ddd;overflow:hidden">
 				<div >
 					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
 				
@@ -48,7 +48,7 @@
 						<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
+									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
 									<td style="">Category</td>
 									<td><span><?php echo $list[1]['category'] ; ?> </span>bag</td>
 								</tr>
@@ -65,7 +65,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="sticker" style="width:45.7mm;20mm;background:#fff;border:1px solid #ddd;overflow:hidden">
+		<div class="sticker" style="width:45.7mm;height:19mm;;background:#fff;border:1px solid #ddd;overflow:hidden">
 				<div >
 					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
 				
@@ -75,7 +75,7 @@
 						<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
+									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
 									<td style="">Category</td>
 									<td><span><?php echo $list[2]['category'] ; ?> </span>bag</td>
 								</tr>
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="sticker" style="width:45.7mm;20mm;background:#fff;border:1px solid #ddd;overflow:hidden">
+		<div class="sticker" style="width:45.7mm;height:19mm;;background:#fff;border:1px solid #ddd;overflow:hidden">
 				<div >
 					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
 				
@@ -102,7 +102,7 @@
 						<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
+									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:13mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
 									<td style="">Category</td>
 									<td><span><?php echo $list[3]['category'] ; ?> </span>bag</td>
 								</tr>
