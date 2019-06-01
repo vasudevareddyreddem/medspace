@@ -515,7 +515,7 @@ class Hospital extends CI_Controller {
 	}
 	public function waste_list()
 	{	
-		if($this->session->userdata('userdetails'))
+			if($this->session->userdata('userdetails'))
 		{
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
@@ -528,6 +528,8 @@ class Hospital extends CI_Controller {
 					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
 
 				}
+				
+				
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('bio_medical/overall_hospital_waste',$data);
 				$this->load->view('html/footer');

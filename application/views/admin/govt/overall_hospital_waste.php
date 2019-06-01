@@ -116,29 +116,29 @@
 												<td title="<?php echo htmlentities($list['current_address']); ?>"><?php echo substr($list['current_address'], 0, 15); ?>...</td>
 												<td> <?php echo htmlentities($list['date']); ?></td>
 												
-												<td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
-												<td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
-												<td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
-												<td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
+												<td><?php echo htmlentities($list['infected_waste_qt']); ?></td>
+												<td><?php echo htmlentities($list['infected_waste_kg']); ?></td>
+												<td><?php echo htmlentities($list['infected_plastics_qt']); ?></td>
+												<td><?php echo htmlentities($list['infected_plastics_kg']); ?></td>
 												
-												<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
-												<td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
-												<td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
-												<td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
+												<td><?php echo htmlentities($list['genaral_waste_qt']); ?></td>
+												<td><?php echo htmlentities($list['genaral_waste_kg']); ?></td>
+												<td><?php echo htmlentities($list['glassware_watse_qt']); ?></td>
+												<td><?php echo htmlentities($list['glassware_watse_kg']); ?></td>
 												<!-- bio waste -->
 												<td> <?php echo htmlentities($list['date']); ?></td>
 												<td title="<?php echo htmlentities($list['bio_current_address']); ?>"><?php echo substr($list['bio_current_address'], 0, 15); ?>...</td>
-												<td><?php echo htmlentities($list['bio_infected_waste_qty']); ?></td>
-												<td><?php echo htmlentities($list['bio_infected_waste_kgs']); ?></td>
+												<td><?php echo htmlentities($list['bio_infected_waste_qt']); ?></td>
+												<td><?php echo htmlentities($list['bio_infected_waste_kg']); ?></td>
 												
-												<td><?php echo htmlentities($list['bio_infected_plastics_qty']); ?></td>
-												<td><?php echo htmlentities($list['bio_infected_plastics_kgs']); ?></td>
+												<td><?php echo htmlentities($list['bio_infected_plastics_qt']); ?></td>
+												<td><?php echo htmlentities($list['bio_infected_plastics_kg']); ?></td>
 												
-												<td><?php echo htmlentities($list['bio_genaral_waste_qty']); ?></td>
-												<td><?php echo htmlentities($list['bio_genaral_waste_kgs']); ?></td>
+												<td><?php echo htmlentities($list['bio_genaral_waste_qt']); ?></td>
+												<td><?php echo htmlentities($list['bio_genaral_waste_kg']); ?></td>
 												
-												<td><?php echo htmlentities($list['bio_glassware_watse_qty']); ?></td>
-												<td><?php echo htmlentities($list['bio_glassware_watse_kgs']); ?></td>
+												<td><?php echo htmlentities($list['bio_glassware_watse_qt']); ?></td>
+												<td><?php echo htmlentities($list['bio_glassware_watse_kg']); ?></td>
 												
 												
 												<td> <?php echo htmlentities($list['total']); ?>-<?php echo htmlentities($list['bio_total']); ?> =  <?php echo ($list['total']-$list['bio_total']) ; ?></td>
