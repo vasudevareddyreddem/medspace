@@ -542,6 +542,47 @@ class Hospital extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function waste_pdf()
+	{	
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+					if(isset($post['f_date']) && $post['f_date']!='' || isset($post['t_date']) && $post['t_date']!=''){
+						
+						$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($admindetails['a_id'],$post['f_date'],$post['t_date']);
+						//echo '<pre>';print_r($data);exit;
+					}else{
+						$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
+
+					}
+					$path = rtrim(FCPATH,"/");
+					$file_name =time().'.pdf';
+					$pdfFilePath = $path."/assets/waste-pdf/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html =$this->load->view('bio_medical/waste-pdf',$data, true); // render the view into HTML
+					//echo '<pre>';print_r($html);exit;
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F');
+					redirect("/assets/waste-pdf/".$file_name);
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	
 	public function addbio_medical_post()
 	{	

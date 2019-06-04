@@ -48,12 +48,17 @@ table.table-bordered.dataTable th, table.table-bordered.dataTable td {
                            <label>&nbsp;</label>
                            <div class="input-group date">
                               <button class="btn btn-primary btn-sm">Search</button>
-                              <a href="<?php echo base_url('hospital/waste_pdf'); ?>" class="btn btn-primary btn-sm">Pdf</a>
+                              
                            </div>
                         </div>
                      </div>
                   </div>
                </form>
+			  	<form target="_blnak" onsubmit="return get_waste_pdf()" action="<?php echo base_url('hospital/waste_pdf'); ?>" method="post">
+					<input type="hidden" name="f_date" id="f_date" value="">
+					<input type="hidden" name="t_date" id="t_date" value="">
+				   <button type="submit" class="btn btn-primary btn-sm">Pdf</button>
+			   </form>
                <div class="clearfix">&nbsp;</div>
             <div class="table-responsive">
              
@@ -157,6 +162,13 @@ table.table-bordered.dataTable th, table.table-bordered.dataTable td {
   
 </section>
 <script type="text/javascript">
+function get_waste_pdf(){
+	var f_da=$('#jss-date').val();
+	var t_da=$('#js-date').val();
+	$('#f_date').val(f_da);
+	$('#t_date').val(t_da);
+	
+}
    $(document).ready(function() {
     $('#js-date').datepicker(
    {  

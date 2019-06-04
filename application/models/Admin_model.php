@@ -7,6 +7,8 @@ class Admin_model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->database("default");
+		$this->db2 = $this->load->database('default1', TRUE);
+
 	}
 	public function update_admin_details($a_id,$data){
 		$this->db->where('a_id',$a_id);
@@ -368,6 +370,43 @@ class Admin_model extends CI_Model
 	public function get_cbwtfreport_list(){
 		$this->db->select('*')->from('cbwtf_daily_report');		
         return $this->db->get()->result_array();
+	}
+	
+	
+	
+	
+	
+	// db  migration pupurpose
+	
+	public  function get_staging_hopital_list($a_id){
+		$this->db->select('hl.*,a.org_password,a.address1,a.address2,a.city,a.state,a.country,a.pincode,a.profile_pic,a.role')->from('hospital_list as hl');
+		$this->db->join('admin as a', 'a.a_id = hl.a_id', 'left');
+		$this->db->where('hl.create_by', $a_id);
+        return $this->db->get()->result_array();
+	}
+	public function email_check_details_staging($email){
+		$sql = "SELECT * FROM admin WHERE email_id ='".$email."' AND status !=2";
+		return $this->db2->query($sql)->row_array();	
+	}
+	public function save_admin1($data){
+		$this->db2->insert('admin', $data);
+		return $insert_id = $this->db2->insert_id();
+	}
+	public function save_hospital1($data){
+		$this->db2->insert('hospital_list', $data);
+		return $insert_id = $this->db2->insert_id();
+	}
+	public  function get_staging_trcuk_list($a_id){
+		$this->db->select('t.*,a.org_password')->from('trucks as t');
+		$this->db->join('admin as a', 'a.a_id = t.a_id', 'left');
+
+		$this->db->where('t.create_by',$a_id);
+		$this->db->where('t.status',1);
+        return $this->db->get()->result_array();
+	}
+	public function save_truck1($data){
+		$this->db2->insert('trucks', $data);
+		return $insert_id = $this->db2->insert_id();
 	}
 
 }
