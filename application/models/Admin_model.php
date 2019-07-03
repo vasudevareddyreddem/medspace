@@ -7,7 +7,6 @@ class Admin_model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->database("default");
-		$this->db2 = $this->load->database('default1', TRUE);
 
 	}
 	public function update_admin_details($a_id,$data){
