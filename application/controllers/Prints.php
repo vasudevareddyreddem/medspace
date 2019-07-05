@@ -64,7 +64,7 @@ class Prints extends CI_Controller {
 	}
 	public function print_stickers()
 	{	
-			if($this->session->userdata('userdetails'))
+		if($this->session->userdata('userdetails'))
 		{
 			
 			$post=$this->input->post();
