@@ -5,9 +5,9 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                               Health Care Facility List
+                               Health Care Facility List<span class="pull-right"><button class="btn btn-primary btn-sm">Print</button></span>
                             </h2>
-                         
+							
                         </div>
                         <div class="body">
                             <div class="table-responsive">
