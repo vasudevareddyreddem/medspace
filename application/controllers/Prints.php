@@ -73,7 +73,7 @@ class Prints extends CI_Controller {
 			$cbwtf_details=$this->Plant_model->get_cbwtf_details($post['cbwtf_id']);
 			//echo '<pre>';print_r($hcf_details);exit;
 			if(isset($post['sticker_size']) && $post['sticker_size']==5){
-				for ($k = 0 ; $k < 36; $k++){
+				for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
