@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                               Health Care Facility List<span class="pull-right"><button class="btn btn-primary btn-sm">Print</button></span>
+                               Health Care Facility List<a target="_blank" href="<?php echo base_url('hospital/prints'); ?>" class="pull-right"><button class="btn btn-primary btn-sm">Print</button></a>
                             </h2>
 							
                         </div>

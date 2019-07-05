@@ -770,5 +770,33 @@ class Hospital extends CI_Controller {
 		//exit;
 	}
 	
+	public  function prints(){
+		if($this->session->userdata('userdetails'))
+		{
+					$admindetails=$this->session->userdata('userdetails');
+					$data['details']=$this->Hospital_model->get_hospital_details_pdf($admindetails['a_id']);
+					//echo $this->db->last_query();
+					//echo '<pre>';print_r($data);exit;
+					$path = rtrim(FCPATH,"/");
+					$file_name ='hospital_list'.'.pdf';                
+					$data['page_title'] = 'Hospital list'.'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/hospital_list/".$file_name;
+					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$html = $this->load->view('admin/hospital_list_pdf', $data, true); // render the view into HTML
+					//echo '<pre>';print_r($html);exit;
+					$this->load->library('pdf');
+					$pdf = $this->pdf->load();
+					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+					$pdf->SetDisplayMode('fullpage');
+					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->Output($pdfFilePath, 'F');
+					redirect("/assets/hospital_list/".$file_name);
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	
 	
 }
