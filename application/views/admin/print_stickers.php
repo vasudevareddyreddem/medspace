@@ -54,13 +54,25 @@
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Sticker Size</label>
                             <div class="col-lg-5">
-                                <select class="form-control"  name="sticker_size" id="sticker_size" style="width:100%;">
+                                <select class="form-control" onchange="get_p_type(this.value);"  name="sticker_size" id="sticker_size" style="width:100%;">
                                     <option value = "">Select</option>
                                     <option value ="4">100 x 40 (mm)</option>
                                     <option value ="2">64 x 34 (mm)</option>
                                     <option value ="3">45 x 21 (mm)</option>
                                     <option value ="5">48 x 24 (mm)</option>
-                                    
+                                    <option value ="6">38 x 25 (mm)</option>                                    
+                                </select>  
+                            </div>
+                        </div>
+						<div class="form-group" id="s_p_type" style="display:none;">
+                            <label class="col-lg-3 control-label">Sticker Count</label>
+                            <div class="col-lg-5">
+                                <select class="form-control"  name="sticker_cont" id="sticker_cont" style="width:100%;">
+                                    <option value = "">Select</option>
+										<?php
+										for ($x =1; $x <= 50; $x++) { ?>
+											 <option value ="<?php echo $x; ?>"><?php echo $x; ?></option>
+										<?php } ?> 									
                                 </select>  
                             </div>
                         </div> 
@@ -81,6 +93,13 @@
             
     </section>
 	<script type="text/javascript">
+	function get_p_type(id){
+		if(id==6){
+			$('#s_p_type').show();
+		}else{
+			$('#s_p_type').hide();
+		}
+	}
 $(document).ready(function() {
     
     $('#defaultForm').bootstrapValidator({
@@ -112,6 +131,13 @@ $(document).ready(function() {
                  validators: {
 					  notEmpty: {
 						message: 'Sticker Size is required'
+					}
+                }
+            },
+			sticker_cont: {
+                 validators: {
+					  notEmpty: {
+						message: 'Sticker count is required'
 					}
                 }
             }
