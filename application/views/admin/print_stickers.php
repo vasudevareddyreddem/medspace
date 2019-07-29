@@ -49,6 +49,34 @@
                                     <option value = "White">White</option>
                                 </select>  
                             </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Font size (px)</label>
+                            <div class="col-lg-5">
+                                <select class="form-control" name="" id="" style="width:100%;">
+                                    <option value = "">Select</option>
+                                    <option >1 px</option>
+                                    <option >2 px</option>
+                                    <option>3 px</option>
+                                    <option >4 px</option>
+                                    <option >5 px</option>
+                                    <option >6 px</option>
+                                    <option >7 px</option>
+                                    <option >8 px</option>
+                                    <option >9 px</option>
+                                    <option >10 px</option>
+                                    <option >11 px</option>
+                                    <option >12 px</option>
+                                    <option >13 px</option>
+                                    <option >14 px</option>
+                                    <option >15 px</option>
+                                    <option >16 px</option>
+                                    <option >17 px</option>
+                                    <option >18 px</option>
+                                    <option >19 px</option>
+                                    <option >20 px</option>
+                                </select>  
+                            </div>
                         </div>     
 					
 						<div class="form-group">

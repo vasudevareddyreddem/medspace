@@ -7,10 +7,35 @@
  .sticker{
 	float:left;
 	
+	
 }
 .loop{
 	margin:1mm;
 	height:25mm;
+}
+.yellow-col{
+	background-color:yellow;
+	width:20px;
+	height:20px;
+	margin:0 auto;
+}
+.red-col{
+	background-color:red;
+	width:20px;
+	height:20px;
+	margin:0 auto;
+}
+.blue-col{
+	background-color:blue;
+	width:20px;
+	height:20px;
+	margin:0 auto;
+}
+.white-col{
+	background-color:f5f5f5;
+	width:20px;
+	height:20px;
+	margin:0 auto;
 }
 </style>
 <div  style="width:82mm;height:100%;text-align:center;">
@@ -21,7 +46,7 @@
 		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
 				<div style="padding-top:2mm;">
 				<div >
-					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
+					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?></span></div>
 				
 				</div>
 				<div class="">
@@ -29,22 +54,24 @@
 						<table style="width:100%;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
-									<td style="">Category</td>
-									<td ><?php echo $list[0]['category'] ; ?> </td>
+									<td rowspan="4"  style="vertical-align: top;text-align:right" ><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
+									<td style="text-align:center">
+										<div style="text-align:center" class="white-col"></div>
+										<div>MD12345</div>
+									</td>
+									
 								</tr>
-								<tr>
-									<td>HCF</td>
-									<td><span><?php echo $list[0]['h_name'] ; ?></span></td>
-								</tr>
-								<tr>
-									<td>CBWTF</td>
-									<td style="line-height:10px;"><?php echo $list[0]['cbwtf'] ; ?></td>
-								</tr>
+								
+								
 								
 							</tbody>
 						</table>
+						
 					</div>
+				</div>
+				<div >
+					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?></span></div>
+				
 				</div>
 				</div>
 		</div>
@@ -53,7 +80,7 @@
 		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
 				<div style="padding-top:2mm;">
 				<div >
-					<h3 style="padding:0px;margin:0px;font-size:10px">Bio-medical waste barcode</h3>
+					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['h_name'] ; ?></div>
 				
 				</div>
 				<div class="">
@@ -61,23 +88,21 @@
 						<table style="width:100%;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
-									<td style="">Category</td>
-									<td ><span><?php echo $list[1]['category'] ; ?></span></td>
+									<td rowspan="4" style="text-align:right"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
+								
+									<td style="text-align:center">
+										<div style="text-align:center" class="yellow-col"></div>
+										<div>MD12345</div>
+									</td>
+									<!--<td ><span><?php echo $list[1]['category'] ; ?></span></td>-->
 								</tr>
-								<tr>
-									<td>HCF</td>
-									<td><span><?php echo $list[1]['h_name'] ; ?></span></td>
-								</tr>
-								<tr>
-									<td>CBWTF</td>
-									<td style="line-height:10px;"><?php echo $list[1]['cbwtf'] ; ?></td>
-								</tr>
+								
 								
 							</tbody>
 						</table>
 					</div>
 				</div>
+				<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['cbwtf'] ; ?></div>
 				</div>
 		</div>
 		<?php } ?>
