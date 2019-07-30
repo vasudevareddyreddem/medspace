@@ -50,7 +50,7 @@
                                 </select>  
                             </div>
                         </div>
-						<div class="form-group">
+						<!--<div class="form-group">
                             <label class="col-lg-3 control-label">Font size (px)</label>
                             <div class="col-lg-5">
                                 <select class="form-control" name="" id="" style="width:100%;">
@@ -77,7 +77,7 @@
                                     <option >20 px</option>
                                 </select>  
                             </div>
-                        </div>     
+                        </div>  -->   
 					
 						<div class="form-group">
                             <label class="col-lg-3 control-label">Sticker Size</label>

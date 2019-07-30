@@ -232,6 +232,12 @@
                             <i class="material-icons">ac_unit</i>
                             <span>Print Stickers</span>
                         </a>
+                    </li> 
+					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_count')){echo "active"; } ?>">
+                        <a href="<?php echo base_url('plant/print_count'); ?>">
+                            <i class="material-icons">ac_unit</i>
+                            <span>Print Stickers count</span>
+                        </a>
                     </li>
                     
 					

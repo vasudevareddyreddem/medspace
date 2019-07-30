@@ -53,8 +53,8 @@
 										<tr>
 											<td rowspan="4" style="vertical-align: top;text-align:right" ><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
 										<td style="text-align:center">
-										<div style="text-align:center" class="yellow-col"></div>
-										<div>MD12345</div>
+										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
+										<div>MD<?php echo $list[0]['ptcnt'] ; ?></div>
 									</td>
 										</tr>
 										
@@ -70,7 +70,7 @@
 						</div>
 				</div>
 				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
-						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
+						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['h_name'] ; ?> 
 							</div>
 						<div class="">
 							<div>
@@ -79,8 +79,8 @@
 										<tr>
 											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
 												<td style="text-align:center">
-										<div style="text-align:center" class="yellow-col"></div>
-										<div>MD12345</div>
+										<div style="text-align:center" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+										<div>MD<?php echo $list[1]['ptcnt'] ; ?></div>
 									</td>
 										</tr>
 									
@@ -90,12 +90,12 @@
 							</div>
 							
 						</div>
-						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?>
+						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['cbwtf'] ; ?>
 							</div>
 				</div>
 				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
 						<div >
-							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
+							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[2]['h_name'] ; ?> 
 							</div>
 						
 						</div>
@@ -106,8 +106,8 @@
 										<tr>
 											<td rowspan="4"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
 											<td style="text-align:center">
-										<div style="text-align:center" class="yellow-col"></div>
-										<div>MD12345</div>
+										<div style="text-align:center" class="<?php echo $list[2]['category'] ; ?>-col"></div>
+										<div>MD<?php echo $list[2]['ptcnt'] ; ?></div>
 									</td>
 										</tr>
 									
@@ -121,7 +121,7 @@
 				</div>
 				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden">
 						<div >
-							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
+							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[3]['h_name'] ; ?> 
 							</div>
 						
 						</div>
@@ -132,8 +132,8 @@
 										<tr>
 											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
 											<td style="text-align:center">
-										<div style="text-align:center" class="yellow-col"></div>
-										<div>MD12345</div>
+										<div style="text-align:center" class="<?php echo $list[3]['category'] ; ?>-col"></div>
+										<div>MD<?php echo $list[3]['ptcnt'] ; ?></div>
 									</td>
 										</tr>
 										
@@ -142,7 +142,7 @@
 								</table>
 							</div>
 						</div>
-						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?>
+						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[3]['cbwtf'] ; ?>
 							</div>
 				</div>		
 				</div>

@@ -642,6 +642,26 @@ class Plant extends CI_Controller {
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
 		}
+	}public function print_count()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				
+				$data['s_count_list']=$this->Admin_model->get_st_count_details($admindetails['a_id']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/print_count',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
 	}
     
     

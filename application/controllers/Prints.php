@@ -68,11 +68,14 @@ class Prints extends CI_Controller {
 		{
 			
 			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
 			//echo '<pre>';print_r($post);
 			$hcf_details=$this->Plant_model->get_hcf_details($post['hcf_name']);
 			$cbwtf_details=$this->Plant_model->get_cbwtf_details($post['cbwtf_id']);
 			//echo '<pre>';print_r($hcf_details);exit;
 			if(isset($post['sticker_size']) && $post['sticker_size']==6){
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$cnt=$pt_cnt['cnt'];
 				for ($k = 0 ; $k < $post['sticker_cont']; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
@@ -90,16 +93,26 @@ class Prints extends CI_Controller {
 					'category'=>isset($post['category_type'])?$post['category_type']:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
-				}
+					$a_d=array(
+						'type'=>isset($post['category_type'])?$post['category_type']:'',
+						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						'num'=>isset($cnt)?$cnt:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+						);
+						$this->Admin_model->save_type_count($a_d);
+				$cnt++;}
 				$data['print_details']=array_chunk($details,2);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/38x25',$data);
 				$this->load->view('html/footer');
 				
 			}else if(isset($post['sticker_size']) && $post['sticker_size']==5){
-				for ($k = 0 ; $k < 48; $k++){
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$cnt=$pt_cnt['cnt'];for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
@@ -116,9 +129,19 @@ class Prints extends CI_Controller {
 					'category'=>isset($post['category_type'])?$post['category_type']:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
-				}
+					$a_d=array(
+						'type'=>isset($post['category_type'])?$post['category_type']:'',
+						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						'num'=>isset($cnt)?$cnt:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+
+						);
+						$this->Admin_model->save_type_count($a_d);
+				$cnt++;}
 				$data['print_details']=array_chunk($details,4);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/48x24',$data);

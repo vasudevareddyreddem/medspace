@@ -407,5 +407,19 @@ class Admin_model extends CI_Model
 		$this->db2->insert('trucks', $data);
 		return $insert_id = $this->db2->insert_id();
 	}
+	public  function save_type_count($data){
+		$this->db->insert('prints_count', $data);
+		return $insert_id = $this->db->insert_id();
+	}
+	public  function ptype_count($pt,$h){
+		$this->db->select('COUNT(p_c_id) as cnt')->from('prints_count');
+		$this->db->where('type',$pt);		
+		$this->db->where('hos_id',$h);		
+        return $this->db->get()->row_array();
+	}public  function get_st_count_details($id){
+		$this->db->select('*')->from('prints_count');
+		$this->db->where('created_by',$id);		
+        return $this->db->get()->result_array();
+	}
 
 }
