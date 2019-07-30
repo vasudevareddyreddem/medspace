@@ -36,11 +36,11 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:210mm;height:297mm;text-align:center;padding:5mm ">
+<div  style="width:210mm;height:297mm;text-align:center;padding:0mm 5mm ">
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 			<?php foreach($print_details as $list){ ?>
 				<div class="loop"  >
-				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
+				<div class="sticker" style="width:48mm;height:24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:4mm;">
 						<div >
 							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
 							</div>
@@ -69,7 +69,7 @@
 						</div>
 						</div>
 				</div>
-				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
+				<div class="sticker" style="width:48mm;height:24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:4mm;">
 						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
 							</div>
 						<div class="">
@@ -93,7 +93,7 @@
 						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?>
 							</div>
 				</div>
-				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
+				<div class="sticker" style="width:48mm;height:24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:4mm;">
 						<div >
 							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
 							</div>
@@ -104,7 +104,7 @@
 								<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 									<tbody>
 										<tr>
-											<td rowspan="4"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
+											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
 											<td style="text-align:center">
 										<div style="text-align:center" class="yellow-col"></div>
 										<div>MD12345</div>
@@ -119,7 +119,7 @@
 						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?>
 							</div>
 				</div>
-				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden">
+				<div class="sticker" style="width:48mm;height:24mm;background:#fff;border:1px solid #ddd;overflow:hidden">
 						<div >
 							<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?> 
 							</div>
