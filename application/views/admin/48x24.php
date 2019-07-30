@@ -69,7 +69,7 @@
 						</div>
 						</div>
 				</div>
-				<div class="sticker" style="width:49mm;height:24.24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
+				<div class="sticker" style="width:48mm;height:24mm;background:#fff;border:1px solid #ddd;overflow:hidden;margin-right:3.9mm;">
 						<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['h_name'] ; ?> 
 </div>
 						<div class="">
