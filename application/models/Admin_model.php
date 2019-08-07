@@ -412,11 +412,12 @@ class Admin_model extends CI_Model
 		return $insert_id = $this->db->insert_id();
 	}
 	public  function ptype_count($pt,$h){
-		$this->db->select('COUNT(p_c_id) as cnt')->from('prints_count');
+		$this->db->select('SUM(num) as cnt')->from('prints_count');
 		$this->db->where('type',$pt);		
 		$this->db->where('hos_id',$h);		
         return $this->db->get()->row_array();
-	}public  function get_st_count_details($id){
+	}
+	public  function get_st_count_details($id){
 		$this->db->select('*')->from('prints_count');
 		$this->db->where('created_by',$id);		
         return $this->db->get()->result_array();

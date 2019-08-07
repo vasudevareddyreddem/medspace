@@ -16,6 +16,7 @@
                                         <tr>
                                             <th>Type</th>
                                             <th>Number</th>
+                                            <th>Range</th>
                                             <th>Date & Time</th>
                                             
                                         </tr>
@@ -27,6 +28,7 @@
                                         <tr>
                                             <td><?php echo htmlentities($list['type']); ?></td>
                                             <td><?php echo htmlentities($list['num']); ?></td>
+                                            <td><?php echo htmlentities($list['tnum']); ?></td>
                                             <td><?php echo date('j M Y   h:i A',strtotime(htmlentities($list['created_at'])));?></td>
                                            
                                             
