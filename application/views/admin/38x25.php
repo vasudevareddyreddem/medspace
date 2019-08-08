@@ -38,13 +38,13 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:82mm;height:100%;text-align:center;">
+<div  style="width:100%;height:100%;text-align:center;">
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" >
 		<?php if(isset($list[0]) && count($list[0])>0){ ?>
 		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
-				<div style="padding-top:2mm;">
+				<div style="">
 				<div >
 					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?></span></div>
 				
@@ -78,7 +78,7 @@
 		<?php } ?>
 		<?php if(isset($list[1]) && count($list[1])>0){ ?>
 		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
-				<div style="padding-top:2mm;">
+				<div style="">
 				<div >
 					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['h_name'] ; ?></div>
 				
