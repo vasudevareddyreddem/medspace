@@ -10,7 +10,7 @@
 	
 }
 .loop{
-	margin:1mm;
+	margin-top:1mm;
 	height:25mm;
 }
 .yellow-col{
