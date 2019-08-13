@@ -26,7 +26,7 @@ class Hospital_one extends CI_Controller {
 			if($data['details']['role']==5){
 				$data['u_url']= base_url().$this->uri->segment(1).'/'.$this->uri->segment(2);
 				$this->load->model('Govt_model');
-				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2,$data['details']['state']);
 			}
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);

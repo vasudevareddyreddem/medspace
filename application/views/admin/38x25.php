@@ -12,6 +12,7 @@
 .loop{
 	margin-top:1.5mm;
 	height:25mm;
+	
 }
 .yellow-col{
 	background-color:yellow;
@@ -38,7 +39,7 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:100%;height:100%;text-align:center;">
+<div  style="width:100%;height:100%;text-align:center;margin-left:2mm">
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" >

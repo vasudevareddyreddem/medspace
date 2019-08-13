@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
 			if($data['details']['role']==5){
 				$this->load->model('Govt_model');
-				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2,$data['details']['state']);
 			}
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
@@ -67,21 +67,25 @@ class Dashboard extends CI_Controller {
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/hospital_dashboard',$data);	
 			}else if($admindetails['role']==5){
-				
+				$details=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
+				//echo '<pre>';print_r($details);exit;
 				$this->load->model('Govt_model');
-				$data['total_hospital_list']=$this->Govt_model->get_all_admins_wise_hospitals(2);
-				//echo '<pre>';print_r($data);exit;
-				$data['total_hospital']=$this->Govt_model->get_total_hospital(date('Y'));
-				$data['total_plants']=$this->Govt_model->get_total_plants(date('Y'));
-				$data['total_trucks']=$this->Govt_model->get_total_trucks(date('Y'));
-				$total_gen_waste=$this->Govt_model->get_gen_waste(date('Y'));
-				//echo '<pre>';print_r($total_gen_waste);exit;
+				$data['total_hospital_list']=$this->Govt_model->get_all_admins_wise_hospitals(2,$details['state']);
+				$states = array ('AP' => 'Andhra Pradesh', 'AR' => 'Arunachal Pradesh', 'AS' => 'Assam', 'BR' => 'Bihar', 'CG' => 'Chhattisgarh', 'GA' => 'Goa', 'GJ' => 'Gujarat', 'HR' => 'Haryana', 'HP' => 'Himachal Pradesh', 'JK' => 'Jammu & Kashmir', 'JH' => 'Jharkhand', 'KA' => 'Karnataka', 'KL' => 'Kerala', 'MP' => 'Madhya Pradesh', 'MH' => 'Maharashtra', 'MN' => 'Manipur', 'ML' => 'Meghalaya', 'MZ' => 'Mizoram', 'NL' => 'Nagaland', 'OD' => 'Odisha', 'PB' => 'Punjab', 'RJ' => 'Rajasthan', 'SK' => 'Sikkim', 'TN' => 'Tamil Nadu', 'TS' => 'Telangana', 'TR' => 'Tripura', 'UK' => 'Uttarakhand','UP' => 'Uttar Pradesh', 'WB' => 'West Bengal', 'AN' => 'Andaman & Nicobar', 'CH' => 'Chandigarh', 'DN' => 'Dadra and Nagar Haveli', 'DD' => 'Daman & Diu', 'DL' => 'Delhi', 'LD' => 'Lakshadweep', 'PY' => 'Puducherry');	
+				$st='';foreach($states as $key=>$va){
+					if($key==$details['state']){
+						$st=$va;
+					}
+				}
+				$data['total_hospital']=$this->Govt_model->get_total_hospital(date('Y'),$details['state']);
+				$data['total_plants']=$this->Govt_model->get_total_plants(date('Y'),$st);
+				$data['total_trucks']=$this->Govt_model->get_total_trucks(date('Y'),$st);
+				$total_gen_waste=$this->Govt_model->get_gen_waste(date('Y'),$st);
 				$data['total_waste']=$total_gen_waste['total'];
-				$data['graph_total_hospital']=$this->Govt_model->get_graph_total_hospital_list(date('Y'));
-				$data['graph_total_plants']=$this->Govt_model->get_graph_total_plants_list(date('Y'));
-				$data['graph_total_truck']=$this->Govt_model->get_graph_total_truck_list(date('Y'));
-				$data['graph_total_waste']=$this->Govt_model->get_graph_total_waste_list(date('Y'));
-				
+				$data['graph_total_hospital']=$this->Govt_model->get_graph_total_hospital_list(date('Y'),$details['state']);
+				$data['graph_total_plants']=$this->Govt_model->get_graph_total_plants_list(date('Y'),$st);
+				$data['graph_total_truck']=$this->Govt_model->get_graph_total_truck_list(date('Y'),$st);
+				$data['graph_total_waste']=$this->Govt_model->get_graph_total_waste_list(date('Y'),$st);				
 				$this->load->view('admin/govt/dashboard',$data);
 			}else{
 				
@@ -117,7 +121,7 @@ class Dashboard extends CI_Controller {
 					$data['profile_detail']=$this->Admin_model->get_hospital_list_profile_details($admindetails['a_id']);
 				}else if($admindetails['role']==3){
 					$data['profile_detail']=$this->Admin_model->get_trcuk_profile_details($admindetails['a_id']);
-				}else if($admindetails['role']==4){
+				}else if($admindetails['role']==4|| $admindetails['role']==5){
 					$data['profile_detail']=$this->Admin_model->get_plant_profile_details($admindetails['a_id']);
 				}
 				//echo '<pre>';print_r($data);exit;

@@ -16,6 +16,15 @@ class User_model extends CI_Model
 		$this->db->order_by('create_by',"DESC");
         return $this->db->get()->result_array();
 
+	}
+	public function get_all_govt_users_list($admin_id){
+		$this->db->select('*')->from('admin');		
+		$this->db->where('create_by', $admin_id);
+		$this->db->where('status !=', 2);
+		$this->db->where('role', 5);
+		$this->db->order_by('create_by',"DESC");
+        return $this->db->get()->result_array();
+
 	}		
 
 public  function get_user_details($a_id){

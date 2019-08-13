@@ -24,7 +24,7 @@ class User extends CI_Controller {
 			$data['details']=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
 			if($data['details']['role']==5){
 				$this->load->model('Govt_model');
-				$data['admin_list']=$this->Govt_model->get_all_admins_list(2);
+				$data['admin_list']=$this->Govt_model->get_all_admins_list(2,$data['details']['state']);
 			}
 			//echo '<pre>';print_r($data);exit;
 			$this->load->view('html/header',$data);
@@ -60,6 +60,46 @@ class User extends CI_Controller {
 				$data['user_list']=$this->User_model->get_all_users_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/user-list',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function govtadd()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				
+				$this->load->view('admin/addgovtuser');
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function govtlists()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				
+				$data['user_list']=$this->User_model->get_all_govt_users_list($admindetails['a_id']);
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/user-govtlist',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -116,6 +156,51 @@ class User extends CI_Controller {
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
 		}
+	}public function govtstatus()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				
+					$user_id=base64_decode($this->uri->segment(3));
+					$status=base64_decode($this->uri->segment(4));
+					if($status==1){
+						$sta=0;
+					}else{
+						$sta=1;
+					}
+						$details=$this->User_model->get_user_details($user_id);
+							$updatehospital=array(
+							'status'=>$sta,
+							);
+							$update=$this->User_model->update_admin_details($user_id,$updatehospital);
+							if(count($update)>0){
+								$admin_detail=array(
+								'status'=>$sta,
+								);
+								$this->User_model->update_admin_details($details['a_id'],$admin_detail);
+								if($status==1){
+									$this->session->set_flashdata('success','User successfully deactivated');
+
+								}else{
+									$this->session->set_flashdata('success','User sucessfully activated');
+
+								}
+								redirect('user/govtlists');
+								}else{
+								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+								redirect('user/govtlists');
+								}
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
 	}
 	public function delete()
 	{	
@@ -147,6 +232,36 @@ class User extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function govtdelete()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				
+						$user_id=base64_decode($this->uri->segment(3));
+						$details=$this->User_model->get_user_details($user_id);
+						$updatehospital=array(
+							'status'=>2,
+							);
+							$update=$this->User_model->update_admin_details($user_id,$updatehospital);
+							if(count($update)>0){
+								$this->session->set_flashdata('success','User successfully deleted');
+								redirect('user/govtlists');
+								}else{
+								$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+								redirect('user/govtlists');
+								}
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	public function edit()
 	{	
 			if($this->session->userdata('userdetails'))
@@ -158,6 +273,28 @@ class User extends CI_Controller {
 				$data['user_detail']=$this->User_model->get_user_details($a_id);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/user_admin',$data);
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function govtedit()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				
+				$a_id=base64_decode($this->uri->segment(3));
+				$data['user_detail']=$this->User_model->get_user_details($a_id);
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('admin/user_govtedit',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -209,6 +346,60 @@ class User extends CI_Controller {
 					}else{
 						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 						redirect('user/add');
+					}
+					
+				}
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function addgovtpost()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+				$check_email=$this->Admin_model->email_check_details($post['email']);
+				if(count($check_email)>0){
+						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
+						redirect('user/govtadd');
+				}else{
+					$addhos=array(
+						'name'=>isset($post['name'])?strtoupper($post['name']):'',
+						'email_id'=>isset($post['email'])?$post['email']:'',
+						'mobile'=>isset($post['mobile'])?$post['mobile']:'',
+						'password'=>isset($post['password'])?md5($post['password']):'',
+						'org_password'=>isset($post['password'])?$post['password']:'',
+						'address1'=>isset($post['address1'])?$post['address1']:'',
+						'address2'=>isset($post['address2'])?$post['address2']:'',
+						'city'=>isset($post['city'])?ucfirst($post['city']):'',
+						'state'=>isset($post['state'])?$post['state']:'',
+						'country'=>isset($post['country'])?ucfirst($post['country']):'',
+						'pincode'=>isset($post['pincode'])?$post['pincode']:'',
+						'status'=>1,
+						'role'=>5,
+						'create_at'=>date('Y-m-d H:i:s'),
+						'create_by'=>$admindetails['a_id']
+					);
+					$hos_save=$this->Admin_model->save_admin($addhos);
+					if(count($hos_save)>0){
+						
+							$this->session->set_flashdata('success','User added succcessfully');
+							redirect('user/govtlists');
+					
+						
+					}else{
+						$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+						redirect('user/govtadd');
 					}
 					
 				}
@@ -291,6 +482,89 @@ class User extends CI_Controller {
 							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
 							
 								redirect('hospital/edit/'.base64_encode($post['hos_id']));
+							
+							
+						}
+				}
+				
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}public function editgovtpost()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==0){
+				$post=$this->input->post();
+				//echo '<pre>';print_r($post);exit;
+				$details=$this->User_model->get_user_details($post['a_id']);
+				if($details['email_id']!=$post['email']){
+					$check_email=$this->Admin_model->email_check_details($post['email']);
+						if(count($check_email)>0){
+								$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
+								if($admindetails['role']==2){
+										redirect('dashboard/profile');
+									}else{
+										redirect('user/govtedit/'.base64_encode($post['a_id']));
+									}
+								
+						}else{
+							$updatehospital=array(
+							'name'=>isset($post['name'])?strtoupper($post['name']):'',
+							'email_id'=>isset($post['email'])?$post['email']:'',
+							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
+							);
+							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
+							if(count($update)>0){
+								$this->session->set_flashdata('success','User details Successfully updated');
+										redirect('user/govtlists');
+									
+								
+								}else{
+									$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+									redirect('user/govtedit/'.base64_encode($post['a_id']));
+									
+								
+								}
+						}
+					
+				}else{
+					$updatehospital=array(
+							'name'=>isset($post['name'])?strtoupper($post['name']):'',
+							'email_id'=>isset($post['email'])?$post['email']:'',
+							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
+							'address1'=>isset($post['address1'])?$post['address1']:'',
+							'address2'=>isset($post['address2'])?$post['address2']:'',
+							'city'=>isset($post['city'])?ucfirst($post['city']):'',
+							'state'=>isset($post['state'])?$post['state']:'',
+							'country'=>isset($post['country'])?ucfirst($post['country']):'',
+							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
+						);
+						//echo "<pre>";print_r($updatehospital);
+						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
+						//echo $this->db->last_query();exit;
+						if(count($update)>0){
+							$this->session->set_flashdata('success','User details successfully updated');
+							redirect('user/govtlists');
+							
+						}else{
+							$this->session->set_flashdata('error',"technical problem will occurred. Please try again.");
+							
+								redirect('user/govtedit/'.base64_encode($post['a_id']));
 							
 							
 						}
