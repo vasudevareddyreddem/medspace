@@ -6,6 +6,7 @@
 }
  .sticker{
 	float:left;
+	padding:0px 5px
 	
 	
 }
@@ -39,7 +40,7 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:100%;height:100%;text-align:center;margin-left:2mm">
+<div  style="width:100%;height:100%;text-align:center;margin-left:3mm">
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" >
