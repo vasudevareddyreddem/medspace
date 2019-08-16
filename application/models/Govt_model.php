@@ -93,6 +93,7 @@ class Govt_model extends CI_Model
 		$this->db->select('a_id,name,mobile,status')->from('admin');
 		$this->db->where('admin.create_by',$a_id);
 		$this->db->where('admin.state',$state);
+		$this->db->where('admin.role',1);
 		$return=$this->db->get()->result_array();
 		foreach($return as $li){
 			$h_list=$this->get_hospital_count($li['a_id']);
@@ -114,6 +115,7 @@ class Govt_model extends CI_Model
 		$this->db->select('a_id,name,mobile,status')->from('admin');
 		$this->db->where('admin.create_by',$a_id);
 		$this->db->where('admin.state',$state);
+		$this->db->where('admin.role',1);
 		return $this->db->get()->result_array();
 		}
 		
