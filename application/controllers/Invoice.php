@@ -17,6 +17,7 @@ class Invoice extends CI_Controller {
 		$this->load->model('Plant_model');
 		$this->load->model('Admin_model');
 		$this->load->library('zend');
+		$this->load->library('livemumtowordclsconvert');
 		if($this->session->userdata('userdetails'))
 			{
 			$data['u_url']= current_url();
@@ -59,9 +60,9 @@ class Invoice extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
 				
-				$data['plants_list']=$this->Plant_model->get_all_plants_list($admindetails['a_id']);
+				$data['invoice_list']=$this->Plant_model->get_invoice_list($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
-				$this->load->view('admin/disposal_plantlist',$data);
+				$this->load->view('admin/list_inovice_form',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -74,23 +75,22 @@ class Invoice extends CI_Controller {
 		}
 	}
 	
-	public function print_biomedical_waste(){
+	public function addpost(){
 		if($this->session->userdata('userdetails'))
 		{
-			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==4){
-				
-				$id=base64_decode($this->uri->segment(3));
-				//echo $id;
-				$data['details']=$this->Plant_model->get_bio_medical_waste_print_details($id);
-					//echo '<pre>';print_r($data);exit;
+					$admindetails=$this->session->userdata('userdetails');
+					$post=$this->input->post();
+					$data['details']=$post;
+					$data['p_details']=$this->Plant_model->get_plant_details($post['plant_id']);
+					$data['hcf_details']=$this->Plant_model->get_hcf_all_details($post['hcf_id']);
+					$data['invoice_ids']=$this->Plant_model->get_invoices_id_next();
 					//echo '<pre>';print_r($data);exit;
 					$path = rtrim(FCPATH,"/");
-					$file_name = $data['details']['hospital_name'].'_'.$data['details']['id'].'.pdf';                
-					$data['page_title'] = $data['details']['hospital_name'].'invoice'; // pass data to the view
-					$pdfFilePath = $path."/assets/bio_invoices/".$file_name;
+					$file_name = $data['p_details']['p_id'].'_'.$data['hcf_details']['h_id'].time().'.pdf';                
+					$data['page_title'] = $data['hcf_details']['hospital_name'].'invoice'; // pass data to the view
+					$pdfFilePath = $path."/assets/invoices_form/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
-					$html = $this->load->view('admin/bio_pdf', $data, true); // render the view into HTML
+					$html = $this->load->view('admin/invoice_form_pdf', $data, true); // render the view into HTML
 					//echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
@@ -98,19 +98,23 @@ class Invoice extends CI_Controller {
 					$pdf->SetDisplayMode('fullpage');
 					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 					$pdf->WriteHTML($html); // write the HTML into the PDF
+					$pdf->SetProtection(array('copy','print'), 'UserPassword', $data['p_details']['pincode']);
 					$pdf->Output($pdfFilePath, 'F');
-					$update_data=array(
-					'invoice_file'=>$file_name,
-					'invoice_name'=>$data['details']['hospital_name'].' invoice',
-					);
-					$this->Plant_model->update_bio_medical_invoice_name($id,$update_data);
+					$u_add=array(
+						'invoice_id'=>isset($data['invoice_ids']['c_i_id'])?$data['invoice_ids']['c_i_id']+1:'',
+						'e_way_bill_no'=>isset($post['e_way_bill_no'])?$post['e_way_bill_no']:'',
+						'plant_id'=>isset($post['plant_id'])?$post['plant_id']:'',
+						'hcf_id'=>isset($post['hcf_id'])?$post['hcf_id']:'',
+						'invoice_name'=>isset($file_name)?$file_name:'',
+						'pwd'=>isset($data['p_details']['pincode'])?$data['p_details']['pincode']:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+						);
+					$this->Plant_model->save_novice_list($u_add);
 					//echo $this->db->last_query();exit;
-					redirect("/assets/bio_invoices/".$file_name);
+					redirect("/assets/invoices_form/".$file_name);
 				
-			}else{
-				$this->session->set_flashdata('error',"you don't have permission to access");
-				redirect('dashboard');
-			}
+			
 
 		}else{
 			$this->session->set_flashdata('loginerror','Please login to continue');

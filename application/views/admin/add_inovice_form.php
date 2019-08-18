@@ -8,9 +8,13 @@
 						<h2>Add Invoice</h2>
 					</div>
 					<div class="body">
-						<form>
+						<form id="add_invoice" target="_balnk" action="<?php echo base_url('invoice/addpost'); ?>" method="POST">
 							<div class="">
 								<div class="row ">
+								<div class="form-group col-md-6">
+										<label >e-Way Bill No</label>
+										<input type="text" class="form-control" name="e_way_bill_no" placeholder="Enter e-Way Bill No" >
+									</div>
 								<div class="form-group col-md-6">
 										<label for="email">Select Plant</label>
 										<select class="form-control" name="plant_id">
@@ -25,7 +29,7 @@
 									
 									<div class="form-group col-md-6">
 										<label for="email">Select Hcf</label>
-										<select class="form-control" name="plant_id">
+										<select class="form-control" name="hcf_id">
 											<option value="">select </option>
 											<?php if(isset($h_list) && count($h_list)>0){?>
 												<?php foreach($h_list as $li){ ?>
@@ -47,47 +51,63 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label >Supplier’s Ref.</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="supplier_ref" placeholder="Enter Supplier’s Ref" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Other Reference(s)</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="other_reference" placeholder="Enter Other Reference" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Buyer’s Order No</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="buyer_order_no" placeholder="Enter Buyer’s Order No" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Dated</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="dated" placeholder="Enter Dated" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Despatch Document No</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="despatch_document_no" placeholder="Enter Despatch Document No" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Delivery Note Date </label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="delivery_note_date" placeholder="Enter Delivery Note Date " >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Despatched throug </label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="despatched_throug" placeholder="Enter Despatched throug" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Destination </label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="destination" placeholder="Enter Destination" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Bill of Lading/LR-RR No </label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="lr_rr_no" placeholder="Enter Bill of Lading/LR-RR No" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Motor Vehicle No.</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="motor_vehicle_no" placeholder="Enter Motor Vehicle No" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Terms of Delivery</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="terms_of_delivery" placeholder="Enter Terms of Delivery" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>IGST</label>
+										<input type="text" class="form-control" name="igst" placeholder="Enter IGST" value="0" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>Bank Name</label>
+										<input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>A/c No</label>
+										<input type="text" class="form-control" name="ac_no" placeholder="Enter A/c No" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>Branch & IFS Code </label>
+										<input type="text" class="form-control" name="ifsc" placeholder="Enter Branch & IFS Code" >
 									</div>
 									
 								</div>
@@ -97,41 +117,62 @@
 											<tr id='addr0'>
 												<td>
 													<div class="form-group">
-													<label>Field 1</label>
+														<label>Category</label>
 														<div class=" ">
-															<input type="text" class="form-control" placeholder="field 1">
+															<select class="form-control" name="category[]">
+																<option value = "">Select</option>
+																<option value = "Yellow">Yellow</option>
+																<option value = "Red">Red</option>
+																<option value = "Blue">Blue</option>
+																<option value = "White">White</option>																				
+															</select>
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group">
-													<label>Field 2</label>
+														<label>Size</label>
 														<div class=" ">
-															<input placeholder="field 2" type="text" class="form-control ">
+															<select class="form-control" name="size[]">
+																<option value = "">Select</option>
+																<option value ="100 x 40 (mm)">100 x 40 (mm)</option>
+																<option value ="64 x 34 (mm)">64 x 34 (mm)</option>
+																<option value ="45 x 21 (mm)">45 x 21 (mm)</option>
+																<option value ="48 x 24 (mm)">48 x 24 (mm)</option>
+																<option value ="38 x 25 (mm)">38 x 25 (mm)</option> 																				
+															</select>
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group">
-													<label>Field 3</label>
+													<label>HSN/SAC</label>
 														<div class=" ">
-															<input placeholder="field 3" type="text" class="form-control ">
+															<input   name="hsn_sac[]"placeholder="HSN/SAC" type="text" class="form-control ">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group">
-													<label>Field 4</label>
+													<label>Quantity</label>
 														<div class=" ">
-															<input placeholder="field 4" type="text" class="form-control ">
+															<input name="quantity[]" placeholder="Quantity" type="text" class="form-control ">
 														</div>
 													</div>
 												</td>
 												<td>
 													<div class="form-group">
-													<label>Field 5</label>
+													<label>Rate</label>
 														<div class=" ">
-															<input placeholder="field 5" type="text" class="form-control ">
+															<input name="rate[]" placeholder="Rate" type="text" class="form-control ">
+														</div>
+													</div>
+												</td>
+												<td>
+													<div class="form-group">
+													<label>Disc. %</label>
+														<div class=" ">
+															<input name="discount[]" placeholder="Disc. %" type="text" class="form-control " value="0">
 														</div>
 													</div>
 												</td>
@@ -141,8 +182,14 @@
 									</table>	<a id="add_row" class="btn btn-default pull-left">Add Row</a>
 									<a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
 								</div>
+						
+							<div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+                            </div>
 							</div>
 						</form>
+							</div>
 						<div class="clearfix">&nbsp;</div>
 					</div>
 				</div>
@@ -153,7 +200,7 @@
 	$(document).ready(function(){
 	      var i=1;
 	     $("#add_row").click(function(){
-	      $('#addr'+i).html("<td><input type='text' placeholder='Field 1' class='form-control'/></td><td><input type='text' placeholder='Field 2' class='form-control'/></td><td><input type='text' placeholder='Field 3' class='form-control'/></td><td><input type='text' placeholder='Field 4' class='form-control'/></td><td><input type='text' placeholder='Field 5' class='form-control'/></td>");
+	      $('#addr'+i).html('<td><div class="form-group"><label>Category</label><div class=" "><select class="form-control" name="category[]"><option value = "">Select</option><option value = "Yellow">Yellow</option><option value = "Red">Red</option><option value = "Blue">Blue</option><option value = "White">White</option></select></div></div></td><td><div class="form-group"><label>Size</label><div class=" "><select class="form-control" name="size[]"><option value = "">Select</option><option value ="100 x 40 (mm)">100 x 40 (mm)</option><option value ="64 x 34 (mm)">64 x 34 (mm)</option><option value ="45 x 21 (mm)">45 x 21 (mm)</option><option value ="48 x 24 (mm)">48 x 24 (mm)</option>	<option value ="38 x 25 (mm)">38 x 25 (mm)</option> </select></div></div></td><td><div class="form-group"><label>HSN/SAC</label><div class=" "><input   name="hsn_sac[]" placeholder="HSN/SAC" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Quantity</label><div class=" "><input name="quantity[]" placeholder="Quantity" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Rate</label><div class=" "><input name="rate[]" placeholder="Rate" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Disc. %</label><div class=" "><input name="discount[]" placeholder="Disc. %" type="text" value="0" class="form-control "></div></div><td>');
 	
 	      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 	      i++; 
@@ -166,4 +213,69 @@
 		 });
 	
 	});
+	$(document).ready(function() {
+   
+    $('#add_invoice').bootstrapValidator({
+//       
+        fields: {
+            e_way_bill_no: {
+                validators: {
+					notEmpty: {
+						message: 'e-Way Bill No is required'
+					}
+				}
+            },
+			plant_id: {
+                validators: {
+					notEmpty: {
+						message: 'Plant is required'
+					}
+				}
+            },
+			hcf_id: {
+                validators: {
+					notEmpty: {
+						message: 'Hcf is required'
+					}
+				}
+            },igst: {
+                validators: {
+					notEmpty: {
+						message: 'IGST is required'
+					}
+				}
+            },'category[]': {
+                validators: {
+					notEmpty: {
+						message: 'Category is required'
+					}
+				}
+            },'size[]': {
+                validators: {
+					notEmpty: {
+						message: 'Size is required'
+					}
+				}
+            },'quantity[]': {
+                validators: {
+					notEmpty: {
+						message: 'Quantity is required'
+					}
+				}
+            },'rate[]': {
+                validators: {
+					notEmpty: {
+						message: 'Rate is required'
+					}
+				}
+            },'discount[]': {
+                validators: {
+					notEmpty: {
+						message: 'Discount is required'
+					}
+				}
+            }
+        }
+    });
+});
 </script>

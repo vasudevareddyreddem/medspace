@@ -21,6 +21,11 @@ class Plant_model extends CI_Model
 		$this->db->where('p_id', $p_id);
         return $this->db->get()->row_array();	
 	}
+	public function get_hcf_all_details($h_id){
+		$this->db->select('*')->from('hospital_list');		
+		$this->db->where('h_id', $h_id);
+        return $this->db->get()->row_array();	
+	}
 	public function update_plant_details($p_id,$data){
 		$this->db->where('p_id',$p_id);
     	return $this->db->update("plant",$data);
@@ -124,6 +129,24 @@ class Plant_model extends CI_Model
 		$this->db->where('status',1);
 		$this->db->order_by('p_id','desc');
         return $this->db->get()->result_array();	
+	}
+	public function get_invoice_list($admin_id){
+		$this->db->select('cil.e_way_bill_no,cil.c_i_id,cil.invoice_id,cil.invoice_name,h.hospital_name,p.disposal_plant_name,cil.created_at')->from('cover_invoice_list as cil');
+		$this->db->join('hospital_list as h', 'h.h_id = cil.hcf_id', 'left');
+		$this->db->join('plant as p', 'p.p_id = cil.plant_id', 'left');		
+		$this->db->where('cil.created_by', $admin_id);
+		$this->db->order_by('cil.c_i_id','desc');
+        return $this->db->get()->result_array();	
+	}	
+	public function save_novice_list($d){
+		$this->db->insert('cover_invoice_list',$d);
+		return $insert_id = $this->db->insert_id();
+	}
+	
+	public  function get_invoices_id_next(){
+		$this->db->select('c_i_id')->from('cover_invoice_list');		
+		$this->db->order_by('c_i_id','desc');
+        return $this->db->get()->row_array();
 	}
 	
 	

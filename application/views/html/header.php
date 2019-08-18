@@ -242,12 +242,21 @@
 							</li>
                         </ul>
                     </li>
-                    <li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?>">
-                        <a href="<?php echo base_url('invoice/index'); ?>">
+					<li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/lists')){echo "active"; } ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">ac_unit</i>
-                            <span>Invoice</span>
+                            <span>Colours</span>
                         </a>
+                        <ul class="ml-menu">
+                           <li>
+								<a href="<?php echo base_url('invoice/index'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url('invoice/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>List</a>
+							</li>
+                        </ul>
                     </li>
+                  
 					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_stickers')){echo "active"; } ?>">
                         <a href="<?php echo base_url('plant/print_stickers'); ?>">
                             <i class="material-icons">ac_unit</i>
