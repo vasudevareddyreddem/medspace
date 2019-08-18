@@ -11,19 +11,83 @@
 						<form>
 							<div class="">
 								<div class="row ">
+								<div class="form-group col-md-6">
+										<label for="email">Select Plant</label>
+										<select class="form-control" name="plant_id">
+											<option value="">select </option>
+											<?php if(isset($p_list) && count($p_list)>0){?>
+												<?php foreach($p_list as $li){ ?>
+													<option value="<?php echo $li['p_id']; ?>"><?php echo $li['disposal_plant_name']; ?> </option>
+												<?php } ?>											
+											<?php } ?>											
+										</select>
+									</div>
+									
 									<div class="form-group col-md-6">
-										<label >Input field</label>
-										<input type="text" class="form-control" placeholder="Enter your field" >
+										<label for="email">Select Hcf</label>
+										<select class="form-control" name="plant_id">
+											<option value="">select </option>
+											<?php if(isset($h_list) && count($h_list)>0){?>
+												<?php foreach($h_list as $li){ ?>
+													<option value="<?php echo $li['h_id']; ?>"><?php echo $li['hospital_name']; ?> </option>
+												<?php } ?>											
+											<?php } ?>											
+										</select>
 									</div>
 									<div class="form-group col-md-6">
-										<label for="email">Select</label>
-										<select class="form-control">
-											<option>select 1</option>
-											<option>select 2</option>
-											<option>select 3</option>
-											<option>select 4</option>
-											<option>select 5</option>
-										</select>
+										<label >Delivery Note</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Mode/Terms of Payment</label>
+											<select class="form-control" name="payment_type">
+												<option value="">select </option>
+												<option value="Cash">Cash </option>																					
+											</select>	
+									</div>
+									<div class="form-group col-md-6">
+										<label >Supplier’s Ref.</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Other Reference(s)</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Buyer’s Order No</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Dated</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Despatch Document No</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Delivery Note Date </label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Despatched throug </label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Destination </label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label >Bill of Lading/LR-RR No </label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>Motor Vehicle No.</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+									</div>
+									<div class="form-group col-md-6">
+										<label>Terms of Delivery</label>
+										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
 									</div>
 									
 								</div>

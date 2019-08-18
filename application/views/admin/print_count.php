@@ -15,7 +15,7 @@
                                     <thead>
                                         <tr>
                                             <th>Type</th>
-                                            <th>Number</th>
+                                            <th>Number Count</th>
                                             <th>Range</th>
                                             <th>Date & Time</th>
                                             

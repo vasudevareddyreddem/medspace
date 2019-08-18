@@ -117,6 +117,15 @@ class Plant_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 	
+	/* invoice purose */
+	public function get_all_invoice_plants_list($admin_id){
+		$this->db->select('*')->from('plant');		
+		$this->db->where('create_by', $admin_id);
+		$this->db->where('status',1);
+		$this->db->order_by('p_id','desc');
+        return $this->db->get()->result_array();	
+	}
+	
 	
 
 }

@@ -37,8 +37,10 @@ class Invoice extends CI_Controller {
 		{
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
-				
-				$this->load->view('admin/add_inovice_form');
+				$data['p_list']=$this->Plant_model->get_all_invoice_plants_list($admindetails['a_id']);
+				$data['h_list']=$this->Plant_model->get_hcf_plant_list($admindetails['a_id']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/add_inovice_form',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
