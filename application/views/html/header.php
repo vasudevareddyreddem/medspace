@@ -242,7 +242,13 @@
 							</li>
                         </ul>
                     </li>
-                    <li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_stickers')){echo "active"; } ?>">
+                    <li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?>">
+                        <a href="<?php echo base_url('invoice/index'); ?>">
+                            <i class="material-icons">ac_unit</i>
+                            <span>Invoice</span>
+                        </a>
+                    </li>
+					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/print_stickers')){echo "active"; } ?>">
                         <a href="<?php echo base_url('plant/print_stickers'); ?>">
                             <i class="material-icons">ac_unit</i>
                             <span>Print Stickers</span>
