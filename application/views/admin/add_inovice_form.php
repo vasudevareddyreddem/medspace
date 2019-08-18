@@ -10,7 +10,24 @@
 					<div class="body">
 						<form>
 							<div class="">
-								<div class="col-md-12 ">
+								<div class="row ">
+									<div class="form-group col-md-6">
+										<label >Input field</label>
+										<input type="text" class="form-control" placeholder="Enter your field" >
+									</div>
+									<div class="form-group col-md-6">
+										<label for="email">Select</label>
+										<select class="form-control">
+											<option>select 1</option>
+											<option>select 2</option>
+											<option>select 3</option>
+											<option>select 4</option>
+											<option>select 5</option>
+										</select>
+									</div>
+									
+								</div>
+								
 									<table class="table table-bordered table-hover" id="tab_logic">
 										<tbody>
 											<tr id='addr0'>
