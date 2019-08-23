@@ -56,11 +56,12 @@
 						<table style="width:100%;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4"  style="vertical-align: top;text-align:right" ><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
-									<td style="text-align:center">
+								<td style="text-align:center">
 										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
 										<div>MD<?php echo $list[0]['ptcnt'] ; ?></div>
 									</td>
+									<td rowspan="4"  style="vertical-align: top;text-align:left" ><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
+									
 									
 								</tr>
 								
@@ -90,12 +91,13 @@
 						<table style="width:100%;font-size:9px;" align="center">
 							<tbody>
 								<tr>
-									<td rowspan="4" style="text-align:right"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
-								
-									<td style="text-align:center">
+								<td style="text-align:center">
 										<div style="text-align:center" class="<?php echo $list[1]['category'] ; ?>-col"></div>
 										<div>MD<?php echo $list[1]['ptcnt'] ; ?></div>
 									</td>
+									<td rowspan="4" style="text-align:left"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
+								
+									
 									<!--<td ><span><?php echo $list[1]['category'] ; ?></span></td>-->
 								</tr>
 								
