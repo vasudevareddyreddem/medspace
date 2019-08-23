@@ -38,12 +38,12 @@
 		<div class="loop" style="margin:0 2mm;">
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:0px;">RM11029DL00001</h3>
+					<h3 style="padding:0px;margin:0px;">DRRML110065DLBH00000</h3>
 					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
 					<div class="blue-col"></div>
-					<div style="font-size:8px">DRRML110065DLBH00000</div>
+					<div style="font-size:8px">0001</div>
 				</div>
 				
 				<div class="">
@@ -69,12 +69,12 @@
 		</div>
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-left:3mm;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:0px;">RM11029DL00001</h3>
+					<h3 style="padding:0px;margin:0px;">DRRML110065DLBH00000</h3>
 					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
 					<div class="blue-col"></div>
-					<div style="font-size:8px">DRRML110065DLBH00000</div>
+					<div style="font-size:8px">0001</div>
 				</div>
 				<div class="">
 					<div>
