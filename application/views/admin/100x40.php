@@ -38,12 +38,12 @@
 		<div class="loop" style="margin:0 2mm;">
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:0px;">DRRML110065DLBH00000</h3>
-					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
+					<h3 style="padding:0px;margin:5px;">SeqNo :0001</h3>
+					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
 					<div class="blue-col"></div>
-					<div style="font-size:8px">0001</div>
+					
 				</div>
 				
 				<div class="">
@@ -55,13 +55,9 @@
 									<td ><span><?php echo $list[0]['category'] ; ?> </span>bag</td>
 								</tr>-->
 								<tr>
-									<td>HCF</td>
-									<td>: <span><?php echo $list[0]['h_name'] ; ?> </span></td>
+									<td style="text-align:center;font-size:18px">DRRML110065DLBH00000</td>
 								</tr>
-								<tr>
-									<td>CBWTF</td>
-									<td>: <?php echo $list[0]['cbwtf'] ; ?></td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>
@@ -69,12 +65,12 @@
 		</div>
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-left:3mm;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:0px;">DRRML110065DLBH00000</h3>
-					<img style="width:auto;height:15mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
+					<h3 style="padding:0px;margin:5px;">Seq No: 0001</h3>
+					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
 					<div class="blue-col"></div>
-					<div style="font-size:8px">0001</div>
+					
 				</div>
 				<div class="">
 					<div>
@@ -84,14 +80,10 @@
 									<td style="">Category</td>
 									<td ><span><?php echo $list[1]['category'] ; ?> </span>bag</td>
 								</tr>-->
-								<tr>
-									<td>HCF</td>
-									<td>: <span><?php echo $list[1]['h_name'] ; ?>
+									<tr>
+									<td style="text-align:center;font-size:18px">DRRML110065DLBH00000</td>
 								</tr>
-								<tr>
-									<td>CBWTF</td>
-									<td>: <?php echo $list[1]['cbwtf'] ; ?></td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>
