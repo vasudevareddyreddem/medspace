@@ -50,6 +50,8 @@ class Prints extends CI_Controller {
 			if($admindetails['role']==1){
 				$h_id=base64_decode($this->uri->segment(3));
 				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($h_id);
+				$this->load->model('Mobile_model');
+				$data['plant_details']=$this->Mobile_model->get_plant_details($data['hospital_detail']['create_by']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/print',$data);
 			}else{

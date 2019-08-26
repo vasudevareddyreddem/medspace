@@ -249,7 +249,7 @@
                         </a>
                         <ul class="ml-menu">
                            <li>
-								<a href="<?php echo base_url('invoice/index'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add</a>
+								<a href="<?php echo base_url('invoice/checkpermission'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> Add</a>
 							</li>
 							<li>
 								<a href="<?php echo base_url('invoice/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>List</a>

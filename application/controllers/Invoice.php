@@ -53,6 +53,39 @@ class Invoice extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function checkpermission()
+	{
+		
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			$this->load->view('admin/check_inovice_form');
+			$this->load->view('html/footer');
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function permissionpost()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
+			$details=$this->Admin_model->get_adminbasic_details($admindetails['a_id']);
+			if($post['security_code']==$details['pincode']){
+				redirect('invoice/index');
+			}else{
+				$this->session->set_flashdata('error','Your security code is wrong. Please try again');
+				redirect('invoice/checkpermission');
+			}
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	public function lists()
 	{	
 			if($this->session->userdata('userdetails'))
