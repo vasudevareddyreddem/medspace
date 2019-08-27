@@ -42,7 +42,7 @@
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
-					<div class="blue-col"></div>
+					<div class="white-col"></div>
 					
 				</div>
 				
@@ -55,7 +55,7 @@
 									<td ><span><?php echo $list[0]['category'] ; ?> </span>bag</td>
 								</tr>-->
 								<tr>
-									<td style="text-align:center;font-size:18px">DRRML110065DLBH00000</td>
+									<td style="text-align:center;font-size:18px">RAMMA110001DLBH02497</td>
 								</tr>
 								
 							</tbody>
@@ -69,7 +69,7 @@
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
-					<div class="blue-col"></div>
+					<div class="white-col"></div>
 					
 				</div>
 				<div class="">
@@ -81,7 +81,7 @@
 									<td ><span><?php echo $list[1]['category'] ; ?> </span>bag</td>
 								</tr>-->
 									<tr>
-									<td style="text-align:center;font-size:18px">DRRML110065DLBH00000</td>
+									<td style="text-align:center;font-size:18px">RAMMA110001DLBH02497</td>
 								</tr>
 								
 							</tbody>
