@@ -139,14 +139,14 @@ margin:2px
   <?php $t_kgs='';$t_c_amt='';$cnt_ar=0;$cnt=1;foreach($details['category'] as $li){ ?>
 	  <?php if($li!=''){ ?>
 		  <tr>
-			<td><?php echo $cnt; ?></td>
-			<td> <?php echo isset($details['category'][$cnt_ar])?$details['category'][$cnt_ar]:''; ?> <?php echo isset($details['size'][$cnt_ar])?$details['size'][$cnt_ar]:''; ?> </td>
-			<td> <?php echo isset($details['hsn_sac'][$cnt_ar])?$details['hsn_sac'][$cnt_ar]:''; ?> </td>
-			<td> <?php echo isset($details['quantity'][$cnt_ar])?$details['quantity'][$cnt_ar]:''; ?> </td>
-			<td> <?php echo isset($details['rate'][$cnt_ar])?$details['rate'][$cnt_ar]:''; ?> </td>
-			<td>kgs </td>
-			<td><?php echo isset($details['discount'][$cnt_ar])?$details['discount'][$cnt_ar]:''; ?> </td>
-			<td> <?php 
+			<td style="border-top:0px;border-bottom:0px;text-align:center"><?php echo $cnt; ?></td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['category'][$cnt_ar])?$details['category'][$cnt_ar]:''; ?> <?php echo isset($details['size'][$cnt_ar])?$details['size'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['hsn_sac'][$cnt_ar])?$details['hsn_sac'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['quantity'][$cnt_ar])?$details['quantity'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['rate'][$cnt_ar])?$details['rate'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center">kgs </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"><?php echo isset($details['discount'][$cnt_ar])?$details['discount'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php 
 				$amount = $details['quantity'][$cnt_ar]*$details['rate'][$cnt_ar];
 				$percentToGet = $details['discount'][$cnt_ar];
 				$percentInDecimal = $percentToGet / 100;
@@ -163,12 +163,17 @@ margin:2px
   <?php $cnt_ar++;$cnt++;} ?>
    
   <tr>
-
-	<td colspan="8" style="text-align:right"><span ><?php echo isset($t_c_amt)?$t_c_amt:''; ?> </span></td>
+<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+	<td style="text-align:center;border-top:0px;border-bottom:0px;"><span style=""><?php echo isset($t_c_amt)?$t_c_amt:''; ?> </span></td>
   </tr>
   <tr>
-	<td colspan="6" style="text-align:right"><span >IGST </span></td>
-	<td colspan="2" style="text-align:right"><span>
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+	<td  style="text-align:right;border-top:0px;border-bottom:0px;"><span >IGST </span></td>
+	<td  style="text-align:center;border-top:0px;border-left: 0px;"><span >
 	<?php $T_amount =$t_c_amt;
 			$p_ToGet=$details['igst'];
 			$p_Decimal = $p_ToGet / 100;
@@ -229,24 +234,25 @@ margin:2px
 		</td>
 	</tr>
 </table>
-<table>
-	<tr>
-		<th colspan="3" style="text-algin:center"> Company’s Bank Details</th>
+<table style="border-top:0px;border-bottom:0px;">
+	<tr style="border-top:0px;border-bottom:0px;">
+		<th  style="text-align:left;border:none;width:70%">
+		&nbsp;
+		</th>
+		<th  style="text-align:left;border-left:0px;border-top:0px; border-bottom:0px;">
+			<div>Company’s Bank Details</div>
+			<div>Bank Name:</div>
+			<div>Bank Name : <?php echo isset($details['bank_name'])?$details['bank_name']:''; ?></div>
+		<div>AC no :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
+		<div>Branch & IFSC no : <?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></div>
+		</th>
 	</tr>
-	<tr>
-		<th>Bank Name</th>
-		<th>AC no</th>
-		<th>Branch & IFSC no</th>
-	</tr>
-	<tr>
-		<td><?php echo isset($details['bank_name'])?$details['bank_name']:''; ?></td>
-		<td><?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></td>
-		<td><?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></td>
-	</tr>
+
+	
 </table>
 <table>
 	<tr>
-		<td><span style="  text-decoration-line: underline;">Declaration</span>
+		<td style="width:70%"><span style="  text-decoration-line: underline;">Declaration</span>
 		<p>We declare that this invoice shows the actual price of
 the goods described and that all particulars are true
 and correct.
