@@ -245,7 +245,7 @@
 					<li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">ac_unit</i>
-                            <span>Colours</span>
+                            <span>Cover invoice</span>
                         </a>
                         <ul class="ml-menu">
                            <li>
