@@ -186,6 +186,8 @@ class Prints extends CI_Controller {
 				//$this->load->view('html/footer');
 				
 			}else if($post['sticker_size'] && $post['sticker_size']==3){
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$cnt=$pt_cnt['cnt'];
 				for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
@@ -203,9 +205,25 @@ class Prints extends CI_Controller {
 					'category'=>isset($post['category_type'])?$post['category_type']:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
+					$cnt++;}
+					if($pt_cnt['cnt']==''){
+						$p_t=0;
+					}else{
+						$p_t=$pt_cnt['cnt'];
 					}
+						$a_d=array(
+						 'type'=>isset($post['category_type'])?$post['category_type']:'',
+						 'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						 'tnum'=>$p_t.'-'.$cnt,
+						 'num'=>48,
+						 'created_at'=>date('Y-m-d H:i:s'),
+						 'created_by'=>$admindetails['a_id'],
+						);
+						//echo '<pre>';print_r($a_d);exit;
+						$this->Admin_model->save_type_count($a_d);
 				$data['print_details']=array_chunk($details,4);
 				$this->load->view('admin/45x21',$data);
 				

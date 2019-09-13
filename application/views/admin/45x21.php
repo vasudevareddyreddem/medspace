@@ -33,7 +33,7 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:22.cm;text-align:center;">
+<div  style="width:22cm;text-align:center;">
 <div  style="margin-top:2.45cm">
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
@@ -50,7 +50,7 @@
 								<tr>
 								<td style="text-align:center">
 										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
-										<div style="font-size:8px">MD123456</div>
+										<div style="font-size:8px">SN<?php echo $list[0]['ptcnt'] ; ?></div>
 										<div style="font-size:6px"><span><?php echo $list[0]['category'] ; ?> </span> Bag</div>
 									</td>
 									<td rowspan="4" style="vertical-align: top;text-align:left" ><img style="width:auto;height:11mm;padding:1px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
@@ -76,9 +76,9 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
-										<div style="font-size:8px">MD123456</div>
-										<div style="font-size:6px"><span><?php echo $list[0]['category'] ; ?> </span> Bag</div>
+										<div style="text-align:center" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+										<div style="font-size:8px">SN<?php echo $list[1]['ptcnt'] ; ?></div>
+										<div style="font-size:6px"><span><?php echo $list[1]['category'] ; ?> </span> Bag</div>
 									</td>
 									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:11mm;padding:1px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
 									
@@ -102,9 +102,9 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
-										<div style="font-size:8px">MD123456</div>
-										<div style="font-size:6px"><span><?php echo $list[0]['category'] ; ?> </span> Bag</div>
+										<div style="text-align:center" class="<?php echo $list[2]['category'] ; ?>-col"></div>
+										<div style="font-size:8px">SN<?php echo $list[2]['ptcnt'] ; ?></div>
+										<div style="font-size:6px"><span><?php echo $list[2]['category'] ; ?> </span> Bag</div>
 									</td>
 									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:11mm;padding:1px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
 								</tr>
@@ -125,9 +125,9 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
-										<div style="font-size:8px">MD123456</div>
-										<div style="font-size:6px"><span><?php echo $list[0]['category'] ; ?> </span> Bag</div>
+										<div style="text-align:center" class="<?php echo $list[3]['category'] ; ?>-col"></div>
+										<div style="font-size:8px">SN<?php echo $list[3]['ptcnt'] ; ?></div>
+										<div style="font-size:6px"><span><?php echo $list[3]['category'] ; ?> </span> Bag</div>
 									</td>
 									<td rowspan="4" style="vertical-align: top;"><img style="width:auto;height:11mm;padding:1px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
 									
