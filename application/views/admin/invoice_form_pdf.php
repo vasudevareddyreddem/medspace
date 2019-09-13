@@ -56,7 +56,7 @@ margin:2px
   </tr>  
   <tr>  
     <td>
-		<div>Supplier’s Ref : <?php echo isset($details['supplier_ref'])?$details['supplier_ref']:''; ?> </div>		
+		<div>Supplier Name : <?php echo isset($details['supplier_ref'])?$details['supplier_ref']:''; ?> </div>		
 	</td>
     <td>
 		<div>Other Reference(s) : <?php echo isset($details['other_reference'])?$details['other_reference']:''; ?></div>	
@@ -106,7 +106,7 @@ margin:2px
   </tr>  
   <tr>  
     <td>
-		<div>Bill of Lading/LR-RR No</div>
+		<div>Root No</div>
 		<div><?php echo isset($details['lr_rr_no'])?$details['lr_rr_no']:''; ?></div>
 		
 	</td>
@@ -130,7 +130,7 @@ margin:2px
 	<th>Sl No</th>
 	<th>Description of Goods</th>
 	<th>HSN/SAC</th>
-	<th>Quantity</th>
+	<th>Quantity / Pieces</th>
 	<th>Rate</th>
 	<th>per</th>
 	<th>Disc. %</th>

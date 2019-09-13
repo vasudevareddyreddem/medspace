@@ -12,8 +12,8 @@
 							<div class="">
 								<div class="row ">
 								<div class="form-group col-md-6">
-										<label >e-Way Bill No</label>
-										<input type="text" class="form-control" name="e_way_bill_no" placeholder="Enter e-Way Bill No" >
+										<label >Invoice No</label>
+										<input type="text" class="form-control" name="e_way_bill_no" placeholder="Invoice No" >
 									</div>
 								<div class="form-group col-md-6">
 										<label for="email">Select Plant</label>
@@ -50,7 +50,7 @@
 											</select>	
 									</div>
 									<div class="form-group col-md-6">
-										<label >Supplier’s Ref.</label>
+										<label >Supplier Name </label>
 										<input type="text" class="form-control" name="supplier_ref" placeholder="Enter Supplier’s Ref" >
 									</div>
 									<div class="form-group col-md-6">
@@ -82,7 +82,7 @@
 										<input type="text" class="form-control" name="destination" placeholder="Enter Destination" >
 									</div>
 									<div class="form-group col-md-6">
-										<label >Bill of Lading/LR-RR No </label>
+										<label >Root  No </label>
 										<input type="text" class="form-control" name="lr_rr_no" placeholder="Enter Bill of Lading/LR-RR No" >
 									</div>
 									<div class="form-group col-md-6">
@@ -94,7 +94,7 @@
 										<input type="text" class="form-control" name="terms_of_delivery" placeholder="Enter Terms of Delivery" >
 									</div>
 									<div class="form-group col-md-6">
-										<label>IGST</label>
+										<label>GST</label>
 										<input type="text" class="form-control" name="igst" placeholder="Enter IGST" value="0" >
 									</div>
 									<div class="form-group col-md-6">
