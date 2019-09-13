@@ -40,7 +40,7 @@
 		<div class="loop" style="margin:0 7.8mm;">
 		<div class="sticker" style="width:45.7mm;height:21.1mm;background:#fff;overflow:hidden">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo $list[0]['h_name'] ; ?> </span></div>
+					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo substr($list[0]['h_name'], 0, 30); ?>... </span></div>
 				
 				</div>
 				<div class="">
@@ -63,11 +63,11 @@
 					</div>
 					
 				</div>
-				<div style="font-size:8px;"><?php echo $list[0]['cbwtf'] ; ?></div>
+				<div style="font-size:8px;"><?php echo substr($list[0]['cbwtf'], 0, 30); ?>...</div>
 		</div>
 		<div class="sticker" style="width:45.7mm;height:21.1mm;background:#fff;overflow:hidden">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo $list[1]['h_name'] ; ?> </span></div>
+					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo substr($list[1]['h_name'], 0, 30); ?>... </span></div>
 				
 				</div>
 				<div class="">
@@ -89,11 +89,11 @@
 						</table>
 					</div>
 				</div>
-					<div style="font-size:8px;"><?php echo $list[1]['cbwtf'] ; ?></div>
+					<div style="font-size:8px;"><?php echo substr($list[1]['cbwtf'], 0, 30); ?>...</div>
 		</div>
 		<div class="sticker" style="width:45.7mm;height:21.1mm;background:#fff;overflow:hidden">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo $list[2]['h_name'] ; ?> </span></div>
+					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo substr($list[2]['h_name'], 0, 30); ?>... </span></div>
 				
 				</div>
 				<div class="">
@@ -112,11 +112,11 @@
 						</table>
 					</div>
 				</div>
-				<div style="font-size:8px;"><?php echo $list[2]['cbwtf'] ; ?></div>
+				<div style="font-size:8px;"><?php echo substr($list[2]['cbwtf'], 0, 30); ?>...</div>
 		</div>
 		<div class="sticker" style="width:45.7mm;height:21.1mm;background:#fff;overflow:hidden">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo $list[3]['h_name'] ; ?> </span></div>
+					<div style="padding:0px;margin:0px;font-size:8px"><span><?php echo substr($list[3]['h_name'], 0, 30); ?>... </span></div>
 				
 				</div>
 				<div class="">
@@ -137,7 +137,7 @@
 						</table>
 					</div>
 				</div>
-				<div style="font-size:8px;"><?php echo $list[3]['cbwtf'] ; ?></div>
+				<div style="font-size:8px;"><?php echo substr($list[3]['cbwtf'], 0, 30); ?>...</div>
 		</div>
 		</div>
 	<?php } ?>
