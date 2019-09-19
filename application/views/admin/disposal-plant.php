@@ -10,7 +10,7 @@
                        
                         </div>
                         <div class="body">
-                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/addpost'); ?>">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/addpost'); ?>" enctype="multipart/form-data">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">CBWTF Name</label>
                             <div class="col-lg-5">
@@ -90,6 +90,12 @@
                             <label class="col-lg-3 control-label">Pincode</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " />
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Logo</label>
+                            <div class="col-lg-5">
+                                <input type="file" class="form-control" id="image" name="image" />
                             </div>
                         </div>
 

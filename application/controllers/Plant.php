@@ -187,6 +187,11 @@ class Plant extends CI_Controller {
 						$this->session->set_flashdata('error','Email id already exits. Please use another  email id');
 						redirect('plant/add');
 				}else{
+					if(isset($_FILES['image']['name']) && $_FILES['image']['name']!=''){
+							$temp = explode(".", $_FILES["image"]["name"]);
+							$pimage = round(microtime(true)) . '.' . end($temp);
+							move_uploaded_file($_FILES['image']['tmp_name'], "assets/plant_logo/" . $pimage);
+						}
 					$addplant=array(
 						'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 						'email_id'=>isset($post['email'])?$post['email']:'',
@@ -211,6 +216,7 @@ class Plant extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'logo'=>isset($pimage)?$pimage:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'create_by'=>$admindetails['a_id']
@@ -261,6 +267,14 @@ class Plant extends CI_Controller {
 								
 								}
 						}else{
+							if(isset($_FILES['image']['name']) && $_FILES['image']['name']!=''){
+							unlink('assets/plant_logo/'.$details['logo']);
+								$temp = explode(".", $_FILES["image"]["name"]);
+								$pimage = round(microtime(true)) . '.' . end($temp);
+								move_uploaded_file($_FILES['image']['tmp_name'], "assets/plant_logo/" . $pimage);
+							}else{
+								$pimage=$details['logo'];
+							}
 							$updateplant=array(
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
@@ -272,6 +286,8 @@ class Plant extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'logo'=>isset($pimage)?$pimage:'',
+
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){
@@ -301,6 +317,14 @@ class Plant extends CI_Controller {
 						}
 					
 				}else{
+					if(isset($_FILES['image']['name']) && $_FILES['image']['name']!=''){
+							unlink('assets/plant_logo/'.$details['logo']);
+								$temp = explode(".", $_FILES["image"]["name"]);
+								$pimage = round(microtime(true)) . '.' . end($temp);
+								move_uploaded_file($_FILES['image']['tmp_name'], "assets/plant_logo/" . $pimage);
+							}else{
+								$pimage=$details['logo'];
+							}
 					$updateplant=array(
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 							'mobile'=>isset($post['mobile'])?$post['mobile']:'',
@@ -312,6 +336,7 @@ class Plant extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'logo'=>isset($pimage)?$pimage:'',
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){

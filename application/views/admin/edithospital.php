@@ -13,6 +13,25 @@
                     <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('hospital/editpost'); ?>">
 						<input type="hidden" name="hos_id" id="hos_id" value="<?php echo isset($hospital_detail['h_id'])?$hospital_detail['h_id']:'';?>">
 						<div class="form-group">
+                            <label class="col-lg-3 control-label">CBMWTF</label>
+                            <div class="col-lg-5">
+                                <select class="form-control" name="cbmwtf">
+								<option value="">Select</option>
+								<?php if(isset($p_list) && count($p_list)>0){ ?>
+									<?php foreach($p_list as $li){ ?>
+										<?php if($hospital_detail['cbmwtf']==$li['p_id']){ ?>
+										<option selected value="<?php echo $li['p_id']; ?>"><?php echo $li['disposal_plant_name']; ?></option>
+
+										<?php }else{ ?>
+										<option value="<?php echo $li['p_id']; ?>"><?php echo $li['disposal_plant_name']; ?></option>
+
+										<?php } ?>
+									<?php } ?>
+								<?php } ?>
+								</select>
+                            </div>
+                        </div>
+						<div class="form-group">
                             <label class="col-lg-3 control-label">Health Care Facility</label>
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" name="hospital_name" id="hospital_name" value="<?php echo isset($hospital_detail['hospital_name'])?$hospital_detail['hospital_name']:'';?>" placeholder="Enter Health Care Facility" />
@@ -152,7 +171,13 @@ $(document).ready(function() {
 					}
 				}
             },
-			
+			cbmwtf: {
+                 validators: {
+					  notEmpty: {
+						message: 'cbmwtf is required'
+					}
+                }
+            },
 			type: {
                  validators: {
 					  notEmpty: {

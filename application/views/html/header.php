@@ -190,7 +190,20 @@
                         </ul>
                     </li> 
 					<?php }else if($details['role']==1){  ?>
-                   
+                   <li class="<?php if(isset($u_url) && $u_url==base_url('plant/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/lists')){echo "active"; } ?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">ac_unit</i>
+                            <span>CBMWTF</span>
+                        </a>
+                        <ul class="ml-menu">
+                           <li>
+								<a href="<?php echo base_url('plant/add'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add CBMWTF</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url('plant/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> CBMWTF List</a>
+							</li>
+                        </ul>
+                    </li>
                     
 					<li class="<?php if(isset($u_url) && $u_url==base_url('hospital/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('hospital/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -228,20 +241,7 @@
                             
                         </ul>
                     </li>
-					<li class="<?php if(isset($u_url) && $u_url==base_url('plant/add')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('plant/lists')){echo "active"; } ?>">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">ac_unit</i>
-                            <span>CBWTF</span>
-                        </a>
-                        <ul class="ml-menu">
-                           <li>
-								<a href="<?php echo base_url('plant/add'); ?>"> <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>  Add CBWTF</a>
-							</li>
-							<li>
-								<a href="<?php echo base_url('plant/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i> CBWTF List</a>
-							</li>
-                        </ul>
-                    </li>
+					
 					<li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/lists')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">ac_unit</i>

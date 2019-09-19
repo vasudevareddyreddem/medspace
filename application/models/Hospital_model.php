@@ -170,6 +170,13 @@ class Hospital_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 	
+	public  function get_cbmwtf_list($id){
+		$this->db->select('p_id,disposal_plant_name')->from('plant');
+		$this->db->where('create_by',$id);
+		$this->db->where('status',1);
+		return $this->db->get()->result_array();
+	}
+	
 	
 	
 	

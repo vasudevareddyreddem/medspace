@@ -39,8 +39,8 @@ class Hospital extends CI_Controller {
 		{
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==1){
-				
-				$this->load->view('admin/addhospital');
+				$data['p_list']=$this->Hospital_model->get_cbmwtf_list($admindetails['a_id']);
+				$this->load->view('admin/addhospital',$data);
 				$this->load->view('html/footer');
 			}else{
 				$this->session->set_flashdata('error',"you don't have permission to access");
@@ -162,6 +162,8 @@ class Hospital extends CI_Controller {
 				
 				$hos_id=base64_decode($this->uri->segment(3));
 				$data['hospital_detail']=$this->Hospital_model->get_hospital_details($hos_id);
+				$data['p_list']=$this->Hospital_model->get_cbmwtf_list($admindetails['a_id']);
+
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/edithospital',$data);
 				$this->load->view('html/footer');
@@ -230,6 +232,7 @@ class Hospital extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'cbmwtf'=>isset($post['cbmwtf'])?$post['cbmwtf']:'',
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'barcode'=>$path_img,
@@ -297,6 +300,7 @@ class Hospital extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'cbmwtf'=>isset($post['cbmwtf'])?$post['cbmwtf']:'',
 							);
 							$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
 							if(count($update)>0){
@@ -341,6 +345,7 @@ class Hospital extends CI_Controller {
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
+							'cbmwtf'=>isset($post['cbmwtf'])?$post['cbmwtf']:'',
 						);
 						//echo "<pre>";print_r($updatehospital);
 						$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);

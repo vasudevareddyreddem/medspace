@@ -10,7 +10,7 @@
                        
                         </div>
                         <div class="body">
-                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/editpost'); ?>">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="<?php echo base_url('plant/editpost'); ?>" enctype="multipart/form-data">
 					<input type="hidden" name="p_id" id="p_id" value="<?php echo isset($plant_detail['p_id'])?$plant_detail['p_id']:'';?>">
 						<div class="form-group">
                             <label class="col-lg-3 control-label">CBWTF Name </label>
@@ -78,6 +78,15 @@
                             <div class="col-lg-5">
                                 <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter Pincode " value="<?php echo isset($plant_detail['pincode'])?$plant_detail['pincode']:'';?>" />
                             </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-lg-3 control-label">Logo</label>
+                            <div class="col-lg-5">
+                                <input type="file" class="form-control" id="image" name="image" />
+                            </div>
+							<?php if($plant_detail['logo']!=''){ ?>
+							<img  height="50px;" src="<?php echo base_url('assets/plant_logo/'.$plant_detail['logo']); ?>">
+							<?Php }?>
                         </div>
 
                         <div class="form-group">
