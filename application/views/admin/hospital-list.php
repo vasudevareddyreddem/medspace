@@ -12,9 +12,11 @@
 						<form action="<?php echo base_url('prints/prints'); ?>" method="POST">
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table class="example table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
+											<th>Select All <input type="checkbox" name="check_all" id="check_all" value=""/>
+											<button type="submit">Print</button></th>
                                             <th>Health Care Facility</th>
                                             <th>Health Care Facility ID</th>
                                             <th>Health Care Facility Type</th>
@@ -24,8 +26,7 @@
                                             <th>Reg Date & Time</th>
                                             <th>Status</th>
                                             <th>Action</th>
-                                            <th>Select All <input type="checkbox" name="check_all" id="check_all" value=""/>
-											<button type="submit">Print</button></th>
+                                            
                                         </tr>
                                     </thead>
                                     
@@ -35,6 +36,8 @@
 									<?php foreach($hospital_list as $list){ ?>
                                 
                                         <tr>
+											<td><input type="checkbox" name="h_ids[]" value="<?php echo isset($list['h_id'])?$list['h_id']:''; ?>"></td>
+
                                             <td><?php echo htmlentities($list['hospital_name']); ?></td>
                                             <td><?php echo htmlentities($list['hospital_id']); ?></td>
                                             <td>
@@ -61,7 +64,6 @@
 											<a href="<?php echo base_url('hospital/delete/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Delete</a>
                                             <a target="_blank" href="<?php echo base_url('prints/barcode/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Print Barcode</a> 											
 											</td>
-											<td><input type="checkbox" name="h_ids[]" value="<?php echo isset($list['h_id'])?$list['h_id']:''; ?>"></td>
                                         </tr>
 										
                                   
@@ -79,6 +81,11 @@
         </div>
 </section>
 <script>
+$('.example').dataTable( {
+  "columnDefs": [
+    { "orderable": false, "targets": 0 }
+  ]
+} );
   $(document).ready(function(){
         $('#check_all').on('click',function(){
             if(this.checked){
