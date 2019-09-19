@@ -28,7 +28,7 @@
 	font-size:17px;
 	letter-spacing:0.2px;
 	
-	min-height:1.5cm;
+	min-height:1.1cm;
 }
 .qr-code{
 	text-align:center;
@@ -65,7 +65,8 @@
 <div style="width:21cm;overflow:hidden;">
 	<?php $cnt=0;foreach($print_details as $li){ ?>
 	<?php if($cnt!=0 && $cnt % 2 == 0){ ?>
-	<div class="row" style="margin-top:1.9cm">&nbsp;</div>
+	<div class="row" style="margin-top:1.
+	cm">&nbsp;</div>
 	<?php } ?>
 	<div class="row" style="position:relative;margin-top:1.9cm">
 	<?php if(isset($li[0]) && $li[0]!=''){ ?>
