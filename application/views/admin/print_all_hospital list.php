@@ -63,7 +63,10 @@
 </style>
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <div style="width:21cm;overflow:hidden;">
-	<?php $cnt=1;foreach($print_details as $li){ ?>
+	<?php $cnt=0;foreach($print_details as $li){ ?>
+	<?php if($cnt!=0 && $cnt % 2 == 0){ ?>
+	<div class="row" style="margin-top:1.9cm">&nbsp;</div>
+	<?php } ?>
 	<div class="row" style="position:relative;margin-top:1.9cm">
 	<?php if(isset($li[0]) && $li[0]!=''){ ?>
 		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;margin-left:1.33cm">
@@ -170,7 +173,6 @@
 		</div>
 	<?php } ?>
 	</div>
-	<?php echo $cnt; ?>
 <?php $cnt++;}  ?>
 	
 	
