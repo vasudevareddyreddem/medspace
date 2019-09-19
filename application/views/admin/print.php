@@ -61,9 +61,9 @@
 	text-align:center
 }
 </style>
-<div style="width:21cm;height:29.7cm;border:1px solid #ddd;overflow:hidden;">
+<div style="width:21cm;height:29.7cm;overflow:hidden;">
 	<div class="row" style="position:relative;margin-top:1.9cm">
-		<div style="width:8.5cm;height:12cm;border:1px solid #ddd;overflow:hidden;margin-left:1.33cm">
+		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;margin-left:1.33cm">
 			<div style="padding:20px 5px;position: relative;">
 			<div class="hazard">
 				<img style="" src="<?php echo base_url('assets/vendor/images/biohazard.png');?>" alt="bar code" />
@@ -102,45 +102,9 @@
 				
 			</div>
 		</div>
-		<div style="width:8.5cm;height:12cm;border:1px solid #ddd;overflow:hidden;float:right;position:absolute;top:0;right:1.33cm;">
-			<div style=" ;padding:20px 10px;">
-				<div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
-					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code" />
-				</div>
-				<div style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span>
-				</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">CBWTF:<span><?php echo $plant_details['disposal_plant_name']; ?></span>
-				</div>
-			</div>
-		</div>
+		
 	</div>
-	<div class="row" style="position:relative;margin-top:1.9cm">
-		<div style="width:8.5cm;height:12cm;border:1px solid #ddd;overflow:hidden;margin-left:1.33cm">
-			<div style=" ;padding:20px 10px;">
-				<div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
-					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code" />
-				</div>
-				<div style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span>
-				</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">CBWTF:<span><?php echo $plant_details['disposal_plant_name']; ?></span>
-				</div>
-			</div>
-		</div>
-		<div style="width:8.5cm;height:12cm;border:1px solid #ddd;overflow:hidden;float:right;position:absolute;top:0;right:1.33cm;">
-			<div style=" ;padding:20px 10px;">
-				<div style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
-					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code" />
-				</div>
-				<div style="margin:6px 10px ;text-align:center;font-size:28px;font-weight:600">Bio Medical Waste</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">Hospital Name:<span><?php echo $hospital_detail['hospital_name']; ?></span>
-				</div>
-				<div style="margin:3px 10px;font-size:24px;text-align:center; font-weight:600">CBWTF:<span><?php echo $plant_details['disposal_plant_name']; ?></span>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 </div>
 <script>
