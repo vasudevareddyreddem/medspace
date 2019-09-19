@@ -160,7 +160,7 @@ $(document).ready(function() {
 						message: 'Vehicle Registration Number is required'
 					},
 					regexp: {
-					regexp: /^[A-Za-z0-9]{9,10}$/,
+					regexp: /^[A-Za-z0-9]{8,11}$/,
 					message: 'Vehicle Registration Number can only consist of Alphanumeric and digits'
 					}
 				}
