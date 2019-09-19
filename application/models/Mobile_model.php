@@ -76,7 +76,7 @@ class Mobile_model extends CI_Model
 	}
 	
 	public  function get_plant_details($created_by){
-		$this->db->select('p_id,email,disposal_plant_name,address1,address2,city,state')->from('plant');
+		$this->db->select('p_id,email,disposal_plant_name,address1,address2,city,state,pincode,country,mobile,logo,mobile')->from('plant');
 		$this->db->where('plant.create_by', $created_by);
 		$this->db->where('plant.status',1);
 		$this->db->order_by('plant.p_id','desc');

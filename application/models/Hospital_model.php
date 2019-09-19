@@ -23,6 +23,12 @@ class Hospital_model extends CI_Model
 		$this->db->order_by('h_id',"asc");
         return $this->db->get()->result_array();	
 	}
+	public function get_print_plan_hospital_details_pdf($h_id){
+		$this->db->select('*')->from('hospital_list');		
+		$this->db->where('h_id', $h_id);
+		$this->db->where('status',1);
+        return $this->db->get()->row_array();	
+	}
 	public function get_hospital_details($h_id){
 		$this->db->select('*')->from('hospital_list');		
 		$this->db->where('h_id', $h_id);

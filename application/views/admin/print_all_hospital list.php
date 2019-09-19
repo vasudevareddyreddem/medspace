@@ -61,8 +61,11 @@
 	text-align:center
 }
 </style>
-<div style="width:21cm;height:29.7cm;overflow:hidden;">
+<?php if(isset($print_details) && count($print_details)>0){ ?>
+<div style="width:21cm;overflow:hidden;">
+	<?php foreach($print_details as $li){ ?>
 	<div class="row" style="position:relative;margin-top:1.9cm">
+	<?php if(isset($li[0]) && $li[0]!=''){ ?>
 		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;margin-left:1.33cm">
 			<div style="padding:20px 5px;position: relative;">
 			<div class="hazard">
@@ -87,12 +90,12 @@
 			<div class="qr-code">
 				Bio-Medical Waste QR code
 			</div>
-				<div class="barcode-div" style="text-align:center" id="printThis<?php echo htmlentities($hospital_detail['h_id']); ?>">
-					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>" alt="bar code" />
+				<div class="barcode-div" style="text-align:center" id="printThis<?php echo htmlentities($li[0]['h_id']); ?>">
+					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$li[0]['barcode']);?>" alt="bar code" />
 				</div>
 				<div class="hosptal_name1">
-					<?php echo $hospital_detail['hospital_name']; ?> 
-					<?php echo ', '.$hospital_detail['city']; ?> 
+					<?php echo $li[0]['hospital_name']; ?> 
+					<?php echo ', '.$li[0]['city']; ?> 
 					
 				</div>
 				
@@ -113,11 +116,65 @@
 				
 			</div>
 		</div>
-		
+	<?php } ?>
+	<?php if(isset($li[1]) && $li[1]!=''){ ?>
+		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;float:right;position:absolute;top:0;right:1.33cm;">
+			<div style="padding:20px 5px;position: relative;">
+			<div class="hazard">
+				<img style="" src="<?php echo base_url('assets/vendor/images/biohazard.png');?>" alt="bar code" />
+			</div>
+			<div class="sticker-logo">
+			<?php if($plant_details['logo']!=''){ ?>
+			<img src="<?php echo base_url('assets/plant_logo/'.$plant_details['logo']); ?>">
+			<?php }else{ ?>
+			<img src="<?php echo base_url('assets/plant_logo/noimage.jpg'); ?>">
+			<?php } ?>
+				
+			</div>
+			<div class="hosptal_name">
+				<?php echo $plant_details['disposal_plant_name']; ?> 
+				<div class="authorised">
+					(Authorised by <?php echo isset($plant_details['state'])?$plant_details['state']:' '; ?>. Pollution Control Board)
+				</div>
+			</div>
+			
+				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
+			<div class="qr-code">
+				Bio-Medical Waste QR code
+			</div>
+				<div class="barcode-div" style="text-align:center" id="printThis<?php echo htmlentities($li[1]['h_id']); ?>">
+					<img style="" src="<?php echo base_url('assets/hospital_barcodes/'.$li[1]['barcode']);?>" alt="bar code" />
+				</div>
+				<div class="hosptal_name1">
+					<?php echo $li[1]['hospital_name']; ?> 
+					<?php echo ', '.$li[1]['city']; ?> 
+					
+				</div>
+				
+				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
+				
+				<div class="address-section">
+				<?php echo isset($plant_details['address1'])?$plant_details['address1'].',':''; ?>
+				<?php echo isset($plant_details['address2'])?$plant_details['address2'].',':''; ?>
+				<?php echo isset($plant_details['city'])?$plant_details['city'].',':''; ?>
+				<?php echo isset($plant_details['state'])?$plant_details['state'].',':''; ?>
+				<?php echo isset($plant_details['country'])?$plant_details['country'].',':''; ?>
+				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
+				</div>
+				<div class="address-section-con">
+				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				</div>
+				
+				
+			</div>
+		</div>
+	<?php } ?>
 	</div>
+<?php }  ?>
 	
 	
 </div>
+<?php } ?>
 <script>
 	function myFunction() {
 		    document.getElementById("print_btn").style.display = 'none';

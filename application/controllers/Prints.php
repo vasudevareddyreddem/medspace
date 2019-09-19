@@ -261,5 +261,32 @@ class Prints extends CI_Controller {
 		}
 	}
 	
+	public  function prints(){
+		if($this->session->userdata('userdetails'))
+		{
+					$admindetails=$this->session->userdata('userdetails');
+					$post=$this->input->post();
+					if(isset($post['h_ids']) && count($post['h_ids'])>0){
+						foreach($post['h_ids'] as $li){
+						$h_data[]=$this->Hospital_model->get_print_plan_hospital_details_pdf($li);
+						}
+						$data['print_details']=array_chunk($h_data,2);
+					}else{
+						$data['print_details']=array();
+					}
+					$this->load->model('Mobile_model');
+					$data['plant_details']=$this->Mobile_model->get_plant_details($data['print_details'][0][0]['create_by']);
+
+				$this->load->view('admin/print_all_hospital list',$data);
+				//echo "<pre>";print_r($data);exit;
+
+
+					
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	
 	
 }

@@ -776,6 +776,7 @@ class Hospital extends CI_Controller {
 		//exit;
 	}
 	
+	
 	public  function prints(){
 		if($this->session->userdata('userdetails'))
 		{

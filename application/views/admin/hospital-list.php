@@ -9,6 +9,7 @@
                             </h2>
 							
                         </div>
+						<form action="<?php echo base_url('prints/prints'); ?>" method="POST">
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -23,6 +24,8 @@
                                             <th>Reg Date & Time</th>
                                             <th>Status</th>
                                             <th>Action</th>
+                                            <th>Select All <input type="checkbox" name="check_all" id="check_all" value=""/>
+											<button type="submit">Print</button></th>
                                         </tr>
                                     </thead>
                                     
@@ -48,7 +51,7 @@
 											</td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
                                             <td><?php echo htmlentities($list['no_of_beds']); ?></td>
-                                            <td ><img style="max-height:550px;width:auto;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
+                                            <td ><img style="max-height:200px;width:auto;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
                                             <td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
 										
@@ -58,6 +61,7 @@
 											<a href="<?php echo base_url('hospital/delete/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Delete</a>
                                             <a target="_blank" href="<?php echo base_url('prints/barcode/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Print Barcode</a> 											
 											</td>
+											<td><input type="checkbox" name="h_ids[]" value="<?php echo isset($list['h_id'])?$list['h_id']:''; ?>"></td>
                                         </tr>
 										
                                   
@@ -65,6 +69,7 @@
 									  </tbody>
 									<?php } ?>
                                 </table>
+								</form>
                             </div>
                         </div>
                     </div>
@@ -73,4 +78,27 @@
             <!-- #END# Exportable Table -->
         </div>
 </section>
+<script>
+  $(document).ready(function(){
+        $('#check_all').on('click',function(){
+            if(this.checked){
+                $('.checkbox').each(function(){
+                    this.checked = true;
+                });
+            }else{
+                $('.checkbox').each(function(){
+                    this.checked = false;
+                });
+            }
+        });
+
+        $('.checkbox').on('click',function(){
+            if($('.checkbox:checked').length == $('.checkbox').length){
+                $('#check_all').prop('checked',true);
+            }else{
+                $('#check_all').prop('checked',false);
+            }
+        });
+    });
+</script>
 	
