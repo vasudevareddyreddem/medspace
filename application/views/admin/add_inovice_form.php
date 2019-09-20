@@ -39,7 +39,7 @@
 										</select>
 									</div>
 									<div class="form-group col-md-6">
-										<label >Delivery Note</label>
+										<label >GST No</label>
 										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
 									</div>
 									<div class="form-group col-md-6">
@@ -50,37 +50,10 @@
 											</select>	
 									</div>
 									<div class="form-group col-md-6">
-										<label >Supplier Name </label>
+										<label >Executive Name </label>
 										<input type="text" class="form-control" name="supplier_ref" placeholder="Enter Supplier’s Ref" >
 									</div>
-									<div class="form-group col-md-6">
-										<label >Other Reference(s)</label>
-										<input type="text" class="form-control" name="other_reference" placeholder="Enter Other Reference" >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Buyer’s Order No</label>
-										<input type="text" class="form-control" name="buyer_order_no" placeholder="Enter Buyer’s Order No" >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Dated</label>
-										<input type="text" class="form-control" name="dated" placeholder="Enter Dated" >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Despatch Document No</label>
-										<input type="text" class="form-control" name="despatch_document_no" placeholder="Enter Despatch Document No" >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Delivery Note Date </label>
-										<input type="text" class="form-control" name="delivery_note_date" placeholder="Enter Delivery Note Date " >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Despatched throug </label>
-										<input type="text" class="form-control" name="despatched_throug" placeholder="Enter Despatched throug" >
-									</div>
-									<div class="form-group col-md-6">
-										<label >Destination </label>
-										<input type="text" class="form-control" name="destination" placeholder="Enter Destination" >
-									</div>
+									
 									<div class="form-group col-md-6">
 										<label >Root  No </label>
 										<input type="text" class="form-control" name="lr_rr_no" placeholder="Enter Bill of Lading/LR-RR No" >
@@ -104,6 +77,10 @@
 									<div class="form-group col-md-6">
 										<label>A/c No</label>
 										<input type="text" class="form-control" name="ac_no" placeholder="Enter A/c No" value="<?php echo isset($bank_details['ac_no'])?$bank_details['ac_no']:''; ?>" >
+									</div>	
+									<div class="form-group col-md-6">
+										<label>A/c Holder Name</label>
+										<input type="text" class="form-control" name="ac_no" placeholder="Enter Holder Name" value="<?php echo isset($bank_details['ac_no'])?$bank_details['ac_no']:''; ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Branch & IFS Code </label>

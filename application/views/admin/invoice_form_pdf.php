@@ -15,6 +15,7 @@ table {
 *{
 	padding:0;
 	margin:0;
+	font-family:arial;
 }
 p{
 margin:2px
@@ -28,40 +29,34 @@ margin:2px
 
 <table>
   <tr>
-    <td rowspan="3" width="50%">
-		<h5><?php echo isset($p_details['disposal_plant_name'])?$p_details['disposal_plant_name']:''; ?></h5>
-		<p><?php echo isset($p_details['address1'])?$p_details['address1'].',':''; ?>
+    <td rowspan="2" width="50%">
+		<h5 style="font-size:14px;"><?php echo isset($p_details['disposal_plant_name'])?$p_details['disposal_plant_name']:''; ?></h5>
+		<h5 style="font-size:14px;">GST No: <?php echo isset($details['notes'])?$details['notes']:''; ?></h5>
+		<p style="font-size:13px;font-weight:300"><?php echo isset($p_details['address1'])?$p_details['address1'].',':''; ?>
 		<?php echo isset($p_details['address2'])?$p_details['address2'].',':''; ?>
 		<?php echo isset($p_details['city'])?$p_details['city'].',':''; ?>
 		<?php echo isset($p_details['country'])?$p_details['country'].',':''; ?>
 		<?php echo isset($p_details['pincode'])?$p_details['pincode']:''; ?>
 		State Name	: <?php echo isset($p_details['state'])?$p_details['state']:''; ?>,
-		Code : <?php echo isset($p_details['type'])?$p_details['type']:''; ?>
+		Code : <?php echo isset($p_details['type'])?$p_details['type']:''; ?>,
 		E-Mail : <?php echo isset($p_details['email'])?$p_details['email']:''; ?>		</p>
 	</td>
     <td>
 		<div>Invoice No:	<?php echo isset($invoice_ids['c_i_id'])?$invoice_ids['c_i_id']+1:''; ?> </div>
-		<div>e-Way Bill No: <?php echo isset($details['e_way_bill_no'])?$details['e_way_bill_no']:''; ?></div>
 	</td>
     <td>Dated : <?php echo Date('d-m-Y'); ?></td>  
   </tr> 
   <tr>  
-    <td>
-		<div>Delivery Note: <?php echo isset($details['notes'])?$details['notes']:''; ?> </div>		
-	</td>
-    <td>
-		<div>Mode/Terms of Payment</div>
+    
+    <td >
+		<div>Mode of Payment</div>
 		<div><?php echo isset($details['payment_type'])?$details['payment_type']:''; ?></div>	
 	</td>
+	 <td >
+		<div>Executive Name : <?php echo isset($details['supplier_ref'])?$details['supplier_ref']:''; ?> </div>		
+	</td>
   </tr>  
-  <tr>  
-    <td>
-		<div>Supplier Name : <?php echo isset($details['supplier_ref'])?$details['supplier_ref']:''; ?> </div>		
-	</td>
-    <td>
-		<div>Other Reference(s) : <?php echo isset($details['other_reference'])?$details['other_reference']:''; ?></div>	
-	</td>
-  </tr>
+  
 <tr>
     <td rowspan="5" width="50%">
 		<h5>Buyer
@@ -76,34 +71,11 @@ margin:2px
 		E-Mail : <?php echo isset($hcf_details['email'])?$hcf_details['email']:''; ?>
 		</p>
 	</td>
-    <td>
-		<div>Buyer’s Order No: <?php echo isset($details['buyer_order_no'])?$details['buyer_order_no']:''; ?> </div>
-		
-	</td>
-    <td>Dated : <?php echo isset($details['dated'])?$details['dated']:''; ?> </td>
+    
   
   </tr>
-    <tr>
+      
   
-    <td>
-		<div>Despatch Document No : <?php echo isset($details['despatch_document_no'])?$details['despatch_document_no']:''; ?></div>
-		
-	</td>
-		<td>Dated : <?php echo isset($details['delivery_note_date'])?$details['delivery_note_date']:''; ?></td>
-	
-  </tr>   
-  <tr>  
-    <td>
-		<div>Despatch Document through</div>
-		<div><?php echo isset($details['despatched_throug'])?$details['despatched_throug']:''; ?></div>
-		
-	</td>
-		<td>
-				<div>Destination</div>
-					<div><?php echo isset($details['destination'])?$details['destination']:''; ?></div>
-		</td>
-	
-  </tr>  
   <tr>  
     <td>
 		<div>Root No</div>
@@ -132,7 +104,7 @@ margin:2px
 	<th>HSN/SAC</th>
 	<th>Quantity / Pieces</th>
 	<th>Rate</th>
-	<th>per</th>
+	
 	<th>Disc. %</th>
 	<th>Amount</th>
   <tr>
@@ -144,7 +116,6 @@ margin:2px
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['hsn_sac'][$cnt_ar])?$details['hsn_sac'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['quantity'][$cnt_ar])?$details['quantity'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['rate'][$cnt_ar])?$details['rate'][$cnt_ar]:''; ?> </td>
-			<td style="border-top:0px;border-bottom:0px;text-align:center">kgs </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"><?php echo isset($details['discount'][$cnt_ar])?$details['discount'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php 
 				$amount = $details['quantity'][$cnt_ar]*$details['rate'][$cnt_ar];
@@ -165,13 +136,11 @@ margin:2px
   <tr>
 <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
 <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
 	<td style="text-align:center;border-top:0px;border-bottom:0px;"><span style=""><?php echo isset($t_c_amt)?$t_c_amt:''; ?> </span></td>
   </tr>
   <tr>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
 	<td  style="text-align:right;border-top:0px;border-bottom:0px;"><span >IGST </span></td>
 	<td  style="text-align:center;border-top:0px;border-left: 0px;"><span >
 	<?php $T_amount =$t_c_amt;
@@ -187,7 +156,6 @@ margin:2px
 	<th>Total</th>
 	<td>&nbsp;</td>
 	<th><?php echo isset($t_kgs)?$t_kgs:''; ?> kgs </th>
-	<td>&nbsp; </td>
 	<td>&nbsp; </td>
 	<td>&nbsp; </td>
 	<th><?php
@@ -208,8 +176,8 @@ margin:2px
 		<th rowspan="2">Total Tax Amount</th>
 	</tr>
 	<tr>
-		<td>Rate</td>
-		<td>Amout</td>
+		<td>GST Rate</td>
+		<td>Gst Amout</td>
 		
 	</tr>	
 	<tr>
@@ -241,9 +209,10 @@ margin:2px
 		</th>
 		<th  style="text-align:left;border-left:0px;border-top:0px; border-bottom:0px;">
 			<div>Company’s Bank Details</div>
-			<div>Bank Name:</div>
+			
 			<div>Bank Name : <?php echo isset($details['bank_name'])?$details['bank_name']:''; ?></div>
 		<div>AC no :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
+		<div>AC Holder Name :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
 		<div>Branch & IFSC no : <?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></div>
 		</th>
 	</tr>
