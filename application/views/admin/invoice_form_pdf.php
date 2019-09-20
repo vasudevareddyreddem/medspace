@@ -31,7 +31,7 @@ margin:2px
   <tr>
     <td rowspan="2" width="50%">
 		<h5 style="font-size:14px;"><?php echo isset($p_details['disposal_plant_name'])?$p_details['disposal_plant_name']:''; ?></h5>
-		<h5 style="font-size:14px;">GST No: <?php echo isset($details['notes'])?$details['notes']:''; ?></h5>
+		<h5 style="font-size:14px;">GST No: <?php echo isset($details['gst_no'])?$details['gst_no']:''; ?></h5>
 		<p style="font-size:13px;font-weight:300"><?php echo isset($p_details['address1'])?$p_details['address1'].',':''; ?>
 		<?php echo isset($p_details['address2'])?$p_details['address2'].',':''; ?>
 		<?php echo isset($p_details['city'])?$p_details['city'].',':''; ?>
@@ -212,7 +212,7 @@ margin:2px
 			
 			<div>Bank Name : <?php echo isset($details['bank_name'])?$details['bank_name']:''; ?></div>
 		<div>AC no :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
-		<div>AC Holder Name :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
+		<div>AC Holder Name :<?php echo isset($details['ac_holder_name'])?$details['ac_holder_name']:''; ?></div>
 		<div>Branch & IFSC no : <?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></div>
 		</th>
 	</tr>

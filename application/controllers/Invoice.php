@@ -120,6 +120,8 @@ class Invoice extends CI_Controller {
 					$data['invoice_ids']=$this->Plant_model->get_invoices_id_next();
 					//echo '<pre>';print_r($data);exit;
 					$abanl_add=array(
+						'gst_no'=>isset($post['gst_no'])?$post['gst_no']:'',
+						'ac_holder_name'=>isset($post['ac_holder_name'])?$post['ac_holder_name']:'',
 						'bank_name'=>isset($post['bank_name'])?$post['bank_name']:'',
 						'ac_no'=>isset($post['ac_no'])?$post['ac_no']:'',
 						'ifsc'=>isset($post['ifsc'])?$post['ifsc']:'',

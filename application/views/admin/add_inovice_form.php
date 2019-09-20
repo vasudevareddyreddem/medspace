@@ -40,7 +40,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label >GST No</label>
-										<input type="text" class="form-control" name="notes" placeholder="Enter Delivery Note" >
+										<input type="text" class="form-control" name="gst_no" value="<?php echo isset($bank_details['gst_no'])?$bank_details['gst_no']:''; ?>" placeholder="Enter GST No" >
 									</div>
 									<div class="form-group col-md-6">
 										<label >Mode/Terms of Payment</label>
@@ -80,7 +80,7 @@
 									</div>	
 									<div class="form-group col-md-6">
 										<label>A/c Holder Name</label>
-										<input type="text" class="form-control" name="ac_no" placeholder="Enter Holder Name" value="<?php echo isset($bank_details['ac_no'])?$bank_details['ac_no']:''; ?>" >
+										<input type="text" class="form-control" name="ac_holder_name" placeholder="Enter Holder Name" value="<?php echo isset($bank_details['ac_holder_name'])?$bank_details['ac_holder_name']:''; ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Branch & IFS Code </label>
