@@ -104,9 +104,7 @@ margin:2px
 	<th>HSN/SAC</th>
 	<th>Quantity / Pieces</th>
 	<th>Rate</th>
-	
-	<th>Disc. %</th>
-	<th>Amount</th>
+	<th colspan="2" style="text-align:right">Amount</th>
 	</tr>
  
   <?php $t_kgs='';$t_c_amt='';$cnt_ar=0;$cnt=1;foreach($details['category'] as $li){ ?>
@@ -117,8 +115,8 @@ margin:2px
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['hsn_sac'][$cnt_ar])?$details['hsn_sac'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['quantity'][$cnt_ar])?$details['quantity'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['rate'][$cnt_ar])?$details['rate'][$cnt_ar]:''; ?> </td>
-			<td style="border-top:0px;border-bottom:0px;text-align:center"><?php echo isset($details['discount'][$cnt_ar])?$details['discount'][$cnt_ar]:''; ?> </td>
-			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php 
+			
+			<td colspan="2" style="border-top:0px;text-align:right"> <?php 
 				$amount = $details['quantity'][$cnt_ar]*$details['rate'][$cnt_ar];
 				$percentToGet = $details['discount'][$cnt_ar];
 				$percentInDecimal = $percentToGet / 100;
@@ -134,16 +132,15 @@ margin:2px
 		<?php } ?>
   <?php $cnt_ar++;$cnt++;} ?>
    
-  <tr>
-<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-<td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-	<td style="text-align:center;border-top:0px;border-bottom:0px;"><span style=""><?php echo isset($t_c_amt)?$t_c_amt:''; ?> </span></td>
-  </tr>
+  
   <tr>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td><td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-	<td  style="text-align:right;border-top:0px;border-bottom:0px;"><span >IGST </span></td>
-	<td  style="text-align:center;border-top:0px;border-left: 0px;"><span >
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+  <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
+	<td  style=";border-top:0px;border-bottom:0px;"><span >&nbsp; </span></td>
+	<td  style="text-align:center;border-top:0px;border-bottom:0px;"><span >GST -(10) % </span></td>
+	<td  style="text-align:right;border-top:0px;border-left: 0px;"><span >
 	<?php $T_amount =$t_c_amt;
 			$p_ToGet=$details['igst'];
 			$p_Decimal = $p_ToGet / 100;
@@ -157,9 +154,9 @@ margin:2px
 	<th>Total</th>
 	<td>&nbsp;</td>
 	<th><?php echo isset($t_kgs)?$t_kgs:''; ?> kgs </th>
+
 	<td>&nbsp; </td>
-	<td>&nbsp; </td>
-	<th><?php
+	<th colspan="2" style="text-align:right"><?php
 		$over_amt=isset($t_c_amt)?$t_c_amt+$gst_percent_amt:'';
 		echo $over_amt; ?></th>
   </tr>
