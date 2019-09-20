@@ -95,19 +95,19 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label>GST</label>
-										<input type="text" class="form-control" name="igst" placeholder="Enter IGST" value="0" >
+										<input type="text" class="form-control" name="igst" placeholder="Enter IGST" value="<?php echo isset($bank_details['gst'])?$bank_details['gst']:'0'; ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Bank Name</label>
-										<input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" >
+										<input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" value="<?php echo isset($bank_details['bank_name'])?$bank_details['bank_name']:''; ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>A/c No</label>
-										<input type="text" class="form-control" name="ac_no" placeholder="Enter A/c No" >
+										<input type="text" class="form-control" name="ac_no" placeholder="Enter A/c No" value="<?php echo isset($bank_details['ac_no'])?$bank_details['ac_no']:''; ?>" >
 									</div>
 									<div class="form-group col-md-6">
 										<label>Branch & IFS Code </label>
-										<input type="text" class="form-control" name="ifsc" placeholder="Enter Branch & IFS Code" >
+										<input type="text" class="form-control" name="ifsc" placeholder="Enter Branch & IFS Code" value="<?php echo isset($bank_details['ifsc'])?$bank_details['ifsc']:''; ?>" >
 									</div>
 									
 								</div>
@@ -133,14 +133,7 @@
 													<div class="form-group">
 														<label>Size</label>
 														<div class=" ">
-															<select class="form-control" name="size[]">
-																<option value = "">Select</option>
-																<option value ="100 x 40 (mm)">100 x 40 (mm)</option>
-																<option value ="64 x 34 (mm)">64 x 34 (mm)</option>
-																<option value ="45 x 21 (mm)">45 x 21 (mm)</option>
-																<option value ="48 x 24 (mm)">48 x 24 (mm)</option>
-																<option value ="38 x 25 (mm)">38 x 25 (mm)</option> 																				
-															</select>
+															<input   name="size[]" placeholder="Example:100 x 40 (mm) " type="text" class="form-control ">
 														</div>
 													</div>
 												</td>
@@ -200,7 +193,7 @@
 	$(document).ready(function(){
 	      var i=1;
 	     $("#add_row").click(function(){
-	      $('#addr'+i).html('<td><div class="form-group"><label>Category</label><div class=" "><select class="form-control" name="category[]"><option value = "">Select</option><option value = "Yellow">Yellow</option><option value = "Red">Red</option><option value = "Blue">Blue</option><option value = "White">White</option></select></div></div></td><td><div class="form-group"><label>Size</label><div class=" "><select class="form-control" name="size[]"><option value = "">Select</option><option value ="100 x 40 (mm)">100 x 40 (mm)</option><option value ="64 x 34 (mm)">64 x 34 (mm)</option><option value ="45 x 21 (mm)">45 x 21 (mm)</option><option value ="48 x 24 (mm)">48 x 24 (mm)</option>	<option value ="38 x 25 (mm)">38 x 25 (mm)</option> </select></div></div></td><td><div class="form-group"><label>HSN/SAC</label><div class=" "><input   name="hsn_sac[]" placeholder="HSN/SAC" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Quantity</label><div class=" "><input name="quantity[]" placeholder="Quantity" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Rate</label><div class=" "><input name="rate[]" placeholder="Rate" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Disc. %</label><div class=" "><input name="discount[]" placeholder="Disc. %" type="text" value="0" class="form-control "></div></div><td>');
+	      $('#addr'+i).html('<td><div class="form-group"><label>Category</label><div class=" "><select class="form-control" name="category[]"><option value = "">Select</option><option value = "Yellow">Yellow</option><option value = "Red">Red</option><option value = "Blue">Blue</option><option value = "White">White</option></select></div></div></td><td><div class="form-group"><label>Size</label><div class=" "><input   name="size[]" placeholder="Example:100 x 40 (mm) " type="text" class="form-control "></div></div></td><td><div class="form-group"><label>HSN/SAC</label><div class=" "><input   name="hsn_sac[]" placeholder="HSN/SAC" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Quantity</label><div class=" "><input name="quantity[]" placeholder="Quantity" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Rate</label><div class=" "><input name="rate[]" placeholder="Rate" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Disc. %</label><div class=" "><input name="discount[]" placeholder="Disc. %" type="text" value="0" class="form-control "></div></div><td>');
 	
 	      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 	      i++; 

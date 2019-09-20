@@ -40,6 +40,7 @@ class Invoice extends CI_Controller {
 			if($admindetails['role']==1){
 				$data['p_list']=$this->Plant_model->get_all_invoice_plants_list($admindetails['a_id']);
 				$data['h_list']=$this->Plant_model->get_hcf_plant_list($admindetails['a_id']);
+				$data['bank_details']=$this->Plant_model->check_bank_details($admindetails['a_id']);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/add_inovice_form',$data);
 				$this->load->view('html/footer');
@@ -118,20 +119,36 @@ class Invoice extends CI_Controller {
 					$data['hcf_details']=$this->Plant_model->get_hcf_all_details($post['hcf_id']);
 					$data['invoice_ids']=$this->Plant_model->get_invoices_id_next();
 					//echo '<pre>';print_r($data);exit;
+					$abanl_add=array(
+						'bank_name'=>isset($post['bank_name'])?$post['bank_name']:'',
+						'ac_no'=>isset($post['ac_no'])?$post['ac_no']:'',
+						'ifsc'=>isset($post['ifsc'])?$post['ifsc']:'',
+						'gst'=>isset($post['igst'])?$post['igst']:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'updated_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>isset($admindetails['a_id'])?$admindetails['a_id']:'',
+					);
+					$check=$this->Plant_model->check_bank_details($admindetails['a_id']);
+					if(count($check)>0){
+						$this->Plant_model->update_bank_details($admindetails['a_id'],$abanl_add);
+					}else{
+						$this->Plant_model->save_bank_details($abanl_add);
+					}
+					//echo '<pre>';print_r($post);exit;
 					$path = rtrim(FCPATH,"/");
 					$file_name = $data['p_details']['p_id'].'_'.$data['hcf_details']['h_id'].time().'.pdf';                
 					$data['page_title'] = $data['hcf_details']['hospital_name'].'invoice'; // pass data to the view
 					$pdfFilePath = $path."/assets/invoices_form/".$file_name;
 					ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$html = $this->load->view('admin/invoice_form_pdf', $data, true); // render the view into HTML
-					echo '<pre>';print_r($html);exit;
+					//echo '<pre>';print_r($html);exit;
 					$this->load->library('pdf');
 					$pdf = $this->pdf->load();
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$pdf->SetDisplayMode('fullpage');
 					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
 					$pdf->WriteHTML($html); // write the HTML into the PDF
-					$pdf->SetProtection(array('copy','print'), 'UserPassword', $data['p_details']['pincode']);
+					//$pdf->SetProtection(array('copy','print'), 'UserPassword', $data['p_details']['pincode']);
 					$pdf->Output($pdfFilePath, 'F');
 					$u_add=array(
 						'invoice_id'=>isset($data['invoice_ids']['c_i_id'])?$data['invoice_ids']['c_i_id']+1:'',
