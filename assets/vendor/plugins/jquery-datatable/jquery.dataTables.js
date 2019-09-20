@@ -10094,7 +10094,9 @@
 		 *      } );
 		 *    } );
 		 */
-		"aLengthMenu": [ 10, 25, 50, 100 ],
+		
+		
+		"aLengthMenu": [ 8, 25, 50, 100 ],
 	
 	
 		/**
@@ -11111,7 +11113,7 @@
 		 * feature enabled (`lengthChange`) then the end user will be able to override
 		 * this to a custom setting using a pop-up menu.
 		 *  @type int
-		 *  @default 10
+		 *  @default 5
 		 *
 		 *  @dtopt Options
 		 *  @name DataTable.defaults.pageLength
@@ -11119,11 +11121,11 @@
 		 *  @example
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "pageLength": 50
+		 *        "pageLength": 5
 		 *      } );
 		 *    } )
 		 */
-		"iDisplayLength": 10,
+		"iDisplayLength": 12,
 	
 	
 		/**
@@ -13540,7 +13542,7 @@
 		 *  @type array
 		 *  @default []
 		 */
-		"aLengthMenu": null,
+		"aLengthMenu": [[8, 25, 50, -1], [8, 25, 50, "All"]],
 	
 		/**
 		 * Counter for the draws that the table does. Also used as a tracker for
@@ -13569,7 +13571,7 @@
 		 *  @type int
 		 *  @default 10
 		 */
-		"_iDisplayLength": 10,
+		"_iDisplayLength": 8,
 	
 		/**
 		 * Paging start point - aiDisplay index

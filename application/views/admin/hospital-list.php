@@ -12,7 +12,7 @@
 						<form action="<?php echo base_url('prints/prints'); ?>" target="_blank" method="POST">
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table id="example" class="example table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
 											<th>Select All <input type="checkbox" name="check_all" id="check_all" value=""/>
@@ -54,7 +54,7 @@
 											</td>
                                             <td><?php echo htmlentities($list['mobile']); ?></td>
                                             <td><?php echo htmlentities($list['no_of_beds']); ?></td>
-                                            <td ><img style="max-height:200px;width:auto;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
+                                            <td ><img style="max-height:80px;width:80px;"  src="<?php echo base_url('assets/hospital_barcodes/'.$list['barcode']);?>"></td>
                                             <td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
 										
@@ -81,6 +81,7 @@
         </div>
 </section>
 <script>
+
 
   $(document).ready(function(){
         $('#check_all').on('click',function(){
