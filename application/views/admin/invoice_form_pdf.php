@@ -135,7 +135,7 @@ margin:2px
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
-	<td  style=";border-top:0px;border-bottom:0px;"><span >&nbsp; </span></td>
+	<td  style="border-top:0px;border-bottom:0px;">&nbsp; </td>
 	<td  style="text-align:center;border-top:0px;border-bottom:0px;"><span >GST -(<?php echo isset($details['igst'])?$details['igst']:''; ?>) % </span></td>
 	<td  style="text-align:right;border-top:0px;border-left: 0px;"><span >
 	<?php $T_amount =$t_c_amt;
