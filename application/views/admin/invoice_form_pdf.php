@@ -107,7 +107,8 @@ margin:2px
 	
 	<th>Disc. %</th>
 	<th>Amount</th>
-  <tr>
+	</tr>
+ 
   <?php $t_kgs='';$t_c_amt='';$cnt_ar=0;$cnt=1;foreach($details['category'] as $li){ ?>
 	  <?php if($li!=''){ ?>
 		  <tr>
@@ -163,11 +164,14 @@ margin:2px
 		echo $over_amt; ?></th>
   </tr>
 <tr>
-	<td colspan="8"><strong>Amount Chargeable (in words)INR</strong>:
+	<td colspan="7"><strong>Amount Chargeable (in words)INR</strong>:
 	<?php echo $this->livemumtowordclsconvert->mycustom_convert_num($over_amt); ?>
 </td>
 </tr>  
 </table>
+
+
+
 <table>
 	<tr>
 		<th rowspan="2">HSN/SAC</th>
