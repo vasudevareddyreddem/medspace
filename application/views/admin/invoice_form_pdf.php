@@ -150,7 +150,7 @@ margin:2px
 	<th>&nbsp;</th>
 	<th>Total</th>
 	<td>&nbsp;</td>
-	<th><?php echo isset($t_kgs)?$t_kgs:''; ?> kgs </th>
+	<th><?php echo isset($t_kgs)?$t_kgs:''; ?> Pieces </th>
 
 	<td>&nbsp; </td>
 	<th colspan="2" style="text-align:right"><?php
