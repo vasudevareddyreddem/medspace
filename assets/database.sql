@@ -52,6 +52,8 @@ DROP TABLE IF EXISTS `bank_details`;
 
 CREATE TABLE `bank_details` (
   `b_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gst_no` varchar(250) DEFAULT NULL,
+  `ac_holder_name` varchar(250) DEFAULT NULL,
   `bank_name` varchar(250) DEFAULT NULL,
   `ac_no` varchar(250) DEFAULT NULL,
   `ifsc` varchar(250) DEFAULT NULL,
@@ -64,7 +66,7 @@ CREATE TABLE `bank_details` (
 
 /*Data for the table `bank_details` */
 
-insert  into `bank_details`(`b_id`,`bank_name`,`ac_no`,`ifsc`,`gst`,`created_at`,`updated_at`,`created_by`) values (1,'SBI','32473655713','mydukur- SBIN0002671',12,'2019-09-20 15:24:34','2019-09-20 15:24:34',207);
+insert  into `bank_details`(`b_id`,`gst_no`,`ac_holder_name`,`bank_name`,`ac_no`,`ifsc`,`gst`,`created_at`,`updated_at`,`created_by`) values (1,'1232fsdb5y56','vasdevareddy','SBI','32473655713','mydukur- SBIN0002671',1,'2019-09-20 16:58:33','2019-09-20 16:58:33',207);
 
 /*Table structure for table `bio_medical_waste` */
 
@@ -127,11 +129,11 @@ CREATE TABLE `cover_invoice_list` (
   `created_at` timestamp NULL DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`c_i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cover_invoice_list` */
 
-insert  into `cover_invoice_list`(`c_i_id`,`invoice_id`,`e_way_bill_no`,`plant_id`,`hcf_id`,`invoice_name`,`pwd`,`status`,`created_at`,`created_by`) values (1,NULL,'123647125','36','15655','36_156551566126700.pdf',NULL,1,NULL,207),(2,NULL,'123647125','33','15653','33_156531566126918.pdf','515001',1,'2019-08-18 16:45:19',207),(3,'2','567568678','36','15657','36_156571566128878.pdf','516172',1,'2019-08-18 17:17:59',207),(4,'4','123456','36','15656','36_156561566130225.pdf','516172',1,'2019-08-18 17:40:26',207),(5,'5','123647125','33','15656','33_156561566130337.pdf','515001',1,'2019-08-18 17:42:18',207),(6,'6','123647125','33','15654','33_156541566130420.pdf','515001',1,'2019-08-18 17:43:40',207),(7,'7','123456','38','15654','38_156541568964459.pdf','516172',1,'2019-09-20 12:57:40',207),(8,'8','123456','38','15654','38_156541568964482.pdf','516172',1,'2019-09-20 12:58:03',207),(9,'9','123647125','37','15655','37_156551568973238.pdf','516172',1,'2019-09-20 15:24:02',207),(10,'10','123647125','37','15655','37_156551568973274.pdf','516172',1,'2019-09-20 15:24:35',207);
+insert  into `cover_invoice_list`(`c_i_id`,`invoice_id`,`e_way_bill_no`,`plant_id`,`hcf_id`,`invoice_name`,`pwd`,`status`,`created_at`,`created_by`) values (1,NULL,'123647125','36','15655','36_156551566126700.pdf',NULL,1,NULL,207),(2,NULL,'123647125','33','15653','33_156531566126918.pdf','515001',1,'2019-08-18 16:45:19',207),(3,'2','567568678','36','15657','36_156571566128878.pdf','516172',1,'2019-08-18 17:17:59',207),(4,'4','123456','36','15656','36_156561566130225.pdf','516172',1,'2019-08-18 17:40:26',207),(5,'5','123647125','33','15656','33_156561566130337.pdf','515001',1,'2019-08-18 17:42:18',207),(6,'6','123647125','33','15654','33_156541566130420.pdf','515001',1,'2019-08-18 17:43:40',207),(7,'7','123456','38','15654','38_156541568964459.pdf','516172',1,'2019-09-20 12:57:40',207),(8,'8','123456','38','15654','38_156541568964482.pdf','516172',1,'2019-09-20 12:58:03',207),(9,'9','123647125','37','15655','37_156551568973238.pdf','516172',1,'2019-09-20 15:24:02',207),(10,'10','123647125','37','15655','37_156551568973274.pdf','516172',1,'2019-09-20 15:24:35',207),(11,'11','123456','38','15652','38_156521568978913.pdf','516172',1,'2019-09-20 16:58:33',207);
 
 /*Table structure for table `disposal` */
 
