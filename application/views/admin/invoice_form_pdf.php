@@ -118,10 +118,7 @@ margin:2px
 			
 			<td colspan="2" style="border-top:0px;text-align:right"> <?php 
 				$amount = $details['quantity'][$cnt_ar]*$details['rate'][$cnt_ar];
-				$percentToGet = $details['discount'][$cnt_ar];
-				$percentInDecimal = $percentToGet / 100;
-				$percent = $percentInDecimal * $amount;
-				echo $total_amt=$amount-$percent;
+				echo $total_amt=$amount;
 				?>		
 			</td>
 			<?php 
@@ -139,7 +136,7 @@ margin:2px
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
   <td style="text-align:right;border-top:0px;border-bottom:0px;">&nbsp;</td>
 	<td  style=";border-top:0px;border-bottom:0px;"><span >&nbsp; </span></td>
-	<td  style="text-align:center;border-top:0px;border-bottom:0px;"><span >GST -(10) % </span></td>
+	<td  style="text-align:center;border-top:0px;border-bottom:0px;"><span >GST -(<?php echo isset($details['igst'])?$details['igst']:''; ?>) % </span></td>
 	<td  style="text-align:right;border-top:0px;border-left: 0px;"><span >
 	<?php $T_amount =$t_c_amt;
 			$p_ToGet=$details['igst'];
@@ -177,7 +174,7 @@ margin:2px
 		<th rowspan="2">Total Tax Amount</th>
 	</tr>
 	<tr>
-		<td>GST Rate</td>
+		<td>GST </td>
 		<td>Gst Amout</td>
 		
 	</tr>	

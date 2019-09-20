@@ -138,14 +138,7 @@
 														</div>
 													</div>
 												</td>
-												<td>
-													<div class="form-group">
-													<label>Disc. %</label>
-														<div class=" ">
-															<input name="discount[]" placeholder="Disc. %" type="text" class="form-control " value="0">
-														</div>
-													</div>
-												</td>
+												
 											</tr>
 											<tr id='addr1'></tr>
 										</tbody>
@@ -170,7 +163,7 @@
 	$(document).ready(function(){
 	      var i=1;
 	     $("#add_row").click(function(){
-	      $('#addr'+i).html('<td><div class="form-group"><label>Category</label><div class=" "><select class="form-control" name="category[]"><option value = "">Select</option><option value = "Yellow">Yellow</option><option value = "Red">Red</option><option value = "Blue">Blue</option><option value = "White">White</option></select></div></div></td><td><div class="form-group"><label>Size</label><div class=" "><input   name="size[]" placeholder="Example:100 x 40 (mm) " type="text" class="form-control "></div></div></td><td><div class="form-group"><label>HSN/SAC</label><div class=" "><input   name="hsn_sac[]" placeholder="HSN/SAC" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Quantity</label><div class=" "><input name="quantity[]" placeholder="Quantity" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Rate</label><div class=" "><input name="rate[]" placeholder="Rate" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Disc. %</label><div class=" "><input name="discount[]" placeholder="Disc. %" type="text" value="0" class="form-control "></div></div><td>');
+	      $('#addr'+i).html('<td><div class="form-group"><label>Category</label><div class=" "><select class="form-control" name="category[]"><option value = "">Select</option><option value = "Yellow">Yellow</option><option value = "Red">Red</option><option value = "Blue">Blue</option><option value = "White">White</option></select></div></div></td><td><div class="form-group"><label>Size</label><div class=" "><input   name="size[]" placeholder="Example:100 x 40 (mm) " type="text" class="form-control "></div></div></td><td><div class="form-group"><label>HSN/SAC</label><div class=" "><input   name="hsn_sac[]" placeholder="HSN/SAC" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Quantity</label><div class=" "><input name="quantity[]" placeholder="Quantity" type="text" class="form-control "></div></div></td><td><div class="form-group"><label>Rate</label><div class=" "><input name="rate[]" placeholder="Rate" type="text" class="form-control "></div></div></td>');
 	
 	      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 	      i++; 
