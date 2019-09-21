@@ -32,7 +32,7 @@ margin:2px
 
 <table>
   <tr>
-    <td rowspan="2" width="70%">
+    <td rowspan="2" width="80%">
 		<h5 style="font-size:14px;"><?php echo isset($p_details['disposal_plant_name'])?$p_details['disposal_plant_name']:''; ?></h5>
 		<h5 style="font-size:14px;">GST No: <?php echo isset($details['gst_no'])?$details['gst_no']:''; ?></h5>
 		<p style="font-size:13px;font-weight:300"><?php echo isset($p_details['address1'])?$p_details['address1'].',':''; ?>
@@ -44,10 +44,10 @@ margin:2px
 		Code : <?php echo isset($p_details['type'])?$p_details['type']:''; ?>,
 		E-Mail : <?php echo isset($p_details['email'])?$p_details['email']:''; ?>		</p>
 	</td>
-    <td>
+    <td width="10%">
 		<div>Invoice No:	<?php echo isset($invoice_ids['c_i_id'])?$invoice_ids['c_i_id']+1:''; ?> </div>
 	</td>
-    <td>Dated : <?php echo Date('d-m-Y'); ?></td>  
+    <td width="10%">Dated : <?php echo Date('d-m-Y'); ?></td>  
   </tr> 
   <tr>  
     
