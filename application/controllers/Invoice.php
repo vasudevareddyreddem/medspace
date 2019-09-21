@@ -124,6 +124,7 @@ class Invoice extends CI_Controller {
 						'ac_holder_name'=>isset($post['ac_holder_name'])?$post['ac_holder_name']:'',
 						'bank_name'=>isset($post['bank_name'])?$post['bank_name']:'',
 						'ac_no'=>isset($post['ac_no'])?$post['ac_no']:'',
+						'branch'=>isset($post['branch'])?$post['branch']:'',
 						'ifsc'=>isset($post['ifsc'])?$post['ifsc']:'',
 						'gst'=>isset($post['igst'])?$post['igst']:'',
 						'created_at'=>date('Y-m-d H:i:s'),

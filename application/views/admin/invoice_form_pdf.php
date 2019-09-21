@@ -211,7 +211,8 @@ margin:2px
 			<div>Bank Name : <?php echo isset($details['bank_name'])?$details['bank_name']:''; ?></div>
 		<div>AC no :<?php echo isset($details['ac_no'])?$details['ac_no']:''; ?></div>
 		<div>AC Holder Name :<?php echo isset($details['ac_holder_name'])?$details['ac_holder_name']:''; ?></div>
-		<div>Branch & IFSC no : <?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></div>
+		<div>Branch : <?php echo isset($details['branch'])?$details['branch']:''; ?></div>
+		<div>IFSC no : <?php echo isset($details['ifsc'])?$details['ifsc']:''; ?></div>
 		</th>
 	</tr>
 
