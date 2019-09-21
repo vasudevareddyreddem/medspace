@@ -7,7 +7,10 @@ table, td, th {
   padding:5px;
   font-size:10px
 }
-
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
 table {
   border-collapse: collapse;
   width: 100%;
@@ -29,7 +32,7 @@ margin:2px
 
 <table>
   <tr>
-    <td rowspan="2" width="50%">
+    <td rowspan="2" width="70%">
 		<h5 style="font-size:14px;"><?php echo isset($p_details['disposal_plant_name'])?$p_details['disposal_plant_name']:''; ?></h5>
 		<h5 style="font-size:14px;">GST No: <?php echo isset($details['gst_no'])?$details['gst_no']:''; ?></h5>
 		<p style="font-size:13px;font-weight:300"><?php echo isset($p_details['address1'])?$p_details['address1'].',':''; ?>
@@ -202,9 +205,7 @@ margin:2px
 </table>
 <table style="border-top:0px;border-bottom:0px;">
 	<tr style="border-top:0px;border-bottom:0px;">
-		<th  style="text-align:left;border:none;width:70%">
-		&nbsp;
-		</th>
+		
 		<th  style="text-align:left;border-left:0px;border-top:0px; border-bottom:0px;">
 			<div>Company’s Bank Details</div>
 			

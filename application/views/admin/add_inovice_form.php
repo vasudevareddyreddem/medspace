@@ -1,3 +1,9 @@
+<style>
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+</style>
 <section class="content">
 	<div class="container-fluid">
 		<!-- Basic Validation -->
