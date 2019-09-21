@@ -159,7 +159,7 @@ class Plant_model extends CI_Model
 		return $this->db->update('bank_details',$d);
 	}
 	public  function check_bank_details($id){
-		$this->db->select('b_id,gst_no,ac_holder_name,bank_name,ac_no,ifsc,gst')->from('bank_details');		
+		$this->db->select('b_id,gst_no,ac_holder_name,bank_name,branch,ac_no,ifsc,gst')->from('bank_details');		
 		$this->db->where('created_by',$id);
         return $this->db->get()->row_array();	
 	}

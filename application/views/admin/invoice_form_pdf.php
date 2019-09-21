@@ -114,7 +114,7 @@ margin:2px
 	  <?php if($li!=''){ ?>
 		  <tr>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"><?php echo $cnt; ?></td>
-			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['category'][$cnt_ar])?$details['category'][$cnt_ar]:''; ?> <?php echo isset($details['size'][$cnt_ar])?$details['size'][$cnt_ar]:''; ?> </td>
+			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['category'][$cnt_ar])?$details['category'][$cnt_ar]:''; ?>&nbsp; <?php echo isset($details['color'][$cnt_ar])?$details['color'][$cnt_ar]:''; ?> &nbsp; <?php echo isset($details['size'][$cnt_ar])?$details['size'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['hsn_sac'][$cnt_ar])?$details['hsn_sac'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['quantity'][$cnt_ar])?$details['quantity'][$cnt_ar]:''; ?> </td>
 			<td style="border-top:0px;border-bottom:0px;text-align:center"> <?php echo isset($details['rate'][$cnt_ar])?$details['rate'][$cnt_ar]:''; ?> </td>
