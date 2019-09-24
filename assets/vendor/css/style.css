@@ -3223,7 +3223,8 @@ section.content {
   transition: all 0.95s; }
 
 .info-box.hover-expand-effect:hover:after {
-  width: 100%; }
+  /* width: 100%;  */
+  }
 
 .info-box-2 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
