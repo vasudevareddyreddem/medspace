@@ -364,7 +364,7 @@ $dat = explode("-", $cri['create_at']);
 									<div class="icon">
 										<i class="material-icons">local_hospital</i>
 									</div>
-									<a href="vasu.com"><div class="content">
+									<a href="<?php echo base_url('hospital/waste/'.base64_encode($list['a_id'])); ?>"><div class="content">
 										<div class="text"><?php echo isset($list['name'])?$list['name']:''; ?></div>
 										<div class="number count-to" data-from="0" data-to="<?php echo isset($list['hos_cnt'])?$list['hos_cnt']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
 									</div></a>
