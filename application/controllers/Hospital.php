@@ -201,10 +201,25 @@ class Hospital extends CI_Controller {
 					);
 					$hos_save=$this->Admin_model->save_admin($addhos);
 					if(count($hos_save)>0){
-						$barcode_name = strtoupper(substr($post['hospital_name'], 0, 4));
-						$this->zend->load('Zend/Barcode');
+						/*qr code*/
+						$qr_d=$this->Admin_model->get_qr_c_data($hos_save);
+						if($qr_d['qr_code']==''){
+							$this->load->library('ciqrcode');
+							$params['data'] =$qr_d['a_id'];
+							$params['level'] = 'H';
+							$params['size'] = 5;
+							$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+							$qrcode_img=time().'.png';
+							$path='assets/login_qrcode_img/'.$qrcode_img;
+							$params['savename'] =FCPATH.$path;
+							$this->ciqrcode->generate($params);
+							$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+							$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+						}
+						/*qr code*/
+						$barcode_name = strtoupper(substr($post['hospital_name'], 0, 5));
 						$this->load->library('ciqrcode');
-						$params['data'] =$barcode_name.$post['type'].$post['state'].$hos_save;
+						$params['data'] =$barcode_name.$post['pincode'].$post['state'].$post['type'].$hos_save;
 						$params['level'] = 'H';
 						$params['size'] = 10;
 						$params['cachedir'] = FCPATH.'assets/hospital_barcodes/';
@@ -304,6 +319,22 @@ class Hospital extends CI_Controller {
 							);
 							$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
 							if(count($update)>0){
+								/*qr code*/
+									$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+									if($qr_d['qr_code']==''){
+										$this->load->library('ciqrcode');
+										$params['data'] =$qr_d['a_id'];
+										$params['level'] = 'H';
+										$params['size'] = 5;
+										$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+										$qrcode_img=time().'.png';
+										$path='assets/login_qrcode_img/'.$qrcode_img;
+										$params['savename'] =FCPATH.$path;
+										$this->ciqrcode->generate($params);
+										$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+										$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+									}
+									/*qr code*/
 								$admin_detail=array(
 								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
@@ -351,6 +382,22 @@ class Hospital extends CI_Controller {
 						$update=$this->Hospital_model->update_hospital_details($post['hos_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
+							/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 							$admin_detail=array(
 								'name'=>isset($post['hospital_name'])?$post['hospital_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',

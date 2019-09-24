@@ -9,6 +9,11 @@ class Admin_model extends CI_Model
 		$this->load->database("default");
 
 	}
+	public  function get_qr_c_data($id){
+		$this->db->select('a_id,qr_code,qr_code_text')->from('admin');		
+		$this->db->where('a_id', $id);
+        return $this->db->get()->row_array();	
+	}
 	public function update_admin_details($a_id,$data){
 		$this->db->where('a_id',$a_id);
     	return $this->db->update("admin",$data);

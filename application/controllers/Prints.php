@@ -71,7 +71,12 @@ class Prints extends CI_Controller {
 			
 			$post=$this->input->post();
 			$admindetails=$this->session->userdata('userdetails');
-			//echo '<pre>';print_r($post);
+			if($post['category_type']=='Yellow(C)'){
+				$p_color='Yellow';
+			}else{
+				$p_color=$post['category_type'];
+			}
+			//echo '<pre>';print_r($post);exit;
 			$hcf_details=$this->Plant_model->get_hcf_details($post['hcf_name']);
 			$cbwtf_details=$this->Plant_model->get_cbwtf_details($post['cbwtf_id']);
 			//echo '<pre>';print_r($hcf_details);exit;
@@ -92,7 +97,7 @@ class Prints extends CI_Controller {
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
-					'category'=>isset($post['category_type'])?$post['category_type']:'',
+					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
@@ -132,7 +137,7 @@ class Prints extends CI_Controller {
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
-					'category'=>isset($post['category_type'])?$post['category_type']:'',
+					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
@@ -160,7 +165,8 @@ class Prints extends CI_Controller {
 				$this->load->view('html/footer');
 				
 			}else if(isset($post['sticker_size']) && $post['sticker_size']==4){
-				for ($k = 0 ; $k < 14; $k++){
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$cnt=$pt_cnt['cnt'];for ($k = 0 ; $k < 14; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
@@ -174,12 +180,29 @@ class Prints extends CI_Controller {
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
-					'category'=>isset($post['category_type'])?$post['category_type']:'',
+					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
+				
+				$cnt++;}
+				if($pt_cnt['cnt']==''){
+					$p_t=0;
+				}else{
+					$p_t=$pt_cnt['cnt'];
 				}
+				$a_d=array(
+						'type'=>isset($post['category_type'])?$post['category_type']:'',
+						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						'tnum'=>$p_t.'-'.$cnt,
+						'num'=>48,
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+						);
+						//echo '<pre>';print_r($a_d);exit;
+						$this->Admin_model->save_type_count($a_d);
 				$data['print_details']=array_chunk($details,2);
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/100x40',$data);
@@ -202,7 +225,7 @@ class Prints extends CI_Controller {
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
-					'category'=>isset($post['category_type'])?$post['category_type']:'',
+					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
@@ -244,7 +267,7 @@ class Prints extends CI_Controller {
 					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
 					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
 					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
-					'category'=>isset($post['category_type'])?$post['category_type']:'',
+					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					);

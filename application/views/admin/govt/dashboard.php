@@ -309,6 +309,17 @@ $dat = explode("-", $cri['create_at']);
 
             <!-- Widgets -->
             <div class="row clearfix">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">payment</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Total CBWTF</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($total_plants['total_plants'])?$total_plants['total_plants']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
@@ -317,6 +328,17 @@ $dat = explode("-", $cri['create_at']);
                         <div class="content">
                             <div class="text">Total Health Care Facility</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_hospital['total_hos'])?$total_hospital['total_hos']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_shipping</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Total BMW vehicle </div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($total_trucks['total_trucks'])?$total_trucks['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -331,28 +353,8 @@ $dat = explode("-", $cri['create_at']);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">local_shipping</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Total BMW vehicle </div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo isset($total_trucks['total_trucks'])?$total_trucks['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">payment</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Total CBWTF</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo isset($total_plants['total_plants'])?$total_plants['total_plants']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
 			<?php if(isset($total_hospital_list) && count($total_hospital_list)>0){ ?>
 					<div class="row clearfix">
@@ -362,10 +364,10 @@ $dat = explode("-", $cri['create_at']);
 									<div class="icon">
 										<i class="material-icons">local_hospital</i>
 									</div>
-									<div class="content">
+									<a href="vasu.com"><div class="content">
 										<div class="text"><?php echo isset($list['name'])?$list['name']:''; ?></div>
 										<div class="number count-to" data-from="0" data-to="<?php echo isset($list['hos_cnt'])?$list['hos_cnt']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
-									</div>
+									</div></a>
 								</div>
 							</div>
 						<?php } ?>

@@ -16,6 +16,9 @@
                                         <tr>
 											<th>No of Yellow Bags</th>
                                             <th>Yellow No of kgs</th>
+											
+											<th>No of Yellow(C) Bags</th>
+                                            <th>Yellow(C) No of kgs</th>
                                             
 											<th>No of Red  Bags</th>
                                             <th>Red No of kgs</th>
@@ -35,10 +38,11 @@
                                 
                                         <tr>
 											<td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
-
 											<td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
+											<td><?php echo htmlentities($list['infected_c_waste_qty']); ?></td>
+											<td><?php echo htmlentities($list['infected_c_waste_kgs']); ?></td>
+											
 											<td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
-
 											<td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
 											<td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
 

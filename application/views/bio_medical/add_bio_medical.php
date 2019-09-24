@@ -46,6 +46,7 @@
 									<select class="form-control"  name="color_type" id="color_type" style="width:100%;">
 									  <option value = "">Select</option>
 									  <option value = "Yellow">Yellow</option>
+									  <option value = "Yellow(C)">Yellow(C)</option>
 									  <option value = "Red">Red</option>
 									  <option value = "Blue">Blue</option>
 									  <option value = "White (ppc)">White (ppc)</option>

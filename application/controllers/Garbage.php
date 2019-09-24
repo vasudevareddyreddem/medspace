@@ -198,6 +198,19 @@ class Garbage extends CI_Controller {
 					);
 					$ger_truck=$this->Admin_model->save_admin($addtruck);
 					if(count($ger_truck)>0){
+						/*qr code*/
+							$this->load->library('ciqrcode');
+							$params['data'] =$ger_truck;
+							$params['level'] = 'H';
+							$params['size'] = 5;
+							$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+							$qrcode_img=time().'.png';
+							$path='assets/login_qrcode_img/'.$qrcode_img;
+							$params['savename'] =FCPATH.$path;
+							$this->ciqrcode->generate($params);
+							$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$ger_truck);
+							$this->Admin_model->update_admin_details($ger_truck,$u_q_d);
+						/*qr code*/
 						$addgarbagetruckl=array(
 							'a_id'=>$ger_truck,
 							'truck_reg_no'=>isset($post['truck_reg_no'])?$post['truck_reg_no']:'',
@@ -285,12 +298,29 @@ class Garbage extends CI_Controller {
 							);
 							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
 							if(count($update)>0){
+							/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+							/*qr code*/
 								$admin_detail=array(
 								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								'mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
+								echo $this->db->last_query();exit;
 								$this->session->set_flashdata('success','BMW Vehicle details successfully updated');
 								redirect('garbage/lists');
 								}else{
@@ -322,13 +352,28 @@ class Garbage extends CI_Controller {
 							);
 							$update=$this->Garbage_model->update_truck_details($post['t_id'],$updatehospital);
 							if(count($update)>0){
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+							/*qr code*/
 								$admin_detail=array(
 								'name'=>isset($post['owner_name'])?$post['owner_name']:'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
 								'mobile'=>isset($post['driver_mobile'])?$post['driver_mobile']:'',
 								);
 								$this->Garbage_model->update_admin_details($details['a_id'],$admin_detail);
-								//echo $this->db->last_query();exit;
 								$this->session->set_flashdata('success','BMW Vehicle details successfully updated');
 								redirect('garbage/lists');
 								}else{

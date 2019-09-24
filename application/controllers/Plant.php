@@ -203,6 +203,22 @@ class Plant extends CI_Controller {
 					);
 					$sav_plant=$this->Admin_model->save_admin($addplant);
 					if(count($sav_plant)>0){
+						/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($sav_plant);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 						$add_plant=array(
 							'a_id'=>$sav_plant,
 							'disposal_plant_name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
@@ -291,6 +307,22 @@ class Plant extends CI_Controller {
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 								$admin_detail=array(
 								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',
@@ -340,6 +372,22 @@ class Plant extends CI_Controller {
 							);
 							$update=$this->Plant_model->update_plant_details($post['p_id'],$updateplant);
 							if(count($update)>0){
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($details['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 								$admin_detail=array(
 								'name'=>isset($post['disposal_plant_name'])?strtoupper($post['disposal_plant_name']):'',
 								'email_id'=>isset($post['email'])?$post['email']:'',

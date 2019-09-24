@@ -338,7 +338,22 @@ class User extends CI_Controller {
 					);
 					$hos_save=$this->Admin_model->save_admin($addhos);
 					if(count($hos_save)>0){
-						
+							/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($hos_save);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 							$this->session->set_flashdata('success','User added succcessfully');
 							redirect('user/lists');
 					
@@ -392,7 +407,22 @@ class User extends CI_Controller {
 					);
 					$hos_save=$this->Admin_model->save_admin($addhos);
 					if(count($hos_save)>0){
-						
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($hos_save);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 							$this->session->set_flashdata('success','User added succcessfully');
 							redirect('user/govtlists');
 					
@@ -447,6 +477,22 @@ class User extends CI_Controller {
 							);
 							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 							if(count($update)>0){
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($post['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 								$this->session->set_flashdata('success','User details Successfully updated');
 										redirect('user/lists');
 									
@@ -475,6 +521,22 @@ class User extends CI_Controller {
 						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
+							/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($post['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 							$this->session->set_flashdata('success','User details successfully updated');
 							redirect('user/lists');
 							
@@ -530,6 +592,22 @@ class User extends CI_Controller {
 							);
 							$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 							if(count($update)>0){
+								/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($post['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 								$this->session->set_flashdata('success','User details Successfully updated');
 										redirect('user/govtlists');
 									
@@ -558,6 +636,22 @@ class User extends CI_Controller {
 						$update=$this->User_model->update_admin_details($post['a_id'],$updatehospital);
 						//echo $this->db->last_query();exit;
 						if(count($update)>0){
+							/*qr code*/
+								$qr_d=$this->Admin_model->get_qr_c_data($post['a_id']);
+								if($qr_d['qr_code']==''){
+									$this->load->library('ciqrcode');
+									$params['data'] =$qr_d['a_id'];
+									$params['level'] = 'H';
+									$params['size'] = 5;
+									$params['cachedir'] = FCPATH.'assets/login_qrcode_img/';
+									$qrcode_img=time().'.png';
+									$path='assets/login_qrcode_img/'.$qrcode_img;
+									$params['savename'] =FCPATH.$path;
+									$this->ciqrcode->generate($params);
+									$u_q_d=array('qr_code'=>$qrcode_img,'qr_code_text'=>$qr_d['a_id']);
+									$this->Admin_model->update_admin_details($qr_d['a_id'],$u_q_d);
+								}
+								/*qr code*/
 							$this->session->set_flashdata('success','User details successfully updated');
 							redirect('user/govtlists');
 							

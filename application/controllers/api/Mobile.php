@@ -100,6 +100,10 @@ class Mobile extends REST_Controller {
 		$infected_plastics_qty=$this->post('infected_plastics_qty');
 		$infected_waste_kgs=$this->post('infected_waste_kgs');
 		$infected_waste_qty=$this->post('infected_waste_qty');
+		
+		$infected_c_waste_kgs=$this->post('infected_c_waste_kgs');
+		$infected_c_waste_qty=$this->post('infected_c_waste_qty');
+		
 		$glassware_watse_kgs=$this->post('glassware_watse_kgs');
 		$glassware_watse_qty=$this->post('glassware_watse_qty');
 		$current_address=$this->post('current_address');
@@ -124,8 +128,14 @@ class Mobile extends REST_Controller {
 		}if($infected_waste_kgs ==''){
 		$message = array('status'=>0,'message'=>'Infected Waste kgs is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_c_waste_kgs ==''){
+		$message = array('status'=>0,'message'=>'Infected c Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($infected_waste_qty ==''){
 		$message = array('status'=>0,'message'=>'Infected Waste qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_c_waste_qty ==''){
+		$message = array('status'=>0,'message'=>'Infected c Waste qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($glassware_watse_kgs ==''){
 		$message = array('status'=>0,'message'=>'Glassware Waste kgs is required');
@@ -144,11 +154,13 @@ class Mobile extends REST_Controller {
 		'infected_plastics_kgs'=>$infected_plastics_kgs,
 		'infected_plastics_qty'=>$infected_plastics_qty,
 		'infected_waste_kgs'=>$infected_waste_kgs,
-		'infected_waste_qty'=>$infected_waste_qty,
+		'infected_waste_qty'=>$infected_waste_qty,		
+		'infected_c_waste_kgs'=>$infected_c_waste_kgs,
+		'infected_c_waste_qty'=>$infected_c_waste_qty,		
 		'glassware_watse_kgs'=>$glassware_watse_kgs,
 		'glassware_watse_qty'=>$glassware_watse_qty,
 		'current_address'=>$current_address,
-		'total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
+		'total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($infected_c_waste_kgs*$infected_c_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 		'status'=>1,
 		'date'=>date('Y-m-d'),
 		'create_at'=>date('Y-m-d H:i:s'),
@@ -425,7 +437,7 @@ class Mobile extends REST_Controller {
 				$message = array('status'=>0,'a_id'=>$userid,'message'=>'Qr code already scanned. Please use another qr code');
 				$this->response($message, REST_Controller::HTTP_OK);
 			}
-			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty='';
+			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty=$infected_c_waste_kgs=$infected_c_waste_qty='';
 			$w_da=explode('_',$waste);
 			$hospital_id=$w_da[0];
 			if($w_da[1]=='Yellow'){
@@ -440,6 +452,9 @@ class Mobile extends REST_Controller {
 			}else if($w_da[1]=='White'){
 				$genaral_waste_kgs =$w_da[3]++;
 				$genaral_waste_qty++;
+			}else if($w_da[1]=='Yellow(C)'){
+				$infected_c_waste_kgs =$w_da[3]++;
+				$infected_c_waste_qty++;
 			}
 			
 		
@@ -450,12 +465,14 @@ class Mobile extends REST_Controller {
 		'infected_plastics_kgs'=>isset($infected_plastics_kgs)?$infected_plastics_kgs:'0',
 		'infected_plastics_qty'=>isset($infected_plastics_qty)?$infected_plastics_qty:'0',
 		'infected_waste_kgs'=>isset($infected_waste_kgs)?$infected_waste_kgs:'0',
-		'infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',
+		'infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',		
+		'infected_c_waste_kgs'=>isset($infected_c_waste_kgs)?$infected_c_waste_kgs:'0',
+		'infected_c_waste_qty'=>isset($infected_c_waste_qty)?$infected_c_waste_qty:'0',		
 		'glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
 		'glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
 		'current_address'=>$current_address,
 		'scan_code'=>$scan_code,
-		'total'=>($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs),
+		'total'=>($genaral_waste_kgs)+($infected_c_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs),
 		'status'=>1,
 		'date'=>date('Y-m-d'),
 		'create_at'=>date('Y-m-d H:i:s'),
@@ -523,7 +540,7 @@ class Mobile extends REST_Controller {
 			$message = array('status'=>0,'a_id'=>$userid,'message'=>'Qr code already scanned. Please use another qr code');
 			$this->response($message, REST_Controller::HTTP_OK);
 		}
-			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty='';
+			$hospital_id=$genaral_waste_qty=$genaral_waste_kgs=$infected_plastics_kgs=$infected_plastics_qty=$infected_waste_kgs=$infected_waste_qty=$glassware_watse_kgs=$glassware_watse_qty=$infected_c_waste_kgs=$infected_c_waste_qty='';
 			$w_da=explode('_',$waste);
 			//echo '<pre>';print_r($w_da);exit;
 			$hospital_id=$w_da[0];
@@ -539,9 +556,12 @@ class Mobile extends REST_Controller {
 			}else if($w_da[1]=='White'){
 				$genaral_waste_kgs =$w_da[3]++;
 				$genaral_waste_qty++;
+			}else if($w_da[1]=='Yellow(C)'){
+				$infected_c_waste_kgs =$w_da[3]++;
+				$infected_c_waste_qty++;
 			}
 		
-		$total_waste=(($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs));
+		$total_waste=(($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($infected_c_waste_kgs)+($glassware_watse_kgs));
 		
 		 $get_previou_data=$this->Mobile_model->get_wast_previous_data($scan_code);
 		 if($get_previou_data['total']==$total_waste){
@@ -559,7 +579,9 @@ class Mobile extends REST_Controller {
 			'bio_infected_plastics_kgs'=>isset($infected_plastics_kgs)?$infected_plastics_kgs:'0',
 			'bio_infected_plastics_qty'=>isset($infected_plastics_qty)?$infected_plastics_qty:'0',
 			'bio_infected_waste_kgs'=>isset($infected_waste_kgs)?$infected_waste_kgs:'0',
-			'bio_infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',
+			'bio_infected_waste_qty'=>isset($infected_waste_qty)?$infected_waste_qty:'0',			
+			'bio_infected_c_waste_kgs'=>isset($infected_c_waste_kgs)?$infected_c_waste_kgs:'0',
+			'bio_infected_c_waste_qty'=>isset($infected_c_waste_qty)?$infected_c_waste_qty:'0',			
 			'bio_glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
 			'bio_glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
 			'bio_current_address'=>$current_address,
@@ -631,6 +653,10 @@ class Mobile extends REST_Controller {
 		$infected_plastics_qty=$this->post('infected_plastics_qty');
 		$infected_waste_kgs=$this->post('infected_waste_kgs');
 		$infected_waste_qty=$this->post('infected_waste_qty');
+		
+		$infected_c_waste_kgs=$this->post('infected_c_waste_kgs');
+		$infected_c_waste_qty=$this->post('infected_c_waste_qty');
+		
 		$glassware_watse_kgs=$this->post('glassware_watse_kgs');
 		$glassware_watse_qty=$this->post('glassware_watse_qty');
 		$current_address=$this->post('current_address');
@@ -655,8 +681,14 @@ class Mobile extends REST_Controller {
 		}if($infected_waste_kgs ==''){
 		$message = array('status'=>0,'message'=>'Infected Waste kgs is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_c_waste_kgs ==''){
+		$message = array('status'=>0,'message'=>'Infected c Waste kgs is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($infected_waste_qty ==''){
 		$message = array('status'=>0,'message'=>'Infected Waste qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($infected_c_waste_qty ==''){
+		$message = array('status'=>0,'message'=>'Infected c Waste qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($glassware_watse_kgs ==''){
 		$message = array('status'=>0,'message'=>'Glassware Waste kgs is required');
@@ -682,10 +714,12 @@ class Mobile extends REST_Controller {
 				'bio_infected_plastics_qty'=>$infected_plastics_qty,
 				'bio_infected_waste_kgs'=>$infected_waste_kgs,
 				'bio_infected_waste_qty'=>$infected_waste_qty,
+				'bio_infected_c_waste_kgs'=>$infected_c_waste_kgs,
+				'bio_infected_c_waste_qty'=>$infected_c_waste_qty,
 				'bio_glassware_watse_kgs'=>$glassware_watse_kgs,
 				'bio_glassware_watse_qty'=>$glassware_watse_qty,
 				'bio_current_address'=>$current_address,
-				'crosscheck_total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
+				'crosscheck_total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($infected_c_waste_kgs*$infected_c_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 				'updated_time'=>date('Y-m-d H:i:s'),
 				'updated_by'=>$userid,
 				);

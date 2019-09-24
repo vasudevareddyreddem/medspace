@@ -35,9 +35,9 @@ class Govt_model extends CI_Model
 	
 	/*total waste*/
 	public  function get_gen_waste($date,$state){
-		$this->db->select('sum(waste.total_waste) as total')->from('waste');
-		$this->db->join('trucks', 'trucks.t_id = waste.truck_id', 'left');
-		$this->db->where("DATE_FORMAT(waste.create_at,'%Y')", $date);
+		$this->db->select('sum(hospital_waste.total) as total')->from('hospital_waste');
+		$this->db->join('trucks', 'trucks.a_id = hospital_waste.create_by', 'left');
+		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
 		$this->db->where('trucks.state',$state);		
         return $this->db->get()->row_array();
 	}

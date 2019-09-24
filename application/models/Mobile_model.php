@@ -112,7 +112,7 @@ class Mobile_model extends CI_Model
 	}
 	// waste Details purpose
 	public  function get_all_wateid_details($id){
-		$this->db->select('id,genaral_waste_kgs,genaral_waste_qty,infected_plastics_kgs,infected_plastics_qty,infected_waste_kgs,infected_waste_qty,glassware_watse_kgs,glassware_watse_qty,total')->from('hospital_waste');
+		$this->db->select('id,genaral_waste_kgs,genaral_waste_qty,infected_plastics_kgs,infected_plastics_qty,infected_waste_kgs,infected_waste_qty,infected_c_waste_kgs,infected_c_waste_qty,glassware_watse_kgs,glassware_watse_qty,total')->from('hospital_waste');
 		$this->db->where('hospital_waste.id', $id);
 		return $this->db->get()->row_array();
 	}

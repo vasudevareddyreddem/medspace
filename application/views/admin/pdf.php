@@ -187,6 +187,14 @@ th, td {
      <th colspan="2">Yellow No of kgs</th>
     <th><?php echo $garbage_details['infected_waste_kgs']; ?></th>
   </tr>
+  <tr>
+     <th colspan="2">Yellow (C) No of bags </td>
+    <th> <?php echo $garbage_details['infected_c_waste_qty']; ?></th>
+  </tr>
+   <tr>
+     <th colspan="2">Yellow (C) No of kgs</th>
+    <th><?php echo $garbage_details['infected_c_waste_kgs']; ?></th>
+  </tr>
   
     <tr>
      <th colspan="2">Red No of bags</td>

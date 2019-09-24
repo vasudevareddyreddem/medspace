@@ -38,11 +38,11 @@
 		<div class="loop" style="margin:0 2mm;">
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:5px;">SeqNo :0001</h3>
+					<h3 style="padding:0px;margin:5px;">SN<?php echo $list[0]['ptcnt'] ; ?></h3>
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
-					<div class="white-col"></div>
+					<div class="<?php echo $list[0]['category'] ; ?>-col"></div>
 					
 				</div>
 				
@@ -55,7 +55,7 @@
 									<td ><span><?php echo $list[0]['category'] ; ?> </span>bag</td>
 								</tr>-->
 								<tr>
-									<td style="text-align:center;font-size:18px">RAMMA110001DLBH02497</td>
+									<td style="text-align:center;font-size:18px"><?php echo $list[0]['barcodetext'] ; ?> </td>
 								</tr>
 								
 							</tbody>
@@ -65,11 +65,11 @@
 		</div>
 		<div class="sticker" style="width:100mm;height:40mm;background:#fff;border:1px solid #ddd;margin-left:3mm;margin-top:1mm;position:relative">
 				<div >
-					<h3 style="padding:0px;margin:5px;">Seq No: 0001</h3>
+					<h3 style="padding:0px;margin:5px;">SN<?php echo $list[1]['ptcnt'] ; ?></h3>
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
 				<div style="position: absolute;;top:10px;left:10px">
-					<div class="white-col"></div>
+					<div class="<?php echo $list[1]['category'] ; ?>-col"></div>
 					
 				</div>
 				<div class="">
@@ -81,7 +81,7 @@
 									<td ><span><?php echo $list[1]['category'] ; ?> </span>bag</td>
 								</tr>-->
 									<tr>
-									<td style="text-align:center;font-size:18px">RAMMA110001DLBH02497</td>
+									<td style="text-align:center;font-size:18px"><?php echo $list[1]['barcodetext'] ; ?></td>
 								</tr>
 								
 							</tbody>
