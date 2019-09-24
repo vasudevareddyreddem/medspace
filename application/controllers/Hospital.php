@@ -698,6 +698,12 @@ class Hospital extends CI_Controller {
 			if($admindetails['role']==5){
 				$post=$this->input->post();
 				$login_id=base64_decode($this->uri->segment(3));
+				$l_d=$this->Hospital_model->get_login_user_details($login_id);
+				$data['cbwtf_detail']=$this->Hospital_model->get_cbwtf_detail($login_id);
+				$data['hos_list']=$this->Hospital_model->get_hospital_list($login_id,$l_d['state']);
+				$data['truck_list']=$this->Hospital_model->get_vehical_count($login_id,$l_d['state']);
+				$data['total_waste']=$this->Hospital_model->get_waste_count($login_id,$l_d['state']);
+				//echo "<pre>";print_r($data);exit;
 				if($login_id==''){
 					$a_id=$post['a_id'];
 					$data['a_id']=$post['a_id'];
@@ -705,19 +711,11 @@ class Hospital extends CI_Controller {
 					$a_id=$login_id;
 					$data['a_id']=$login_id;
 				}
-				
-				//echo $a_id;exit;
-				
 				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
-					
 					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($a_id,$post['from_date'],$post['to_date']);
-					//echo '<pre>';print_r($data);exit;
 				}else{
 					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($a_id);
-
 				}
-				
-				
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/govt/overall_hospital_waste',$data);
 				$this->load->view('html/footer');

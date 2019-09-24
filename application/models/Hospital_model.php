@@ -183,6 +183,48 @@ class Hospital_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 	
+	public  function get_cbwtf_detail($aid){
+		$this->db->select('p_id,disposal_plant_name,disposal_plant_id')->from('plant');
+		$this->db->where('create_by',$aid);
+		$this->db->where('status',1);
+		$this->db->order_by('p_id','desc');
+		return $this->db->get()->row_array();
+	}
+	
+	public  function get_hospital_list($a_id,$st){
+		$this->db->select('count(hospital_list.h_id) as cnt')->from('hospital_list');
+		$this->db->where('hospital_list.create_by',$a_id);
+		$this->db->where('hospital_list.state',$st);
+		$this->db->where('hospital_list.status',1);
+		return $this->db->get()->row_array();
+	}
+	public  function get_vehical_list($a_id,$st){
+		$this->db->select('count(hospital_list.h_id) as cnt')->from('hospital_list');
+		$this->db->where('hospital_list.create_by',$a_id);
+		$this->db->where('hospital_list.state',$st);
+		$this->db->where('hospital_list.status',1);
+		return $this->db->get()->row_array();
+	}
+	public  function get_login_user_details($id){
+		$this->db->select('a_id,name,state')->from('admin');
+		$this->db->where('a_id',$id);
+		return $this->db->get()->row_array();
+	}
+	public  function get_vehical_count($id,$state){
+		$this->db->select('count(trucks.t_id) as total_trucks')->from('trucks');
+		$this->db->where('trucks.status', 1);
+		$this->db->where('trucks.create_by',$id);
+		//$this->db->where('trucks.state',$state);
+		return $this->db->get()->row_array();
+	}
+	public  function get_waste_count($aid,$state){
+		$this->db->select('sum(hw.total) as total')->from('hospital_waste as hw');
+		$this->db->join('hospital_list as hl', 'hl.h_id = hw.h_id', 'left');
+		$this->db->where('hl.create_by',$aid);		
+		$this->db->where('hl.state',$state);		
+        return $this->db->get()->row_array();
+	}
+	
 	
 	
 	

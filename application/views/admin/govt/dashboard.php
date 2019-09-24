@@ -141,7 +141,7 @@ $dec3=$jan3=$feb3=$mar3=$apr3=$may3=$jun3=$jul3=$aug3=$sep3=$oct3=$nov3=0;
 if(isset($graph_total_waste) && count($graph_total_waste)>0){
 	//echo '<pre>';print_r($graph_total_waste);exit;
 foreach ($graph_total_waste as $cri){
-$dat = explode("-", $cri['create_at']);
+$dat = explode("-", $cri['date']);
 	if($dat[1] == 12)
 	{
 	$dec3 += $cri['total_waste'];

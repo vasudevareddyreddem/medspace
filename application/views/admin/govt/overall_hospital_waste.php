@@ -18,7 +18,12 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                               HCF Waste  List
+                               CBWTF : <?php echo isset($cbwtf_detail['disposal_plant_name'])?$cbwtf_detail['disposal_plant_name']:''; ?> Waste  List
+							   
+							   <br>
+							   Total Health Care Facility :  <?php echo isset($hos_list['cnt'])?$hos_list['cnt']:''; ?>
+							   Total BMW vehicle : <?php echo isset($truck_list['total_trucks'])?$truck_list['total_trucks']:''; ?>
+							   Total CBWTF (Kgs):  <?php echo isset($total_waste['total'])?$total_waste['total']:''; ?>
                             </h2>
                          
                         </div>

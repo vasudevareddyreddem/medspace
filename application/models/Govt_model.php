@@ -14,7 +14,7 @@ class Govt_model extends CI_Model
 	public  function get_total_hospital($date,$state){
 		$this->db->select('count(hospital_list.h_id) as total_hos')->from('hospital_list');	
 		$this->db->where("DATE_FORMAT(hospital_list.create_at,'%Y')", $date);		
-		$this->db->where('hospital_list.status !=', 2);
+		$this->db->where('hospital_list.status', 1);
 		$this->db->where('hospital_list.state',$state);
         return $this->db->get()->row_array();
 	}
@@ -60,7 +60,7 @@ class Govt_model extends CI_Model
 	public function get_graph_total_hospital_list($date,$state){
 		$this->db->select('hospital_list.create_at')->from('hospital_list');
 		$this->db->where("DATE_FORMAT(hospital_list.create_at,'%Y')", $date);
-		$this->db->where('hospital_list.status !=', 2);
+		$this->db->where('hospital_list.status', 1);
 		$this->db->where('hospital_list.state',$state);
         return $this->db->get()->result_array();
 	}
@@ -79,24 +79,24 @@ class Govt_model extends CI_Model
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_waste_list($date,$st){
-		$this->db->select('waste.create_at,waste.gen_waste_in_Kg,waste.inf_pla_waste_in_Kg,waste.inf_waste_in_Kg,waste.glassware_waste_in_kg,waste.total_waste')->from('waste');
-		$this->db->join('trucks', 'trucks.t_id = waste.truck_id', 'left');
-		$this->db->where("DATE_FORMAT(waste.create_at,'%Y')", $date);
-		$this->db->where('trucks.state',$st);
-		return $this->db->get()->result_array();
+		$this->db->select('hw.date,hw.total as total_waste,')->from('hospital_waste as hw');
+		$this->db->join('trucks', 'trucks.a_id = hw.create_by', 'left');
+		$this->db->where("DATE_FORMAT(hw.create_at,'%Y')", $date);
+		$this->db->where('trucks.state',$st);		
+        return $this->db->get()->result_array();
 	}
 	/*govt purpose*/
 	
 	// total admin wise hospital list
 	
 	public  function get_all_admins_wise_hospitals($a_id,$state){
-		$this->db->select('a_id,name,mobile,status')->from('admin');
+		$this->db->select('a_id,name,mobile,status,state')->from('admin');
 		$this->db->where('admin.create_by',$a_id);
 		$this->db->where('admin.state',$state);
 		$this->db->where('admin.role',1);
 		$return=$this->db->get()->result_array();
 		foreach($return as $li){
-			$h_list=$this->get_hospital_count($li['a_id']);
+			$h_list=$this->get_hospital_count($li['a_id'],$li['state']);
 			$data[$li['a_id']]=$li;
 			$data[$li['a_id']]['hos_cnt']=isset($h_list['cnt'])?$h_list['cnt']:'';
 		}
@@ -105,9 +105,11 @@ class Govt_model extends CI_Model
 		}
 	}
 	
-		public  function get_hospital_count($a_id){
+		public  function get_hospital_count($a_id,$st){
 			$this->db->select('count(hospital_list.h_id) as cnt')->from('hospital_list');
 			$this->db->where('hospital_list.create_by',$a_id);
+			$this->db->where('hospital_list.state',$st);
+			$this->db->where('hospital_list.status',1);
 			return $this->db->get()->row_array();
 		}
 		
