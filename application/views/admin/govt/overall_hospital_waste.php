@@ -16,17 +16,56 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
+					<div class="header">
                             <h2>
                                CBWTF : <?php echo isset($cbwtf_detail['disposal_plant_name'])?$cbwtf_detail['disposal_plant_name']:''; ?> Waste  List
 							   
 							   <br>
-							   Total Health Care Facility :  <?php echo isset($hos_list['cnt'])?$hos_list['cnt']:''; ?>
-							   Total BMW vehicle : <?php echo isset($truck_list['total_trucks'])?$truck_list['total_trucks']:''; ?>
-							   Total CBWTF (Kgs):  <?php echo isset($total_waste['total'])?$total_waste['total']:''; ?>
+							   
                             </h2>
                          
                         </div>
+					<div class="row" style="padding:10px;">
+					<div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+						<a href="">
+                        <div class="content">
+                            <div class="text">Total Health Care Facility</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($hos_list['cnt'])?$hos_list['cnt']:''; ?>" data-speed="15" data-fresh-interval="20"><?php echo isset($hos_list['cnt'])?$hos_list['cnt']:''; ?></div>
+                        </div></a>
+                    </div>
+                </div>
+				<div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_shipping</i>
+                        </div>
+						<a href="">
+                        <div class="content">
+                            <div class="text">Total BMW vehicle </div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($truck_list['total_trucks'])?$truck_list['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"><?php echo isset($truck_list['total_trucks'])?$truck_list['total_trucks']:''; ?></div>
+                        </div>
+						</a>
+                    </div>
+                </div>
+				<div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-cyan hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">help</i>
+                        </div>
+						<a href="">
+                        <div class="content">
+                            <div class="text">Total CBWTF (Kgs)</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($total_waste['total'])?$total_waste['total']:''; ?>" data-speed="1000" data-fresh-interval="20"><?php echo isset($total_waste['total'])?$total_waste['total']:''; ?></div>
+                        </div>
+						</a>
+                    </div>
+                </div>
+					</div>
+                        
                         <div class="body">
 						<form action="<?php echo base_url('hospital/waste'); ?>" method="post">
 						<input type="hidden" id="a_id" name="a_id" value="<?php echo isset($a_id)?$a_id:''; ?>">
