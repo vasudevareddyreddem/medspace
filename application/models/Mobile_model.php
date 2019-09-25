@@ -129,6 +129,10 @@ class Mobile_model extends CI_Model
 		$this->db->where('hospital_waste.h_id', $h_id);
 		return $this->db->get()->result_array();
 	}
+	public  function save_tracking_location($d){
+			$this->db->insert("track_location",$d);
+			return $this->db->insert_id();
+	}
 	
 	
 }

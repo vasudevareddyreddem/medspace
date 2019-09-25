@@ -740,6 +740,55 @@ class Mobile extends REST_Controller {
 		
 	}
 	
+	public function cron_time_post(){
+			$message = array('status'=>1,'time'=>3,'message'=>'Cron Time intervel');
+			$this->response($message, REST_Controller::HTTP_OK);
+	}
+	public function drive_current_location_post(){
+			$user_id=$this->post('user_id');
+			$latitude=$this->post('latitude');
+			$longitude=$this->post('longitude');
+			$address=$this->post('address');
+			$date=$this->post('date');
+			if($user_id ==''){
+			$message = array('status'=>0,'message'=>'User id is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($latitude ==''){
+			$message = array('status'=>0,'message'=>'latitude is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($longitude ==''){
+			$message = array('status'=>0,'message'=>'longitude is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($address ==''){
+			$message = array('status'=>0,'message'=>'address is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($date ==''){
+				$message = array('status'=>0,'message'=>'date is required');
+				$this->response($message, REST_Controller::HTTP_OK);			
+			}
+			if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+			$message = array('status'=>0,'message'=>'Date formate is not valid. Forexample 1992-07-14');
+			$this->response($message, REST_Controller::HTTP_OK);
+		}
+			$add=array(
+				'user_id'=>$user_id,
+				'latitude'=>$latitude,
+				'longitude'=>$longitude,
+				'address'=>$address,
+				'date'=>$date,
+				'created_at'=>date('Y-m-d H:i:s'),
+				);
+				$save=$this->Mobile_model->save_tracking_location($add);
+				//echo $this->db->last_query();exit;
+				if(count($save)>0){
+					$message = array('status'=>1,'t_l_id'=>$save,'message'=>'Address successfully saved');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'a_id'=>$userid,'message'=>'Technical problem will occurred. Please try again');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
+	
 	
 	
 	

@@ -697,7 +697,14 @@ class Hospital extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			if($admindetails['role']==5){
 				$post=$this->input->post();
-				$login_id=base64_decode($this->uri->segment(3));
+				if(isset($post) && count($post)>0){
+					$login_id=$post['login_id'];
+					$data['login_id']=$login_id;
+				}else{
+					$login_id=base64_decode($this->uri->segment(3));
+					$data['login_id']=$login_id;
+	
+				}
 				$l_d=$this->Hospital_model->get_login_user_details($login_id);
 				$data['cbwtf_detail']=$this->Hospital_model->get_cbwtf_detail($login_id);
 				$data['hos_list']=$this->Hospital_model->get_hospital_list($login_id,$l_d['state']);
@@ -919,10 +926,11 @@ class Hospital extends CI_Controller {
 			}
 			$l_d=$this->Hospital_model->get_login_user_details($id);
 			$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste($id);
+			//echo $this->db->last_query();
 			
 			$this->load->view('admin/govt/hospital_graph',$data);
 			$this->load->view('html/footer');
-			echo '<pre>';print_r($data);exit;
+			//echo '<pre>';print_r($data);exit;
 		}else{
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
