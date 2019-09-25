@@ -712,9 +712,9 @@ class Hospital extends CI_Controller {
 					$data['a_id']=$login_id;
 				}
 				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
-					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($a_id,$post['from_date'],$post['to_date']);
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($a_id,$l_d['state'],$post['from_date'],$post['to_date']);
 				}else{
-					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($a_id);
+					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($a_id,$l_d['state']);
 				}
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/govt/overall_hospital_waste',$data);
@@ -848,6 +848,86 @@ class Hospital extends CI_Controller {
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
 		}
+	}
+	
+	public  function alllists(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['hospital_list']=$this->Hospital_model->get_state_all_hospital_list($id,$l_d['state']);
+			$this->load->view('admin/govt/state_hospital',$data);
+			$this->load->view('html/footer');
+			//secho '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
+	}
+	public  function vehicle(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['vehicle_list']=$this->Hospital_model->get_plant_vehicles($id);
+			
+			$this->load->view('admin/govt/hospital_vehicle',$data);
+			$this->load->view('html/footer');
+			//echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
+	}
+	public  function vehicle_route_details(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['vehicle_list']=$this->Hospital_model->get_plant_vehicles($id);
+			
+			$this->load->view('admin/govt/hospital_vehicle_route',$data);
+			$this->load->view('html/footer');
+			//echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
+	}
+	public  function wasteindetails(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste($id);
+			
+			$this->load->view('admin/govt/hospital_graph',$data);
+			$this->load->view('html/footer');
+			echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
 	}
 	
 	

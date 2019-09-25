@@ -358,19 +358,39 @@ $dat = explode("-", $cri['date']);
             </div>
 			<?php if(isset($total_hospital_list) && count($total_hospital_list)>0){ ?>
 					<div class="row clearfix">
-						<?php foreach($total_hospital_list as $list){ ?>
+						<?php
+												
+						foreach($total_hospital_list as $list){
+							$hex = '#';
+ 
+						//Create a loop.
+							foreach(array('r', 'g', 'b') as $color){
+								//Random number between 0 and 255.
+								$val = mt_rand(0, 255);
+								//Convert the random number into a Hex value.
+								$dechex = dechex($val);
+								//Pad with a 0 if length is less than 2.
+								if(strlen($dechex) < 2){
+									$dechex = "0" . $dechex;
+								}
+								//Concatenate
+								$hex .= $dechex;
+							}
+							
+							//echo $hex;exit;
+							?>
 							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-								<div class="info-box bg-pink hover-expand-effect">
+								<div class="info-box bg hover-expand-effect" style="color:#fff;background-color:<?php echo $hex; ?>;">
 									<div class="icon">
 										<i class="material-icons">local_hospital</i>
 									</div>
-									<a href="<?php echo base_url('hospital/waste/'.base64_encode($list['a_id'])); ?>"><div class="content">
-										<div class="text"><?php echo isset($list['name'])?$list['name']:''; ?></div>
-										<div class="number count-to" data-from="0" data-to="<?php echo isset($list['hos_cnt'])?$list['hos_cnt']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
+									<a style="color:#fff;" href="<?php echo base_url('hospital/waste/'.base64_encode($list['a_id'])); ?>"><div class="content">
+										<div class="text" style="color:#fff;"><?php echo isset($list['name'])?$list['name']:''; ?></div>
+										<div  style="color:#fff;" class="number count-to" data-from="0" data-to="<?php echo isset($list['hos_cnt'])?$list['hos_cnt']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
 									</div></a>
 								</div>
 							</div>
-						<?php } ?>
+						<?php  } ?>
 					</div>
 			<?php } ?>
             <!-- #END# Widgets -->

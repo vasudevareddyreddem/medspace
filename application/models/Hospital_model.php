@@ -84,22 +84,24 @@ class Hospital_model extends CI_Model
 		
 	}
 	
-	public  function get_hospital_wise_waste_with_dates($a_id,$from_date,$todate){
+	public  function get_hospital_wise_waste_with_dates($a_id,$st,$from_date,$todate){
 		$this->db->select('hl.hospital_name,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt')->from('hospital_waste as hw');
 		$this->db->join('hospital_list  as hl', 'hl.h_id = hw.h_id', 'left');
 		$inbetweentime="date_format(hw.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'";
 		$this->db->group_by('hw.date');
 		$this->db->group_by('hw.h_id');
 		$this->db->where('hl.create_by',$a_id);
+		$this->db->where('hl.state',$st);
 		$this->db->where($inbetweentime);
 		return $this->db->get()->result_array();
 	}
-	public  function get_hospital_wise_waste_list($a_id){
+	public  function get_hospital_wise_waste_list($a_id,$st){
 		$this->db->select('hl.hospital_name,,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt')->from('hospital_waste as hw');
 		$this->db->join('hospital_list  as hl', 'hl.h_id = hw.h_id', 'left');
 		$this->db->group_by('hw.date');
 		$this->db->group_by('hw.h_id');
 		$this->db->where('hl.create_by',$a_id);
+		$this->db->where('hl.state',$st);
 		return $this->db->get()->result_array();
 	}
 	
@@ -184,7 +186,7 @@ class Hospital_model extends CI_Model
 	}
 	
 	public  function get_cbwtf_detail($aid){
-		$this->db->select('p_id,disposal_plant_name,disposal_plant_id')->from('plant');
+		$this->db->select('p_id,disposal_plant_name,disposal_plant_id,create_by')->from('plant');
 		$this->db->where('create_by',$aid);
 		$this->db->where('status',1);
 		$this->db->order_by('p_id','desc');
@@ -223,6 +225,33 @@ class Hospital_model extends CI_Model
 		$this->db->where('hl.create_by',$aid);		
 		$this->db->where('hl.state',$state);		
         return $this->db->get()->row_array();
+	}
+	public  function get_state_all_hospital_list($a_id,$st){
+		$this->db->select('h.h_id,h.a_id,h.hospital_name,h.type,h.route_number,h.mobile,h.no_of_beds,h.email,h.city')->from('hospital_list as h');
+		$this->db->where('h.create_by',$a_id);
+		$this->db->where('h.state',$st);
+		$this->db->where('h.status',1);
+		//$this->db->order_by('h.route_number','asc');
+		return $this->db->get()->result_array();
+	}
+	
+	public  function get_hospital_wise_waste($id){
+		$this->db->select("hl.hospital_name,,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt,TIMEDIFF(hw.updated_time, hw.create_at) as dif_hrs")->from('hospital_waste as hw');
+		//$this->db->select('hl.hospital_name,,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt,TIMEDIFF(if(hw.updated_time,"2019-05-15 16:37:25","2019-05-15 18:37:25"),hw.create_at) as dif_hrs')->from('hospital_waste as hw');
+		//$this->db->select('hl.hospital_name,,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt,DATEDIFF(hw.create_at,hw.updated_time) as dif_hrs')->from('hospital_waste as hw');
+		$this->db->join('hospital_list  as hl', 'hl.h_id = hw.h_id', 'left');
+		$this->db->group_by('hw.date');
+		$this->db->group_by('hw.h_id');
+		$this->db->where('hl.h_id',$id);
+		return $this->db->get()->result_array();
+	}
+	
+	public function get_plant_vehicles($id){
+		$this->db->select('truck_reg_no,t_id,email,city,owner_name,insurence_number,owner_mobile,driver_name,driver_lic_no,driver_lic_bad_no,driver_mobile,route_no')->from('trucks');		
+		$this->db->where('create_by', $id);
+		$this->db->where('status',1);
+		$this->db->order_by('t_id','desc');
+        return $this->db->get()->result_array();
 	}
 	
 	
