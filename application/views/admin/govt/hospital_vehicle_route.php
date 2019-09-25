@@ -115,14 +115,14 @@ section.content {
 						</div>
 						<div class="col-md-4">
 						<div class="panel panel-default" style="margin-bottom:0;border-radius:0;border-bottom:none;padding:6px 10px;margin-left:10px;background:#f44336;color:#fff;font-size:20px;">
-							Total KMS : 250
+							Total KMS : <span id="km_val"></span>
 						</div>
 						<div id="right-panel">
 							<div id="directions-panel"></div>
 						</div>
 						</div>
 						<script>
-      function initMap() {
+       function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsRenderer = new google.maps.DirectionsRenderer;
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -137,9 +137,6 @@ section.content {
       function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         var waypts = [];
         waypts.push({
-              location: {lat: 13.6373, lng: 79.5037},
-              stopover: true
-            },{
               location: {lat: 13.636569674389497, lng: 79.42275737892919},
               stopover: true
             },{
@@ -151,9 +148,6 @@ section.content {
             },{
               location: {lat: 13.64245236361076, lng: 79.42883057346444},
               stopover: true
-            },{
-              location: {lat: 13.6373, lng: 79.5037},
-              stopover: true
             }
 			
 			);
@@ -164,28 +158,35 @@ section.content {
           waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'DRIVING'
-        }, function(response, status) {
+        },
+		function(response, status) {
           if (status === 'OK') {
             directionsRenderer.setDirections(response);
             var route = response.routes[0];
+			console.log(route);
             var summaryPanel = document.getElementById('directions-panel');
             summaryPanel.innerHTML = '';
             // For each route, display summary information.
-            for (var i = 0; i < route.legs.length; i++) {
-              var routeSegment = i + 1;
-              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                  '</b><br>';
-              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-              summaryPanel.innerHTML += route.legs[i].distance.text + '<hr>';
-            }
+			var totaldistance = 0;
+            for(var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].duration.text + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+						     totaldistance = totaldistance + route.legs[i].distance.value ;
+                    }
+					var km = totaldistance / 1000;
+					$('#km_val').append(km.toFixed(1) + " km");
+					
           } else {
             window.alert('Directions request failed due to ' + status);
           }
         });
       }
     </script>
-						<script async defer
+	 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM&callback=initMap">
     </script>
 					</div>
