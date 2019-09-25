@@ -1,3 +1,87 @@
+
+<style>
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+		width:100%
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+        float: left;
+        
+        height: 100%;
+      }
+      #right-panel {
+       
+        border-width: 2px;
+        width: 100%;
+        height: 800px;
+        float: left;
+        text-align: left;
+        padding-top: 0;
+      }
+      #directions-panel {
+       line-height:20px;
+        background-color: #f9f9f9;
+        padding: 10px;
+        overflow: scroll;
+        height: 500px;
+		border:1px solid #ddd;
+      } 
+	  #directions-panel b{
+   color:red;
+      }
+	  .gm-svpc{
+		  display:none;
+	  }
+	  .sidebar {
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    font-family: "Roboto", sans-serif;
+    background: #fdfdfd;
+    width: 208px;
+    overflow: hidden;
+    display: inline-block;
+    height: calc(100vh - 70px);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 11 !important;
+	
+}
+section.content {
+    margin: 100px 15px 0 220px;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+    </style>
+
 <section class="content">
 	<!-- Exportable Table -->
 	<div class="row clearfix">
@@ -26,8 +110,14 @@
 					
 					
 				</div>
-					<div >
-						<div style="min-height:400px;" id="map"></div>
+					<div class="row" >
+						<div class="col-md-8" style="min-height:500px;" id="map">
+						</div>
+						<div class="col-md-4">
+						<div id="right-panel">
+							<div id="directions-panel"></div>
+						</div>
+						</div>
 						<script>
 							
 							      function initMap() {
@@ -94,6 +184,11 @@
 						</script>
 						<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM&callback=initMap">
 						</script>
+
+    </script>
+						<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM&callback=initMap">
+    </script>
 					</div>
 				</div>
 			</div>
