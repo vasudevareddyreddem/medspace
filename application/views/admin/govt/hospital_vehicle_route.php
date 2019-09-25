@@ -114,77 +114,76 @@ section.content {
 						<div class="col-md-8" style="min-height:500px;" id="map">
 						</div>
 						<div class="col-md-4">
+						<div class="panel panel-default" style="margin-bottom:0;border-radius:0;border-bottom:none;padding:6px 10px;margin-left:10px;background:#f44336;color:#fff;font-size:20px;">
+							Total KMS : 250
+						</div>
 						<div id="right-panel">
 							<div id="directions-panel"></div>
 						</div>
 						</div>
 						<script>
-							
-							      function initMap() {
-							        var map = new google.maps.Map(document.getElementById('map'), {
-							          zoom: 13,
-							          center: {lat: 13.6295, lng: 79.3971},
-							          mapTypeId: google.maps.MapTypeId.ROADMAP,
-							        });
-									var iconBase = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
-									var icons = {
-										  parking: {
-											icon: iconBase + 'parking_lot_maps.png'
-										  },
-										  library: {
-											icon: iconBase + 'library_maps.png'
-										  },
-										  info: {
-											icon: iconBase + 'info-i_maps.png'
-										  }
-										};
-							
-							        var flightPlanCoordinates = [
-							          {lat: 13.6295, lng: 79.4259},
-							          {lat: 13.6288, lng: 79.4192},
-							          {lat: 13.6269, lng: 79.3971}
-							        ];
-									var flightPath = new google.maps.Polyline({
-							          path: flightPlanCoordinates,
-							          geodesic: true,
-									  strokeColor: '#FF0000',
-									  strokeOpacity: 1.0,
-									  strokeWeight: 2
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsRenderer = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+           center: {lat: 13.6373, lng: 79.5037}
+        });
+        directionsRenderer.setMap(map);
+		calculateAndDisplayRoute(directionsService, directionsRenderer);
+        
+      }
 
-							        });
-									var features = [
-									   {
-										position: new google.maps.LatLng(13.6295, 79.4259),
-										title: 'Hello Worldwwww!',
-										type: 'parking',
+      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        var waypts = [];
+        waypts.push({
+              location: {lat: 13.6373, lng: 79.5037},
+              stopover: true
+            },{
+              location: {lat: 13.636569674389497, lng: 79.42275737892919},
+              stopover: true
+            },{
+              location: {lat: 13.637646197519338, lng: 79.42465638291173},
+              stopover: true
+            },{
+              location: {lat: 13.640174573949073, lng: 79.4252089179688},
+              stopover: true
+            },{
+              location: {lat: 13.64245236361076, lng: 79.42883057346444},
+              stopover: true
+            },{
+              location: {lat: 13.6373, lng: 79.5037},
+              stopover: true
+            }
+			
+			);
 
-									  }, {
-										position: new google.maps.LatLng(13.6288, 79.4192),
-										title: 'Hello',
-										type: 'parking'
-									  }, {
-										position: new google.maps.LatLng(13.6269, 79.3971),
-										title: 'Hello one',
-										type: 'parking'
-									  }
-									];
-									for (var i = 0; i < features.length; i++) {
-									  var marker = new google.maps.Marker({
-										position: features[i].position,
-										title: features[i].title,
-										icon: icons[features[i].type].icon,
-										map: map,
-									  });
-									};
-							        
-									
-							
-							        flightPath.setMap(map);
-							      }
-						</script>
-						<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM&callback=initMap">
-						</script>
-
+        directionsService.route({
+          origin: {lat: 13.6373, lng: 79.5037},  // Haight.
+          destination: {lat: 13.64245236361076, lng: 79.42883057346444},  // Domlur.
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<hr>';
+            }
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
     </script>
 						<script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM&callback=initMap">
