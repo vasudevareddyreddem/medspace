@@ -111,7 +111,7 @@ section.content {
 					
 				</div>
 					<div class="row" >
-						<div class="col-md-8" style="min-height:500px;" id="map">
+						<div class="col-md-8" style="min-height:540px;" id="map">
 						</div>
 						<div class="col-md-4">
 						<div class="panel panel-default" style="margin-bottom:0;border-radius:0;border-bottom:none;padding:6px 10px;margin-left:10px;background:#f44336;color:#fff;font-size:20px;">
