@@ -105,14 +105,16 @@ hr {
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="card">
 				<div class="header">
-					<h2>Vehicle Route Map</h2>
+					<h2><?php echo isset($v_details['truck_reg_no'])?$v_details['truck_reg_no']:''; ?>  &nbsp;&nbsp;&nbsp;Vehicle Route Map</h2> 
 				</div>
 				<div class="body">
-				<div class="row">
+				<form action="<?php echo base_url('hospital/vehicle_route_details/'); ?>" method="post" >
+				<input type="hidden" name="t_id" value="<?php echo isset($v_details['t_id'])?$v_details['t_id']:''; ?>">
+					   <div class="row">
 						<div class="col-md-4">
 						  <label>Pick Date</label>
 							<div class="input-group date">
-								<input type="text" name="from_date" class="form-control" id="jss-date" required>
+								<input type="text" name="from_date" class="form-control" id="jss-date" value="<?php echo isset($s_date)?$s_date:''; ?>" required>
 								<div class="input-group-addon">
 									<span class="glyphicon glyphicon-th"></span>
 								</div>
@@ -127,16 +129,22 @@ hr {
 					
 					
 				</div>
+				</form>
 					<div class="row" >
+					<?php if(count($lat_longs)>0){ ?>
 						<div class="col-md-8">
 							<div id="directions-panel"></div>
 						</div>
 						<div class="col-md-4">
 						<div class="panel panel-default" style="margin-bottom:0;border-radius:0;border-bottom:none;padding:6px 10px;margin-left:10px;background:#f44336;color:#fff;font-size:20px;">
-							Total KMS : 250
+							Total KMS : <span id="km_val"></span>
 						</div>
 						<div id="directions-panel1"></div>
 						</div>
+					<?php }else{ ?>
+					<div class="col-md-12">Vehicle data not found . Please try again</div>
+					<?Php } ?>
+						
 <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM"></script>
 
 <div id="map_canvas" style="width:100%;height:90%;"></div>
@@ -248,26 +256,18 @@ function calcRoute() {
   var travelMode = google.maps.DirectionsTravelMode.DRIVING;
 var waypts = [];
         waypts.push(
+		<?php if(isset($lat_longs) && count($lat_longs)>0){ ?>
+		<?php foreach($lat_longs as $li){?>
 			{
-              location: {lat: 13.636569674389497, lng: 79.42275737892919},
+              location: {lat: <?php echo isset($li['lat'])?$li['lat']:'0'; ?>, lng: <?php echo isset($li['lng'])?$li['lng']:'0'; ?>},
               stopover: true
             },
-			{
-              location: {lat: 13.637646197519338, lng: 79.42465638291173},
-              stopover: true
-            },
-			{
-              location: {lat: 13.640174573949073, lng: 79.4252089179688},
-              stopover: true
-            },{
-              location: {lat: 13.64245236361076, lng: 79.42883057346444},
-              stopover: true
-            }
-			
+		<?php } ?>
+		<?php } ?>
 			);
   var request = {
-    origin: {lat: 13.6373, lng: 79.5037},
-    destination: {lat: 13.64245236361076, lng: 79.42883057346444},
+    origin: {lat: <?php echo isset($first['lat'])?$first['lat']:'0'; ?>, lng: <?php echo isset($first['lng'])?$first['lng']:'0'; ?>},
+    destination: {lat: <?php echo isset($last['lat'])?$last['lat']:'0'; ?>, lng: <?php echo isset($last['lng'])?$last['lng']:'0'; ?>},
 	waypoints: waypts,
     travelMode: travelMode
   };
@@ -289,13 +289,13 @@ var waypts = [];
               summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
               summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
              
-			  summaryPanel.innerHTML += route.legs[i].duration.text + '<br>';
-              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><hr>';
+			  summaryPanel.innerHTML += route.legs[i].duration.text + ' &nbsp;&nbsp;&nbsp;' + route.legs[i].distance.text +'<br>';
 			  totaldistance = totaldistance + route.legs[i].distance.value ;
 			  //alert(route.legs[i].distance.text);
 			  total = Number(route.legs[i].distance.text);
             }
 			var km = totaldistance / 1000;
+			jQuery('#km_val').append(km);
 			
 
       var bounds = new google.maps.LatLngBounds();
@@ -400,7 +400,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 //=============== ~animation funcitons =====================
 
-var car = "M17.402,0H5.643C2.526,0,0,3.467,0,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759c3.116,0,5.644-2.527,5.644-5.644 V6.584C23.044,3.467,20.518,0,17.402,0z M22.057,14.188v11.665l-2.729,0.351v-4.806L22.057,14.188z M20.625,10.773 c-1.016,3.9-2.219,8.51-2.219,8.51H4.638l-2.222-8.51C2.417,10.773,11.3,7.755,20.625,10.773z M3.748,21.713v4.492l-2.73-0.349 V14.502L3.748,21.713z M1.018,37.938V27.579l2.73,0.343v8.196L1.018,37.938z M2.575,40.882l2.218-3.336h13.771l2.219,3.336H2.575z M19.328,35.805v-7.872l2.729-0.355v10.048L19.328,35.805z";
+var car ="M6 224 c-3 -9 -6 -51 -6 -95 0 -64 3 -79 15 -79 9 0 18 -7 21 -15 8 -19 28 -19 44 0 16 20 84 20 100 0 17 -21 41 -19 47 4 3 12 11 17 19 14 11 -4 14 6 14 47 0 63 -28 110 -66 110 -15 0 -24 6 -24 15 0 23 -155 22 -164 -1z";
 var icon = {
   path: car,
   scale: .7,
@@ -515,4 +515,15 @@ google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototyp
 google.maps.Polyline.prototype.GetPointsAtDistance = google.maps.Polygon.prototype.GetPointsAtDistance;
 google.maps.Polyline.prototype.GetIndexAtDistance = google.maps.Polygon.prototype.GetIndexAtDistance;
 
+</script>
+<script>
+$(document).ready(function() {
+    $('#jss-date').datepicker(
+	{  
+		format: 'yyyy-mm-dd',
+		autoclose:true,
+		endDate: "today",
+	});
+	
+});
 </script>

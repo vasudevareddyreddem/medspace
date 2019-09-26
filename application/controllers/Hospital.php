@@ -899,14 +899,45 @@ class Hospital extends CI_Controller {
 	public  function vehicle_route_details(){
 		if($this->session->userdata('userdetails'))
 		{
-			$id=base64_decode($this->uri->segment(3));
-			if($id==''){
-					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
-					redirect('dashboard');
+			$post=$this->input->post();
+			if(isset($post) && count($post)>0){
+				$id=isset($post['t_id'])?$post['t_id']:'';
+				$d_date=isset($post['from_date'])?$post['from_date']:'';
+			}else{
+				$id=base64_decode($this->uri->segment(3));
+				$d_date=date('Y-m-d');				
 			}
-			$l_d=$this->Hospital_model->get_login_user_details($id);
-			$data['vehicle_list']=$this->Hospital_model->get_plant_vehicles($id);
+			$data['s_date']=$d_date;
+			if($id==''){
+				$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+				redirect('dashboard');
+			}
+			$pic_lat_longs=$this->Hospital_model->get_vehicle_pickup_location($id,$d_date);
+			$drop_lat_longs=$this->Hospital_model->get_vehicle_drop_location($id,$d_date);
+			if(count($pic_lat_longs)>0 && count($drop_lat_longs)>0){
+				$a_mer=array_merge($pic_lat_longs,$drop_lat_longs);
+			}else if(count($pic_lat_longs)>0){
+				$a_mer=$pic_lat_longs;
+			}else if(count($drop_lat_longs)>0){
+				$a_mer=$drop_lat_longs;
+			}else{
+				$a_mer=array();
+			}
+			if(count($a_mer)>0){
+				foreach ($a_mer as $key => $row) {
+					// replace 0 with the field's index/key
+					$dates[$key]  = $row['t'];
+				}
+
+				array_multisort($dates, SORT_ASC, $a_mer);
+			}
 			
+			
+			//echo '<pre>';print_r($a_mer);exit;
+			$data['lat_longs']=$a_mer;
+			$data['first'] = reset($data['lat_longs']);
+			$data['last'] = end($data['lat_longs']);
+			$data['v_details']=$this->Hospital_model->get_vehical_details($id);
 			$this->load->view('admin/govt/hospital_vehicle_route',$data);
 			$this->load->view('html/footer');
 			//echo '<pre>';print_r($data);exit;

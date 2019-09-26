@@ -253,6 +253,31 @@ class Hospital_model extends CI_Model
 		$this->db->order_by('t_id','desc');
         return $this->db->get()->result_array();
 	}
+	public  function get_vehical_details($id){
+		$this->db->select('truck_reg_no,t_id,email,city,owner_name,insurence_number,owner_mobile,driver_name,driver_lic_no,driver_lic_bad_no,driver_mobile,route_no')->from('trucks');		
+		$this->db->where('t_id', $id);
+        return $this->db->get()->row_array();
+	}
+	public  function get_vehicle_pickup_location($id,$date){
+		$this->db->select('hw.id,hw.current_latitude as lat,hw.current_longitude as lng,hw.create_at as t')->from('hospital_waste as hw');
+		$this->db->join('trucks', 'trucks.a_id = hw.create_by', 'left');
+		$this->db->where("hw.date", $date);
+		$this->db->where('trucks.t_id',$id);
+		$this->db->where('hw.current_latitude is NOT NULL', NULL, FALSE);	
+		$this->db->where('hw.current_longitude is NOT NULL', NULL, FALSE);			
+		$this->db->order_by('hw.id','asc');		
+        return $this->db->get()->result_array();
+	}
+	public  function get_vehicle_drop_location($id,$date){
+		$this->db->select('hw.id,hw.bio_current_latitude as lat,hw.bio_current_longitude as lng,hw.updated_time as t')->from('hospital_waste as hw');
+		$this->db->join('trucks', 'trucks.a_id = hw.create_by', 'left');
+		$this->db->where("hw.date", $date);
+		$this->db->where('trucks.t_id',$id);		
+		$this->db->where('hw.bio_current_latitude is NOT NULL', NULL, FALSE);	
+		$this->db->where('hw.bio_current_longitude is NOT NULL', NULL, FALSE);	
+		$this->db->order_by('hw.id','asc');		
+        return $this->db->get()->result_array();
+	}
 	
 	
 	
