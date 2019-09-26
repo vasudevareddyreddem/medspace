@@ -105,7 +105,7 @@ hr {
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="card">
 				<div class="header">
-					<h2><?php echo isset($v_details['truck_reg_no'])?$v_details['truck_reg_no']:''; ?>  &nbsp;&nbsp;&nbsp;Vehicle Route Map</h2> 
+					<h2>Vehicle  Number : <?php echo isset($v_details['truck_reg_no'])?$v_details['truck_reg_no']:''; ?>&nbsp;&nbsp; Route Map</h2> 
 				</div>
 				<div class="body">
 				<form action="<?php echo base_url('hospital/vehicle_route_details/'); ?>" method="post" >
