@@ -107,6 +107,9 @@ class Mobile extends REST_Controller {
 		$glassware_watse_kgs=$this->post('glassware_watse_kgs');
 		$glassware_watse_qty=$this->post('glassware_watse_qty');
 		$current_address=$this->post('current_address');
+		
+		$current_latitude =$this->post('current_latitude');
+		$current_longitude =$this->post('current_longitude');
 		if($userid ==''){
 		$message = array('status'=>0,'message'=>'User Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
@@ -147,6 +150,13 @@ class Mobile extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Current Address qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
+		if($current_latitude ==''){
+		$message = array('status'=>0,'message'=>'latitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($current_longitude ==''){
+		$message = array('status'=>0,'message'=>'longitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
 		$addgarbage=array(
 		'h_id'=>$hospital_id,
 		'genaral_waste_kgs'=>$genaral_waste_kgs,
@@ -160,6 +170,8 @@ class Mobile extends REST_Controller {
 		'glassware_watse_kgs'=>$glassware_watse_kgs,
 		'glassware_watse_qty'=>$glassware_watse_qty,
 		'current_address'=>$current_address,
+		'current_latitude'=>$current_latitude,
+		'current_longitude'=>$current_longitude,
 		'total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($infected_c_waste_kgs*$infected_c_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 		'status'=>1,
 		'date'=>date('Y-m-d'),
@@ -418,6 +430,8 @@ class Mobile extends REST_Controller {
 		$waste=$this->post('waste');
 		$scan_code=$this->post('scan_code');
 		$current_address=$this->post('current_address');
+		$current_latitude =$this->post('current_latitude');
+		$current_longitude =$this->post('current_longitude');
 		if($userid ==''){
 		$message = array('status'=>0,'message'=>'User Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
@@ -429,6 +443,13 @@ class Mobile extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($current_address ==''){
 		$message = array('status'=>0,'message'=>'Current Address qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		if($current_latitude ==''){
+		$message = array('status'=>0,'message'=>'latitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($current_longitude ==''){
+		$message = array('status'=>0,'message'=>'longitude qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
 		
@@ -471,6 +492,8 @@ class Mobile extends REST_Controller {
 		'glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
 		'glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
 		'current_address'=>$current_address,
+		'current_latitude'=>$current_latitude,
+		'current_longitude'=>$current_longitude,
 		'scan_code'=>$scan_code,
 		'total'=>($genaral_waste_kgs)+($infected_c_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($glassware_watse_kgs),
 		'status'=>1,
@@ -521,6 +544,8 @@ class Mobile extends REST_Controller {
 		$waste=$this->post('waste');
 		$scan_code=$this->post('scan_code');
 		$current_address=$this->post('current_address');
+		$bio_current_latitude=$this->post('bio_current_latitude');
+		$bio_current_longitude=$this->post('bio_current_longitude');
 		if($userid ==''){
 		$message = array('status'=>0,'message'=>'User Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
@@ -532,6 +557,13 @@ class Mobile extends REST_Controller {
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}if($current_address ==''){
 		$message = array('status'=>0,'message'=>'Current Address qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		if($bio_current_latitude ==''){
+		$message = array('status'=>0,'message'=>'latitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($bio_current_longitude ==''){
+		$message = array('status'=>0,'message'=>'longitude qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
 		
@@ -585,6 +617,8 @@ class Mobile extends REST_Controller {
 			'bio_glassware_watse_kgs'=>isset($glassware_watse_kgs)?$glassware_watse_kgs:'0',
 			'bio_glassware_watse_qty'=>isset($glassware_watse_qty)?$glassware_watse_qty:'0',
 			'bio_current_address'=>$current_address,
+			'bio_current_latitude'=>$bio_current_latitude,
+			'bio_current_longitude'=>$bio_current_longitude,
 			'updated_by'=>$userid,
 		);
 		$updat_garbage=$this->Mobile_model->update_garbage_data($get_previou_data['id'],$u_dat);
@@ -660,6 +694,8 @@ class Mobile extends REST_Controller {
 		$glassware_watse_kgs=$this->post('glassware_watse_kgs');
 		$glassware_watse_qty=$this->post('glassware_watse_qty');
 		$current_address=$this->post('current_address');
+		$bio_current_latitude=$this->post('bio_current_latitude');
+		$bio_current_longitude=$this->post('bio_current_longitude');
 		if($userid ==''){
 		$message = array('status'=>0,'message'=>'User Id is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
@@ -700,6 +736,13 @@ class Mobile extends REST_Controller {
 		$message = array('status'=>0,'message'=>'Current Address qty is required');
 		$this->response($message, REST_Controller::HTTP_OK);			
 		}
+		if($bio_current_latitude ==''){
+		$message = array('status'=>0,'message'=>'latitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}if($bio_current_longitude ==''){
+		$message = array('status'=>0,'message'=>'longitude qty is required');
+		$this->response($message, REST_Controller::HTTP_OK);			
+		}
 		$waste_details=$this->Mobile_model->get_wateid_details($waste_id);
 		$check_details=$this->Mobile_model->get_check_wateid_details($waste_id);
 		if(count($check_details)>0){
@@ -719,6 +762,8 @@ class Mobile extends REST_Controller {
 				'bio_glassware_watse_kgs'=>$glassware_watse_kgs,
 				'bio_glassware_watse_qty'=>$glassware_watse_qty,
 				'bio_current_address'=>$current_address,
+				'bio_current_latitude'=>$bio_current_latitude,
+				'bio_current_longitude'=>$bio_current_longitude,
 				'crosscheck_total'=>($genaral_waste_kgs*$genaral_waste_qty)+($infected_plastics_kgs*$infected_plastics_qty)+($infected_waste_kgs*$infected_waste_qty)+($infected_c_waste_kgs*$infected_c_waste_qty)+($glassware_watse_kgs*$glassware_watse_qty),
 				'updated_time'=>date('Y-m-d H:i:s'),
 				'updated_by'=>$userid,
