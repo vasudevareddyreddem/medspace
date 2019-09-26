@@ -58,30 +58,34 @@ class Govt_model extends CI_Model
 	/*graph purpose*/
 	
 	public function get_graph_total_hospital_list($date,$state){
-		$this->db->select('hospital_list.create_at')->from('hospital_list');
+		$this->db->select('count(hospital_list.h_id) as cnt,hospital_list.create_at')->from('hospital_list');
 		$this->db->where("DATE_FORMAT(hospital_list.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_list.create_at,'%m')");	
 		$this->db->where('hospital_list.status', 1);
 		$this->db->where('hospital_list.state',$state);
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_plants_list($date,$state){
-		$this->db->select('plant.create_at')->from('plant');
+		$this->db->select('count(plant.p_id) as  cnt,plant.create_at')->from('plant');
 		$this->db->where("DATE_FORMAT(plant.create_at,'%Y')", $date);
-		$this->db->where('plant.status !=', 2);
+		$this->db->group_by("DATE_FORMAT(plant.create_at,'%m')");	
+		$this->db->where('plant.status', 1);
 		$this->db->where('plant.state',$state);
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_truck_list($date,$state){
-		$this->db->select('trucks.create_at')->from('trucks');
+		$this->db->select('count(trucks.t_id) as  cnt,trucks.create_at')->from('trucks');
 		$this->db->where("DATE_FORMAT(trucks.create_at,'%Y')", $date);
-		$this->db->where('trucks.status !=', 2);
+		$this->db->group_by("DATE_FORMAT(trucks.create_at,'%m')");		
+		$this->db->where('trucks.status', 1);
 		$this->db->where('trucks.state',$state);
-        return $this->db->get()->result_array();
+		return $this->db->get()->result_array();
 	}
 	public function get_graph_total_waste_list($date,$st){
-		$this->db->select('hw.date,hw.total as total_waste,')->from('hospital_waste as hw');
+		$this->db->select('SUM(hw.total) as total_waste,hw.date')->from('hospital_waste as hw');
 		$this->db->join('trucks', 'trucks.a_id = hw.create_by', 'left');
 		$this->db->where("DATE_FORMAT(hw.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hw.create_at,'%m')");
 		$this->db->where('trucks.state',$st);		
         return $this->db->get()->result_array();
 	}

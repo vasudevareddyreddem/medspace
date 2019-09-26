@@ -5,43 +5,43 @@ foreach ($graph_total_hospital as $cri){
 $dat = explode("-", $cri['create_at']);
 	if($dat[1] == 12)
 	{
-	$dec++;
+	$dec=$cri['cnt'];
 	}
 	if($dat[1] == 11)
 	{
-		$nov++;
+		$nov=$cri['cnt'];
 	}
 	if($dat[1] == 10)
 	{
-		$oct++;
+		$oct=$cri['cnt'];
 	}
 	if($dat[1] == '09')
 	{
-		$sep++;
+		$sep=$cri['cnt'];
 	}if($dat[1] == '08')
 	{
-		$aug++;
+		$aug=$cri['cnt'];
 	}if($dat[1] == '07')
 	{
-		$jul++;
+		$jul=$cri['cnt'];
 	}if($dat[1] == '06')
 	{
-		$jun++;
+		$jun=$cri['cnt'];
 	}if($dat[1] == '05')
 	{
-		$may++;
+		$may=$cri['cnt'];
 	}if($dat[1] == 04)
 	{
-		$apr++;
+		$apr=$cri['cnt'];
 	}if($dat[1] == 03)
 	{
-		$mar++;
+		$mar=$cri['cnt'];
 	}if($dat[1] == 02)
 	{
-		$feb++;
+		$feb=$cri['cnt'];
 	}if($dat[1] == 01)
 	{
-		$jan++;
+		$jan=$cri['cnt'];
 	}
 }	
 } 
@@ -51,89 +51,90 @@ foreach ($graph_total_plants as $cri){
 $dat = explode("-", $cri['create_at']);
 	if($dat[1] == 12)
 	{
-	$dec1++;
+	$dec1=$cri['cnt'];
 	}
 	if($dat[1] == 11)
 	{
-		$nov1++;
+		$nov1=$cri['cnt'];
 	}
 	if($dat[1] == 10)
 	{
-		$oct1++;
+		$oct1=$cri['cnt'];
 	}
 	if($dat[1] == '09')
 	{
-		$sep1++;
+		$sep1=$cri['cnt'];
 	}if($dat[1] == '08')
 	{
-		$aug1++;
+		$aug1=$cri['cnt'];
 	}if($dat[1] == '07')
 	{
-		$jul1++;
+		$jul1=$cri['cnt'];
 	}if($dat[1] == '06')
 	{
-		$jun1++;
+		$jun1=$cri['cnt'];
 	}if($dat[1] == '05')
 	{
-		$may1++;
+		$may1=$cri['cnt'];
 	}if($dat[1] == 04)
 	{
-		$apr1++;
+		$apr1=$cri['cnt'];
 	}if($dat[1] == 03)
 	{
-		$mar1++;
+		$mar1=$cri['cnt'];
 	}if($dat[1] == 02)
 	{
-		$feb1++;
+		$feb1=$cri['cnt'];
 	}if($dat[1] == 01)
 	{
-		$jan1++;
+		$jan1=$cri['cnt'];
 	}
 }	
 } 
 $dec2=$jan2=$feb2=$mar2=$apr2=$may2=$jun2=$jul2=$aug2=$sep2=$oct2=$nov2=0;
 if(isset($graph_total_truck) && count($graph_total_truck)>0){
 foreach ($graph_total_truck as $cri){
+	//echo '<pre>';print_r($cri);exit;
 $dat = explode("-", $cri['create_at']);
 	if($dat[1] == 12)
 	{
-	$dec2++;
+	$dec2=$cri['cnt'];
 	}
 	if($dat[1] == 11)
 	{
-		$nov2++;
+		$nov2=$cri['cnt'];
 	}
 	if($dat[1] == 10)
 	{
-		$oct2++;
+		$oct2=$cri['cnt'];
 	}
 	if($dat[1] == '09')
 	{
-		$sep2++;
+		$sep2=$cri['cnt'];
 	}if($dat[1] == '08')
 	{
-		$aug2++;
+		$aug2=$cri['cnt'];
 	}if($dat[1] == '07')
 	{
-		$jul2++;
+		$jul2=$cri['cnt'];
 	}if($dat[1] == '06')
 	{
-		$jun2++;
+		$jun2=$cri['cnt'];
 	}if($dat[1] == '05')
 	{
-		$may2++;
+		$may2=$cri['cnt'];
 	}if($dat[1] == 04)
 	{
-		$apr2++;
+		$apr2=$cri['cnt'];
 	}if($dat[1] == 03)
 	{
-		$mar2++;
+		$mar2=$cri['cnt'];
 	}if($dat[1] == 02)
 	{
-		$feb2++;
+		$feb2=$cri['cnt'];
 	}if($dat[1] == 01)
 	{
-		$jan2++;
+		$jan2=$cri['cnt'];
 	}
 }	
 } 

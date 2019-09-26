@@ -87,7 +87,7 @@ class Dashboard extends CI_Controller {
 				$data['graph_total_truck']=$this->Govt_model->get_graph_total_truck_list(date('Y'),$st);
 				$data['graph_total_waste']=$this->Govt_model->get_graph_total_waste_list(date('Y'),$st);				
 				
-				//echo '<pre>';print_r($data);exit;
+				//echo '<pre>';print_r($data['graph_total_hospital']);exit;
 				$this->load->view('admin/govt/dashboard',$data);
 			}else{
 				
