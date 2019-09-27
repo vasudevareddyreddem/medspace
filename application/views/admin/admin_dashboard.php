@@ -326,10 +326,10 @@ $dat = explode("-", $cri['date']);
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
                         </div>
-                        <div class="content">
+                       <a style="color:#fff;" href="<?php echo base_url('hospital/alllist/'.base64_encode($details['a_id'])); ?>"> <div class="content">
                             <div class="text">Total Health Care Facility</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_hospital['total_hos'])?$total_hospital['total_hos']:''; ?>" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -337,10 +337,10 @@ $dat = explode("-", $cri['date']);
                         <div class="icon">
                             <i class="material-icons">local_shipping</i>
                         </div>
-                        <div class="content">
+                       <a style="color:#fff;" href="<?php echo base_url('hospital/allvehicle/'.base64_encode($details['a_id'])); ?>"> <div class="content">
                             <div class="text">Total BMW vehicle </div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($total_trucks['total_trucks'])?$total_trucks['total_trucks']:''; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
+                        </div></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

@@ -1002,5 +1002,46 @@ class Hospital extends CI_Controller {
 		}
 	}
 	
+	/* admin hospital */
+	public  function alllist(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['hospital_list']=$this->Hospital_model->get_amdin_all_hospital_list($id);
+			$this->load->view('hospital/all_hospital',$data);
+			$this->load->view('html/footer');
+			//echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
+	}
+	public  function allvehicle(){
+		if($this->session->userdata('userdetails'))
+		{
+			$id=base64_decode($this->uri->segment(3));
+			if($id==''){
+					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
+					redirect('dashboard');
+			}
+			$l_d=$this->Hospital_model->get_login_user_details($id);
+			$data['vehicle_list']=$this->Hospital_model->get_plant_vehicles($id);
+			
+			$this->load->view('admin/govt/hospital_vehicle',$data);
+			$this->load->view('html/footer');
+			//echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+		
+	}
+	
 	
 }

@@ -196,6 +196,8 @@
 											  
 											
 										  </table>
+										  <?php }else{ ?>
+											<div>Waste Data not available</div>
 										  <?php } ?>
                             </div>
                         </div>

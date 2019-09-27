@@ -306,6 +306,17 @@ class Hospital_model extends CI_Model
 	}
 	
 	
+	// hospital dashboard purpose */
+	public  function get_amdin_all_hospital_list($a_id){
+		$this->db->select('h.h_id,h.a_id,h.hospital_name,h.type,h.route_number,h.mobile,h.no_of_beds,h.email,h.city')->from('hospital_list as h');
+		$this->db->where('h.create_by',$a_id);
+		//$this->db->where('h.state',$st);
+		$this->db->where('h.status',1);
+		//$this->db->order_by('h.route_number','asc');
+		return $this->db->get()->result_array();
+	}
+	
+	
 	
 	
 

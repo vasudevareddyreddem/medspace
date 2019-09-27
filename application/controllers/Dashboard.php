@@ -90,7 +90,7 @@ class Dashboard extends CI_Controller {
 				//echo '<pre>';print_r($data['graph_total_hospital']);exit;
 				$this->load->view('admin/govt/dashboard',$data);
 			}else{
-				
+				$data['details']=$admindetails=$this->session->userdata('userdetails');
 				$data['total_hospital']=$this->Admin_model->get_total_hospital($admindetails['a_id']);
 				$data['total_plants']=$this->Admin_model->get_total_plants($admindetails['a_id']);
 				$data['total_trucks']=$this->Admin_model->get_total_trucks($admindetails['a_id']);
