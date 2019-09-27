@@ -90,6 +90,7 @@
                                     <option value ="3">45 x 21 (mm)</option>
                                     <option value ="5">48 x 24 (mm)</option>
                                     <option value ="6">38 x 25 (mm)</option>                                    
+                                    <option value ="7">50 x 50 (mm)</option>                                    
                                 </select>  
                             </div>
                         </div>
@@ -123,7 +124,7 @@
     </section>
 	<script type="text/javascript">
 	function get_p_type(id){
-		if(id==6){
+		if(id==6 || id==7){
 			$('#s_p_type').show();
 		}else{
 			$('#s_p_type').hide();
