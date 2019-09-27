@@ -428,10 +428,16 @@ class Admin_model extends CI_Model
 		$this->db->where('hos_id',$h);		
         return $this->db->get()->row_array();
 	}
-	public  function get_st_count_details($id){
+	public function get_st_count_details($id){
 		$this->db->select('*')->from('prints_count');
 		$this->db->where('created_by',$id);		
         return $this->db->get()->result_array();
+	}
+	public function get_plant_details($id){
+		$this->db->select('disposal_plant_name')->from('plant');
+		$this->db->where('create_by',$id);		
+		$this->db->order_by('p_id','desc');		
+        return $this->db->get()->row_array();
 	}
 
 }

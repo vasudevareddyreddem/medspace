@@ -298,6 +298,12 @@ class Hospital_model extends CI_Model
 		$this->db->order_by('hw.id','asc');		
         return $this->db->get()->result_array();
 	}
+	public  function get_id_hospital_details($id){
+		$this->db->select('a.name,a.email_id,a.mobile,a.profile_pic,a.qr_code')->from('hospital_list as h');		
+		$this->db->join('admin as a','a.a_id=h.a_id','left');
+		$this->db->where('h.h_id',$id);
+        return $this->db->get()->row_array();	
+	}
 	
 	
 	

@@ -62,6 +62,7 @@
 											<a href="<?php echo base_url('hospital/edit/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Edit</a> 
 											<a href="<?php echo base_url('hospital/status/'.base64_encode($list['h_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==0){ echo "Active"; }else{ echo "Deactive";} ?></a> 
 											<a href="<?php echo base_url('hospital/delete/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Delete</a>
+											<a target="_blank" href="<?php echo base_url('hospital/idcard/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Id</a>
                                             <a target="_blank" href="<?php echo base_url('prints/barcode/'.base64_encode($list['h_id'])); ?>" class="btn btn-sm btn-primary">Print Barcode</a> 											
 											</td>
                                         </tr>

@@ -42,6 +42,7 @@
 											<a href="<?php echo base_url('garbage/status/'.base64_encode($list['t_id']).'/'.base64_encode($list['status'])); ?>" class="btn btn-sm btn-primary"><?php if($list['status']==0){ echo "Active"; }else{ echo "Deactive";} ?></a> 
 											
 											<a href="<?php echo base_url('garbage/delete/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Delete</a> 
+											<a target="_blank" href="<?php echo base_url('garbage/idcard/'.base64_encode($list['t_id'])); ?>" class="btn btn-sm btn-primary">Id</a> 
 											</td>
                                         </tr>
 										

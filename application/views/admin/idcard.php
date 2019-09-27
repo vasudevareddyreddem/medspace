@@ -147,7 +147,7 @@ body {
 		<div class="id-card">
 			
 			<div class="header">
-				<h5 style="margin:0.1cm 0"><?php echo isset($details['disposal_plant_name'])?$details['disposal_plant_name']:''; ?></h5>
+				<h5 style="margin:0.1cm 0"><?php echo isset($details['plant_name'])?$details['plant_name']:''; ?></h5>
 			</div>
 			<div style="padding: 5px">
 			<div class="photo">
@@ -157,12 +157,12 @@ body {
 					<img src="<?php echo base_url('assets/plant_logo/pic.png'); ?>">
 				<?php } ?>
 			</div>
-			<h2><?php echo isset($details['disposal_plant_name'])?$details['disposal_plant_name']:''; ?></h2>
+			<h2><?php echo isset($details['name'])?$details['name']:''; ?></h2>
 			<div class="role-title"><?php echo isset($details['role'])?$details['role']:''; ?></div>
 			<div class="qr-code">
 				<img src="<?php echo base_url('assets/login_qrcode_img/'.$details['qr_code']); ?>">
 			<div class="mobile-num"><span> Mobile &nbsp;</span>: <?php echo isset($details['mobile'])?$details['mobile']:''; ?></div>
-			<div class="mobile-num"><span> Email </span> : <?php echo isset($details['email'])?$details['email']:''; ?></div>
+			<div class="mobile-num"><span> Email </span> : <?php echo isset($details['email_id'])?$details['email_id']:''; ?></div>
 			
 			
 			
