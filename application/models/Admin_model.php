@@ -183,8 +183,9 @@ class Admin_model extends CI_Model
 	
 	/*total waste*/
 	public  function get_gen_waste($a_id){
-		$this->db->select('sum(waste.total_waste) as total')->from('waste');
-		$this->db->where('waste.create_by', $a_id);		
+		$this->db->select('sum(hospital_waste.total) as total')->from('hospital_waste');
+		$this->db->join('trucks', 'trucks.a_id = hospital_waste.create_by', 'left');
+		$this->db->where('trucks.create_by',$a_id);		
         return $this->db->get()->row_array();
 	}
 	public  function get_inf_pla_waste(){
@@ -204,31 +205,36 @@ class Admin_model extends CI_Model
 	/*graph purpose*/
 	
 	public function get_graph_total_hospital_list($a_id,$date){
-		$this->db->select('hospital_list.create_at')->from('hospital_list');
+		$this->db->select('count(hospital_list.h_id) as cnt,hospital_list.create_at')->from('hospital_list');
 		$this->db->where("DATE_FORMAT(hospital_list.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_list.create_at,'%m')");	
+		$this->db->where('hospital_list.status', 1);
 		$this->db->where('hospital_list.create_by', $a_id);
-		$this->db->where('hospital_list.status !=', 2);
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_plants_list($a_id,$date){
-		$this->db->select('plant.create_at')->from('plant');
+		$this->db->select('count(plant.p_id) as  cnt,plant.create_at')->from('plant');
 		$this->db->where("DATE_FORMAT(plant.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(plant.create_at,'%m')");	
+		$this->db->where('plant.status', 1);
 		$this->db->where('plant.create_by', $a_id);
-		$this->db->where('plant.status !=', 2);
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_truck_list($a_id,$date){
-		$this->db->select('trucks.create_at')->from('trucks');
+		$this->db->select('count(trucks.t_id) as  cnt,trucks.create_at')->from('trucks');
 		$this->db->where("DATE_FORMAT(trucks.create_at,'%Y')", $date);
-		$this->db->where('trucks.create_by', $a_id);
-		$this->db->where('trucks.status !=', 2);
+		$this->db->group_by("DATE_FORMAT(trucks.create_at,'%m')");
+		$this->db->where('trucks.create_by', $a_id);		
+		$this->db->where('trucks.status', 1);
         return $this->db->get()->result_array();
 	}
 	public function get_graph_total_waste_list($a_id,$date){
-		$this->db->select('waste.create_at,waste.gen_waste_in_Kg,waste.inf_pla_waste_in_Kg,waste.inf_waste_in_Kg,waste.glassware_waste_in_kg,waste.total_waste')->from('waste');
-		$this->db->where("DATE_FORMAT(waste.create_at,'%Y')", $date);
-		//$this->db->where('waste.create_by', $a_id);
-		return $this->db->get()->result_array();
+		$this->db->select('SUM(hw.total) as total_waste,hw.date')->from('hospital_waste as hw');
+		$this->db->join('trucks', 'trucks.a_id = hw.create_by', 'left');
+		$this->db->where("DATE_FORMAT(hw.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hw.create_at,'%m')");
+		$this->db->where('trucks.create_by',$a_id);		
+        return $this->db->get()->result_array();
 	}
 	/*graph purpose*/
 	

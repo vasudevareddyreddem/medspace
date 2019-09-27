@@ -21,14 +21,14 @@ class Govt_model extends CI_Model
 	public  function get_total_plants($date,$state){
 		$this->db->select('count(plant.p_id) as total_plants')->from('plant');
 		$this->db->where("DATE_FORMAT(plant.create_at,'%Y')", $date);		
-		$this->db->where('plant.status !=', 2);
+		$this->db->where('plant.status', 1);
 		$this->db->where('plant.state',$state);
         return $this->db->get()->row_array();
 	}
 	public  function get_total_trucks($date,$state){
 		$this->db->select('count(trucks.t_id) as total_trucks')->from('trucks');
 		$this->db->where("DATE_FORMAT(trucks.create_at,'%Y')", $date);			
-		$this->db->where('trucks.status !=', 2);
+		$this->db->where('trucks.status', 1);
 		$this->db->where('trucks.state',$state);
 		return $this->db->get()->row_array();
 	}

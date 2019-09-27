@@ -171,13 +171,7 @@ $(document).ready(function() {
 					}
 				}
             },
-			cbmwtf: {
-                 validators: {
-					  notEmpty: {
-						message: 'cbmwtf is required'
-					}
-                }
-            },
+			
 			type: {
                  validators: {
 					  notEmpty: {

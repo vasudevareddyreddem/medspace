@@ -104,6 +104,26 @@ class Hospital_model extends CI_Model
 		$this->db->where('hl.state',$st);
 		return $this->db->get()->result_array();
 	}
+	public  function get_hospital_only_waste_with_dates($a_id,$from_date,$todate){
+		$this->db->select("hw.id,hl.hospital_name,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt,TIMEDIFF(if(hw.updated_time!='',hw.updated_time, NOW()),hw.create_at) as dif_hrs, REPLACE(TIMESTAMPDIFF(DAY,IF(hw.updated_time!='', `hw`.`updated_time`, NOW()), hw.create_at), '-', '') AS dif_day")->from('hospital_waste as hw');
+		$this->db->join('hospital_list  as hl', 'hl.h_id = hw.h_id', 'left');
+		$inbetweentime="date_format(hw.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'";
+		$this->db->group_by('hw.date');
+		$this->db->group_by('hw.h_id');
+		$this->db->where('hl.create_by',$a_id);
+		//$this->db->where('hl.state',$st);
+		$this->db->where($inbetweentime);
+		return $this->db->get()->result_array();
+	}
+	public  function get_hospital_only_waste_list($a_id){
+		$this->db->select("hw.id,hl.hospital_name,hl.type,hw.h_id,hw.date,hw.create_at,hw.updated_time,hw.current_address,hw.bio_current_address,sum(hw.genaral_waste_kgs) as genaral_waste_kg,sum(hw.genaral_waste_qty) as genaral_waste_qt,sum(hw.infected_plastics_kgs) as infected_plastics_kg,sum(hw.infected_plastics_qty) as infected_plastics_qt,sum(hw.infected_waste_kgs) as infected_waste_kg,sum(hw.infected_waste_qty) as infected_waste_qt,sum(hw.glassware_watse_kgs) as glassware_watse_kg,sum(hw.glassware_watse_qty) as glassware_watse_qt,sum(hw.total) as total,sum(hw.bio_genaral_waste_kgs) as bio_genaral_waste_kg,sum(hw.bio_genaral_waste_qty) as bio_genaral_waste_qt,sum(hw.bio_infected_plastics_kgs) as bio_infected_plastics_kg,sum(hw.bio_infected_plastics_qty) as bio_infected_plastics_qt,sum(hw.bio_infected_waste_kgs) as bio_infected_waste_kg,sum(hw.bio_infected_waste_qty) as bio_infected_waste_qt,sum(hw.bio_glassware_watse_kgs) as bio_glassware_watse_kg,sum(hw.bio_glassware_watse_qty) as bio_glassware_watse_qt,sum(hw.crosscheck_total) as bio_total,sum(hw.infected_c_waste_kgs) as infected_c_waste_kg,sum(hw.infected_c_waste_qty) as infected_c_waste_qt,sum(hw.bio_infected_c_waste_kgs) as bio_infected_c_waste_kg,sum(hw.bio_infected_c_waste_qty) as bio_infected_c_waste_qt,TIMEDIFF(if(hw.updated_time!='',hw.updated_time, NOW()),hw.create_at) as dif_hrs, REPLACE(TIMESTAMPDIFF(DAY,IF(hw.updated_time!='', `hw`.`updated_time`, NOW()), hw.create_at), '-', '') AS dif_day")->from('hospital_waste as hw');
+		$this->db->join('hospital_list  as hl', 'hl.h_id = hw.h_id', 'left');
+		$this->db->group_by('hw.date');
+		$this->db->group_by('hw.h_id');
+		$this->db->where('hl.create_by',$a_id);
+		//$this->db->where('hl.state',$st);
+		return $this->db->get()->result_array();
+	}
 	
 	
 	public  function check_invoice_sent_or_not($h_id,$date,$invoice_name){
