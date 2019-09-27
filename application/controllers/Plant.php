@@ -746,12 +746,13 @@ class Plant extends CI_Controller {
 					redirect('dashboard');
 				}
 				$data['details']=$this->Plant_model->get_id_plant_details($id);
+				$data['details']['role']='Plant';
 				$path = rtrim(FCPATH,"/");
 				$file_name =time().'.pdf';
 				$pdfFilePath = $path."/assets/idcards/".$file_name;
 				ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 				$html =$this->load->view('admin/idcard',$data, true); // render the view into HTML
-				//echo '<pre>';print_r($html);exit;
+				//echo '<pre>';print_r($data);exit;
 				$this->load->library('pdf');
 				$pdf = $this->pdf->load();
 				$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
