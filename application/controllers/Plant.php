@@ -736,6 +736,37 @@ class Plant extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function idcard()
+	{	
+			if($this->session->userdata('userdetails'))
+		{
+				$admindetails=$this->session->userdata('userdetails');
+				$id=base64_decode($this->uri->segment(3));
+				if($id==''){
+					redirect('dashboard');
+				}
+				$data['details']=$this->Plant_model->get_id_plant_details($id);
+				$path = rtrim(FCPATH,"/");
+				$file_name =time().'.pdf';
+				$pdfFilePath = $path."/assets/idcards/".$file_name;
+				ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+				$html =$this->load->view('admin/idcard',$data, true); // render the view into HTML
+				echo '<pre>';print_r($html);exit;
+				$this->load->library('pdf');
+				$pdf = $this->pdf->load();
+				$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+				$pdf->SetDisplayMode('fullpage');
+				$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+				$pdf->AddPage('L');
+				$pdf->WriteHTML($html); // write the HTML into the PDF
+				$pdf->Output($pdfFilePath, 'F');
+				redirect("/assets/idcards/".$file_name);
+				//echo '<pre>';print_r($data);exit;
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
     
     
 	

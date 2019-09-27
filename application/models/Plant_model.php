@@ -163,6 +163,13 @@ class Plant_model extends CI_Model
 		$this->db->where('created_by',$id);
         return $this->db->get()->row_array();	
 	}
+	/* id  card purpose */
+	public  function get_id_plant_details($id){
+		$this->db->select('p.p_id,p.email,p.mobile,p.disposal_plant_name,p.address1,p.address2,p.city,p.state,p.country,p.pincode,p.logo,a.profile_pic,a.qr_code')->from('plant as p');		
+		$this->db->join('admin as a','a.a_id=p.a_id','left');
+		$this->db->where('p.p_id',$id);
+        return $this->db->get()->row_array();
+	}
 	
 	
 
