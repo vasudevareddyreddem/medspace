@@ -219,7 +219,7 @@ class Hospital extends CI_Controller {
 						/*qr code*/
 						$barcode_name = strtoupper(substr($post['hospital_name'], 0, 5));
 						$this->load->library('ciqrcode');
-						$params['data'] =$barcode_name.$post['pincode'].$post['state'].$post['type'].$hos_save;
+						$params['data'] =$barcode_name.$post['pincode'].$post['state'].$post['type'].str_pad($hos_save, 5, '00000', STR_PAD_LEFT);
 						$params['level'] = 'H';
 						$params['size'] = 10;
 						$params['cachedir'] = FCPATH.'assets/hospital_barcodes/';
@@ -251,7 +251,8 @@ class Hospital extends CI_Controller {
 							'status'=>1,
 							'create_at'=>date('Y-m-d H:i:s'),
 							'barcode'=>$path_img,
-							'barcodetext'=>$barcode_name.$post['type'].$post['state'].$hos_save,
+							//'barcodetext'=>$barcode_name.$post['type'].$post['state'].$hos_save,
+							'barcodetext'=>$barcode_name.$post['pincode'].$post['state'].$post['type'].str_pad($hos_save, 5, '00000', STR_PAD_LEFT),
 							'create_by'=>$admindetails['a_id']
 						);
 						//echo '<pre>';print_r($addhospital);exit;
