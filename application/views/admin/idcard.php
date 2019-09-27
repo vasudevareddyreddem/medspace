@@ -16,7 +16,7 @@ body {
 			height:8.6cm;
 			width:5.5cm;
 			
-			border-radius: 10px;
+			border-radius:10px;
 			text-align: center;
 			overflow:hidden;
 			border:1px solid #ff5722;
@@ -27,15 +27,16 @@ body {
 			margin: 0 auto;
 		}
 		.header  {
-			width: auto;
+			width:5.5cm;
 			height:40px;
 			overflow:hidden;
-			background:#ff5722;
-			color:#fff;
+			background:#fff;
+			color:#000;
 			display: table-cell;
 		vertical-align: middle;
 		width:8.5cm;
 		padding:0 0.1cm
+		border-radius:10px 10px 0px 0px;
 		}
 		
 		.photo  {
@@ -163,9 +164,7 @@ body {
 			<div class="mobile-num"><span> Mobile &nbsp;</span>: <?php echo isset($details['mobile'])?$details['mobile']:''; ?></div>
 			<div class="mobile-num"><span> Email </span> : <?php echo isset($details['email'])?$details['email']:''; ?></div>
 			
-			<div style="background:#ff5722;height:1cm;border-radius:50px;margin-top:0.2cm;">
-				
-			</div>
+			
 			
 			
 			
