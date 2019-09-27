@@ -17,8 +17,6 @@
 											<th>No of Yellow Bags</th>
                                             <th>Yellow No of kgs</th>
 											
-											<th>No of Yellow(C) Bags</th>
-                                            <th>Yellow(C) No of kgs</th>
                                             
 											<th>No of Red  Bags</th>
                                             <th>Red No of kgs</th>
@@ -27,6 +25,9 @@
                                             <th>Blue No of Kgs</th>
 											<th>No of White Bags</th>
                                             <th>White No of Kgs</th>
+											
+											<th>No of Yellow(C) Bags</th>
+                                            <th>Yellow(C) No of kgs</th>
                                             <th>Date & Time</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -39,17 +40,14 @@
                                         <tr>
 											<td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
 											<td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
-											<td><?php echo htmlentities($list['infected_c_waste_qty']); ?></td>
-											<td><?php echo htmlentities($list['infected_c_waste_kgs']); ?></td>
-											
 											<td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
 											<td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
 											<td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
-
 											<td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
 											<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
-
 											<td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
+											<td><?php echo htmlentities($list['infected_c_waste_qty']); ?></td>
+											<td><?php echo htmlentities($list['infected_c_waste_kgs']); ?></td>
                                             
                                             <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>

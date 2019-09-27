@@ -34,7 +34,7 @@ class Garbage_model extends CI_Model
 		return $this->db->query($sql)->row_array();	
 	}
 	public  function get_id_driver_details($id){
-		$this->db->select('a.name,a.email_id,a.mobile,a.profile_pic,a.qr_code')->from('trucks as t');		
+		$this->db->select('a.a_id,a.name,a.email_id,a.mobile,a.profile_pic,a.qr_code')->from('trucks as t');		
 		$this->db->join('admin as a','a.a_id=t.a_id','left');
 		$this->db->where('t.t_id',$id);
         return $this->db->get()->row_array();	

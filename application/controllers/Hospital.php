@@ -979,9 +979,9 @@ class Hospital extends CI_Controller {
 				$plant_name=$this->Admin_model->get_plant_details($admindetails['a_id']);
 				$data['details']=$this->Hospital_model->get_id_hospital_details($id);
 				$data['details']['plant_name']=isset($plant_name['disposal_plant_name'])?$plant_name['disposal_plant_name']:'';
-				$data['details']['role']='BMW Vehicle Driver';
+				$data['details']['role']='HCF';
 				$path = rtrim(FCPATH,"/");
-				$file_name =time().'.pdf';
+				$file_name =$data['details']['a_id'].'.pdf';
 				$pdfFilePath = $path."/assets/idcards/".$file_name;
 				ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 				$html =$this->load->view('admin/idcard',$data, true); // render the view into HTML

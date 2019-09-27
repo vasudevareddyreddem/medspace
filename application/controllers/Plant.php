@@ -750,7 +750,7 @@ class Plant extends CI_Controller {
 				$data['details']['plant_name']=isset($plant_name['disposal_plant_name'])?$plant_name['disposal_plant_name']:'';
 				$data['details']['role']='Plant';
 				$path = rtrim(FCPATH,"/");
-				$file_name =time().'.pdf';
+				$file_name =$data['details']['a_id'].'.pdf';
 				$pdfFilePath = $path."/assets/idcards/".$file_name;
 				ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 				$html =$this->load->view('admin/idcard',$data, true); // render the view into HTML

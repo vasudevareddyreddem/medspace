@@ -165,7 +165,7 @@ class Plant_model extends CI_Model
 	}
 	/* id  card purpose */
 	public  function get_id_plant_details($id){
-		$this->db->select('a.name,a.email_id,a.mobile,a.profile_pic,a.qr_code')->from('plant as p');		
+		$this->db->select('a.a_id,a.name,a.email_id,a.mobile,a.profile_pic,a.qr_code')->from('plant as p');		
 		$this->db->join('admin as a','a.a_id=p.a_id','left');
 		$this->db->where('p.p_id',$id);
         return $this->db->get()->row_array();
