@@ -604,13 +604,10 @@ class Hospital extends CI_Controller {
 			if($admindetails['role']==1){
 				$post=$this->input->post();
 				//echo '<pre>';print_r($post);exit;
-					if(isset($post['f_date']) && $post['f_date']!='' || isset($post['t_date']) && $post['t_date']!=''){
-						
-						$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($admindetails['a_id'],$post['f_date'],$post['t_date']);
-						//echo '<pre>';print_r($data);exit;
+					if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+						$data['waste_list']=$this->Hospital_model->get_hospital_only_waste_with_dates($admindetails['a_id'],$post['from_date'],$post['to_date']);
 					}else{
-						$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($admindetails['a_id']);
-
+						$data['waste_list']=$this->Hospital_model->get_hospital_only_waste_list($admindetails['a_id']);
 					}
 					$path = rtrim(FCPATH,"/");
 					$file_name =time().'.pdf';
