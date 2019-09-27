@@ -620,6 +620,7 @@ class Hospital extends CI_Controller {
 					$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
 					$pdf->SetDisplayMode('fullpage');
 					$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+					$pdf->AddPage('L');
 					$pdf->WriteHTML($html); // write the HTML into the PDF
 					$pdf->Output($pdfFilePath, 'F');
 					redirect("/assets/waste-pdf/".$file_name);

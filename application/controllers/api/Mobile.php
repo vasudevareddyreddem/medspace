@@ -72,6 +72,32 @@ class Mobile extends REST_Controller {
 			}
 
 	}
+	public function login_with_barcode_post()
+    {
+        
+        $code=$this->post('code');
+		if($code ==''){
+			$message = array('status'=>0,'message'=>'Code is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+		}
+		$check_login=$this->Mobile_model->check_login_with_barcode($code);
+		//echo '<pre>';print_r($check_login);exit;
+			if(count($check_login)>0){
+				if($check_login['status']!=0){
+					$message = array('status'=>1,'userdetails'=>$check_login,'message'=>'User successfully Login');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					
+					$message = array('status'=>0,'message'=>'Your account is blocked. Plase conatact admin.');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+					
+			}else{
+				$message = array('status'=>0,'message'=>'Login Details are wrong. Plase try again.');
+				$this->response($message, REST_Controller::HTTP_OK);
+			}
+
+	}
 	
 	
 	public function barcode_scan_post()

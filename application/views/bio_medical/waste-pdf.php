@@ -185,7 +185,7 @@ table, th, td {
 				<td> <?php echo $cnt; ?></td>
 				<td> <?php echo htmlentities($list['hospital_name']); ?></td>
 				
-				<td title="<?php echo htmlentities($list['current_address']); ?>"><?php echo htmlentities($list['current_address']); ?></td>
+				<td title="<?php echo htmlentities($list['current_address']); ?>"><?php echo substr($list['current_address'], 0, 35); ?></td>
 				<td>
 				<?php
 				 if($list['create_at']!=''){												
