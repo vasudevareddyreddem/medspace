@@ -49,7 +49,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div style="font-size:8px">SN<?php echo $list[0]['ptcnt'] ; ?></div>
 										<div style="font-size:6px"><span><?php echo $list[0]['category'] ; ?> </span> Bag</div>
 									</td>
@@ -76,7 +76,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div style="font-size:8px">SN<?php echo $list[1]['ptcnt'] ; ?></div>
 										<div style="font-size:6px"><span><?php echo $list[1]['category'] ; ?> </span> Bag</div>
 									</td>
@@ -102,7 +102,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[2]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[2]['category'] ; ?>-col"><?php if($list[2]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div style="font-size:8px">SN<?php echo $list[2]['ptcnt'] ; ?></div>
 										<div style="font-size:6px"><span><?php echo $list[2]['category'] ; ?> </span> Bag</div>
 									</td>
@@ -125,7 +125,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[3]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[3]['category'] ; ?>-col"><?php if($list[3]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div style="font-size:8px">SN<?php echo $list[3]['ptcnt'] ; ?></div>
 										<div style="font-size:6px"><span><?php echo $list[3]['category'] ; ?> </span> Bag</div>
 									</td>

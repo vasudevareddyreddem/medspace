@@ -58,7 +58,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[0]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[0]['ptcnt'] ; ?></div>
 									</td>
 									<td rowspan="4"  style="vertical-align: top;text-align:left" ><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
@@ -93,7 +93,7 @@
 							<tbody>
 								<tr>
 								<td style="text-align:center">
-										<div style="text-align:center" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+										<div style="text-align:center;line-height: 20px;" class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[1]['ptcnt'] ; ?></div>
 									</td>
 									<td rowspan="4" style="text-align:left"><img style="width:auto;height:10mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>

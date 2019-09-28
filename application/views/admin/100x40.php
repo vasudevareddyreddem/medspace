@@ -9,26 +9,26 @@
 }
 .yellow-col{
 	background-color:yellow;
-	width:30px;
-	height:30px;
+	width:7mm;
+   height:7mm;
 	margin:0 auto;
 }
 .red-col{
 	background-color:red;
-	width:30px;
-	height:30px;
+	width:7mm;
+   height:7mm;
 	margin:0 auto;
 }
 .blue-col{
 	background-color:blue;
-	width:30px;
-	height:30px;
+	width:7mm;
+   height:7mm;
 	margin:0 auto;
 }
 .white-col{
 	background-color:f5f5f5;
-	width:30px;
-	height:30px;
+	width:7mm;
+   height:7mm;
 	margin:0 auto;
 
 </style>

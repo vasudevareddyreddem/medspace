@@ -46,7 +46,7 @@
                <div>
                   <img style="width:auto;height:12.5mm;padding:0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
                </div>
-               <div style="position:absolute;top:2mm;left:2mm" class="<?php echo $list[0]['category'] ; ?>-col"></div>
+               <div style="position:absolute;top:2mm;left:2mm;line-height: 25px;" class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
             </div>
             <div >
                <div style="padding:0px;margin:0px;font-size:11px"><?php echo $list[0]['barcodetext'] ; ?></span></div>
@@ -63,7 +63,7 @@
                <div>
                   <img style="width:auto;height:12.5mm;padding:0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" >
                </div>
-               <div style="position:absolute;top:2mm;left:2mm" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+               <div style="position:absolute;top:2mm;left:2mm;line-height: 25px;" class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
             </div>
             <div >
                <div style="padding:0px;margin:0px;font-size:11px"><?php echo $list[1]['barcodetext'] ; ?></span></div>
@@ -79,7 +79,7 @@
                <div>
                   <img style="width:auto;height:12.5mm;padding:0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" >
                </div>
-               <div style="position:absolute;top:2mm;left:2mm" class="<?php echo $list[2]['category'] ; ?>-col"></div>
+               <div style="position:absolute;top:2mm;left:2mm;line-height: 25px;" class="<?php echo $list[2]['category'] ; ?>-col"><?php if($list[2]['type']=='Yellow(C)'){ echo "C";} ?></div>
             </div>
             <div >
                <div style="padding:0px;margin:0px;font-size:11px"><?php echo $list[2]['barcodetext'] ; ?></span></div>
@@ -95,7 +95,7 @@
                <div>
                   <img style="width:auto;height:12.5mm;padding:0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" >
                </div>
-               <div style="position:absolute;top:2mm;left:2mm" class="<?php echo $list[3]['category'] ; ?>-col"></div>
+               <div style="position:absolute;top:2mm;left:2mm;line-height: 25px;" class="<?php echo $list[3]['category'] ; ?>-col"><?php if($list[3]['type']=='Yellow(C)'){ echo "C";} ?></div>
             </div>
             <div >
                <div style="padding:0px;margin:0px;font-size:11px"><?php echo $list[3]['barcodetext'] ; ?></span></div>
