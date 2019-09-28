@@ -14,23 +14,35 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-											<th>No of Yellow Bags</th>
-                                            <th>Yellow No of kgs</th>
+											<td colspan="2" style="background:yellow;height:40px;"></td>
+											<td colspan="2" style="background:red;height:40px;"></td>
+											<td colspan="2" style="background:blue;height:40px;"></td>
+											<td colspan="2" style="background:#f5f5f5;height:40px;"></td>
+											<td colspan="2" style="background:yellow;height:40px;text-align:center;vertical-align:middle;font-size:25px;">C </td>
+											<td style="border-bottom:0px"> &nbsp;</td>
+											<td style="border-bottom:0px"> &nbsp;</td>
+											<td style="border-bottom:0px"> &nbsp;</td>
+											
+											
+										</tr>
+                                        <tr>
+											<th rowspan="">No of  Bags</th>
+                                            <th> No of kgs</th>
 											
                                             
-											<th>No of Red  Bags</th>
-                                            <th>Red No of kgs</th>
+											<th>No of   Bags</th>
+                                            <th> No of kgs</th>
 											
-                                           	<th>No of Blue Bags</th>
-                                            <th>Blue No of Kgs</th>
-											<th>No of White Bags</th>
-                                            <th>White No of Kgs</th>
+                                           	<th>No of  Bags</th>
+                                            <th> No of Kgs</th>
+											<th>No of  Bags</th>
+                                            <th> No of Kgs</th>
 											
-											<th>No of Yellow(C) Bags</th>
-                                            <th>Yellow(C) No of kgs</th>
-                                            <th>Date & Time</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+											<th>No of  Bags</th>
+                                            <th > No of kgs</th>
+                                            <th style="border-top:0px" >Date & Time</th>
+                                            <th style="border-top:0px">Status</th>
+                                            <th style="border-top:0px">Action</th>
                                         </tr>
                                     </thead>
                                     <?php if(isset($garbage_list) && count($garbage_list)>0){ ?>
