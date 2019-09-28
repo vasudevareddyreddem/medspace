@@ -84,7 +84,7 @@ class Prints extends CI_Controller {
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
 				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
 				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
-				for ($k = 0 ; $k < 10; $k++){
+				for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
@@ -107,11 +107,16 @@ class Prints extends CI_Controller {
 					$details[]=$print_data;
 				$cnt ++;
 				}
+				if($pt_cnt['cnt']==''){
+					$p_t=0;
+				}else{
+					$p_t=$pt_cnt['cnt'];
+				}
 					$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
-						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
+						'tnum'=>isset($p_t)?$p_t.'-'.($cnt-1):'',
+						'num'=>48,
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
 						);
@@ -150,11 +155,16 @@ class Prints extends CI_Controller {
 					$details[]=$print_data;
 				$cnt ++;
 				}
+				if($pt_cnt['cnt']==''){
+					$p_t=0;
+				}else{
+					$p_t=$pt_cnt['cnt'];
+				}
 					$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
-						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
+						'tnum'=>isset($p_t)?$p_t.'-'.($cnt-1):'',
+						'num'=>48,
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
 						);
@@ -193,10 +203,15 @@ class Prints extends CI_Controller {
 					$details[]=$print_data;
 				$cnt ++;
 				}
+				if($pt_cnt['cnt']==''){
+					$p_t=0;
+				}else{
+					$p_t=$pt_cnt['cnt'];
+				}
 					$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
+						'tnum'=>isset($p_t)?$p_t.'-'.($cnt-1):'',
 						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
@@ -210,7 +225,8 @@ class Prints extends CI_Controller {
 				
 			}else if(isset($post['sticker_size']) && $post['sticker_size']==6){
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
-				$cnt=$pt_cnt['cnt'];
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
 				for ($k = 0 ; $k < $post['sticker_cont']; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
@@ -229,15 +245,21 @@ class Prints extends CI_Controller {
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'type'=>isset($post['category_type'])?$post['category_type']:'',
-					'ptcnt'=>isset($cnt)?$cnt:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
 				
 				$cnt++;}
+				if($pt_cnt['cnt']==''){
+					$p_t=0;
+				}else{
+					$p_t=$pt_cnt['cnt'];
+				}
+				
 					$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.$cnt:'',
+						'tnum'=>isset($p_t)?$p_t.'-'.$cnt:'',
 						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
@@ -252,7 +274,9 @@ class Prints extends CI_Controller {
 			}else if(isset($post['sticker_size']) && $post['sticker_size']==5){
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
 				//echo '<pre>';print_r($pt_cnt);exit;
-				$cnt=$pt_cnt['cnt'];for ($k = 0 ; $k < 48; $k++){
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
+				for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
@@ -270,7 +294,7 @@ class Prints extends CI_Controller {
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'type'=>isset($post['category_type'])?$post['category_type']:'',
-					'ptcnt'=>isset($cnt)?$cnt:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
 				$cnt++;}
@@ -282,7 +306,7 @@ class Prints extends CI_Controller {
 				$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>$p_t.'-'.$cnt,
+						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
 						'num'=>48,
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
@@ -296,7 +320,9 @@ class Prints extends CI_Controller {
 				
 			}else if(isset($post['sticker_size']) && $post['sticker_size']==4){
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
-				$cnt=$pt_cnt['cnt'];for ($k = 0 ; $k < 14; $k++){
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
+				for ($k = 0 ; $k < 14; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
 						$params['level'] = 'H';
@@ -314,7 +340,7 @@ class Prints extends CI_Controller {
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'type'=>isset($post['category_type'])?$post['category_type']:'',
-					'ptcnt'=>isset($cnt)?$cnt:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
 				
@@ -327,8 +353,8 @@ class Prints extends CI_Controller {
 				$a_d=array(
 						'type'=>isset($post['category_type'])?$post['category_type']:'',
 						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						'tnum'=>$p_t.'-'.$cnt,
-						'num'=>48,
+						'tnum'=>isset($p_t)?$p_t.'-'.($cnt-1):'',
+						'num'=>15,
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
 						);
@@ -341,7 +367,8 @@ class Prints extends CI_Controller {
 				
 			}else if($post['sticker_size'] && $post['sticker_size']==3){
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
-				$cnt=$pt_cnt['cnt'];
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
 				for ($k = 0 ; $k < 48; $k++){
 						$this->load->library('ciqrcode');
 						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
@@ -360,7 +387,7 @@ class Prints extends CI_Controller {
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
 					'type'=>isset($post['category_type'])?$post['category_type']:'',
-					'ptcnt'=>isset($cnt)?$cnt:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
 					$cnt++;}
@@ -372,7 +399,7 @@ class Prints extends CI_Controller {
 						$a_d=array(
 						 'type'=>isset($post['category_type'])?$post['category_type']:'',
 						 'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
-						 'tnum'=>$p_t.'-'.$cnt,
+						 'tnum'=>isset($p_t)?$p_t.'-'.($cnt-1):'',
 						 'num'=>48,
 						 'created_at'=>date('Y-m-d H:i:s'),
 						 'created_by'=>$admindetails['a_id'],
