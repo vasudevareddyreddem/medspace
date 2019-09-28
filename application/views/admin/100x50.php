@@ -42,7 +42,7 @@
 				<div>
 				   <img style="width:auto;height:30mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
-				<div style="position:absolute;top:3mm;left:3mm" class="<?php echo $list[0]['category'] ; ?>-col"></div>
+				<div style="position:absolute;top:3mm;left:3mm" class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
 			 </div>
 			 <div >
 				<div style="padding:0px;margin:0px;font-size:15px"><?php echo $list[0]['barcodetext'] ; ?></span></div>
@@ -58,7 +58,7 @@
 				<div>
 				   <img style="width:auto;height:30mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" >
 				</div>
-				<div style="position:absolute;top:3mm;left:3mm" class="<?php echo $list[1]['category'] ; ?>-col"></div>
+				<div style="position:absolute;top:3mm;left:3mm" class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
 			 </div>
 			 <div >
 				<div style="padding:0px;margin:0px;font-size:15px"><?php echo $list[1]['barcodetext'] ; ?></span></div>

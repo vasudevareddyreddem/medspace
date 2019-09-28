@@ -101,6 +101,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
@@ -117,7 +118,7 @@ class Prints extends CI_Controller {
 						//echo '<pre>';print_r($a_d);exit;
 						$this->Admin_model->save_type_count($a_d);
 						$data['print_details']=array_chunk($details,2);
-						//echo '<pre>';print_r($data);exit;
+					//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/100x50',$data);
 				$this->load->view('html/footer');
 				
@@ -143,6 +144,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
@@ -185,6 +187,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
 					);
 					$details[]=$print_data;
@@ -225,6 +228,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
@@ -265,6 +269,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
@@ -308,6 +313,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
@@ -353,6 +359,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					'ptcnt'=>isset($cnt)?$cnt:'',
 					);
 					$details[]=$print_data;
@@ -395,6 +402,7 @@ class Prints extends CI_Controller {
 					'category'=>isset($p_color)?$p_color:'',
 					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
 					'barcode'=>isset($path_img)?$path_img:'',
+					'type'=>isset($post['category_type'])?$post['category_type']:'',
 					);
 					$details[]=$print_data;
 					}
