@@ -55,14 +55,15 @@ class Dashboard extends CI_Controller {
 				//echo '<pre>';print_r($admindetails);exit;
 				$hos_details=$this->Admin_model->get_hospital_details($admindetails['a_id']);
 				$data['gen_waste_in_Kgs']=$this->Admin_model->get_hospital_gen_waste_in_Kg_details($hos_details['h_id']);
-				//echo $this->db->last_query();exit;
 				$data['inf_pla_waste_in_Kgs']=$this->Admin_model->get_hospital_inf_pla_waste_in_Kg_details($hos_details['h_id']);
 				$data['inf_waste_in_Kgs']=$this->Admin_model->get_hospital_inf_waste_in_Kg_details($hos_details['h_id']);
+				$data['inf_waste_c_in_Kgs']=$this->Admin_model->get_hospital_inf_c_waste_in_Kg_details($hos_details['h_id']);
 				$data['glassware_waste_in_kgs']=$this->Admin_model->get_hospital_glassware_waste_in_kg_details($hos_details['h_id']);
 				
 				$data['graph_gen_waste_in_Kg']=$this->Admin_model->get_hospital_graph_gen_waste_in_Kg_details($hos_details['h_id'],date('Y'));
 				$data['graph_inf_pla_waste_in_Kg']=$this->Admin_model->get_hospital_graph_inf_pla_waste_in_Kg_details($hos_details['h_id'],date('Y'));
 				$data['graph_inf_waste_in_Kg']=$this->Admin_model->get_hospital_graph_inf_waste_in_Kg_details($hos_details['h_id'],date('Y'));
+				$data['graph_inf_c_waste_in_Kg']=$this->Admin_model->get_hospital_graph_inf_c_waste_in_Kg_details($hos_details['h_id'],date('Y'));
 				$data['graph_glassware_waste_in_kg']=$this->Admin_model->get_hospital_graph_glassware_waste_in_kg_details($hos_details['h_id'],date('Y'));
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/hospital_dashboard',$data);	

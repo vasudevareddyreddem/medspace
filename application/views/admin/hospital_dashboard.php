@@ -190,6 +190,52 @@ $dat = explode("-", $cri['create_at']);
 		$jan3 += $cri['glassware_watse_kgs'];
 	}
 }	
+}
+$dec4=$nov4=$oct4=$sep4=$aug4=$jul4=$jun4=$may4=$apr4=$mar4=$feb4=$jan4=0;
+if(isset($graph_inf_c_waste_in_Kg) && count($graph_inf_c_waste_in_Kg)>0){
+foreach ($graph_inf_c_waste_in_Kg as $cri){
+$dat = explode("-", $cri['create_at']);
+	if($dat[1] == 12)
+	{
+	$dec4 += $cri['infected_c_waste_kgs'];
+	}
+	if($dat[1] == 11)
+	{
+		$nov4 += $cri['infected_c_waste_kgs'];
+	}
+	if($dat[1] == 10)
+	{
+		$oct4 += $cri['infected_c_waste_kgs'];
+	}
+	if($dat[1] == '09')
+	{
+		$sep4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == '08')
+	{
+		$aug4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == '07')
+	{
+		$jul4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == '06')
+	{
+		$jun4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == '05')
+	{
+		$may4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == 04)
+	{
+		$apr4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == 03)
+	{
+		$mar4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == 02)
+	{
+		$feb4 += $cri['infected_c_waste_kgs'];
+	}if($dat[1] == 01)
+	{
+		$jan4 += $cri['infected_c_waste_kgs'];
+	}
+}	
 } 
     $gen_waste_in_Kg = array(
     	array("y" => isset($jan)?$jan:'', "label" => "January"),
@@ -246,7 +292,21 @@ $dat = explode("-", $cri['create_at']);
     	array("y" => isset($oct3)?$oct3:'', "label" => "October"),
     	array("y" => isset($nov3)?$nov3:'', "label" => "November"),
     	array("y" => isset($dec3)?$dec3:'', "label" => "December"),
-    ); 
+    );
+	$inf_c_waste_in_Kg = array(
+    	array("y" => isset($jan4)?$jan4:'', "label" => "January"),
+    	array("y" => isset($feb4)?$feb4:'', "label" => "February"),
+    	array("y" => isset($mar4)?$mar4:'', "label" => "March"),
+    	array("y" => isset($apr4)?$apr4:'', "label" => "April "),
+    	array("y" => isset($may4)?$may4:'', "label" => "May"),
+    	array("y" => isset($jun4)?$jun4:'', "label" => "June"),
+    	array("y" => isset($jul4)?$jul4:'', "label" => "July"),
+    	array("y" => isset($aug4)?$aug4:'', "label" => "August"),
+    	array("y" => isset($sep4)?$sep4:'', "label" => "September"),
+    	array("y" => isset($oct4)?$oct4:'', "label" => "October"),
+    	array("y" => isset($nov4)?$nov4:'', "label" => "November"),
+    	array("y" => isset($dec4)?$dec4:'', "label" => "December"),
+    );	
      
     ?>
 <script>
@@ -296,6 +356,14 @@ $dat = explode("-", $cri['create_at']);
 			lineDashType: "solid", 
 			color: "#ddd",
     		dataPoints: <?php echo json_encode($gen_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
+    	},
+		{
+    		type: "spline",
+			showInLegend: true,
+			name: "Yellow(C)",
+			lineDashType: "solid", 
+			color: "#ffe821",
+    		dataPoints: <?php echo json_encode($inf_c_waste_in_Kg, JSON_NUMERIC_CHECK); ?>
     	}
 		]
     });
@@ -317,8 +385,8 @@ $dat = explode("-", $cri['create_at']);
             </div>
 
             <!-- Widgets -->
-            <div class="row clearfix">
-                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="row clearfix " style="display:flex;justfiy-content:space-around;">
+                 <div class="col" style="margin:0 10px; width:20%;">
                     <div class="info-box bg-yellow hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
@@ -329,7 +397,7 @@ $dat = explode("-", $cri['create_at']);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col" style="margin:0 10px; width:20%;">
                     <div class="info-box bg-red hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
@@ -341,7 +409,7 @@ $dat = explode("-", $cri['create_at']);
                     </div>
                 </div>
                
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="col" style="margin:0 10px; width:20%;">
                     <div class="info-box bg-blue hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
@@ -352,7 +420,7 @@ $dat = explode("-", $cri['create_at']);
                         </div>
                     </div>
                 </div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="col" style="margin:0 10px; width:20%;">
                     <div class="info-box bg-default hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">local_hospital</i>
@@ -360,6 +428,17 @@ $dat = explode("-", $cri['create_at']);
                         <div class="content">
                             <div class="text">Total White</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo isset($gen_waste_in_Kgs['gen_waste'])?$gen_waste_in_Kgs['gen_waste']:'0'; ?>" data-speed="15" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col" style="margin:0 10px; width:20%;">
+                    <div class="info-box bg-yellow hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Total Yellow(C) </div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo isset($inf_waste_c_in_Kgs['inf_c_waste'])?$inf_waste_c_in_Kgs['inf_c_waste']:'0'; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>

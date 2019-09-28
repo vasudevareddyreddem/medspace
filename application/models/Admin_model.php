@@ -243,26 +243,37 @@ class Admin_model extends CI_Model
 	
 	/* hospital graph */
 	public function get_hospital_graph_gen_waste_in_Kg_details($a_id,$date){
-		$this->db->select('hospital_waste.create_at,(hospital_waste.genaral_waste_kgs*hospital_waste.genaral_waste_qty) as genaral_waste_kgs')->from('hospital_waste');
+		$this->db->select('hospital_waste.create_at,SUM(hospital_waste.genaral_waste_kgs*hospital_waste.genaral_waste_qty) as genaral_waste_kgs')->from('hospital_waste');
 		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_waste.create_at,'%m')");	
 		$this->db->where('hospital_waste.h_id', $a_id);
         return $this->db->get()->result_array();
 	}
 	public function get_hospital_graph_inf_pla_waste_in_Kg_details($a_id,$date){
-		$this->db->select('hospital_waste.create_at,(hospital_waste.infected_plastics_kgs* hospital_waste.infected_plastics_qty) as infected_plastics_kgs')->from('hospital_waste');
+		$this->db->select('hospital_waste.create_at,SUM(hospital_waste.infected_plastics_kgs* hospital_waste.infected_plastics_qty) as infected_plastics_kgs')->from('hospital_waste');
 		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_waste.create_at,'%m')");	
 		$this->db->where('hospital_waste.h_id', $a_id);
         return $this->db->get()->result_array();
 	}
 	public function get_hospital_graph_inf_waste_in_Kg_details($a_id,$date){
-		$this->db->select('hospital_waste.create_at,(hospital_waste.infected_waste_kgs * hospital_waste.infected_waste_qty ) as infected_waste_kgs')->from('hospital_waste');
+		$this->db->select('hospital_waste.create_at,SUM(hospital_waste.infected_waste_kgs * hospital_waste.infected_waste_qty ) as infected_waste_kgs')->from('hospital_waste');
 		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_waste.create_at,'%m')");	
+		$this->db->where('hospital_waste.h_id', $a_id);
+        return $this->db->get()->result_array();
+	}
+	public function get_hospital_graph_inf_c_waste_in_Kg_details($a_id,$date){
+		$this->db->select('hospital_waste.create_at,SUM(hospital_waste.infected_c_waste_kgs * hospital_waste.infected_c_waste_qty ) as infected_c_waste_kgs')->from('hospital_waste');
+		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_waste.create_at,'%m')");	
 		$this->db->where('hospital_waste.h_id', $a_id);
         return $this->db->get()->result_array();
 	}
 	public function get_hospital_graph_glassware_waste_in_kg_details($a_id,$date){
-		$this->db->select('hospital_waste.create_at,(hospital_waste.glassware_watse_kgs * hospital_waste.glassware_watse_qty) as glassware_watse_kgs')->from('hospital_waste');
+		$this->db->select('hospital_waste.create_at,SUM(hospital_waste.glassware_watse_kgs * hospital_waste.glassware_watse_qty) as glassware_watse_kgs')->from('hospital_waste');
 		$this->db->where("DATE_FORMAT(hospital_waste.create_at,'%Y')", $date);
+		$this->db->group_by("DATE_FORMAT(hospital_waste.create_at,'%m')");	
 		$this->db->where('hospital_waste.h_id', $a_id);
         return $this->db->get()->result_array();
 	}
@@ -278,6 +289,11 @@ class Admin_model extends CI_Model
 	}
 	public function get_hospital_inf_waste_in_Kg_details($a_id){
 		$this->db->select('sum(infected_waste_kgs * infected_waste_qty) as inf_waste')->from('hospital_waste');		
+		$this->db->where('hospital_waste.h_id', $a_id);
+        return $this->db->get()->row_array();
+	}
+	public function get_hospital_inf_c_waste_in_Kg_details($a_id){
+		$this->db->select('sum(infected_c_waste_kgs * infected_c_waste_qty) as inf_c_waste')->from('hospital_waste');		
 		$this->db->where('hospital_waste.h_id', $a_id);
         return $this->db->get()->row_array();
 	}

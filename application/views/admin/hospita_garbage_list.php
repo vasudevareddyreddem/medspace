@@ -61,7 +61,7 @@
 											<td><?php echo htmlentities($list['infected_c_waste_qty']); ?></td>
 											<td><?php echo htmlentities($list['infected_c_waste_kgs']); ?></td>
                                             
-                                            <td><?php echo date('M j h:i A',strtotime(htmlentities($list['create_at'])));?></td>
+                                            <td><?php echo date('M j h:i a',strtotime(htmlentities($list['create_at'])));?></td>
                                             <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
                                             <td>
 											<?php if($list['invoice_file']!=''){ ?>
