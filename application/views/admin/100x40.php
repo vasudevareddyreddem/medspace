@@ -41,8 +41,8 @@
 					<h3 style="padding:0px;margin:5px;">SN<?php echo $list[0]['ptcnt'] ; ?></h3>
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" >
 				</div>
-				<div style="position: absolute;;top:10px;left:10px">
-					<div class="<?php echo $list[0]['category'] ; ?>-col"></div>
+				<div style="position: absolute;;top:10px;left:10px;line-height: 25px;">
+					<div class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
 					
 				</div>
 				
@@ -68,8 +68,8 @@
 					<h3 style="padding:0px;margin:5px;">SN<?php echo $list[1]['ptcnt'] ; ?></h3>
 					<img style="width:auto;height:16mm;padding:5px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="Barcode" >
 				</div>
-				<div style="position: absolute;;top:10px;left:10px">
-					<div class="<?php echo $list[1]['category'] ; ?>-col"></div>
+				<div style="position: absolute;;top:10px;left:10px;line-height: 25px;">
+					<div class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
 					
 				</div>
 				<div class="">

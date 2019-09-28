@@ -41,7 +41,7 @@
 				<div>
 					<img style="width:auto;height:30mm;padding:2px 0px;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list['barcode']); ?>" alt="<?php echo $list['barcode'] ; ?>" >
 				</div>
-				<div style="position:absolute;top:1mm;left:1mm" class="<?php echo $list['category'] ; ?>-col"></div>
+				<div style="position:absolute;top:1mm;left:1mm;line-height: 25px;" class="<?php echo $list['category'] ; ?>-col"><?php if($list['type']=='Yellow(C)'){ echo "C";} ?></div>
 			 </div>
 			 <div >
 				<div style="padding:0px;margin:0px;font-size:15px"><?php echo $list['barcodetext'] ; ?></span></div>
