@@ -44,7 +44,7 @@
 				<div style="position:absolute;top:1mm;left:1mm" class="<?php echo $list['category'] ; ?>-col"></div>
 			 </div>
 			 <div >
-				<div style="padding:0px;margin:0px;font-size:16px"><?php echo $list['barcodetext'] ; ?></span></div>
+				<div style="padding:0px;margin:0px;font-size:15px"><?php echo $list['barcodetext'] ; ?></span></div>
 			 </div>
 		  </div>
 	   </div>

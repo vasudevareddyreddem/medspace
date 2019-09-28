@@ -92,6 +92,8 @@
                                     <option value ="5">48 x 24 (mm)</option>
                                     <option value ="6">38 x 25 (mm)</option>                                    
                                     <option value ="7">50 x 50 (mm)</option>                                    
+                                    <option value ="8">45(d)</option>                                    
+                                    <option value ="9">100 x 50 (mm)</option>                                    
                                 </select>  
                             </div>
                         </div>

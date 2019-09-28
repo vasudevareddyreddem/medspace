@@ -79,7 +79,91 @@ class Prints extends CI_Controller {
 			$hcf_details=$this->Plant_model->get_hcf_details($post['hcf_name']);
 			$cbwtf_details=$this->Plant_model->get_cbwtf_details($post['cbwtf_id']);
 			//echo '<pre>';print_r($hcf_details);exit;
-			if(isset($post['sticker_size']) && $post['sticker_size']==7){
+			if(isset($post['sticker_size']) && $post['sticker_size']==9){
+				//echo '<pre>';print_r($post);exit;
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
+				for ($k = 0 ; $k < 10; $k++){
+						$this->load->library('ciqrcode');
+						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['cachedir'] = FCPATH.'assets/hospital_waste_barcodes/';
+						$path_img=microtime().'.png';
+						$path='assets/hospital_waste_barcodes/'.$path_img;
+						$params['savename'] =FCPATH.$path;
+						$g=$this->ciqrcode->generate($params);
+					$print_data=array(
+					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
+					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
+					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
+					'category'=>isset($p_color)?$p_color:'',
+					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
+					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
+					);
+					$details[]=$print_data;
+				$cnt ++;
+				}
+					$a_d=array(
+						'type'=>isset($post['category_type'])?$post['category_type']:'',
+						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
+						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+						);
+						//echo '<pre>';print_r($a_d);exit;
+						$this->Admin_model->save_type_count($a_d);
+						$data['print_details']=array_chunk($details,2);
+						//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/100x50',$data);
+				$this->load->view('html/footer');
+				
+			}else if(isset($post['sticker_size']) && $post['sticker_size']==8){
+				//echo '<pre>';print_r($post);exit;
+				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
+				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
+				$cnt=str_pad($o_cnt, 5, "00000", STR_PAD_LEFT);
+				for ($k = 0 ; $k < 48; $k++){
+						$this->load->library('ciqrcode');
+						$params['data'] =$hcf_details['h_id'].'_'.$post['category_type'].'_'.microtime();
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['cachedir'] = FCPATH.'assets/hospital_waste_barcodes/';
+						$path_img=microtime().'.png';
+						$path='assets/hospital_waste_barcodes/'.$path_img;
+						$params['savename'] =FCPATH.$path;
+						$g=$this->ciqrcode->generate($params);
+					$print_data=array(
+					'h_name'=>isset($hcf_details['hospital_name'])?$hcf_details['hospital_name']:'',
+					'barcode'=>isset($hcf_details['barcode'])?$hcf_details['barcode']:'',
+					'barcodetext'=>isset($hcf_details['barcodetext'])?$hcf_details['barcodetext']:'',
+					'category'=>isset($p_color)?$p_color:'',
+					'cbwtf'=>isset($cbwtf_details['disposal_plant_name'])?$cbwtf_details['disposal_plant_name']:'',
+					'barcode'=>isset($path_img)?$path_img:'',
+					'ptcnt'=>isset($cnt)?str_pad($cnt, 5, '00000', STR_PAD_LEFT):'',
+					);
+					$details[]=$print_data;
+				$cnt ++;
+				}
+					$a_d=array(
+						'type'=>isset($post['category_type'])?$post['category_type']:'',
+						'hos_id'=>isset($post['hcf_name'])?$post['hcf_name']:'',
+						'tnum'=>isset($pt_cnt['cnt'])?$pt_cnt['cnt'].'-'.($cnt-1):'',
+						'num'=>isset($post['sticker_cont'])?$post['sticker_cont']:'',
+						'created_at'=>date('Y-m-d H:i:s'),
+						'created_by'=>$admindetails['a_id'],
+						);
+						//echo '<pre>';print_r($a_d);exit;
+						$this->Admin_model->save_type_count($a_d);
+						$data['print_details']=array_chunk($details,4);
+						//echo '<pre>';print_r($data);exit;
+				$this->load->view('admin/45d',$data);
+				$this->load->view('html/footer');
+				
+			}else if(isset($post['sticker_size']) && $post['sticker_size']==7){
 				//echo '<pre>';print_r($post);exit;
 				$pt_cnt=$this->Admin_model->ptype_count($post['category_type'],$post['hcf_name']);
 				$o_cnt=isset($pt_cnt['cnt'])?$pt_cnt['cnt']+1:'1';
