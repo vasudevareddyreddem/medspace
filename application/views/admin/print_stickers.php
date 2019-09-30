@@ -100,17 +100,9 @@
 						<div class="form-group" id="s_p_type" style="display:none;">
                             <label class="col-lg-3 control-label">Sticker Count</label>
                             <div class="col-lg-5">
-                                <select class="form-control"  name="sticker_cont" id="sticker_cont" style="width:100%;">
-                                    <option value = "">Select</option>
-										<?php
-										for ($x =1; $x <= 50; $x++) { ?>
-											 <option value ="<?php echo $x; ?>"><?php echo $x; ?></option>
-										<?php } ?> 									
-                                </select>  
+								<input type="text" name="sticker_cont" id="sticker_cont" class="form-control" style="width:100%;" >
                             </div>
-                        </div> 
-
-                      
+                        </div>                      
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
                                 <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Generate Stickers</button>
@@ -171,6 +163,10 @@ $(document).ready(function() {
                  validators: {
 					  notEmpty: {
 						message: 'Sticker count is required'
+						},
+						regexp: {
+						regexp: /^[0-9]+$/,
+						message: 'Sticker count can only consist of digits'
 					}
                 }
             }
