@@ -137,6 +137,10 @@ class Mobile_model extends CI_Model
 			$this->db->insert("track_location",$d);
 			return $this->db->insert_id();
 	}
+	public  function update_location($id,$d){
+		$this->db->where('a_id',$id);
+		return $this->db->update('admin',$d);
+	}
 	
 	
 }

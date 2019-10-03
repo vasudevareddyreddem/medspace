@@ -176,6 +176,33 @@ class Plant_model extends CI_Model
         return $this->db->get()->row_array();
 	}
 	
+	public  function get_plant_vehicle_list($id){
+		$this->db->select('t.t_id,t.truck_reg_no')->from('plant as p');
+		$this->db->join('trucks as t', 't.create_by = p.create_by', 'left');				
+		$this->db->where('p.a_id',$id);
+		$this->db->where('t.status',1);
+        return $this->db->get()->result_array();
+	}
+	
+	public  function get_hospital_waste_rescan_data($id,$date){
+		$this->db->select('hw.id,hw.genaral_waste_kgs,hw.genaral_waste_qty,hw.infected_plastics_kgs,hw.infected_plastics_qty,hw.infected_waste_kgs,hw.infected_waste_qty,hw.infected_c_waste_kgs,hw.infected_c_waste_qty,hw.glassware_watse_kgs,hw.glassware_watse_qty,hw.total,hw.create_at')->from('trucks as t');
+		$this->db->join('hospital_waste as hw', 'hw.create_by = t.a_id', 'left');				
+		$this->db->where('hw.create_at<=',$date);
+		$this->db->where('t.t_id',$id);
+        return $this->db->get()->result_array();
+	}
+	public  function get_later_hospital_waste_rescan_data($id,$date){
+		$this->db->select('hw.id,hw.genaral_waste_kgs,hw.genaral_waste_qty,hw.infected_plastics_kgs,hw.infected_plastics_qty,hw.infected_waste_kgs,hw.infected_waste_qty,hw.infected_c_waste_kgs,hw.infected_c_waste_qty,hw.glassware_watse_kgs,hw.glassware_watse_qty,hw.total,hw.create_at')->from('trucks as t');
+		$this->db->join('hospital_waste as hw', 'hw.create_by = t.a_id', 'left');				
+		$this->db->where('hw.create_at >=',$date);
+		$this->db->where('t.t_id',$id);
+        return $this->db->get()->result_array();
+	}
+	public  function update_rescan_waste_data($id,$d){
+		$this->db->where('id',$id);
+		return $this->db->update('hospital_waste',$d);
+	}
+	
 	
 
 }

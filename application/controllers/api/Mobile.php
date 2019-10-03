@@ -859,6 +859,40 @@ class Mobile extends REST_Controller {
 					$this->response($message, REST_Controller::HTTP_OK);
 				}
 	}
+	public  function login_address_post(){
+			$a_id=$this->post('a_id');
+			$latitude=$this->post('latitude');
+			$longitude=$this->post('longitude');
+			$address=$this->post('address');
+			if($a_id ==''){
+			$message = array('status'=>0,'message'=>'User id is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($latitude ==''){
+			$message = array('status'=>0,'message'=>'latitude is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($longitude ==''){
+			$message = array('status'=>0,'message'=>'longitude is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}if($address ==''){
+			$message = array('status'=>0,'message'=>'address is required');
+			$this->response($message, REST_Controller::HTTP_OK);			
+			}
+				$ud=array(
+				'lat'=>isset($latitude)?$latitude:'',
+				'lng'=>isset($longitude)?$longitude:'',
+				'l_add'=>isset($address)?$address:'',
+				'last_update_at'=>date('Y-m-d H:i:s'),
+				);
+				$update=$this->Mobile_model->update_location($a_id,$ud);
+				//echo $this->db->last_query();exit;
+				if(count($update)>0){
+					$message = array('status'=>1,'a_id'=>$a_id,'message'=>'Address successfully updated');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}else{
+					$message = array('status'=>0,'a_id'=>$a_id,'message'=>'Technical problem will occurred. Please try again');
+					$this->response($message, REST_Controller::HTTP_OK);
+				}
+	}
 	
 	
 	

@@ -15,7 +15,6 @@ class Hospital extends CI_Controller {
 		$this->load->helper('security');
 		$this->load->library('zend');
 		$this->load->model('Hospital_model');
-		$this->load->model('customers_model','customers');
 		$this->load->model('Admin_model');
 		$this->load->library('zend');
 		if($this->session->userdata('userdetails'))
@@ -568,7 +567,35 @@ class Hospital extends CI_Controller {
 			redirect('admin');
 		}
 	}
-	
+	public function waste_list()
+	{	
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==1){
+				$post=$this->input->post();
+				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+					
+					$data['waste_list']=$this->Hospital_model->get_hospital_only_waste_with_dates($admindetails['a_id'],$post['from_date'],$post['to_date']);
+					//echo '<pre>';print_r($data);exit;
+				}else{
+					$data['waste_list']=$this->Hospital_model->get_hospital_only_waste_list($admindetails['a_id']);
+
+				}
+				//echo "<pre>";print_r($data);exit;
+				$this->load->view('bio_medical/overall_hospital_waste',$data);
+				$this->load->view('html/footer');
+				
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	public function waste_pdf()
 	{	
 		if($this->session->userdata('userdetails'))
@@ -676,13 +703,6 @@ class Hospital extends CI_Controller {
 					$login_id=base64_decode($this->uri->segment(3));
 					$data['login_id']=$login_id;
 	
-				}
-				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
-					$data['from_date']=$post['from_date'];
-					$data['to_date']=$post['to_date'];
-				}else{
-					$data['from_date']='';
-					$data['to_date']='';
 				}
 				$l_d=$this->Hospital_model->get_login_user_details($login_id);
 				$data['cbwtf_detail']=$this->Hospital_model->get_cbwtf_detail($login_id);
@@ -929,14 +949,13 @@ class Hospital extends CI_Controller {
 	public  function wasteindetails(){
 		if($this->session->userdata('userdetails'))
 		{
-			$this->load->model('Hospital_wisegraph_model');
 			$id=base64_decode($this->uri->segment(3));
 			if($id==''){
 					$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
 					redirect('dashboard');
 			}
 			$l_d=$this->Hospital_model->get_login_user_details($id);
-			$data['hos_id']=$id;
+			$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste($id);
 			//echo $this->db->last_query();
 			
 			$this->load->view('admin/govt/hospital_graph',$data);
@@ -1023,254 +1042,6 @@ class Hospital extends CI_Controller {
 		}
 		
 	}
-	public function waste_list()
-	{	
-		if($this->session->userdata('userdetails'))
-		{
-			$admindetails=$this->session->userdata('userdetails');
-			if($admindetails['role']==1){
-				$post=$this->input->post();
-				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
-					$data['from_date']=$post['from_date'];
-					$data['to_date']=$post['to_date'];
-				}else{
-					$data['from_date']='';
-					$data['to_date']='';
-				}
-				$data['a_id']=$admindetails['a_id'];
-				//echo '<pre>';print_r($post);exit;
-				$this->load->view('bio_medical/overall_hospital_waste',$data);
-				$this->load->view('html/footer');
-				
-			}else{
-				$this->session->set_flashdata('error',"you don't have permission to access");
-				redirect('dashboard');
-			}
-
-		}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	}
-	public function ajax_list()
-	{
-		if($this->session->userdata('userdetails'))
-		{
-		$a_de=$this->session->userdata('userdetails');
-		$post=$this->input->post();	
-		$list = $this->customers->get_datatables($post['aid'],$post['fdate'],$post['tdate']);
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $customers) {
-			//$add= substr($customers['current_address'], 0, 15);
-			$no++;
-			$row = array();
-			$row[] = $no;
-			$row[] = $customers->hospital_name;
-			$states = array ('BH' => 'Bedded Hospital', 'CL' => 'Clinic', 'DI' => 'Dispensary', 'HO' => 'Homeopathy', 'MH' => 'Mobile Hospital', 'SI' => 'Siddha', 'UN' => 'Unani', 'VH' => 'Veterinary Hospital', 'YO' => 'Yoga', 'AH' => 'Animal House', 'BB' => 'Blood Bank', 'DH' => 'Dental Hospital ', 'NH' => 'Nursing Home', 'PL' => 'Pathological Laboratory', 'FA' => 'Institutions/Schools/Companies etc. with First Aid facilities', 'HC' => 'Health Camp');
-			 foreach($states as $key=>$state){
-				if($customers->type==$key){
-					 $h_type=$state;
-				}
-			 }
-			$row[] = isset($h_type)?$h_type:'';
-			$row[] = substr($customers->current_address, 0, 15);
-			$row[] = date("d-m-Y", strtotime($customers->create_at));
-			$row[] = date("g:i a", strtotime($customers->create_at));
-			$row[] = number_format((float)$customers->genaral_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->genaral_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_plastics_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_plastics_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_c_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_c_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->glassware_watse_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->glassware_watse_qt, 2, '.', '');
-			if($customers->updated_time!=''){	
-				$row[] = date("d-m-Y", strtotime($customers->updated_time));
-				$row[] = date("g:i a", strtotime($customers->updated_time));
-			}else{
-				$row[] ='';
-				$row[] ='';
-			}
-			if($customers->bio_current_address!=''){
-				$row[] = substr($customers->bio_current_address, 0, 15);
-			}else{
-				$row[] = '';
-			}
-			$row[] = number_format((float)$customers->bio_genaral_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_genaral_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_plastics_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_plastics_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_c_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_c_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_glassware_watse_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_glassware_watse_qt, 2, '.', '');
-				$minutes = $customers->dif_hrs;
-				$dd=explode(':',$minutes);
-				$overaall=(($dd[0]*60)+$dd[1]);
-				$d = floor ($overaall / 1440);
-				$h = floor (($overaall - $d * 1440) / 60);
-				$m = $overaall - ($d * 1440) - ($h * 60);
-				 if($customers->dif_day>1 || $d>=1){ 											
-						if($customers->dif_day<2){ 
-								$dif_imes= '<span style="color:red;">'.$d.' d - '. $h.' hrs - '.$m.' min'.'</span>';
-								 }else{ 
-								$dif_imes= $customers->dif_day.' days';
-								}												
-					}else{ 
-						if($d=1){
-								$h=$d*24;
-							}else{
-								$h=$h;
-							}														
-						$dif_imes= '<span style="color:green;">'.$h.' hrs - '.$m.' min'.'</span>';
-					}
-			
-			
-			$row[] = isset($dif_imes)?$dif_imes:'';
-			if($customers->total!=''){
-				$b_t=$customers->total;
-			}else{
-				$b_t=0;
-			}if($customers->bio_total!=''){
-				$a_t=$customers->bio_total;
-			}else{
-				$a_t=0;
-			}
-			$all_t=(($b_t)-($a_t));
-			$row[] = $b_t.' - '.$a_t.' = '.$all_t;
-			$data[] = $row;
-		}
-
-		$output = array(
-						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->customers->count_all($post['aid'],$post['fdate'],$post['tdate']),
-						"recordsFiltered" => $this->customers->count_filtered($post['aid'],$post['fdate'],$post['tdate']),
-						"data" => $data,
-				);
-				
-		//output to json format
-		echo json_encode($output);exit;
 	
-	}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
 	
-	}
-	public function ajax_hosital_wise_waste()
-	{
-		if($this->session->userdata('userdetails'))
-		{
-			$this->load->model('Hospital_wisegraph_model');
-			$a_de=$this->session->userdata('userdetails');
-			$post=$this->input->post();	
-			$list = $this->Hospital_wisegraph_model->get_datatables($post['hid']);
-			$data = array();
-			$no = $_POST['start'];
-			foreach ($list as $customers) {
-			//$add= substr($customers['current_address'], 0, 15);
-			$no++;
-			$row = array();
-			$row[] = $no;
-			$row[] = $customers->hospital_name;
-			$states = array ('BH' => 'Bedded Hospital', 'CL' => 'Clinic', 'DI' => 'Dispensary', 'HO' => 'Homeopathy', 'MH' => 'Mobile Hospital', 'SI' => 'Siddha', 'UN' => 'Unani', 'VH' => 'Veterinary Hospital', 'YO' => 'Yoga', 'AH' => 'Animal House', 'BB' => 'Blood Bank', 'DH' => 'Dental Hospital ', 'NH' => 'Nursing Home', 'PL' => 'Pathological Laboratory', 'FA' => 'Institutions/Schools/Companies etc. with First Aid facilities', 'HC' => 'Health Camp');
-			 foreach($states as $key=>$state){
-				if($customers->type==$key){
-					 $h_type=$state;
-				}
-			 }
-			$row[] = isset($h_type)?$h_type:'';
-			$row[] = substr($customers->current_address, 0, 15);
-			$row[] = date("d-m-Y", strtotime($customers->create_at));
-			$row[] = date("g:i a", strtotime($customers->create_at));
-			$row[] = number_format((float)$customers->genaral_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->genaral_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_plastics_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_plastics_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_c_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->infected_c_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->glassware_watse_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->glassware_watse_qt, 2, '.', '');
-			if($customers->updated_time!=''){	
-				$row[] = date("d-m-Y", strtotime($customers->updated_time));
-				$row[] = date("g:i a", strtotime($customers->updated_time));
-			}else{
-				$row[] ='';
-				$row[] ='';
-			}
-			if($customers->bio_current_address!=''){
-				$row[] = substr($customers->bio_current_address, 0, 15);
-			}else{
-				$row[] = '';
-			}
-			$row[] = number_format((float)$customers->bio_genaral_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_genaral_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_plastics_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_plastics_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_c_waste_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_infected_c_waste_qt, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_glassware_watse_kg, 2, '.', '');
-			$row[] = number_format((float)$customers->bio_glassware_watse_qt, 2, '.', '');
-				$minutes = $customers->dif_hrs;
-				$dd=explode(':',$minutes);
-				$overaall=(($dd[0]*60)+$dd[1]);
-				$d = floor ($overaall / 1440);
-				$h = floor (($overaall - $d * 1440) / 60);
-				$m = $overaall - ($d * 1440) - ($h * 60);
-				 if($customers->dif_day>1 || $d>=1){ 											
-						if($customers->dif_day<2){ 
-								$dif_imes= '<span style="color:red;">'.$d.' d - '. $h.' hrs - '.$m.' min'.'</span>';
-								 }else{ 
-								$dif_imes= $customers->dif_day.' days';
-								}												
-					}else{ 
-						if($d=1){
-								$h=$d*24;
-							}else{
-								$h=$h;
-							}														
-						$dif_imes= '<span style="color:green;">'.$h.' hrs - '.$m.' min'.'</span>';
-					}
-			
-			
-			$row[] = isset($dif_imes)?$dif_imes:'';
-			if($customers->total!=''){
-				$b_t=$customers->total;
-			}else{
-				$b_t=0;
-			}if($customers->bio_total!=''){
-				$a_t=$customers->bio_total;
-			}else{
-				$a_t=0;
-			}
-			$all_t=(($b_t)-($a_t));
-			$row[] = $b_t.' - '.$a_t.' = '.$all_t;
-			$data[] = $row;
-		}
-
-		$output = array(
-						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Hospital_wisegraph_model->count_all($post['hid']),
-						"recordsFiltered" => $this->Hospital_wisegraph_model->count_filtered($post['hid']),
-						"data" => $data,
-				);
-				
-		//output to json format
-		echo json_encode($output);exit;
-	
-	}else{
-			$this->session->set_flashdata('loginerror','Please login to continue');
-			redirect('admin');
-		}
-	
-	}
 }

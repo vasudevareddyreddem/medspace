@@ -38,14 +38,28 @@ class Dashboard extends CI_Controller {
 			$admindetails=$this->session->userdata('userdetails');
 			
 			if($admindetails['role']==4){
-				$data['gen_waste_in_Kgs']=$this->Admin_model->get_gen_waste_in_Kg_details($admindetails['a_id']);
-				$data['inf_pla_waste_in_Kgs']=$this->Admin_model->get_inf_pla_waste_in_Kg_details($admindetails['a_id']);
-				$data['inf_waste_in_Kgs']=$this->Admin_model->get_inf_waste_in_Kg_details($admindetails['a_id']);
-				$data['glassware_waste_in_kgs']=$this->Admin_model->get_glassware_waste_in_kg_details($admindetails['a_id']);
-				$data['graph_gen_waste_in_Kg']=$this->Admin_model->get_graph_gen_waste_in_Kg_details($admindetails['a_id'],date('Y'));
-				$data['graph_inf_pla_waste_in_Kg']=$this->Admin_model->get_graph_inf_pla_waste_in_Kg_details($admindetails['a_id'],date('Y'));
-				$data['graph_inf_waste_in_Kg']=$this->Admin_model->get_graph_inf_waste_in_Kg_details($admindetails['a_id'],date('Y'));
-				$data['graph_glassware_waste_in_kg']=$this->Admin_model->get_graph_glassware_waste_in_kg_details($admindetails['a_id'],date('Y'));
+				
+				$a_de=$this->Admin_model->get_plant_creatred_by($admindetails['a_id']);
+				$hos_list=$this->Admin_model->get_plant_hospital_list($a_de['create_by']);
+				if(isset($hos_list) && count($hos_list)>0){
+					foreach($hos_list as $hli){
+						$h_ids[]=$hli['h_id'];
+					}
+					
+				}else{
+					$h_ids=array();
+				}
+				//echo '<pre>';print_r($h_ids);exit;
+				$data['gen_waste_in_Kgs']=$this->Admin_model->get_gen_waste_in_Kg_details($h_ids);
+				$data['inf_pla_waste_in_Kgs']=$this->Admin_model->get_inf_pla_waste_in_Kg_details($h_ids);
+				$data['inf_waste_in_Kgs']=$this->Admin_model->get_inf_waste_in_Kg_details($h_ids);
+				$data['inf_c_waste_in_Kgs']=$this->Admin_model->get_inf_c_waste_in_Kg_details($h_ids);
+				$data['glassware_waste_in_kgs']=$this->Admin_model->get_glassware_waste_in_kg_details($h_ids);
+				$data['graph_gen_waste_in_Kg']=$this->Admin_model->get_graph_gen_waste_in_Kg_details($h_ids,date('Y'));
+				$data['graph_inf_pla_waste_in_Kg']=$this->Admin_model->get_graph_inf_pla_waste_in_Kg_details($h_ids,date('Y'));
+				$data['graph_inf_waste_in_Kg']=$this->Admin_model->get_graph_inf_waste_in_Kg_details($h_ids,date('Y'));
+				$data['graph_inf_c_waste_in_Kg']=$this->Admin_model->get_graph_inf_c_waste_in_Kg_details($h_ids,date('Y'));
+				$data['graph_glassware_waste_in_kg']=$this->Admin_model->get_graph_glassware_waste_in_kg_details($h_ids,date('Y'));
 				
 				//echo '<pre>';print_r($data);exit;
 				$this->load->view('admin/plant_dashboard',$data);	

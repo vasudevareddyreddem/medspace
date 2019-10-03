@@ -770,6 +770,128 @@ class Plant extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	
+	/* rescan waste purpose */
+	public  function rescanwaste(){
+		if($this->session->userdata('userdetails'))
+		{
+				$a_d=$this->session->userdata('userdetails');
+				//echo '<pre>';print_r($a_d);exit;
+				$data['v_list']=$this->Plant_model->get_plant_vehicle_list($a_d['a_id']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('bio_medical/rescan_waste',$data);
+				$this->load->view('html/footer');
+				
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function location()
+	{	
+		$post=$this->input->post();
+		//$this->session->set_userdata('lat_add',trim($post['latitude']));
+			//$this->session->set_userdata('long_add',trim($post['longitude']));
+			$url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($post['latitude']).','.trim($_POST['longitude']).'&sensor=false&key=AIzaSyBHTMjAK03abscfm6m00ddeFAVcj58lSaM';
+			$json = @file_get_contents($url);
+			$result = json_decode($json, TRUE);
+			$address = $result['results'][0]['formatted_address'];
+		
+			if(isset($address)&& $address!=''){
+					$data['msg']=1;
+					$data['add']=$address;
+					echo json_encode($data);exit;
+			}
+	}
+	/* rescan data*/
+	public function rescanwastepost(){
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			//echo '<pre>';print_r($post);exit;
+			if(isset($post['type']) && $post['type']==2){
+					$a_d=$this->session->userdata('userdetails');
+					$two_days_back= date('Y-m-d H:i:s', strtotime('-2 days', strtotime(date('Y-m-d H:i:s'))));
+					$waste=$this->Plant_model->get_later_hospital_waste_rescan_data($post['vehicle_id'],$two_days_back);
+					if(isset($waste) && count($waste)>0){
+							foreach($waste as $li){
+								$u_d=array(
+									'bio_genaral_waste_kgs'=>isset($li['genaral_waste_kgs'])?$li['genaral_waste_kgs']:'',
+									'bio_genaral_waste_qty'=>isset($li['genaral_waste_qty'])?$li['genaral_waste_qty']:'',
+									'bio_infected_plastics_kgs'=>isset($li['infected_plastics_kgs'])?$li['infected_plastics_kgs']:'',
+									'bio_infected_plastics_qty'=>isset($li['infected_plastics_qty'])?$li['infected_plastics_qty']:'',
+									'bio_infected_waste_kgs'=>isset($li['infected_waste_kgs'])?$li['infected_waste_kgs']:'',
+									'bio_infected_waste_qty'=>isset($li['infected_waste_qty'])?$li['infected_waste_qty']:'',
+									'bio_infected_c_waste_kgs'=>isset($li['infected_c_waste_kgs'])?$li['infected_c_waste_kgs']:'',
+									'bio_infected_c_waste_qty'=>isset($li['infected_c_waste_qty'])?$li['infected_c_waste_qty']:'',
+									'bio_glassware_watse_kgs'=>isset($li['glassware_watse_kgs'])?$li['glassware_watse_kgs']:'',
+									'bio_glassware_watse_qty'=>isset($li['glassware_watse_qty'])?$li['glassware_watse_qty']:'',
+									'bio_current_address'=>isset($post['c_address'])?$post['c_address']:'',
+									'bio_current_latitude'=>isset($post['lat'])?$post['lat']:'',
+									'bio_current_longitude'=>isset($post['lng'])?$post['lng']:'',
+									'crosscheck_total'=>isset($li['total'])?$li['total']:'',
+									'updated_by'=>isset($a_d['a_id'])?$a_d['a_id']:'',
+									'updated_time'=>date("Y-m-d H:i:s"),
+								);
+								
+								$this->Plant_model->update_rescan_waste_data($li['id'],$u_d);
+								//echo '<pre>';print_r($u_d);
+							}
+							//exit;
+							
+						}
+				
+			}else{
+				
+					//echo "exit";
+					$a_d=$this->session->userdata('userdetails');
+					$two_days_back= date('Y-m-d H:i:s', strtotime('-2 days', strtotime(date('Y-m-d H:i:s'))));
+					$waste=$this->Plant_model->get_hospital_waste_rescan_data($post['vehicle_id'],$two_days_back);
+					$min=$max=date('Y-m-d H:i:s');
+					if(isset($waste) && count($waste)>0){
+							foreach($waste as $li){
+								//echo '<pre>';print_r($li);
+								$min = strtotime($li['create_at']);
+								$startDate = date('Y-m-d H:i:s', strtotime('+20 hours', $min));
+								$max =date('Y-m-d H:i:s', strtotime('+2 day', $min));
+								$datestart = strtotime($startDate);//you can change it to your timestamp;
+								$dateend = strtotime($max);//you can change it to your timestamp;
+								$daystep = 86400;
+								$datebetween = abs(($dateend - $datestart) / $daystep);
+								$randomday = rand(0, $datebetween);
+								$u_d=array(
+									'bio_genaral_waste_kgs'=>isset($li['genaral_waste_kgs'])?$li['genaral_waste_kgs']:'',
+									'bio_genaral_waste_qty'=>isset($li['genaral_waste_qty'])?$li['genaral_waste_qty']:'',
+									'bio_infected_plastics_kgs'=>isset($li['infected_plastics_kgs'])?$li['infected_plastics_kgs']:'',
+									'bio_infected_plastics_qty'=>isset($li['infected_plastics_qty'])?$li['infected_plastics_qty']:'',
+									'bio_infected_waste_kgs'=>isset($li['infected_waste_kgs'])?$li['infected_waste_kgs']:'',
+									'bio_infected_waste_qty'=>isset($li['infected_waste_qty'])?$li['infected_waste_qty']:'',
+									'bio_infected_c_waste_kgs'=>isset($li['infected_c_waste_kgs'])?$li['infected_c_waste_kgs']:'',
+									'bio_infected_c_waste_qty'=>isset($li['infected_c_waste_qty'])?$li['infected_c_waste_qty']:'',
+									'bio_glassware_watse_kgs'=>isset($li['glassware_watse_kgs'])?$li['glassware_watse_kgs']:'',
+									'bio_glassware_watse_qty'=>isset($li['glassware_watse_qty'])?$li['glassware_watse_qty']:'',
+									'bio_current_address'=>isset($post['c_address'])?$post['c_address']:'',
+									'bio_current_latitude'=>isset($post['lat'])?$post['lat']:'',
+									'bio_current_longitude'=>isset($post['lng'])?$post['lng']:'',
+									'crosscheck_total'=>isset($li['total'])?$li['total']:'',
+									'updated_by'=>isset($a_d['a_id'])?$a_d['a_id']:'',
+									'updated_time'=>date("Y-m-d H:i:s ", $datestart + ($randomday * $daystep)),
+								);
+								
+								$this->Plant_model->update_rescan_waste_data($li['id'],$u_d);
+								//echo '<pre>';print_r($u_d);
+							}
+							
+						}
+				//exit;						
+			}	
+			$this->session->set_flashdata('success','Data Successfully updated');			
+			redirect('plant/rescanwaste');
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
     
     
 	
