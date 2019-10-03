@@ -304,6 +304,11 @@ class Hospital_model extends CI_Model
 		$this->db->where('h.h_id',$id);
         return $this->db->get()->row_array();	
 	}
+	public  function get_created_by_id($id){
+		$this->db->select('t.create_by')->from('trucks as t');		
+		$this->db->where('t.t_id',$id);
+        return $this->db->get()->row_array();	
+	}
 	
 	
 	// hospital dashboard purpose */

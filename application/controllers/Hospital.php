@@ -697,11 +697,11 @@ class Hospital extends CI_Controller {
 					$a_id=$login_id;
 					$data['a_id']=$login_id;
 				}
-				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+				/*if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
 					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_with_dates($a_id,$l_d['state'],$post['from_date'],$post['to_date']);
 				}else{
 					$data['waste_list']=$this->Hospital_model->get_hospital_wise_waste_list($a_id,$l_d['state']);
-				}
+				}*/
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/govt/overall_hospital_waste',$data);
 				$this->load->view('html/footer');
@@ -880,6 +880,7 @@ class Hospital extends CI_Controller {
 		{
 			$post=$this->input->post();
 			if(isset($post) && count($post)>0){
+				//echo '<pre>';print_r('kkk');exit;
 				$id=isset($post['t_id'])?$post['t_id']:'';
 				$d_date=isset($post['from_date'])?$post['from_date']:'';
 			}else{
@@ -891,6 +892,7 @@ class Hospital extends CI_Controller {
 				$this->session->set_flashdata('error','Technical problem will occurred.Please try again');
 				redirect('dashboard');
 			}
+			$data['back_id']=$this->Hospital_model->get_created_by_id($id);
 			$pic_lat_longs=$this->Hospital_model->get_vehicle_pickup_location($id,$d_date);
 			$drop_lat_longs=$this->Hospital_model->get_vehicle_drop_location($id,$d_date);
 			if(count($pic_lat_longs)>0 && count($drop_lat_longs)>0){
@@ -912,7 +914,7 @@ class Hospital extends CI_Controller {
 			}
 			
 			
-			//echo '<pre>';print_r($a_mer);exit;
+			//echo '<pre>';print_r($data);exit;
 			$data['lat_longs']=$a_mer;
 			$data['first'] = reset($data['lat_longs']);
 			$data['last'] = end($data['lat_longs']);
@@ -1075,7 +1077,7 @@ class Hospital extends CI_Controller {
 			 }
 			$row[] = isset($h_type)?$h_type:'';
 			$row[] = substr($customers->current_address, 0, 15);
-			$row[] = date("d-m-Y", strtotime($customers->create_at));
+			$row[] = date("Y-m-d", strtotime($customers->create_at));
 			$row[] = date("g:i a", strtotime($customers->create_at));
 			$row[] = number_format((float)$customers->genaral_waste_kg, 2, '.', '');
 			$row[] = number_format((float)$customers->genaral_waste_qt, 2, '.', '');
@@ -1088,7 +1090,7 @@ class Hospital extends CI_Controller {
 			$row[] = number_format((float)$customers->glassware_watse_kg, 2, '.', '');
 			$row[] = number_format((float)$customers->glassware_watse_qt, 2, '.', '');
 			if($customers->updated_time!=''){	
-				$row[] = date("d-m-Y", strtotime($customers->updated_time));
+				$row[] = date("Y-m-d", strtotime($customers->updated_time));
 				$row[] = date("g:i a", strtotime($customers->updated_time));
 			}else{
 				$row[] ='';
@@ -1186,7 +1188,7 @@ class Hospital extends CI_Controller {
 			 }
 			$row[] = isset($h_type)?$h_type:'';
 			$row[] = substr($customers->current_address, 0, 15);
-			$row[] = date("d-m-Y", strtotime($customers->create_at));
+			$row[] = date("Y-m-d", strtotime($customers->create_at));
 			$row[] = date("g:i a", strtotime($customers->create_at));
 			$row[] = number_format((float)$customers->genaral_waste_kg, 2, '.', '');
 			$row[] = number_format((float)$customers->genaral_waste_qt, 2, '.', '');
@@ -1199,7 +1201,7 @@ class Hospital extends CI_Controller {
 			$row[] = number_format((float)$customers->glassware_watse_kg, 2, '.', '');
 			$row[] = number_format((float)$customers->glassware_watse_qt, 2, '.', '');
 			if($customers->updated_time!=''){	
-				$row[] = date("d-m-Y", strtotime($customers->updated_time));
+				$row[] = date("Y-m-d", strtotime($customers->updated_time));
 				$row[] = date("g:i a", strtotime($customers->updated_time));
 			}else{
 				$row[] ='';

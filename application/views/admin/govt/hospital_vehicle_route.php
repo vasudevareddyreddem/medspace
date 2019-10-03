@@ -1,4 +1,10 @@
+<script>
+window.location.hash="no-back-button";
+window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
+window.onhashchange=function(){window.location.hash="no-back-button";}
 
+
+</script>
 <style>
      #right-panel {
         font-family: 'Roboto','sans-serif';
@@ -106,6 +112,7 @@ hr {
 			<div class="card">
 				<div class="header">
 					<h2>Vehicle  Number : <?php echo isset($v_details['truck_reg_no'])?$v_details['truck_reg_no']:''; ?>&nbsp;&nbsp; Route Map</h2> 
+					<a class="pull-right btn btn-warning btn-sm" style="margin-bottom:10px;" href="<?php echo base_url('hospital/vehicle/'.base64_encode($back_id['create_by'])); ?>">Back</a>
 				</div>
 				<div class="body">
 				<form action="<?php echo base_url('hospital/vehicle_route_details/'); ?>" method="post" >

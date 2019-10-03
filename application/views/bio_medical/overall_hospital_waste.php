@@ -188,6 +188,10 @@ $(document).ready(function() {
             "targets": [ 0 ], //first column / numbering column
             "orderable": false, //set not orderable
         },
+        ],dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
         ],
 
     });

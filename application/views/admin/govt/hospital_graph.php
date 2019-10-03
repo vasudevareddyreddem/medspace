@@ -117,6 +117,7 @@ table_height{
         </div>
 </section>
 	<script type="text/javascript">
+	
 	var table;
 
 $(document).ready(function() {
@@ -127,6 +128,7 @@ $(document).ready(function() {
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
         "order": [], //Initial no order.
+		
 
         // Load data for the table's content from an Ajax source
         "ajax": {
@@ -143,6 +145,11 @@ $(document).ready(function() {
             "targets": [ 0 ], //first column / numbering column
             "orderable": false, //set not orderable
         },
+        ],
+		dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
         ],
 
     });

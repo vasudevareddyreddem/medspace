@@ -202,6 +202,7 @@ table_height{
         </div>
 </section>
 	<script type="text/javascript">
+	
 	var table;
 
 $(document).ready(function() {
@@ -231,6 +232,12 @@ $(document).ready(function() {
             "orderable": false, //set not orderable
         },
         ],
+		dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+		
 
     });
 
