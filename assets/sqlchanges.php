@@ -13,3 +13,11 @@ ALTER TABLE `medspace`.`hospital_waste`
   ADD COLUMN `current_longitude` VARCHAR(250) NULL AFTER `current_latitude`,
   ADD COLUMN `bio_current_latitude` VARCHAR(250) NULL AFTER `bio_current_address`,
   ADD COLUMN `bio_current_longitude` VARCHAR(250) NULL AFTER `bio_current_latitude`;
+  
+  
+  
+  
+  
+  ALTER TABLE `medspace`.`hospital_waste`   
+  ADD COLUMN `email_sent` INT(11) DEFAULT 0  NULL AFTER `updated_time`;
+

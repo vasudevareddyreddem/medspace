@@ -321,6 +321,29 @@ class Hospital_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 	
+	/* cron setup purpose */
+	
+	public function get_hospital_ids(){
+		$todate=date('m-d-Y');
+		$from_date=date('m-d-Y', mktime(0, 0, 0, date("m") , date("d") - 3, date("Y")));
+		$this->db->select('hw.h_id,hw.date,hw.current_address,SUM(hw.infected_waste_kgs) as infected_waste_kgs,SUM(hw.infected_waste_qty) as infected_waste_qty,SUM(hw.infected_c_waste_qty) as infected_c_waste_qty,SUM(hw.infected_c_waste_kgs) as infected_c_waste_kgs,SUM(hw.infected_plastics_qty) as infected_plastics_qty,SUM(hw.infected_plastics_kgs) as infected_plastics_kgs,SUM(hw.glassware_watse_qty) as glassware_watse_qty,SUM(hw.glassware_watse_kgs) as glassware_watse_kgs,SUM(hw.genaral_waste_qty) as genaral_waste_qty,SUM(hw.genaral_waste_kgs) as genaral_waste_kgs')->from('hospital_waste as hw');
+		$inbetweentime="date_format(hw.date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'";
+		$this->db->where('hw.email_sent',0);
+		$this->db->where('hw.h_id !=',0);
+		$this->db->where($inbetweentime);
+		$this->db->group_by('hw.h_id');
+		return $this->db->get()->result_array();
+	}
+	public function update_hospital_waste_sent_email($hid,$d){
+		$todate=date('m-d-Y');
+		$from_date=date('m-d-Y', mktime(0, 0, 0, date("m") , date("d") - 3, date("Y")));
+		$inbetweentime="date_format(date,'%m-%d-%Y') BETWEEN '".$from_date."' AND '".$todate."'";
+		$this->db->where('h_id',$hid);
+		$this->db->where($inbetweentime);
+		return $this->db->update('hospital_waste',$d);
+		
+	}
+	
 	
 	
 	
