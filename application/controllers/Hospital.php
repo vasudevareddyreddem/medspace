@@ -752,6 +752,7 @@ class Hospital extends CI_Controller {
 		$hos_list=$this->Hospital_model->get_hospital_ids();
 		//echo '<pre>';print_r($hos_list);exit;
 		if(isset($hos_list) && count($hos_list)>0){
+			$data['details']=$g4_plant_emai=$data['garbage_details']=$pdfFilePath='';
 			foreach($hos_list as $lis){
 				$post=$this->input->post();
 					$this->load->model('Mobile_model');
@@ -761,6 +762,7 @@ class Hospital extends CI_Controller {
 					$data['garbage_details']=$lis;
 					$data['garbage_details']['invoice_id']=$lis['h_id'].'_'.$lis['date'];
 					//echo '<pre>';print_r($g4_plant_email);
+					//exit;
 					$path = rtrim(FCPATH,"/");
 					$file_name = $data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$lis['date'].'.pdf';                
 					$data['page_title'] = $data['details']['hospital_name'].'invoice'; // pass data to the view
@@ -788,13 +790,17 @@ class Hospital extends CI_Controller {
 					if(count($check)>0){
 				
 					}else{
-						
+						//echo $data['details']['hospital_name'];
+						//echo "---";
+						//echo $data['details']['email'];
+						//echo '---';
+						///echo $g4_plant_email['email'];
 						$this->Hospital_model->insert_invoice_name($update_data);
 						//echo $this->db->last_query();
 						$this->email->set_newline("\r\n");
-						$this->email->from('admin@medspace.com');
+						$this->email->from($g4_plant_email['email']);
 						$this->email->to($data['details']['email']);
-						 $this->email->cc($g4_plant_email['email']);
+						$this->email->cc($g4_plant_email['email']);
 						$this->email->subject($data['details']['hospital_name'].' Inovice');
 						$this->email->message('Current Address:'.$lis['current_address'].' .Please find out below attachment');
 						$this->email->attach($pdfFilePath);
@@ -805,20 +811,21 @@ class Hospital extends CI_Controller {
 					$this->Hospital_model->update_hospital_waste_sent_email($data['details']['h_id'],$ud);
 					//echo $this->db->last_query();exit;
 			}
+			//exit;
 		}
 		//exit;
 	}
 	public  function cron_back(){
 		$this->load->model('Govt_model');
 		$hos_list=$this->Hospital_model->get_hospital_ids();
-		echo '<pre>';print_r($hos_list);exit;
+		//echo '<pre>';print_r($hos_list);exit;
 		if(isset($hos_list) && count($hos_list)>0){
 			foreach($hos_list as $lis){
 				$post=$this->input->post();
 					$this->load->model('Mobile_model');
 					$data['details']=$this->Mobile_model->get_all_hospital_details($lis['h_id']);
 					//echo $this->db->last_query();
-					echo '<pre>';print_r($data);exit;
+					echo '<pre>';print_r($data['details']);exit;
 					$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);
 					$data['plant_details']=$g4_plant_email;
 					$data['garbage_details']=$lis;
