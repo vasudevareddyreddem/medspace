@@ -805,6 +805,7 @@ class Hospital extends CI_Controller {
 						$this->email->message('Current Address:'.$lis['current_address'].' .Please find out below attachment');
 						$this->email->attach($pdfFilePath);
 						$this->email->send();
+						$this->email->clear(TRUE);
 						
 					}
 					$ud=array('email_sent'=>1);
