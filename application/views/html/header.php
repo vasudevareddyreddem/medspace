@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -253,6 +254,7 @@
 							</li>
 							<li>
 								<a href="<?php echo base_url('invoice/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>List</a>
+								<a href="<?php echo base_url('invoice/stock'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>Stock adjustment</a>
 							</li>
                         </ul>
                     </li>

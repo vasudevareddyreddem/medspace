@@ -87,6 +87,21 @@ class Invoice extends CI_Controller {
 			redirect('admin');
 		}
 	}
+	public function stock()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
+			$data['details']=$this->Plant_model->get_stock_details($admindetails['a_id']);
+			$this->load->view('admin/inovice_sctock',$data);
+			$this->load->view('html/footer');
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
 	public function lists()
 	{	
 			if($this->session->userdata('userdetails'))
@@ -95,6 +110,7 @@ class Invoice extends CI_Controller {
 			if($admindetails['role']==1){
 				
 				$data['invoice_list']=$this->Plant_model->get_invoice_list($admindetails['a_id']);
+				$data['sdetails']=$this->Plant_model->get_stock_details($admindetails['a_id']);
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/list_inovice_form',$data);
 				$this->load->view('html/footer');
@@ -137,7 +153,23 @@ class Invoice extends CI_Controller {
 					}else{
 						$this->Plant_model->save_bank_details($abanl_add);
 					}
-					//echo '<pre>';print_r($post);exit;
+					$y_c_q=$yc_c_q=$b_c_q=$w_c_q=$r_c_q='';
+					$cnt=0;foreach($post['color'] as $li){
+							if($post['color'][$cnt]=='Yellow'){
+								 $y_c_q +=$post['quantity'][$cnt];
+							}
+							if($post['color'][$cnt]=='Yellow(C)'){
+								$yc_c_q +=$post['quantity'][$cnt];
+							}if($post['color'][$cnt]=='Blue'){
+								$b_c_q +=$post['quantity'][$cnt];
+							}if($post['color'][$cnt]=='White'){
+								$w_c_q +=$post['quantity'][$cnt];
+							}if($post['color'][$cnt]=='Red'){
+								$r_c_q +=$post['quantity'][$cnt];
+							}
+					$cnt++;}
+					
+					//echo '<pre>';print_r($y_c_q);exit;
 					$path = rtrim(FCPATH,"/");
 					$file_name = $data['p_details']['p_id'].'_'.$data['hcf_details']['h_id'].time().'.pdf';                
 					$data['page_title'] = $data['hcf_details']['hospital_name'].'invoice'; // pass data to the view
@@ -159,16 +191,74 @@ class Invoice extends CI_Controller {
 						'plant_id'=>isset($post['plant_id'])?$post['plant_id']:'',
 						'hcf_id'=>isset($post['hcf_id'])?$post['hcf_id']:'',
 						'invoice_name'=>isset($file_name)?$file_name:'',
+						'yellow'=>isset($y_c_q)?$y_c_q:'',
+						'yellowc'=>isset($yc_c_q)?$yc_c_q:'',
+						'blue'=>isset($b_c_q)?$b_c_q:'',
+						'red'=>isset($r_c_q)?$r_c_q:'',
+						'white'=>isset($w_c_q)?$w_c_q:'',
 						'pwd'=>isset($data['p_details']['pincode'])?$data['p_details']['pincode']:'',
 						'created_at'=>date('Y-m-d H:i:s'),
 						'created_by'=>$admindetails['a_id'],
 						);
 					$this->Plant_model->save_novice_list($u_add);
 					//echo $this->db->last_query();exit;
+					
+					/* stock updte */
+					$sdetails=$this->Plant_model->get_stock_details($admindetails['a_id']);
+					$ad=array(
+						 'yellow'=>isset($sdetails['yellow'])?$sdetails['yellow']-$y_c_q:'',
+						 'red'=>isset($sdetails['red'])?$sdetails['red']-$r_c_q:'',
+						 'white'=>isset($sdetails['white'])?$sdetails['white']-$w_c_q:'',
+						 'blue'=>isset($sdetails['blue'])?$sdetails['blue']-$b_c_q:'',
+						 'yellowc'=>isset($sdetails['yellowc'])?$sdetails['yellowc']-$yc_c_q:'',
+						 'updated_at'=>date('Y-m-d H:i:s'),
+						);
+						$save=$this->Plant_model->update_stock_details($admindetails['a_id'],$ad);
+					/* stock updte */
 					redirect("/assets/invoices_form/".$file_name);
 				
 			
 
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+
+	public  function stockpost(){
+		if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			//echo '<pre>';print_r($admindetails);exit;
+			$post=$this->input->post();
+			$ad=array(
+			 'yellow'=>isset($post['yellow'])?$post['yellow']:'',
+			 'red'=>isset($post['red'])?$post['red']:'',
+			 'white'=>isset($post['white'])?$post['white']:'',
+			 'blue'=>isset($post['blue'])?$post['blue']:'',
+			 'yellowc'=>isset($post['yellowc'])?$post['yellowc']:'',
+			 'created_at'=>date('Y-m-d H:i:s'),
+			 'created_by'=>isset($admindetails['a_id'])?$admindetails['a_id']:'',
+			);
+			$check=$this->Plant_model->stcok_check($admindetails['a_id']);
+			if(count($check)>0){
+				unset($ad['created_at']);
+				$ad['updated_at']=date('Y-m-d H:i:s');
+				$save=$this->Plant_model->update_stock_details($admindetails['a_id'],$ad);
+			}else{
+				$save=$this->Plant_model->save_stock_details($ad);
+			}
+			if(count(save)>0){
+				if(count($check)>0){
+					$this->session->set_flashdata('success','stock updated successfully');
+				}else{
+				 $this->session->set_flashdata('success','stock added successfully');
+				}
+				redirect('invoice/stock');
+			}else{
+				$this->session->set_flashdata('success',"Temporary password sent to your registered mobile number check it once");
+				redirect('invoice/stock');
+			}
 		}else{
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');

@@ -131,7 +131,7 @@ class Plant_model extends CI_Model
         return $this->db->get()->result_array();	
 	}
 	public function get_invoice_list($admin_id){
-		$this->db->select('cil.e_way_bill_no,cil.c_i_id,cil.invoice_id,cil.invoice_name,h.hospital_name,p.disposal_plant_name,cil.created_at')->from('cover_invoice_list as cil');
+		$this->db->select('cil.e_way_bill_no,cil.c_i_id,cil.invoice_id,cil.invoice_name,h.hospital_name,p.disposal_plant_name,cil.created_at,yellow,yellowc,blue,red,white')->from('cover_invoice_list as cil');
 		$this->db->join('hospital_list as h', 'h.h_id = cil.hcf_id', 'left');
 		$this->db->join('plant as p', 'p.p_id = cil.plant_id', 'left');		
 		$this->db->where('cil.created_by', $admin_id);
@@ -202,6 +202,25 @@ class Plant_model extends CI_Model
 		$this->db->where('id',$id);
 		return $this->db->update('hospital_waste',$d);
 	}
+	public  function save_stock_details($d){
+		$this->db->insert('invoice_stock',$d);
+		return $insert_id = $this->db->insert_id();
+	}
+	public  function stcok_check($id){
+		$this->db->select('st_id')->from('invoice_stock');		
+		$this->db->where('created_by',$id);
+        return $this->db->get()->row_array();	
+	}public  function get_stock_details($id){
+		$this->db->select('*')->from('invoice_stock');		
+		$this->db->where('created_by',$id);
+        return $this->db->get()->row_array();	
+	}
+	public  function update_stock_details($id,$d){
+		$this->db->where('created_by',$id);
+		return $this->db->update('invoice_stock',$d);
+	}
+	
+	
 	
 	
 

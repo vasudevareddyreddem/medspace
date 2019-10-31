@@ -18,6 +18,8 @@
                                             <th>e-Way Bill No</th>
                                             <th>HCF</th>
                                             <th>Plant</th>
+                                            <th>Used Color Quantity</th>
+                                            <th>Remaining Color Quantity</th>
                                             <th>Created Date & Time</th>
 											<th>Action</th>
                                         </tr>
@@ -32,6 +34,22 @@
 														<td><?php echo ($list['e_way_bill_no']); ?></td>
 														<td><?php echo ($list['hospital_name']); ?></td>
 														<td><?php echo ($list['disposal_plant_name']); ?></td>
+														<td>
+															Yellow : <?php echo isset($list['yellow'])?$list['yellow']:'0'; ?>,
+															Red : <?php echo isset($list['red'])?$list['red']:'0'; ?>,
+															White : <?php echo isset($list['white'])?$list['white']:'0'; ?>,
+															Blue : <?php echo isset($list['blue'])?$list['blue']:'0'; ?>,
+															Yellow(c) : <?php echo isset($list['yellowc'])?$list['yellowc']:'0'; ?>
+															
+														</td>
+														<td>
+															Yellow : <?php echo isset($sdetails['yellow'])?$sdetails['yellow']:'0'; ?>,
+															Red : <?php echo isset($sdetails['red'])?$sdetails['red']:'0'; ?>,
+															White : <?php echo isset($sdetails['white'])?$sdetails['white']:'0'; ?>,
+															Blue : <?php echo isset($sdetails['blue'])?$sdetails['blue']:'0'; ?>,
+															Yellow(c) : <?php echo isset($sdetails['yellowc'])?$sdetails['yellowc']:'0'; ?>
+															
+														</td>
 														<td><?php echo date('Y M j h:i A',strtotime(htmlentities($list['created_at'])));?></td>
 														<td>
 															<a download target="_blank" href="<?php echo base_url('assets/invoices_form/'.$list['invoice_name']); ?>" class="btn btn-sm btn-primary">Download</a> 
