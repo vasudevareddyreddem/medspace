@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Colour Invoice List
+                                Covers Invoice List
                             </h2>
                          
                         </div>
@@ -18,8 +18,8 @@
                                             <th>e-Way Bill No</th>
                                             <th>HCF</th>
                                             <th>Plant</th>
-                                            <th>Used Color Quantity</th>
-                                            <th>Remaining Color Quantity</th>
+                                            <th>Used Covers Quantity</th>
+                                            <th>Remaining Covers Quantity</th>
                                             <th>Created Date & Time</th>
 											<th>Action</th>
                                         </tr>

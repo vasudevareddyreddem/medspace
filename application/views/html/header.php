@@ -243,7 +243,7 @@
                         </ul>
                     </li>
 					
-					<li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/lists')){echo "active"; } ?>">
+					<li class="<?php if(isset($u_url) && $u_url==base_url('invoice/index')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/checkpermission')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/lists')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/stcokhisotory')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/addstock')){echo "active"; } ?><?php if(isset($u_url) && $u_url==base_url('invoice/stock')){echo "active"; } ?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">ac_unit</i>
                             <span>Cover invoice</span>
@@ -254,7 +254,9 @@
 							</li>
 							<li>
 								<a href="<?php echo base_url('invoice/lists'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>List</a>
-								<a href="<?php echo base_url('invoice/stock'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>Stock adjustment</a>
+								<a href="<?php echo base_url('invoice/addstock'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>Stock add</a>
+								<a href="<?php echo base_url('invoice/stcokhisotory'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>Stock History</a>
+								<a href="<?php echo base_url('invoice/stock'); ?>">  <i class="material-icons" style="margin-top:-4px; margin-right:5px">chevron_right</i>Stock View</a>
 							</li>
                         </ul>
                     </li>

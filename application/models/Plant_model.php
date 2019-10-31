@@ -219,6 +219,15 @@ class Plant_model extends CI_Model
 		$this->db->where('created_by',$id);
 		return $this->db->update('invoice_stock',$d);
 	}
+	public  function save_stock_history($d){
+		$this->db->insert('invoice_stock_history',$d);
+		return $insert_id = $this->db->insert_id();
+	}
+	public  function get_stock_history_details($id){
+		$this->db->select('*')->from('invoice_stock_history');		
+		$this->db->where('created_by',$id);
+        return $this->db->get()->result_array();	
+	}
 	
 	
 	

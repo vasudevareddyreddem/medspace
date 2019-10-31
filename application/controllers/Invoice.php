@@ -101,6 +101,35 @@ class Invoice extends CI_Controller {
 			$this->session->set_flashdata('loginerror','Please login to continue');
 			redirect('admin');
 		}
+	}public function addstock()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
+			$data['details']=$this->Plant_model->get_stock_details($admindetails['a_id']);
+			$this->load->view('admin/inovice_add_sctock',$data);
+			$this->load->view('html/footer');
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}public function stcokhisotory()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
+			$data['hdetails']=$this->Plant_model->get_stock_history_details($admindetails['a_id']);
+			//echo '<pre>';print_r($data);exit;
+			$this->load->view('admin/inovice_stock_history',$data);
+			$this->load->view('html/footer');
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
 	}
 	public function lists()
 	{	
@@ -214,6 +243,7 @@ class Invoice extends CI_Controller {
 						 'updated_at'=>date('Y-m-d H:i:s'),
 						);
 						$save=$this->Plant_model->update_stock_details($admindetails['a_id'],$ad);
+						
 					/* stock updte */
 					redirect("/assets/invoices_form/".$file_name);
 				
@@ -240,24 +270,33 @@ class Invoice extends CI_Controller {
 			 'created_at'=>date('Y-m-d H:i:s'),
 			 'created_by'=>isset($admindetails['a_id'])?$admindetails['a_id']:'',
 			);
-			$check=$this->Plant_model->stcok_check($admindetails['a_id']);
-			if(count($check)>0){
-				unset($ad['created_at']);
-				$ad['updated_at']=date('Y-m-d H:i:s');
-				$save=$this->Plant_model->update_stock_details($admindetails['a_id'],$ad);
-			}else{
-				$save=$this->Plant_model->save_stock_details($ad);
-			}
-			if(count(save)>0){
-				if(count($check)>0){
-					$this->session->set_flashdata('success','stock updated successfully');
-				}else{
+			$save=$this->Plant_model->save_stock_history($ad);
+			if(count($save)>0){
+					$sdetails=$this->Plant_model->get_stock_details($admindetails['a_id']);
+					$ad=array(
+						 'yellow'=>isset($post['yellow'])?$post['yellow']+$sdetails['yellow']:'0',
+						 'red'=>isset($post['red'])?$post['red']+$sdetails['red']:'0',
+						 'white'=>isset($post['white'])?$post['white']+$sdetails['white']:'0',
+						 'blue'=>isset($post['blue'])?$post['blue']+$sdetails['blue']:'0',
+						 'yellowc'=>isset($post['yellowc'])?$post['yellowc']+$sdetails['yellowc']:'0',
+						 'created_by'=>isset($admindetails['a_id'])?$admindetails['a_id']:'',
+						 'updated_at'=>date('Y-m-d H:i:s'),
+						);
+						$check=$this->Plant_model->stcok_check($admindetails['a_id']);
+						if(count($check)>0){
+							unset($ad['created_at']);
+							$ad['updated_at']=date('Y-m-d H:i:s');
+							$this->Plant_model->update_stock_details($admindetails['a_id'],$ad);
+						}else{
+							unset($ad['updated_at']);
+							$ad['created_at']=date('Y-m-d H:i:s');
+							$this->Plant_model->save_stock_details($ad);
+						}
 				 $this->session->set_flashdata('success','stock added successfully');
-				}
-				redirect('invoice/stock');
+				 redirect('invoice/stcokhisotory');
 			}else{
 				$this->session->set_flashdata('success',"Temporary password sent to your registered mobile number check it once");
-				redirect('invoice/stock');
+				redirect('invoice/addstock');
 			}
 		}else{
 			$this->session->set_flashdata('loginerror','Please login to continue');
