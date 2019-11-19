@@ -51,7 +51,7 @@
 								<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 									<tbody>
 										<tr>
-											<td rowspan="4" style="vertical-align: top;text-align:right" ><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
+											<td rowspan="4" style="vertical-align: top;text-align:right" ><img style="width:auto;height:16mm" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[0]['barcode']); ?>" alt="<?php echo $list[0]['barcode'] ; ?>" ></td>
 										<td style="text-align:center">
 										<div style="text-align:center;line-height: 25px;" class="<?php echo $list[0]['category'] ; ?>-col"><?php if($list[0]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[0]['ptcnt'] ; ?></div>
@@ -77,7 +77,7 @@
 								<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 									<tbody>
 										<tr>
-											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
+											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:16mm" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[1]['barcode']); ?>" alt="<?php echo $list[1]['barcode'] ; ?>" ></td>
 												<td style="text-align:center">
 										<div style="text-align:center;line-height: 25px;" class="<?php echo $list[1]['category'] ; ?>-col"><?php if($list[1]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[1]['ptcnt'] ; ?></div>
@@ -104,7 +104,7 @@
 								<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 									<tbody>
 										<tr>
-											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
+											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:16mm" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[2]['barcode']); ?>" alt="<?php echo $list[2]['barcode'] ; ?>" ></td>
 											<td style="text-align:center">
 										<div style="text-align:center;line-height: 25px;" class="<?php echo $list[2]['category'] ; ?>-col"><?php if($list[2]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[2]['ptcnt'] ; ?></div>
@@ -130,7 +130,7 @@
 								<table style="width:100%;padding:0px 5px;font-size:9px;" align="center">
 									<tbody>
 										<tr>
-											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:13mm;" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
+											<td rowspan="4" style="vertical-align: top;text-align:right"><img style="width:auto;height:16mm" src="<?php echo base_url('assets/hospital_waste_barcodes/'.$list[3]['barcode']); ?>" alt="<?php echo $list[3]['barcode'] ; ?>" ></td>
 											<td style="text-align:center">
 										<div style="text-align:center;line-height: 25px;" class="<?php echo $list[3]['category'] ; ?>-col"><?php if($list[3]['type']=='Yellow(C)'){ echo "C";} ?></div>
 										<div>MD<?php echo $list[3]['ptcnt'] ; ?></div>
