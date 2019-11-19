@@ -42,7 +42,8 @@
 				<div class="loop"  >
 				<div class="sticker" style="width:49.5mm;height:24mm;background:#fff;overflow:hidden;margin-right:3mm;">
 						<div >
-							<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[0]['h_name'] ; ?> 
+							<div style="padding:0px;margin:0px;font-size:7px">
+								<?php if(strlen($list[0]['h_name'])>35){ echo substr($list[0]['h_name'], 0, 35).'...'; }else{ echo substr($list[0]['h_name'], 0, 35);}  ?> 
 							</div>
 						
 						</div>
@@ -63,14 +64,15 @@
 								</table>
 							</div>
 						<div >
-							<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[0]['cbwtf'] ; ?>
+							<div style="padding:0px;margin:0px;font-size:7px">
+							<?php if(strlen($list[0]['cbwtf'])>35){ echo substr($list[0]['cbwtf'], 0, 35).'...'; }else{ echo substr($list[0]['cbwtf'], 0, 35);}  ?>
 							</div>
 						
 						</div>
 						</div>
 				</div>
 				<div class="sticker" style="width:49.5mm;height:24mm;background:#fff;overflow:hidden;margin-right:3mm;">
-						<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[1]['h_name'] ; ?> 
+						<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[1]['h_name'])>35){ echo substr($list[1]['h_name'], 0, 35).'...'; }else{ echo substr($list[1]['h_name'], 0, 35);}  ?>  
 </div>
 						<div class="">
 							<div>
@@ -90,12 +92,12 @@
 							</div>
 							
 						</div>
-						<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[1]['cbwtf'] ; ?>
+						<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[1]['cbwtf'])>35){ echo substr($list[1]['cbwtf'], 0, 35).'...'; }else{ echo substr($list[1]['cbwtf'], 0, 35);}  ?>
 							</div>
 				</div>
 				<div class="sticker" style="width:49.5mm;height:24mm;background:#fff;overflow:hidden;margin-right:3mm;">
 						<div >
-							<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[2]['h_name'] ; ?> 
+							<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[2]['h_name'])>35){ echo substr($list[2]['h_name'], 0, 35).'...'; }else{ echo substr($list[2]['h_name'], 0, 35);}  ?> 
 							</div>
 						
 						</div>
@@ -116,12 +118,12 @@
 								</table>
 							</div>
 						</div>
-						<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[0]['cbwtf'] ; ?>
+						<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[2]['cbwtf'])>35){ echo substr($list[2]['cbwtf'], 0, 35).'...'; }else{ echo substr($list[2]['cbwtf'], 0, 35);}  ?>
 							</div>
 				</div>
 				<div class="sticker" style="width:49.5mm;height:24mm;background:#fff;overflow:hidden">
 						<div >
-							<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[3]['h_name'] ; ?> 
+							<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[3]['h_name'])>35){ echo substr($list[3]['h_name'], 0, 35).'...'; }else{ echo substr($list[3]['h_name'], 0, 35);}  ?> 
 							</div>
 						
 						</div>
@@ -142,7 +144,7 @@
 								</table>
 							</div>
 						</div>
-						<div style="padding:0px;margin:0px;font-size:7px"><?php echo $list[3]['cbwtf'] ; ?>
+						<div style="padding:0px;margin:0px;font-size:7px"><?php if(strlen($list[3]['cbwtf'])>35){ echo substr($list[3]['cbwtf'], 0, 35).'...'; }else{ echo substr($list[3]['cbwtf'], 0, 35);}  ?>
 							</div>
 				</div>		
 				</div>
