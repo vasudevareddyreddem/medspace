@@ -303,6 +303,64 @@ class Invoice extends CI_Controller {
 			redirect('admin');
 		}
 	}	
+	
+	public  function updatewaste(){
+		$Date1 = '01-09-2019'; 
+		$Date2 = '30-09-2019';   
+		$array = array(); 
+		$Variable1 = strtotime($Date1); 
+		$Variable2 = strtotime($Date2); 
+		for ($currentDate = $Variable1; $currentDate <= $Variable2;  
+             $currentDate += (86400)) {                                      
+			$Store = date('Y-m-d', $currentDate);
+			$array[] = $Store; 
+		}
+		
+		foreach($array as $li){
+			$userid=2278;
+			$hospital_id=16780;
+			$genaral_waste_kgs=floatVal('2.'.rand(0, 3)); 
+			$genaral_waste_qty=rand(5,7);
+			$infected_plastics_kgs=floatVal('6.'.rand(0, 9)); 
+			$infected_plastics_qty=rand(18,20);
+			$infected_waste_kgs=floatVal('7.'.rand(0,6));
+			$infected_waste_qty=rand(18,20);
+			$infected_c_waste_kgs=0;
+			$infected_c_waste_qty=0;
+			$glassware_watse_kgs=floatVal('4.'.rand(0, 8)); 
+			$glassware_watse_qty=rand(15,20);
+			$current_address='Medical Rd, Behera Colony, Professors Colony, Cuttack, Odisha 753007, India Cuttack Odisha India 753007 Medical Road';
+			$current_latitude ='20.4748324';
+			$current_longitude ='85.88960560000001';
+
+			$addgarbage=array(
+			'h_id'=>$hospital_id,
+			'genaral_waste_kgs'=>$genaral_waste_kgs,
+			'genaral_waste_qty'=>$genaral_waste_qty,
+			'infected_plastics_kgs'=>$infected_plastics_kgs,
+			'infected_plastics_qty'=>$infected_plastics_qty,
+			'infected_waste_kgs'=>$infected_waste_kgs,
+			'infected_waste_qty'=>$infected_waste_qty,		
+			'infected_c_waste_kgs'=>$infected_c_waste_kgs,
+			'infected_c_waste_qty'=>$infected_c_waste_qty,		
+			'glassware_watse_kgs'=>$glassware_watse_kgs,
+			'glassware_watse_qty'=>$glassware_watse_qty,
+			'current_address'=>$current_address,
+			'current_latitude'=>$current_latitude,
+			'current_longitude'=>$current_longitude,
+			'total'=>($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($infected_c_waste_kgs)+($glassware_watse_kgs),
+			'status'=>1,
+			'date'=>$li,
+			'create_at'=>$li.' '.mt_rand(0,23).":".str_pad(mt_rand(0,59), 2, "0", STR_PAD_LEFT),
+			'create_by'=>$userid,
+			'email_sent'=>1,
+			);
+			echo '<pre>';print_r($addgarbage);
+			//$add_garbage=$this->Mobile_model->save_garbage_data($addgarbage);
+		}
+		exit;
+		
+	}
     
 
 	
