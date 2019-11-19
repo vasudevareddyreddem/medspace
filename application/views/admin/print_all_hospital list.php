@@ -19,7 +19,7 @@
 }
 .hosptal_name{
 	text-align:center;
-	font-size:17px;
+	font-size:12px;
 	letter-spaci1ng:0.2px;
 	min-height:1cm;
 	}
@@ -42,9 +42,11 @@
 	font-size:11px;
 	min-height:0.8cm;
 	line-height:0.4cm;
+	color:#0074b1;
+	font-weight:600;
 }
 .address-section-con{
-	font-size:11px;
+	font-size:13px;
 	letter-spacing:0.2px;
 	margin-top:0.1cm;
 	text-align:center;
@@ -57,8 +59,10 @@
 	
 }
 .authorised{
-	font-size:10px;
-	text-align:center
+	font-size:11px;
+	text-align:center;
+	font-weight:600;
+	padding:5px 0px;
 }
 </style>
 <?php if(isset($print_details) && count($print_details)>0){ ?>
@@ -71,10 +75,8 @@
 	<div class="row" style="position:relative;margin-top:1.9cm">
 	<?php if(isset($li[0]) && $li[0]!=''){ ?>
 		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;margin-left:1.33cm">
-			<div style="padding:20px 5px;position: relative;">
-			<div class="hazard">
-				<img style="" src="<?php echo base_url('assets/vendor/images/biohazard.png');?>" alt="bar code" />
-			</div>
+			<div style="padding:5px 0px;position: relative;">
+			
 			<div class="sticker-logo">
 			<?php if($plant_details['logo']!=''){ ?>
 			<img src="<?php echo base_url('assets/plant_logo/'.$plant_details['logo']); ?>">
@@ -84,13 +86,27 @@
 				
 			</div>
 			<div class="hosptal_name">
+			<div style="background:#0074b1;color:#fff;padding:10px 0px;">
 				<?php echo $plant_details['disposal_plant_name']; ?> 
+				</div>
 				<div class="authorised">
-					(Authorised by <?php echo isset($plant_details['state'])?$plant_details['state']:' '; ?>. Pollution Control Board)
+					<span style="color:#e17038">Authorised by</span> <span style="color:#14a548"><?php echo isset($plant_details['state'])?$plant_details['state']:' '; ?>. Pollution Control Board</span>
 				</div>
 			</div>
-			
-				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
+			<div class="address-section">
+				Factory: <?php echo isset($plant_details['address1'])?$plant_details['address1'].',':''; ?>
+				<?php echo isset($plant_details['address2'])?$plant_details['address2'].',':''; ?>
+				<?php echo isset($plant_details['city'])?$plant_details['city'].',':''; ?>
+				<?php echo isset($plant_details['state'])?$plant_details['state'].',':''; ?>
+				<?php echo isset($plant_details['country'])?$plant_details['country'].',':''; ?>
+				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
+				</div>
+				<div class="address-section-con">
+				<div style="color:#e87f45;font-weight:600;">
+				Mobile:<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> </div> <div style="color:#0074b1">Email: <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				</div>
+				</div>
+				
 			<div class="qr-code">
 				Bio-Medical Waste QR code
 			</div>
@@ -103,19 +119,8 @@
 					
 				</div>
 				
-				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
 				
-				<div class="address-section">
-				<?php echo isset($plant_details['address1'])?$plant_details['address1'].',':''; ?>
-				<?php echo isset($plant_details['address2'])?$plant_details['address2'].',':''; ?>
-				<?php echo isset($plant_details['city'])?$plant_details['city'].',':''; ?>
-				<?php echo isset($plant_details['state'])?$plant_details['state'].',':''; ?>
-				<?php echo isset($plant_details['country'])?$plant_details['country'].',':''; ?>
-				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
-				</div>
-				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
-				</div>
+				
 				
 				
 			</div>
@@ -123,10 +128,8 @@
 	<?php } ?>
 	<?php if(isset($li[1]) && $li[1]!=''){ ?>
 		<div style="width:8.5cm;height:12cm;border:1px solid #aaa;overflow:hidden;float:right;position:absolute;top:0;right:1.33cm;">
-			<div style="padding:20px 5px;position: relative;">
-			<div class="hazard">
-				<img style="" src="<?php echo base_url('assets/vendor/images/biohazard.png');?>" alt="bar code" />
-			</div>
+			<div style="padding:5px 0px;position: relative;">
+			
 			<div class="sticker-logo">
 			<?php if($plant_details['logo']!=''){ ?>
 			<img src="<?php echo base_url('assets/plant_logo/'.$plant_details['logo']); ?>">
@@ -136,13 +139,28 @@
 				
 			</div>
 			<div class="hosptal_name">
+			<div style="background:#0074b1;color:#fff;padding:10px 0px;">
 				<?php echo $plant_details['disposal_plant_name']; ?> 
+				</div>
 				<div class="authorised">
-					(Authorised by <?php echo isset($plant_details['state'])?$plant_details['state']:' '; ?>. Pollution Control Board)
+					<span style="color:#e17038">Authorised by </span> <span style="color:#14a548"><?php echo isset($plant_details['state'])?$plant_details['state']:' '; ?>. Pollution Control Board</span>
+				</div>
+				<div class="address-section">
+				Factory: <?php echo isset($plant_details['address1'])?$plant_details['address1'].',':''; ?>
+				<?php echo isset($plant_details['address2'])?$plant_details['address2'].',':''; ?>
+				<?php echo isset($plant_details['city'])?$plant_details['city'].',':''; ?>
+				<?php echo isset($plant_details['state'])?$plant_details['state'].',':''; ?>
+				<?php echo isset($plant_details['country'])?$plant_details['country'].',':''; ?>
+				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
+				</div>
+				<div class="address-section-con">
+				<div style="color:#e87f45;font-weight:600;">
+				Mobile:<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> </div> <div style="color:#0074b1">Email: <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				</div>
 				</div>
 			</div>
 			
-				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
+				
 			<div class="qr-code">
 				Bio-Medical Waste QR code
 			</div>
@@ -155,19 +173,8 @@
 					
 				</div>
 				
-				<div style="border-bottom:1px solid #ddd;margin:0.1cm 0;"></div>
 				
-				<div class="address-section">
-				<?php echo isset($plant_details['address1'])?$plant_details['address1'].',':''; ?>
-				<?php echo isset($plant_details['address2'])?$plant_details['address2'].',':''; ?>
-				<?php echo isset($plant_details['city'])?$plant_details['city'].',':''; ?>
-				<?php echo isset($plant_details['state'])?$plant_details['state'].',':''; ?>
-				<?php echo isset($plant_details['country'])?$plant_details['country'].',':''; ?>
-				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
-				</div>
-				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
-				</div>
+				
 				
 				
 			</div>

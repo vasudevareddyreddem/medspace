@@ -1,20 +1,10 @@
 <style>
-*{
-	font-family: 'Source Sans Pro', sans-serif;
-	padding:0px;
-	margin:0px;
-}
- .sticker{
-	float:left;
-	padding:0px 5px
-	
-	
-}
-.loop{
-	
-	height:25mm;
-	
-}
+ *{
+   font-family: 'Source Sans Pro', sans-serif;
+   padding:0px;
+   margin:0px;
+   }
+
 .yellow-col{
 	background-color:yellow;
 	width:20px;
@@ -40,16 +30,16 @@
 	margin:0 auto;
 }
 </style>
-<div  style="width:100%;height:100%;text-align:center;margin-top:0.1cm;">
+<div  style="width:83mm;height:100%;text-align:center;">
 <?php //echo '<pre>';print_r($print_details);exit; ?>
 <?php if(isset($print_details) && count($print_details)>0){ ?>
 <?php foreach($print_details as $list){ ?>
-		<div class="loop" style="margin-left:3mm">
+		<div class="loop" style="display:flex;justify-content: center;">
 		<?php if(isset($list[0]) && count($list[0])>0){ ?>
-		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
-				<div style="">
+		<div class="sticker" style="width:38mm;height:25mm;margin:3mm 0mm 0mm 0mm;overflow:hidden;position:relative;">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['h_name'] ; ?></span></div>
+				<div >
+					<div style="font-size:10px"><?php echo $list[0]['h_name'] ; ?></span></div>
 				
 				</div>
 				<div class="">
@@ -74,17 +64,17 @@
 					</div>
 				</div>
 				<div >
-					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[0]['cbwtf'] ; ?></span></div>
+					<div style="font-size:8px"><?php echo $list[0]['cbwtf'] ; ?></span></div>
 				
 				</div>
 				</div>
 		</div>
 		<?php } ?>
 		<?php if(isset($list[1]) && count($list[1])>0){ ?>
-		<div class="sticker" style="width:38mm;height:25mm;background:#fff;overflow:hidden;">
-				<div style="">
+		<div class="sticker" style="width:38mm;height:25mm;margin:3mm 0mm 0mm 0mm;overflow:hidden;position:relative;">
 				<div >
-					<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['h_name'] ; ?></div>
+				<div >
+					<div style="font-size:10px"><?php echo $list[1]['h_name'] ; ?></div>
 				
 				</div>
 				<div class="">
@@ -107,7 +97,7 @@
 						</table>
 					</div>
 				</div>
-				<div style="padding:0px;margin:0px;font-size:10px"><?php echo $list[1]['cbwtf'] ; ?></div>
+				<div style="font-size:8px"><?php echo $list[1]['cbwtf'] ; ?></div>
 				</div>
 		</div>
 		<?php } ?>
