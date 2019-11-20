@@ -12,7 +12,7 @@
 						<form action="<?php echo base_url('prints/prints'); ?>" target="_blank" method="POST">
                         <div class="body">
                             <div class="table-responsive">
-                                <table id="example" class="example table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table id="example" class="example table table-bordered table-striped table-hover dataTable ">
                                     <thead>
                                         <tr>
 											<th>Select All <input type="checkbox" name="check_all" id="check_all" value=""/>
@@ -83,7 +83,11 @@
 </section>
 <script>
 
-
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "lengthMenu": [[12, 24, 60, -1], [12, 24, 60, "All"]]
+    } );
+} );
   $(document).ready(function(){
         $('#check_all').on('click',function(){
             if(this.checked){

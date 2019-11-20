@@ -21,6 +21,17 @@ class Plant_model extends CI_Model
 		$this->db->where('p_id', $p_id);
         return $this->db->get()->row_array();	
 	}
+	public function get_plant_basic_details($p_id){
+		$this->db->select('p_id,a_id,disposal_plant_name,plantaddress,lat,lng,create_by')->from('plant');		
+		$this->db->where('a_id', $p_id);
+        return $this->db->get()->row_array();
+	}		
+	public function get_plant_hospital_list($creted_by){
+		$this->db->select('h_id,hospital_name')->from('hospital_list');		
+		$this->db->where('status',1);
+		$this->db->where('create_by', $creted_by);
+        return $this->db->get()->result_array();
+	}
 	public function get_hcf_all_details($h_id){
 		$this->db->select('*')->from('hospital_list');		
 		$this->db->where('h_id', $h_id);
@@ -236,6 +247,15 @@ class Plant_model extends CI_Model
 		$this->db->select('*')->from('invoice_stock_history');		
 		$this->db->where('created_by',$id);
         return $this->db->get()->result_array();	
+	}
+	
+	/* rescan */
+	
+	public  function  plant_waste_data_wise($hid,$date){
+		$this->db->select('*')->from('hospital_waste');		
+		$this->db->where('h_id',$hid);
+		$this->db->where('date',$date);
+        return $this->db->get()->result_array();
 	}
 	
 	
