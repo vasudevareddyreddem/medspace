@@ -1,8 +1,8 @@
 <style>
  *{
    font-family: 'Source Sans Pro', sans-serif;
-   padding:0px;
-   margin:0px;
+   padding:0px !important;
+   margin:0px !important;
    }
 
 .yellow-col{
@@ -29,6 +29,9 @@
 	height:20px;
 	margin:0 auto;
 }
+.prnt-setup{
+	margin-top:0.3mm;
+}
 </style>
 <div  style="width:83mm;height:100%;text-align:center;">
 <?php //echo '<pre>';print_r($print_details);exit; ?>
@@ -36,8 +39,8 @@
 <?php foreach($print_details as $list){ ?>
 		<div class="loop" style="display:flex;justify-content: center;">
 		<?php if(isset($list[0]) && count($list[0])>0){ ?>
-		<div class="sticker" style="width:38mm;height:25mm;margin:3mm 0mm 0mm 0mm;overflow:hidden;position:relative;">
-				<div >
+		<div class="sticker" style="width:38mm;height:25mm;overflow:hidden;position:relative;border:1px solid #ddd;">
+				<div style="margin-top:5px">
 				<div >
 					<div style="font-size:10px"><?php echo $list[0]['h_name'] ; ?></span></div>
 				
@@ -71,7 +74,7 @@
 		</div>
 		<?php } ?>
 		<?php if(isset($list[1]) && count($list[1])>0){ ?>
-		<div class="sticker" style="width:38mm;height:25mm;margin:3mm 0mm 0mm 0mm;overflow:hidden;position:relative;">
+		<div class="sticker" style="width:38mm;height:25mm;overflow:hidden;position:relative;border:1px solid #ddd">
 				<div >
 				<div >
 					<div style="font-size:10px"><?php echo $list[1]['h_name'] ; ?></div>
