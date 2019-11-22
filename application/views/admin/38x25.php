@@ -36,8 +36,13 @@
 <div  style="width:83mm;height:100%;text-align:center;">
 <?php //echo '<pre>';print_r($print_details);exit; ?>
 <?php if(isset($print_details) && count($print_details)>0){ ?>
-<?php foreach($print_details as $list){ ?>
-		<div class="loop" style="display:flex;justify-content: center;">
+<?php $cnt=1;foreach($print_details as $list){ ?>
+		<?php if($cnt==1){ ?>
+			<div class="loop" style="display:flex;justify-content: center;">
+		<?php }else{ ?>
+			<div class="loop prnt-setup" style="display:flex;justify-content: center;">
+		<?php } ?>
+	
 		<?php if(isset($list[0]) && count($list[0])>0){ ?>
 		<div class="sticker" style="width:38mm;height:25mm;overflow:hidden;position:relative;border:1px solid #ddd;">
 				<div style="margin-top:5px">
@@ -105,7 +110,7 @@
 		</div>
 		<?php } ?>
 		</div>
-		<?php } ?>
+		<?php $cnt++;} ?>
 		<?php } ?>
 		
 </div>
