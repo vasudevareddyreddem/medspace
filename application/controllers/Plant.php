@@ -957,6 +957,24 @@ class Plant extends CI_Controller {
 	}
 	
 	/* rescan waste purpose */
+	public  function scan(){
+		if($this->session->userdata('userdetails'))
+		{
+				$a_d=$this->session->userdata('userdetails');
+				//echo '<pre>';print_r($a_d);exit;
+				$data['pdetails']=$this->Plant_model->get_plant_basic_details($a_d['a_id']);
+				$data['hos_list']=$this->Plant_model->get_plant_hospital_list($data['pdetails']['create_by']);
+				$data['truck_list']=$this->Plant_model->get_truck_list($data['pdetails']['create_by']);
+				//echo '<pre>';print_r($data);exit;
+				$this->load->view('bio_medical/scan_waste',$data);
+				$this->load->view('html/footer');
+				
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	/* rescan waste purpose */
 	public  function rescanwaste(){
 		if($this->session->userdata('userdetails'))
 		{
@@ -994,8 +1012,10 @@ class Plant extends CI_Controller {
 		if($this->session->userdata('userdetails'))
 		{
 			$post=$this->input->post();
-			//echo '<pre>';print_r($post);exit;
-			
+			if($post['plantaddress']=='' || $post['lat']=='' || $post['lng']==''){
+				$this->session->set_flashdata('error','First of all update cbwtf address then try again');			
+				redirect('plant/rescanwaste');
+			}
 			$Date1 = $post['from_date']; 
 			$Date2 = $post['to_date'];   
 			$array = array(); 
@@ -1007,10 +1027,14 @@ class Plant extends CI_Controller {
 				$array[] = $Store; 
 			}
 			if(isset($array) && count($array)>0){
+				$waste_d=array();
 				foreach($array as $li){
 					$waste_d=$this->Plant_model->plant_waste_data_wise($li,$post['h_id']);
+					//echo '<pre>';print_r($waste_d);exit;
 					if(isset($waste_d) && count($waste_d)>0){
 						foreach($waste_d as $wli){
+							
+							//echo '<pre>';print_r($wli);exit;
 								$u_d=array(
 									'bio_genaral_waste_kgs'=>isset($wli['genaral_waste_kgs'])?$wli['genaral_waste_kgs']:'',
 									'bio_genaral_waste_qty'=>isset($wli['genaral_waste_qty'])?$wli['genaral_waste_qty']:'',
@@ -1027,14 +1051,14 @@ class Plant extends CI_Controller {
 									'bio_current_longitude'=>isset($post['lng'])?$post['lng']:'',
 									'crosscheck_total'=>isset($wli['total'])?$wli['total']:'',
 									'updated_by'=>isset($post['a_id'])?$post['a_id']:'',
-									'updated_time'=>$wli.' '.mt_rand(0,23).":".str_pad(mt_rand(0,59), 2, "0", STR_PAD_LEFT),
+									'updated_time'=>$wli['date'].' '.mt_rand(09,23).":".str_pad(mt_rand(0,59), 2, "0", STR_PAD_LEFT),
 								);
+								//echo '<pre>';print_r($u_d);exit;
 								$this->Plant_model->update_rescan_waste_data($wli['id'],$u_d);
 						}
 						
 					}
-					//echo $this->db->last_query();
-					//echo '<pre>';print_r($waste_d);	
+						
 				}
 			}
 			//echo '<pre>';print_r($post);exit;
@@ -1046,7 +1070,269 @@ class Plant extends CI_Controller {
 			redirect('admin');
 		}
 	}
-    
+	/* scan waste data */
+	public  function scanwastepost(){
+		if($this->session->userdata('userdetails'))
+		{
+				$a_d=$this->session->userdata('userdetails');
+				$post=$this->input->post();
+				$this->load->model('Mobile_model');
+				//echo '<pre>';print_r($post);
+				$hos_add=$this->Plant_model->get_hospital_add($post['h_id']);
+				if($hos_add['lat']=='' || $hos_add['lng']=='' || $hos_add['hospitaladdress']==''){
+					$this->session->set_flashdata('error','First of all update hospital address then try again');			
+					redirect('plant/scan');
+				}
+				$Date1 = $post['from_date']; 
+				$Date2 = $post['to_date'];   
+				$array = array(); 
+				$Variable1 = strtotime($Date1); 
+				$Variable2 = strtotime($Date2); 
+				for ($currentDate = $Variable1; $currentDate <= $Variable2;  
+					 $currentDate += (86400)) {                                      
+					$Store = date('Y-m-d', $currentDate);
+					$array[] = $Store; 
+				}
+				if(isset($array) && count($array)>0){
+					foreach($array as $li){
+						
+						/* white */
+								if (strpos($post['w_b_r_w_k_from'],'.') !== false) 
+									{
+										$ww_k_from = explode('.',$post['w_b_r_w_k_from']);
+										$ww_k_from[0];
+										$ww_k_from[1];
+									}else{
+											$ww_k_from[0]=$post['w_b_r_w_k_from'];
+											$ww_k_from[1]='0';
+									}
+									if (strpos($post['w_b_r_w_k_to'],'.') !== false) 
+									{
+										$ww_k_to = explode('.',$post['w_b_r_w_k_to']);
+										$ww_k_to[0];
+										$ww_k_to[1];
+									}else{
+											$ww_k_to[0]=$post['w_b_r_w_k_to'];
+											$ww_k_to[1]='0';
+									}
+								
+								if (strpos($post['w_b_r_w_k_from'],'.') !== false && strpos($post['w_b_r_w_k_to'],'.') !== false) 
+								{
+									$genaral_waste_kgs=floatVal(rand($ww_k_from[0], $ww_k_to[0]).'.'.rand($ww_k_from[1], $ww_k_to[1]));
+								}else{
+									$genaral_waste_kgs=rand($post['w_b_r_w_k_from'],$post['w_b_r_w_k_to']);
+								}
+								$genaral_waste_qty=rand($post['w_b_r_w_b_from'],$post['w_b_r_w_b_to']);
+						/* red */
+								if (strpos($post['r_b_r_w_k_from'],'.') !== false) 
+									{
+										$rw_k_from = explode('.',$post['r_b_r_w_k_from']);
+										$rw_k_from[0];
+										$rw_k_from[1];
+									}else{
+											$rw_k_from[0]=$post['r_b_r_w_k_from'];
+											$rw_k_from[1]='0';
+									}
+									if (strpos($post['r_b_r_w_k_to'],'.') !== false) 
+									{
+										$rw_k_to = explode('.',$post['r_b_r_w_k_to']);
+										$rw_k_to[0];
+										$rw_k_to[1];
+									}else{
+											$rw_k_to[0]=$post['r_b_r_w_k_to'];
+											$rw_k_to[1]='0';
+									}
+									if (strpos($post['r_b_r_w_k_from'],'.') !== false && strpos($post['r_b_r_w_k_to'],'.') !== false) 
+									{
+										$infected_plastics_kgs=floatVal(rand($rw_k_from[0], $rw_k_to[0]).'.'.rand($rw_k_from[1], $rw_k_to[1]));
+									}else{
+										$infected_plastics_kgs=rand($post['r_b_r_w_k_from'],$post['r_b_r_w_k_to']);
+									}						
+									$infected_plastics_qty=rand($post['r_b_r_w_b_from'],$post['r_b_r_w_b_to']);
+							/* yellow */
+									if (strpos($post['y_b_r_w_k_from'],'.') !== false) 
+									{
+										$yw_k_from = explode('.',$post['y_b_r_w_k_from']);
+										$yw_k_from[0];
+										$yw_k_from[1];
+									}else{
+											$yw_k_from[0]=$post['y_b_r_w_k_from'];
+											$yw_k_from[1]='0';
+									}
+									if (strpos($post['y_b_r_w_k_to'],'.') !== false) 
+									{
+										$yw_k_to = explode('.',$post['y_b_r_w_k_to']);
+										$yw_k_to[0];
+										$yw_k_to[1];
+									}else{
+											$yw_k_to[0]=$post['y_b_r_w_k_to'];
+											$yw_k_to[1]='0';
+									}
+									if (strpos($post['y_b_r_w_k_from'],'.') !== false && strpos($post['y_b_r_w_k_to'],'.') !== false) 
+									{
+										$infected_waste_kgs=floatVal(rand($yw_k_from[0], $yw_k_to[0]).'.'.rand($yw_k_from[1], $yw_k_to[1]));
+									}else{
+										$infected_waste_kgs=rand($post['y_b_r_w_k_from'],$post['y_b_r_w_k_to']);
+									}						
+									$infected_waste_qty=rand($post['y_b_r_w_b_from'],$post['y_b_r_w_b_to']);
+							/* yellowc */
+									if (strpos($post['yc_b_r_w_k_from'],'.') !== false) 
+									{
+										$w_k_from = explode('.',$post['yc_b_r_w_k_from']);
+										$w_k_from[0];
+										$w_k_from[1];
+									}else{
+											$w_k_from[0]=$post['yc_b_r_w_k_from'];
+											$w_k_from[1]='0';
+									}
+									if (strpos($post['yc_b_r_w_k_to'],'.') !== false) 
+									{
+										$w_k_to = explode('.',$post['yc_b_r_w_k_to']);
+										$w_k_to[0];
+										$w_k_to[1];
+									}else{
+											$w_k_to[0]=$post['yc_b_r_w_k_to'];
+											$w_k_to[1]='0';
+									}
+									if (strpos($post['yc_b_r_w_k_from'],'.') !== false && strpos($post['yc_b_r_w_k_to'],'.') !== false) 
+									{
+										$infected_c_waste_kgs=floatVal(rand($w_k_from[0], $w_k_to[0]).'.'.rand($w_k_from[1], $w_k_to[1]));
+									}else{
+										$infected_c_waste_kgs=rand($post['yc_b_r_w_k_from'],$post['yc_b_r_w_k_to']);
+									}
+									$infected_c_waste_qty=rand($post['yc_b_r_w_b_from'],$post['yc_b_r_w_b_to']);
+							/* blue */
+							if (strpos($post['b_b_r_w_k_from'],'.') !== false) 
+							{
+								$bw_k_from = explode('.',$post['b_b_r_w_k_from']);
+								$bw_k_from[0];
+								$bw_k_from[1];
+							}else{
+									$bw_k_from[0]=$post['b_b_r_w_k_from'];
+									$bw_k_from[1]='0';
+							}
+							if (strpos($post['b_b_r_w_k_to'],'.') !== false) 
+							{
+								$bw_k_to = explode('.',$post['b_b_r_w_k_to']);
+								$bw_k_to[0];
+								$bw_k_to[1];
+							}else{
+									$bw_k_to[0]=$post['b_b_r_w_k_to'];
+									$bw_k_to[1]='0';
+							}
+							if (strpos($post['b_b_r_w_k_from'],'.') !== false && strpos($post['b_b_r_w_k_to'],'.') !== false) 
+							{
+								$glassware_watse_kgs=floatVal(rand($bw_k_from[0], $bw_k_to[0]).'.'.rand($bw_k_from[1], $bw_k_to[1]));
+							}else{
+								$glassware_watse_kgs=rand($post['b_b_r_w_k_from'],$post['b_b_r_w_k_to']);
+							}
+							$glassware_watse_qty=rand($post['b_b_r_w_b_from'],$post['b_b_r_w_b_to']);
+						
+							$addgarbage=array(
+							'h_id'=>isset($post['h_id'])?$post['h_id']:'',
+							'genaral_waste_kgs'=>$genaral_waste_kgs,
+							'genaral_waste_qty'=>$genaral_waste_qty,
+							'infected_plastics_kgs'=>$infected_plastics_kgs,
+							'infected_plastics_qty'=>$infected_plastics_qty,
+							'infected_waste_kgs'=>$infected_waste_kgs,
+							'infected_waste_qty'=>$infected_waste_qty,		
+							'infected_c_waste_kgs'=>$infected_c_waste_kgs,
+							'infected_c_waste_qty'=>$infected_c_waste_qty,		
+							'glassware_watse_kgs'=>$glassware_watse_kgs,
+							'glassware_watse_qty'=>$glassware_watse_qty,
+							'current_address'=>$hos_add['hospitaladdress'],
+							'current_latitude'=>$hos_add['lat'],
+							'current_longitude'=>$hos_add['lng'],
+							'total'=>($genaral_waste_kgs)+($infected_plastics_kgs)+($infected_waste_kgs)+($infected_c_waste_kgs)+($glassware_watse_kgs),
+							'status'=>1,
+							'date'=>$li,
+							'create_at'=>$li.' '.mt_rand(06,12).":".str_pad(mt_rand(0,59), 2, "0", STR_PAD_LEFT),
+							'create_by'=>isset($post['trcuk_id'])?$post['trcuk_id']:'',
+							'email_sent'=>1,
+							);
+							$check=$this->Plant_model->check_waste_exist($post['h_id'],$li);
+							if(count($check)>0){
+								$save=$this->Plant_model->update_waste_details($check['id'],$check['h_id'],$addgarbage);
+								$add_garbage=$check['id'];								
+							}else{
+								$save=$this->Plant_model->save_waste_details($addgarbage);
+								$add_garbage=$save;
+							}
+							$data['details']=$this->Mobile_model->get_all_hospital_details($post['h_id']);
+							$g4_plant_email=$this->Mobile_model->get_plant_details($data['details']['create_by']);				
+							$data['plant_details']=$g4_plant_email;
+							$data['garbage_details']=$addgarbage;
+							$data['garbage_details']['invoice_id']=$add_garbage;
+							//echo '<pre>';print_r($data);exit;
+							$path = rtrim(FCPATH,"/");
+							$file_name = $data['details']['hospital_name'].'_'.$data['details']['h_id'].'_'.$add_garbage.'.pdf';                
+							$data['page_title'] = $data['details']['hospital_name'].'invoice'; // pass data to the view
+							$pdfFilePath = $path."/assets/invoices/".$file_name;
+							ini_set('memory_limit','320M'); // boost the memory limit if it's low <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+							$html = $this->load->view('admin/pdf', $data, true); // render the view into HTML
+							//echo '<pre>';print_r($html);exit;
+							$this->load->library('pdf');
+							$pdf = $this->pdf->load();
+							$pdf->SetFooter($_SERVER['HTTP_HOST'].'|{PAGENO}|'.date('M-d-Y')); // Add a footer for good measure <img src="https://s.w.org/images/core/emoji/72x72/1f609.png" alt="??" draggable="false" class="emoji">
+							$pdf->SetDisplayMode('fullpage');
+							$pdf->list_indent_first_level = 0;	// 1 or 0 - whether to indent the first level of a list
+							$pdf->WriteHTML($html); // write the HTML into the PDF
+							$pdf->Output($pdfFilePath, 'F');
+							$update_data=array(
+							'invoice_file'=>$file_name,
+							'invoice_name'=>$data['details']['hospital_name'].' invoice',
+							);
+							$this->Mobile_model->update_invoice_name($add_garbage,$update_data);
+							//echo '<pre>';print_r($addgarbage);
+						//echo '<pre>';print_r($li);exit;
+					}
+				}
+				
+				$this->session->set_flashdata('success','Waste added successfully');			
+				redirect('plant/scan');				
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	/* scan waste data */
+    	public function permission(){
+			if($this->session->userdata('userdetails'))
+		{
+			$admindetails=$this->session->userdata('userdetails');
+			if($admindetails['role']==4){
+				$admindetails=$this->session->userdata('userdetails');
+				$this->load->view('bio_medical/check_permission_form');
+				$this->load->view('html/footer');
+			}else{
+				$this->session->set_flashdata('error',"you don't have permission to access");
+				redirect('dashboard');
+			}
+
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
+	public function permissionpost()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+			$post=$this->input->post();
+			$admindetails=$this->session->userdata('userdetails');
+			$details=$this->Plant_model->get_plant_pincode_details($admindetails['a_id']);
+			if($post['security_code']==$details['pincode']){
+				redirect('plant/scan');
+			}else{
+				$this->session->set_flashdata('error','Your security code is wrong. Please try again');
+				redirect('plant/permission');
+			}
+		
+		}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	}
     
 	
 	

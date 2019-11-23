@@ -134,8 +134,21 @@
                                <img style="max-height:550px;width:auto;" class="img-responsive" src="<?php echo base_url('assets/hospital_barcodes/'.$hospital_detail['barcode']);?>">
 							  
                             </div>
-						
-							
+						</div>
+						<div class="form-group">
+							<div class="">
+								  <label class="col-lg-3 control-label">Hospital Address</label>
+								 <div class="col-lg-5">
+									<input type="text" class="form-control" name="hospitaladdress" id="address" value="<?php echo isset($hospital_detail['hospitaladdress'])?$hospital_detail['hospitaladdress']:''; ?>" placeholder="Enter Address" />
+								
+								<a href="javascript:void(0);" onclick="get_location();" ><img style="width:30px;" src="<?php echo base_url(); ?>assets/vendor/images/location.png" class="img-responsive" alt="detect" title="Click here to Locate"></a>
+								<span id="refresh" style="display:none">
+									<img style="width:20px;" src="<?php echo base_url(); ?>assets/vendor/images/loading.gif" class="img-responsive" >
+								</span>	
+								</div>								
+							</div>
+							<input type="hidden" id="lat" name="lat" value="<?php echo isset($hospital_detail['lat'])?$hospital_detail['lat']:''; ?>">
+							<input type="hidden" id="lng" name="lng" value="<?php echo isset($hospital_detail['lng'])?$hospital_detail['lng']:''; ?>">
                         </div>
 
                         <div class="form-group">
@@ -155,6 +168,35 @@
     </section>
 	
 	<script type="text/javascript">
+	function get_location(){
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else { 
+				x.innerHTML = "Geolocation is not supported by this browser.";
+		}	  
+	} 
+	function showPosition(position) {
+	$('#refresh').show();
+	var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    $.ajax({
+        type:'POST',
+        url:'<?php echo base_url('plant/get_location'); ?>',
+        data:'latitude='+latitude+'&longitude='+longitude,
+        success:function(data){
+           var obj = JSON.parse(data);
+			$('#refresh').hide();
+            if(data.msg=1){
+				$("#address").val(obj.add);
+				$("#lat").val(latitude);
+				$("#lng").val(longitude);
+				
+            }else{
+                $("#address").val('Not Available');
+            }
+        }
+    });
+}
 $(document).ready(function() {
    
     $('#defaultForm').bootstrapValidator({

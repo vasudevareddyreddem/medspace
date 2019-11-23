@@ -13,10 +13,10 @@ border:none !important;
                <div class="header">
                   <h2>Profile</h2>
 				   <?php if($profile_detail['role']==4){ ?>
-				  <a  href="<?php echo base_url('plant/edit/'.base64_encode($profile_detail['p_id'])); ?>" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
-				   <?php }else if($profile_detail['role']==2){?>
-				   				  <a  href="<?php echo base_url('hospital/edit/'.base64_encode($profile_detail['h_id'])); ?>" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
-
+						<a  href="<?php echo base_url('plant/permission'); ?>" class="btn btn-sm btn-warning " style="float:right;margin-top:-20px">Add</a> &nbsp;&nbsp;&nbsp;&nbsp;
+						<a  href="<?php echo base_url('plant/edit/'.base64_encode($profile_detail['p_id'])); ?>" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
+				   <?php }else if($profile_detail['role']==2){ ?>
+				   		<a  href="<?php echo base_url('hospital/edit/'.base64_encode($profile_detail['h_id'])); ?>" class="btn btn-sm btn-primary " style="float:right;margin-top:-20px">Edit Profile</a>
 				   <?php } ?>
                </div>
                <div class="body">

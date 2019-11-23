@@ -245,7 +245,7 @@ class Plant_model extends CI_Model
 	
 	/* rescan */
 	
-	public  function  plant_waste_data_wise($hid,$date){
+	public  function  plant_waste_data_wise($date,$hid){
 		$this->db->select('*')->from('hospital_waste');		
 		$this->db->where('h_id',$hid);
 		$this->db->where('date',$date);
@@ -271,6 +271,38 @@ class Plant_model extends CI_Model
 		$this->db->where('hw.updated_by',$a_id);
 		//$this->db->where('hl.state',$st);
 		return $this->db->get()->result_array();
+	}
+	public  function get_truck_list($id){
+		$this->db->select('t_id,a_id,truck_reg_no')->from('trucks');		
+		$this->db->where('status',1);
+		$this->db->where('create_by',$id);
+        return $this->db->get()->result_array();
+	}
+	public  function get_hospital_add($id){
+		$this->db->select('h_id,hospital_name,hospitaladdress,lat,lng')->from('hospital_list');		
+		$this->db->where('status',1);
+		$this->db->where('h_id',$id);
+        return $this->db->get()->row_array();
+	}
+	public  function check_waste_exist($hid,$date){
+		$this->db->select('id,h_id')->from('hospital_waste');		
+		$this->db->where('date',$date);
+		$this->db->where('h_id',$hid);
+        return $this->db->get()->row_array();
+	}
+	public  function save_waste_details($d){
+		$this->db->insert('hospital_waste',$d);
+		return $insert_id = $this->db->insert_id();
+	}
+	public  function update_waste_details($id,$h_id,$d){
+		$this->db->where('id',$id);
+		$this->db->where('h_id',$h_id);
+		return $this->db->update('hospital_waste',$d);
+	}
+	public function get_plant_pincode_details($admin_id){
+		$this->db->select('a_id,pincode')->from('plant');		
+		$this->db->where('a_id', $admin_id);
+        return $this->db->get()->row_array();	
 	}
 	
 	

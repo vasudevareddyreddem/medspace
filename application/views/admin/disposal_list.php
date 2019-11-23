@@ -11,7 +11,6 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-								<a href="<?php echo base_url('plant/rescanwaste'); ?>">Submit</a>
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>

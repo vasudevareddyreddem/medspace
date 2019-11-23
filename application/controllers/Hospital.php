@@ -316,6 +316,9 @@ class Hospital extends CI_Controller {
 							'state'=>isset($post['state'])?$post['state']:'',
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
+							'hospitaladdress'=>isset($post['hospitaladdress'])?$post['hospitaladdress']:'',
+							'lat'=>isset($post['lat'])?$post['lat']:'',
+							'lng'=>isset($post['lng'])?$post['lng']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'cbmwtf'=>isset($post['cbmwtf'])?$post['cbmwtf']:'',
 							);
@@ -377,6 +380,9 @@ class Hospital extends CI_Controller {
 							'state'=>isset($post['state'])?$post['state']:'',
 							'country'=>isset($post['country'])?ucfirst($post['country']):'',
 							'pincode'=>isset($post['pincode'])?$post['pincode']:'',
+							'hospitaladdress'=>isset($post['hospitaladdress'])?$post['hospitaladdress']:'',
+							'lat'=>isset($post['lat'])?$post['lat']:'',
+							'lng'=>isset($post['lng'])?$post['lng']:'',
 							'captcha'=>isset($post['captcha'])?$post['captcha']:'',
 							'cbmwtf'=>isset($post['cbmwtf'])?$post['cbmwtf']:'',
 						);
