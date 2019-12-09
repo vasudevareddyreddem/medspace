@@ -14,7 +14,7 @@
 								 <div class="row">
 									 <div class="form-group col-md-6">
 											<label >Hospital</label>
-											<select class="form-control" name="h_id" required>
+											<select class="form-control" name="h_id">
 												<option value="">Select</option>
 												<?php if(isset($hos_list) && count($hos_list)>0){ ?>
 													<?php foreach($hos_list as $li){ ?>
@@ -25,7 +25,7 @@
 									</div> 
 									<div class="form-group col-md-6">
 											<label >BMW Vehicle </label>
-											<select class="form-control" name="trcuk_id" required>
+											<select class="form-control" name="trcuk_id" >
 												<option value="">Select</option>
 												<?php if(isset($truck_list) && count($truck_list)>0){ ?>
 													<?php foreach($truck_list as $li){ ?>
@@ -34,24 +34,28 @@
 												<?php } ?>
 											</select>
 									</div>
-									<div class="col-md-6">
+									</div>
+									 <div class="row">
+									<div class="col-md-6 form-group">
 									   <label>From</label>
 									   <div class="input-group date">
-										  <input type="text" name="from_date" class="form-control" value=""  placeholder="From Date" id="jss-date" required>
+										  <input type="text" name="from_date" class="form-control" value=""  placeholder="From Date" id="from_date" >
 										  <div class="input-group-addon">
 											 <span class="glyphicon glyphicon-th"></span>
 										  </div>
 									   </div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-6 form-group">
 									   <label>To</label>
 									   <div class="input-group date">
-										  <input  placeholder="To Date" type="text" name="to_date" value="" class="form-control" id="js-date" required>
+										  <input  placeholder="To Date" type="text" name="to_date" value="" class="form-control" id="to_date" >
 										  <div class="input-group-addon">
 											 <span class="glyphicon glyphicon-th"></span>
 										  </div>
 									   </div>
 									</div>
+									</div>
+									<div class="row">
 									<div class="form-group col-md-6">
 											<label >Yellow Waste Bags Range</label>
 											<div class="row">
@@ -82,6 +86,8 @@
 												 </div>
 										   </div>
 									</div>
+									</div>
+									<div class="row">
 									<div class="form-group col-md-6">
 											<label >Blue Waste Bags Range</label>
 											<div class="row">
@@ -112,6 +118,8 @@
 												 </div>
 										   </div>
 									</div>
+									</div>
+									<div class="row">
 									<div class="form-group col-md-6">
 											<label >Red Waste Bags Range</label>
 											<div class="row">
@@ -142,6 +150,8 @@
 												 </div>
 										   </div>
 									</div>
+									</div>
+									<div class="row">
 									<div class="form-group col-md-6">
 											<label >White Waste Bags Range</label>
 											<div class="row">
@@ -172,6 +182,8 @@
 												 </div>
 										   </div>
 									</div>
+									</div>
+									<div class="row">
 									<div class="form-group col-md-6">
 											<label >Yellow(c) Waste Bags Range</label>
 											<div class="row">
@@ -202,16 +214,18 @@
 												 </div>
 										   </div>
 									</div>
+									</div>
 									<div class="col-sm-4">
 									   <label>&nbsp;</label>
-									   <div class="input-group date">
-										  <button class="btn btn-primary btn-sm">Add
+									   <div class="input-group">
+										  <button type="submit" class="btn btn-primary btn-sm">Add
 										  </button>										  
 									   </div>
 									</div>
 								 </div>
-							</div>
+							
 							</form>
+							</div>
 						<div class="clearfix">&nbsp;</div>
 					</div>
 				</div>
@@ -220,7 +234,7 @@
 </section>
 <script>
 $(document).ready(function() {
-    $('#js-date').datepicker(
+    $('#from_date').datepicker(
    {  
    format: 'dd-mm-yyyy',
    autoclose:true,
@@ -229,7 +243,7 @@ $(document).ready(function() {
    
    }); 
    $(document).ready(function() {
-    $('#jss-date').datepicker(
+    $('#to_date').datepicker(
    {  
    format: 'dd-mm-yyyy',
    autoclose:true,
@@ -237,5 +251,263 @@ $(document).ready(function() {
    });
    
    });
+   $(document).ready(function() {
+    
+    $('#add_waste').bootstrapValidator({
+     fields: {
+            h_id: {
+                 validators: {
+					notEmpty: {
+						message: 'Hospital is required'
+					}
+				}
+            },
+			trcuk_id: {
+                 validators: {
+					  notEmpty: {
+						message: 'BMW Vehicle  is required'
+					}
+                }
+            },
+			from_date: {
+                 validators: {
+					  notEmpty: {
+						message: 'From date  is required'
+					}
+                }
+            },to_date: {
+                 validators: {
+					  notEmpty: {
+						message: 'TO date  is required'
+					}
+                }
+            },
+			y_b_r_w_b_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow Waste Bags Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Yellow Waste Bags Range from can only consist of digits'
+					}
+                }
+            },y_b_r_w_b_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow Waste Bags Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Yellow Waste Bags Range to can only consist of digits'
+					}
+                }
+            },y_b_r_w_k_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow Waste Kgs Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Yellow Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },y_b_r_w_k_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow Waste Kgs Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Yellow Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },b_b_r_w_b_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Blue Waste Bags Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Blue Waste Bags Range from can only consist of digits'
+					}
+                }
+            },b_b_r_w_b_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Blue Waste Bags Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Blue Waste Bags Range to can only consist of digits'
+					}
+                }
+            },b_b_r_w_k_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Blue Waste Kgs Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Blue Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },b_b_r_w_k_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Blue Waste Kgs Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Blue Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },r_b_r_w_b_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Red Waste Bags Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Red Waste Bags Range from can only consist of digits'
+					}
+                }
+            },r_b_r_w_b_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Red Waste Bags Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Red Waste Bags Range to can only consist of digits'
+					}
+                }
+            },r_b_r_w_k_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Red Waste Kgs Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Red Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },r_b_r_w_k_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Red Waste Kgs Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Red Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },
+			w_b_r_w_b_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'White Waste Bags Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'White Waste Bags Range from can only consist of digits'
+					}
+                }
+            },w_b_r_w_b_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'White Waste Bags Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'White Waste Bags Range to can only consist of digits'
+					}
+                }
+            },w_b_r_w_k_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'White Waste Kgs Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'White Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },w_b_r_w_k_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'White Waste Kgs Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'White Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },yc_b_r_w_b_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow(c) Waste Bags Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Yellow(c) Waste Bags Range from can only consist of digits'
+					}
+                }
+            },yc_b_r_w_b_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow(c) Waste Bags Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9]*$/,
+					message:'Yellow(c) Waste Bags Range to can only consist of digits'
+					}
+                }
+            },yc_b_r_w_k_from: {
+                 validators: {
+					   notEmpty: {
+							message: 'Yellow(c) Waste Kgs Range to  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'Yellow(c) Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },yc_b_r_w_k_to: {
+                 validators: {
+					   notEmpty: {
+							message: 'White Waste Kgs Range from  is required'
+					},
+                    regexp: {
+					regexp:  /^[0-9.]*$/,
+					message:'White Waste Kgs Range to can only consist of digits'
+					}
+                }
+            },
+            
+            
+            pincode: {
+                  validators: {
+					notEmpty: {
+						message: 'Pin code is required'
+					},
+					regexp: {
+					regexp: /^[0-9]{5,7}$/,
+					message: 'Pin code  must be  5 to 7 characters'
+					}
+				}
+            }
+        }
+    });
+
+    $('#from_date').on('changeDate ', function(e) {
+		$('#add_waste').bootstrapValidator('revalidateField', 'from_date');
+	});
+	$('#to_date').on('changeDate ', function(e) {
+		$('#add_waste').bootstrapValidator('revalidateField', 'to_date');
+	});
+
+  
+});
 	
 </script>

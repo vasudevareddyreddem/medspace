@@ -1252,10 +1252,18 @@ class Plant extends CI_Controller {
 							);
 							$check=$this->Plant_model->check_waste_exist($post['h_id'],$li);
 							if(count($check)>0){
-								$save=$this->Plant_model->update_waste_details($check['id'],$check['h_id'],$addgarbage);
-								$add_garbage=$check['id'];								
-							}else{
+								
+								//$save=$this->Plant_model->update_waste_details($check['id'],$check['h_id'],$addgarbage);
 								$save=$this->Plant_model->save_waste_details($addgarbage);
+								$add_garbage=$save;
+								//echo $this->db->last_query();
+								//echo "update";exit;
+								//$add_garbage=$check['id'];								
+							}else{
+								
+								$save=$this->Plant_model->save_waste_details($addgarbage);
+								//echo $this->db->last_query();
+								//echo "save";exit;
 								$add_garbage=$save;
 							}
 							$data['details']=$this->Mobile_model->get_all_hospital_details($post['h_id']);

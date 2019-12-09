@@ -119,7 +119,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				 <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div><div class="sticker-row1" style="width:8.5cm;height:9cm;border:1px solid #aaa;overflow:hidden;">
@@ -164,7 +164,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				 <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div>
@@ -212,7 +212,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+				 <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div><div class="sticker-row1" style="width:8.5cm;height:9cm;border:1px solid #aaa;overflow:hidden;">
@@ -257,7 +257,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+					<?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div>
@@ -305,7 +305,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+					<?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div><div class="sticker-row1" style="width:8.5cm;height:9cm;border:1px solid #aaa;overflow:hidden;">
@@ -350,7 +350,7 @@
 				<?php echo isset($plant_details['pincode'])?$plant_details['pincode'].'.':''; ?>
 				</div>
 				<div class="address-section-con">
-				<?php echo isset($plant_details['mobile'])?$plant_details['mobile']:''; ?> | <?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
+					<?php echo isset($plant_details['email'])?$plant_details['email']:''; ?>
 				</div>
 			</div>
 		</div>
