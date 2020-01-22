@@ -1,86 +1,222 @@
 <section class="content">
-	<!-- Exportable Table -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                               BMW List
-                            </h2>
-                         
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                    <thead>
-                                        <tr>
-											<td colspan="2" style="background:yellow;height:40px;"></td>
-											<td colspan="2" style="background:red;height:40px;"></td>
-											<td colspan="2" style="background:blue;height:40px;"></td>
-											<td colspan="2" style="background:#f5f5f5;height:40px;"></td>
-											<td colspan="2" style="background:yellow;height:40px;text-align:center;vertical-align:middle;font-size:25px;">C </td>
-											<td style="border-bottom:0px"> &nbsp;</td>
-											<td style="border-bottom:0px"> &nbsp;</td>
-											<td style="border-bottom:0px"> &nbsp;</td>
-											
-											
-										</tr>
-                                        <tr>
-											<th rowspan="">No of  Bags</th>
-                                            <th> No of kgs</th>
-											
-                                            
-											<th>No of   Bags</th>
-                                            <th> No of kgs</th>
-											
-                                           	<th>No of  Bags</th>
-                                            <th> No of Kgs</th>
-											<th>No of  Bags</th>
-                                            <th> No of Kgs</th>
-											
-											<th>No of  Bags</th>
-                                            <th > No of kgs</th>
-                                            <th style="border-top:0px" >Date & Time</th>
-                                            <th style="border-top:0px">Status</th>
-                                            <th style="border-top:0px">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <?php if(isset($garbage_list) && count($garbage_list)>0){ ?>
-									    <tbody>
-									<?php foreach($garbage_list as $list){ ?>
-                                
-                                        <tr>
-											<td><?php echo htmlentities($list['infected_waste_qty']); ?></td>
-											<td><?php echo htmlentities($list['infected_waste_kgs']); ?></td>
-											<td><?php echo htmlentities($list['infected_plastics_qty']); ?></td>
-											<td><?php echo htmlentities($list['infected_plastics_kgs']); ?></td>
-											<td><?php echo htmlentities($list['glassware_watse_qty']); ?></td>
-											<td><?php echo htmlentities($list['glassware_watse_kgs']); ?></td>
-											<td><?php echo htmlentities($list['genaral_waste_qty']); ?></td>
-											<td><?php echo htmlentities($list['genaral_waste_kgs']); ?></td>
-											<td><?php echo htmlentities($list['infected_c_waste_qty']); ?></td>
-											<td><?php echo htmlentities($list['infected_c_waste_kgs']); ?></td>
-                                            
-                                            <td><?php echo date('M j h:i a',strtotime(htmlentities($list['create_at'])));?></td>
-                                            <td><?php if($list['status']==1){ echo "Active"; }else{ echo "Deactive";} ?></td>
-                                            <td>
-											<?php if($list['invoice_file']!=''){ ?>
-											<a target="_blank" href="<?php echo base_url('assets/invoices/'.$list['invoice_file']); ?>">Download Invoice</a></td>
-											<?php } ?>
-                                            
-                                        </tr>
-										
-                                
-									<?php } ?>
-									    </tbody>
-									<?php } ?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Exportable Table -->
-        </div>
-</section>
+   <!-- Exportable Table -->
+   <style>
+	.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
+
+		text-align:center;
+		
+		 vertical-align: middle ;
+	}
+table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+    border-left-width: 0;
+    vertical-align: middle;
+	text-align:center;
+}
+.dataTables_processing {
+	position: absolute;
+	bottom: 20%;
+	left:48px;;
+	right:48px;
+	margin: auto;
+	width:10%;
+	background:#00000040;
+	color:#fff;
+	padding:10px;
+	border-radius:5px;
+	text-align:center;
+}
+tbody{
+	position:relative;
 	
+}
+table_height{
+	height:500px !important;
+	overflow:scroll;
+}
+
+</style>
+   <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <div class="card">
+            <div class="header">
+               <h2>
+                  HCF Waste  List
+               </h2>
+            </div>
+            <div class="body">
+			<form action="<?php echo base_url('hospital/garbage_list'); ?>"  method="post">
+                  <div class="">
+                     <div class="row">
+                        <div class="col-md-4">
+                           <label>From</label>
+                           <div class="input-group date">
+                              <input type="text" name="from_date" class="form-control" value="<?php echo isset($from_date)?$from_date:'' ?>"  placeholder="From Date" id="jss-date" required>
+                              <div class="input-group-addon">
+                                 <span class="glyphicon glyphicon-th"></span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <label>To</label>
+                           <div class="input-group date">
+                              <input  placeholder="To Date" type="text" name="to_date" value="<?php echo isset($to_date)?$to_date:'' ?>" class="form-control" id="js-date" required>
+                              <div class="input-group-addon">
+                                 <span class="glyphicon glyphicon-th"></span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <label>&nbsp;</label>
+                           <div class="input-group date">
+                              <button class="btn btn-primary btn-sm">Search</button>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+			 
+               <div class="clearfix">&nbsp;</div>
+            <div class="table-responsive table_height">
+             
+                 <table  id="table" class="table table-bordered table-striped table-hover dataTable">
+									 <thead>
+										<tr>
+										<th class="vetical-text-angle"  rowspan="3">S.No</th>
+										<th  rowspan="3">Name of the HCF</th>
+										<th  rowspan="3">Type HCF</th>
+										<th  rowspan="3">Address</th>
+										<th  colspan="12">Details of Bio medical Generated by the HCF (Qty. of BMW in Kg)</th>
+										<th  colspan="13">Details of Bio medical Waste received by the CBWTF</th>
+										<th  rowspan="2">Time Difference</th>
+										<th  rowspan="2">Difference in waste collected and received (+/- in Kg)</th>
+										</tr> 
+										<tr>
+												<th rowspan="2">Date</th>
+												<th rowspan="2">Time</th>
+												<th class="bg-yellow" colspan="2">Yellow</th>
+												<th class="bg-red" colspan="2">Red</th>
+												<th colspan="2">White</th>
+												<th class="bg-blue" colspan="2">Blue</th>
+												<th class="bg-yellow" colspan="2">Yellow(C)</th>
+												<th rowspan="2">Date</th>
+												<th rowspan="2">Time of receipt of waste</th>
+												<th rowspan="2">Address of receipt of waste</th>
+												<th class="bg-yellow" colspan="2">Yellow</th>
+												<th class="bg-red" colspan="2">Red</th>
+												<th colspan="2">White</th>
+												<th class="bg-blue" colspan="2">Blue</th>
+												<th class="bg-yellow" colspan="2">Yellow(C)</th>
+											  </tr>
+										<tr>
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												<th>No. of containers</th>
+												<th>Quantity</th>
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												<th>No. of Bags</th>
+												<th>Quantity</th>
+												<th>&nbsp;</th>
+												<th>&nbsp;</th>
+											  </tr>
+            </thead>
+            <tbody>
+            </tbody>
+
+            		
+												
+			  </table>
+											
+            </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   
+  
+</section>
+<script type="text/javascript">
+
+var table;
+
+$(document).ready(function() {
+    //datatables
+    table = $('#table').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order":  [[ 4, "desc" ]], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('hospital/hospital_ajax_list')?>",
+            "type": "POST",
+			"data": {
+				fdate: '<?php echo isset($from_date)?$from_date:'' ?>',
+				tdate: '<?php echo isset($to_date)?$to_date:'' ?>',
+				hid: '<?php echo isset($h_id)?$h_id:'' ?>',
+			},
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        ],dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+
+    });
+
+});
+
+
+function get_waste_pdf(){
+	var f_da=$('#jss-date').val();
+	var t_da=$('#js-date').val();
+	$('#f_date').val(f_da);
+	$('#t_date').val(t_da);
+	
+}
+   $(document).ready(function() {
+    $('#js-date').datepicker(
+   {  
+   format: 'mm-dd-yyyy',
+   autoclose:true,
+   endDate: "today",
+   });
+   
+   }); 
+   $(document).ready(function() {
+    $('#jss-date').datepicker(
+   {  
+   format: 'mm-dd-yyyy',
+   autoclose:true,
+   endDate: "today",
+   });
+   
+   });
+</script>	

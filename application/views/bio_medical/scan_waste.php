@@ -307,6 +307,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Yellow Waste Kgs Range to  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Yellow Waste Kgs Range to can only consist of digits'
@@ -317,6 +322,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Yellow Waste Kgs Range from  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Yellow Waste Kgs Range to can only consist of digits'
@@ -347,6 +357,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Blue Waste Kgs Range to  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Blue Waste Kgs Range to can only consist of digits'
@@ -357,6 +372,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Blue Waste Kgs Range from  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Blue Waste Kgs Range to can only consist of digits'
@@ -387,6 +407,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Red Waste Kgs Range to  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Red Waste Kgs Range to can only consist of digits'
@@ -397,6 +422,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Red Waste Kgs Range from  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Red Waste Kgs Range to can only consist of digits'
@@ -428,6 +458,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'White Waste Kgs Range to  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'White Waste Kgs Range to can only consist of digits'
@@ -438,6 +473,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'White Waste Kgs Range from  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'White Waste Kgs Range to can only consist of digits'
@@ -468,6 +508,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'Yellow(c) Waste Kgs Range to  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'Yellow(c) Waste Kgs Range to can only consist of digits'
@@ -478,6 +523,11 @@ $(document).ready(function() {
 					   notEmpty: {
 							message: 'White Waste Kgs Range from  is required'
 					},
+					between: {
+                        min: 0,
+                        max: 50,
+                        message: 'Kgs Range must be between 0 and 50'
+                    },
                     regexp: {
 					regexp:  /^[0-9.]*$/,
 					message:'White Waste Kgs Range to can only consist of digits'

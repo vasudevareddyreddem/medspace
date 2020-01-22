@@ -16,6 +16,7 @@ class Hospital extends CI_Controller {
 		$this->load->library('zend');
 		$this->load->model('Hospital_model');
 		$this->load->model('customers_model','customers');
+		$this->load->model('Hospital_waste_model','hos_waste');
 		$this->load->model('Admin_model');
 		$this->load->library('zend');
 		if($this->session->userdata('userdetails'))
@@ -472,7 +473,15 @@ class Hospital extends CI_Controller {
 			if($admindetails['role']==2){
 				
 				$hospital_detail=$this->Admin_model->get_hospital_list_profile_details($admindetails['a_id']);
-				$data['garbage_list']=$this->Hospital_model->get_hospital_invoice_list_details($hospital_detail['h_id']);
+				$post=$this->input->post();
+				if(isset($post['from_date']) && $post['from_date']!='' || isset($post['to_date']) && $post['to_date']!=''){
+					$data['from_date']=$post['from_date'];
+					$data['to_date']=$post['to_date'];
+				}else{
+					$data['from_date']='';
+					$data['to_date']='';
+				}
+				$data['h_id']=$hospital_detail['h_id'];
 				//echo "<pre>";print_r($data);exit;
 				$this->load->view('admin/hospita_garbage_list', $data);
 				$this->load->view('html/footer');
@@ -1358,6 +1367,129 @@ class Hospital extends CI_Controller {
 						"draw" => $_POST['draw'],
 						"recordsTotal" => $this->Hospital_wisegraph_model->count_all($post['hid']),
 						"recordsFiltered" => $this->Hospital_wisegraph_model->count_filtered($post['hid']),
+						"data" => $data,
+				);
+				
+		//output to json format
+		echo json_encode($output);exit;
+	
+	}else{
+			$this->session->set_flashdata('loginerror','Please login to continue');
+			redirect('admin');
+		}
+	
+	}
+	/* hospital login details */
+	public function hospital_ajax_list()
+	{
+		if($this->session->userdata('userdetails'))
+		{
+		$a_de=$this->session->userdata('userdetails');
+		$post=$this->input->post();	
+		$list = $this->hos_waste->get_datatables($post['hid'],$post['fdate'],$post['tdate']);
+		//echo $this->db->last_query();
+		//echo '<pre>';print_r($list);exit;
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $customers) {
+			//$add= substr($customers['current_address'], 0, 15);
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $customers->hospital_name;
+			$states = array ('BH' => 'Bedded Hospital', 'CL' => 'Clinic', 'DI' => 'Dispensary', 'HO' => 'Homeopathy', 'MH' => 'Mobile Hospital', 'SI' => 'Siddha', 'UN' => 'Unani', 'VH' => 'Veterinary Hospital', 'YO' => 'Yoga', 'AH' => 'Animal House', 'BB' => 'Blood Bank', 'DH' => 'Dental Hospital ', 'NH' => 'Nursing Home', 'PL' => 'Pathological Laboratory', 'FA' => 'Institutions/Schools/Companies etc. with First Aid facilities', 'HC' => 'Health Camp');
+			 foreach($states as $key=>$state){
+				if($customers->type==$key){
+					 $h_type=$state;
+				}
+			 }
+			$row[] = isset($h_type)?$h_type:'';
+			$row[] = '<span title="'.$customers->current_address.'" data-toggle="tooltip">'.substr($customers->current_address, 0, 15).'</span>';
+			$row[] = date("Y-m-d", strtotime($customers->create_at));
+			$row[] = date("g:i a", strtotime($customers->create_at));
+			$row[] = number_format((float)$customers->infected_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->infected_waste_kg, 2, '.', '');
+			
+			$row[] = number_format((float)$customers->infected_plastics_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->infected_plastics_kg, 2, '.', '');
+			
+			$row[] = number_format((float)$customers->genaral_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->genaral_waste_kg, 2, '.', '');
+			
+			$row[] = number_format((float)$customers->glassware_watse_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->glassware_watse_kg, 2, '.', '');
+			
+			$row[] = number_format((float)$customers->infected_c_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->infected_c_waste_kg, 2, '.', '');
+			if($customers->updated_time!=''){	
+				$row[] = date("Y-m-d", strtotime($customers->updated_time));
+				$row[] = date("g:i a", strtotime($customers->updated_time));
+			}else{
+				$row[] ='';
+				$row[] ='';
+			}
+			if($customers->bio_current_address!=''){
+				$row[] = '<span title="'.$customers->bio_current_address.'" data-toggle="tooltip">'.substr($customers->bio_current_address, 0, 15).'</span>';
+			}else{
+				$row[] = '';
+			}
+			
+			$row[] = number_format((float)$customers->bio_infected_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->bio_infected_waste_kg, 2, '.', '');
+			
+				$row[] = number_format((float)$customers->bio_infected_plastics_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->bio_infected_plastics_kg, 2, '.', '');
+
+			$row[] = number_format((float)$customers->bio_genaral_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->bio_genaral_waste_kg, 2, '.', '');
+			
+		
+			$row[] = number_format((float)$customers->bio_glassware_watse_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->bio_glassware_watse_kg, 2, '.', '');
+			
+						$row[] = number_format((float)$customers->bio_infected_c_waste_qt, 2, '.', '');
+			$row[] = number_format((float)$customers->bio_infected_c_waste_kg, 2, '.', '');
+				$minutes = $customers->dif_hrs;
+				$dd=explode(':',$minutes);
+				$overaall=(($dd[0]*60)+$dd[1]);
+				$d = floor ($overaall / 1440);
+				$h = floor (($overaall - $d * 1440) / 60);
+				$m = $overaall - ($d * 1440) - ($h * 60);
+				 if($customers->dif_day>1 || $d>=1){ 											
+						if($customers->dif_day<2){ 
+								$dif_imes= '<span style="color:red;">'.$d.' d - '. $h.' hrs - '.$m.' min'.'</span>';
+								 }else{ 
+								$dif_imes= $customers->dif_day.' days';
+								}												
+					}else{ 
+						if($d=1){
+								$h=$d*24;
+							}else{
+								$h=$h;
+							}														
+						$dif_imes= '<span style="color:green;">'.$h.' hrs - '.$m.' min'.'</span>';
+					}
+			
+			
+			$row[] = isset($dif_imes)?$dif_imes:'';
+			if($customers->total!=''){
+				$b_t=number_format($customers->total,2);
+			}else{
+				$b_t=0;
+			}if($customers->bio_total!=''){
+				$a_t=number_format($customers->bio_total,2);
+			}else{
+				$a_t=0;
+			}
+			$all_t=(($b_t)-($a_t));
+			$row[] = $b_t.' - '.$a_t.' = '.$all_t;
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->hos_waste->count_all($post['hid'],$post['fdate'],$post['tdate']),
+						"recordsFiltered" => $this->hos_waste->count_filtered($post['hid'],$post['fdate'],$post['tdate']),
 						"data" => $data,
 				);
 				
